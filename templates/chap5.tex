@@ -1,22 +1,69 @@
-\chapter{Simulation}
+\chapter{Event Selection}
 
-\section{Backgrounds to the Analysis}
+\section{Object Definitions}
 
+Section~\ref{sec:event-reco} describes how
+detector responses are linked to possible physical particles.
+We want to remove false positives,
+so here are some tighter requirements for counting for event selection.
 
-\section{Event Generation}
+Once we have our objects defined,
+we can count them.
 
+\subsection{Muons}
 
-\section{Detector Simulation}
+Muons can show up in weakly decaying jets,
+so we're only interested in isolated ones here.
 
+\subsection{Electrons}
 
-\section{Corrections to Simulation}
+Electrons do the same thing as muons,
+but messier because the ECAL isn't as clean as the muon chambers.
 
-\subsection{Smearing}
+\subsection{Jets}
 
-\subsection{Control Regions}
+Jets are messier still.
 
-\subsubsection{Light Flavor Jets}
+Pileup removal is a big deal here.
 
-\subsubsection{Heavy Flavor Jets}
+\subsection{MET}
 
-\subsubsection{$t\bar{t}$}
+MET is corrected.
+
+\subsection{Undesirable Particles}
+
+There are certain particles that we do not want present.
+We make very loose selections for those and veto on them.
+
+\subsubsection{Photons}
+
+\subsubsection{Tau Leptons}
+
+\section{Removal of QCD}
+
+We have some cuts across the board on our objects
+in order to remove events that are just QCD.
+
+\section{Categories of Vector Boson Decay}
+
+Now that we are ready to count,
+we can count leptons in order to characterise
+potential vector bosons.
+
+\subsection{0 Leptons}
+
+\subsection{1 Lepton}
+
+\subsection{2 Leptons}
+
+\section{Topology of Higgs Decay}
+
+\subsection{Resolved Jets}
+
+We reconstruct two $b$ jets.
+
+\subsection{Boosted Jet}
+
+When the Higgs has very high $p_T$,
+the jet clustering algorithms can find both daughter particles
+as being part of a single jet.

@@ -37,6 +37,8 @@
 %% process, or `all' to process all files which you \include.
 %% Krishna Sethuraman (1990).
 
+\newcommand{\bb}{\ensuremath{b\bar{b}}}
+
 %\typein [\files]{Enter file names to process, (chap1,chap2 ...), or `all' to process all files:}
 \def\all{all}
 \ifx\files\all \typeout{Including all files.} \else %\typeout{Including only \files.} \includeonly{\files} \fi
@@ -57,10 +59,11 @@
 \include{chap5}
 \include{chap6}
 \include{chap7}
-\include{chap8}
-\include{chap9}
 \appendix
-% \include{appa}
+\include{appa}
+\include{appb}
+\include{appc}
+\include{appd}
 \include{biblio}
 \end{document}
 
