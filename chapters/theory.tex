@@ -2,7 +2,9 @@
 
 Before diving into the description of the experimental apparatus,
 an explanation of why it is expected to work is needed.
-As described in Chapter~\ref{ch:intro}, a model is used to describe reality.
+There are many textbooks that cover the Standard Model, as there are many students who study it.
+Much of what follows is taken from the book by Mark Thompson \cite{Thomson:1529540}.
+
 The Standard Model Lagrangian can be defined as a sum of Lagrangians that each describe
 the interactions between different fermions and bosons.
 Equations of motion can be extracted from a Lagrangian $\mathcal{L}$
@@ -33,7 +35,59 @@ understanding of the strong force is required to extract data from LHC collision
 \section{The Higgs Mechanism}
 
 In both of these components of the Standard Model Lagrangian,
-the Higgs coupling actually gives the vector bosons and fermions their mass.
+the Higgs coupling actually gives the vector bosons and massive fermions their mass.
+(In this work, neutrinos can be treated as massless.)
+The granting of mass happens for two reasons:
+the Higgs field has a non-zero vacuum expectation value,
+and the Higgs field couples to vector boson and massive fermion fields.
+
+The Higgs can be described as a scalar boson with a quartic potential.
+The Lagrangian for a free Higgs is then
+
+\begin{gather}
+  \mathcal{L} = (\delta_\mu \phi)^* (\delta^\mu \phi) - (\mu^2(\phi^*\phi) + \lambda(\phi^*\phi)^2) \label{eq:free}
+\end{gather}
+
+The complex scalar field $\phi$ then has a minimum potential at
+
+\begin{gather}
+  \phi^*\phi = \frac{-\mu^2}{\lambda} = v^2 \label{eq:vacuum}
+\end{gather}
+
+This potential of the Higgs field breaks the U(1) symmetry of the Standard Model Lagrangian,
+which would otherwise be invariant under transformations of
+$\phi \rightarrow \phi' = e^{i\alpha}\phi$ for all particle fields.
+Through this non-zero vacuum expectation value, the Higgs then has a constant influence
+in other parts of the Standard Model Lagrangian.
+For this measurement, three interactions that the Higgs makes
+with this influence need to be considered:
+the Higgs interacting with itself,
+the Higgs interacting with the electroweak vector bosons,
+and the Higgs interacting with quarks.
+
+The first two interactions manifest in the Lagrangian when
+we force the U(1) symmetry on the Lagrangian in Equation~\ref{eq:free}.
+The derivatives must be replaced via $\delta_\mu \rightarrow D_\mu = \delta_\mu + igB_\mu$.
+Adding the kinetic terms of the gauge field $B_\mu$, the Lagrangian now becomes
+
+\begin{gather}
+  \mathcal{L} = -\frac14 F^{\mu\nu} F_{\mu\nu} + (D_\mu \phi)^* (D^\mu \phi) - \mu^2 \phi^2 - \lambda \phi^4
+\end{gather}
+
+Expanding the scalar field $\phi$ around the vacuum expectation value and choosing the proper gauge
+
+\begin{gather}
+  \phi(x) = \frac1{\sqrt{2}} (v + h(x) + i\epsilon(x)) \\
+  B_\mu(x) \rightarrow B'_\mu(x) = B_\mu(x) + \frac1{gv}\delta_\mu\epsilon(x)
+\end{gather}
+
+leads to the expansion
+
+\begin{align}
+  \mathcal{L} = & \frac12(\delta_\mu h)(\delta^\mu h) - \lambda v^2 h^2 - \frac14 F_{\mu\nu} F^{\mu\nu} + \frac12 g^2 v^2 B_\mu B^\mu \nonumber \\
+                & + g^2 v B_\mu B^\mu h + \frac12 g^2 B_\mu B^\mu h^2 - \lambda v h^3 - \frac14 \lambda h^4
+\end{align}
+
 
 \section{Associated Production}
 
