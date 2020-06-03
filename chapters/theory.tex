@@ -41,22 +41,19 @@ The granting of mass happens for two reasons:
 the Higgs field has a non-zero vacuum expectation value,
 and the Higgs field couples to vector boson and massive fermion fields.
 
-The Higgs can be described as a scalar boson with a quartic potential.
+The Higgs can be described as two complex scalar fields in a weak isospin doublet
+with a quartic potential.
 The Lagrangian for a free Higgs is then
-
 \begin{gather}
-  \mathcal{L} = (\delta_\mu \phi)^* (\delta^\mu \phi) - (\mu^2(\phi^*\phi) + \lambda(\phi^*\phi)^2) \label{eq:free}
+  \mathcal{L} = (\delta_\mu \phi)^\dagger (\delta^\mu \phi) - (\mu^2(\phi^\dagger\phi) + \lambda(\phi^\dagger\phi)^2) \label{eq:free}
+\end{gather}
+Through the virial theorem, the potential has a minimum value when
+\begin{gather}
+  \phi^\dagger\phi = \frac{-\mu^2}{2\lambda} = \frac{v^2}{2} \label{eq:vacuum}
 \end{gather}
 
-The complex scalar field $\phi$ then has a minimum potential at
-
-\begin{gather}
-  \phi^*\phi = \frac{-\mu^2}{\lambda} = v^2 \label{eq:vacuum}
-\end{gather}
-
-This potential of the Higgs field breaks the U(1) symmetry of the Standard Model Lagrangian,
-which would otherwise be invariant under transformations of
-$\phi \rightarrow \phi' = e^{i\alpha}\phi$ for all particle fields.
+This potential of the Higgs field breaks the SU(2) $\times$ U(1)
+symmetry of the Standard Model Lagrangian.
 Through this non-zero vacuum expectation value, the Higgs then has a constant influence
 in other parts of the Standard Model Lagrangian.
 For this measurement, three interactions that the Higgs makes
@@ -66,28 +63,118 @@ the Higgs interacting with the electroweak vector bosons,
 and the Higgs interacting with quarks.
 
 The first two interactions manifest in the Lagrangian when
-we force the U(1) symmetry on the Lagrangian in Equation~\ref{eq:free}.
-The derivatives must be replaced via $\delta_\mu \rightarrow D_\mu = \delta_\mu + igB_\mu$.
-Adding the kinetic terms of the gauge field $B_\mu$, the Lagrangian now becomes
-
+we force the SU(2) $\times$ U(1) symmetry on the Lagrangian in Equation~\ref{eq:free}.
+The derivatives must be replaced.
 \begin{gather}
-  \mathcal{L} = -\frac14 F^{\mu\nu} F_{\mu\nu} + (D_\mu \phi)^* (D^\mu \phi) - \mu^2 \phi^2 - \lambda \phi^4
+  \delta_\mu \rightarrow D_\mu = \delta_\mu + i\frac{g_W}{2} {\boldsymbol \sigma} \cdot {\bf W_\mu} + ig'\frac{Y}{2}B_\mu
 \end{gather}
-
-Expanding the scalar field $\phi$ around the vacuum expectation value and choosing the proper gauge
-
+$\phi$ can be rewritten to satisfy the vacuum expectation value in the gauge that will give us the massless neutral boson known as a photon.
 \begin{gather}
-  \phi(x) = \frac1{\sqrt{2}} (v + h(x) + i\epsilon(x)) \\
-  B_\mu(x) \rightarrow B'_\mu(x) = B_\mu(x) + \frac1{gv}\delta_\mu\epsilon(x)
+  \phi(x) = \frac{1}{\sqrt{2}}
+  \left(
+  \begin{matrix}
+    0 \\
+    v + h(x)
+  \end{matrix}
+  \right)
 \end{gather}
-
-leads to the expansion
-
+This leads to the following expansion for the kinetic term of the Lagrangian.
 \begin{align}
-  \mathcal{L} = & \frac12(\delta_\mu h)(\delta^\mu h) - \lambda v^2 h^2 - \frac14 F_{\mu\nu} F^{\mu\nu} + \frac12 g^2 v^2 B_\mu B^\mu \nonumber \\
-                & + g^2 v B_\mu B^\mu h + \frac12 g^2 B_\mu B^\mu h^2 - \lambda v h^3 - \frac14 \lambda h^4
+  (D_\mu \phi)^\dagger(D^\mu \phi) = & \frac12 (\delta_\mu h)(\delta^\mu h)
+  + \frac18 g_W^2 (W^{(1)}_\mu + iW^{(2)}_\mu)(W^{(1)\mu} - iW^{(2)\mu})(v + h)^2 \nonumber \\
+  & + \frac18 (g_W W^{(3)}_\mu - g'B_\mu)(g_W W^{((3)\mu} - g' B^\mu)(v + h)^2
 \end{align}
 
+Terms that are quadratic in terms of the gauge boson fields reveal the mass of the fields.
+Taking $h(x) \rightarrow 0$, the terms for $W^{(1)}$ and $W^{(2)}$ are the just
+\[
+\frac14 g_W^2 v^2 W^{(1)}_\mu W^{(1)\mu} \quad \mathrm{and} \quad
+\frac14 g_W^2 v^2 W^{(2)}_\mu W^{(2)\mu},
+\]
+giving the mass.
+\begin{gather}
+  m_W = \frac12 g_W v
+\end{gather}
+The quadratic terms for $W^{(3)}$ and $B$ mix to give a non-diagonal mass matrix ${\bf M}$.
+\begin{gather}
+  \frac{v^2}{8}
+  \left(
+  \begin{matrix}
+  W^{(3)}_\mu & B_\mu
+  \end{matrix}
+  \right) {\bf M} \left(
+  \begin{matrix}
+  W^{(3)\mu} \\ B^\mu
+  \end{matrix}
+  \right) = 
+  \frac{v^2}{8}
+  \left(
+  \begin{matrix}
+  W^{(3)}_\mu & B_\mu
+  \end{matrix}
+  \right)
+  \left(
+  \begin{matrix}
+    g_W^2 & -g_W g' \\
+    -g_W g' & g'^2
+  \end{matrix}
+  \right)
+  \left(
+  \begin{matrix}
+  W^{(3)\mu} \\ B^\mu
+  \end{matrix}
+  \right)
+\end{gather}
+The non-diagonal matrix allow $W^{(3)}$ and $B$ to mix.
+Physical states must be represented by a diagonal Hamiltonian.
+Diagonalizing the term above gives masses of the physical states.
+\begin{gather}
+  \frac18 v^2
+  \left(
+  \begin{matrix}
+  A_\mu & Z_\mu
+  \end{matrix}
+  \right)
+  \left(
+  \begin{matrix}
+    0 & 0 \\
+    0 & g^2_W + g'^2
+  \end{matrix}
+  \right)
+  \left(
+  \begin{matrix}
+  A^\mu \\ Z^\mu
+  \end{matrix}
+  \right) = 
+  \frac12
+  \left(
+  \begin{matrix}
+  A_\mu & Z_\mu
+  \end{matrix}
+  \right)
+  \left(
+  \begin{matrix}
+    m_A^2 & 0 \\
+    0 & m_Z^2
+  \end{matrix}
+  \right)
+  \left(
+  \begin{matrix}
+  A^\mu \\ Z^\mu
+  \end{matrix}
+  \right)
+\end{gather}
+This gives us the masses of the neutral gauge bosons.
+\begin{gather}
+  m_A = 0 \quad \mathrm{and} \quad m_Z = \frac12 v \sqrt{g^2_W + g'^2}
+\end{gather}
+
+From the simple act of requiring SU(2) $\times$ U(1) symmetry on the Lagrangian of a scalar
+doublet with non-zero vacuum expectation value,
+the masses of all the electroweak gauge bosons have been produced.
+The next thing to consider is the couplings also produced by this process.
+The couplings will allow us to determine more precisely the parameters above
+by measuring cross sections.
 
 \section{Associated Production}
 
