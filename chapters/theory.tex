@@ -224,24 +224,149 @@ The vertex showing associated production is pictured in Figure~\ref{fig:associat
 \end{figure}
 
 
-\subsection{Production Mechanisms of Vector Bosons}
+\subsection{Production Mechanisms of Vector Bosons} \label{sec:produce-vector}
 
 The $W$ and $Z$ bosons are themselves intermediate states,
 never existing in a directly observable manner.
 They must be produced through interacts with stable fermions.
+Since the LHC is a hadron collider,
+considering the vector bosons' couplings with quarks would be most relevant.
 
-\cite{PhysRevD.2.1285}
+Quarks are fermions that couple to each other through the strong force,
+resulting from a SU(3) symmetry.
+There are three generations of quarks each consisting of a pair of quark types.
+Their mass eigenstates are denoted as down-type or up-type.
+Table~\ref{tab:quarks} displays some of the characteristics of these quarks.
+\begin{table}
+  \centering
+  \caption[Quark flavors]{The quarks and some stuff about them.}
+  {\renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|l|c c c c|}
+    \hline
+    & 1st gen. & 2nd gen. & 3rd gen. & charge \\
+    \hline
+    down-type & $d$ & $s$ & $b$ & $-\frac13$ \\
+    up-type & $u$ & $c$ & $t$ & $\frac23$ \\
+    \hline
+  \end{tabular}}
+  \label{tab:quarks}
+\end{table}
+A feature of quarks is that their mass eigenstates do not match their weak eigenstates.
+There is a mixing among the down-type quarks that is parametrized by the
+Cabibbo-Kobayashi-Maskawa (CKM) matrix.
+\begin{gather}
+  \left(
+  \begin{matrix}
+    d' \\
+    s' \\
+    b'
+  \end{matrix}
+  \right)
+  =
+  \left(
+  \begin{matrix}
+    V_{ud} & V_{us} & V_{ub} \\
+    V_{cd} & V_{cs} & V_{cb} \\
+    V_{td} & V_{ts} & V_{tb}
+  \end{matrix}
+  \right)
+  \left(
+  \begin{matrix}
+    d \\
+    s \\
+    b
+  \end{matrix}
+  \right)
+\end{gather}
+The mass eigenstates are denoted as $d, s$, and $b$,
+while $d', s'$, and $b'$ are the weak eigenstates.
+This mixing allows quarks to change generations through interaction with the weak force.
+The following is the charge current vertex interaction.
+\[
+-i \frac{g_W}{\sqrt{2}}
+\left(
+\begin{matrix}
+\bar{u} & \bar{c} & \bar{t}
+\end{matrix}
+\right)
+\gamma^\mu \frac12 (1 - \gamma^5)
+\left(
+\begin{matrix}
+  V_{ud} & V_{us} & V_{ub} \\
+  V_{cd} & V_{cs} & V_{cb} \\
+  V_{td} & V_{ts} & V_{tb}
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+d \\ s \\ b
+\end{matrix}
+\right)
+\]
+The vertices for this interaction is shown in Figure~\ref{fig:w-production}
+arranged in a way to show the processes of generating a $W^+$ or $W^-$ boson
+from annihilating quarks.
+\begin{figure}
+  \centering
+  \begin{fmffile}{w_plus_production}
+    \begin{fmfgraph*}(180, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{quark}{i0,v0,i1}
+      \fmf{boson, label=$W^+$}{v0,o0}
+      \fmflabel{$u$}{i0}
+      \fmflabel{$\bar{d}$}{i1}
+      \fmflabel{V_{ud}\frac{g_W}{2}}{v0}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \begin{fmffile}{w_minus_production}
+    \begin{fmfgraph*}(180, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{quark}{i1,v0,i0}
+      \fmf{boson, label=$W^-$}{v0,o0}
+      \fmflabel{$\bar{u}$}{i0}
+      \fmflabel{$d$}{i1}
+      \fmflabel{V_{ud}\frac{g_W}{2}}{v0}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \caption[Feynman diagram of generating $W^\pm$]
+          {
+            Above are diagrams for generating $W^+$ and $W^-$ bosons.
+            the $u$ and $d$ quarks in the diagram can be replaced with
+            any up-type or down-type quark, respectively.
+            The CKM matrix element would in the vertex element would be changed accordingly.
+          }
+  \label{fig:w-production}
+\end{figure}
+
+Unifying electroweak forces doesn't quite get the Z to be an obvious thing.
+
+Hadrons have anti-quarks in them too.
+I'll show a diagram of the P.D.F.
+
+% \cite{PhysRevD.2.1285}
 
 \subsection{Decay Channels of Vector Bosons}
 
+Due to the couplings described in Section~\ref{sec:produce-vector},
+the vector bosons decay into quarks.
+However, in the hadronic environment produced at the LHC
+these are not the best indicators of a vector boson intermediate state.
+This measurement uses leptonic decays in the final state
+since the contributions of the vector boson intermediate states to leptonic final states
+of appropriate kinematics are significantly larger.
+
+
 \section{Characteristics of the Higgs}
+
+What we are ultimately interested in measuring is the contribution of the
+Higgs intermediate state to the final state of \bb.
 
 \subsection{Energy Spectrum}
 
 \subsection{Decay to \bb}
 
-\begin{gather}
-  \mathcal{L}_{f}
-\end{gather}
-
 \section{Other Relevant Standard Model Processes}
+
+There are other processes that must be acknowledged in order to explain how the CMS detector works.
