@@ -183,7 +183,7 @@ by measuring cross sections.
 The physical states of $W^+$ and $W^-$ bosons can be determined by
 the raising and lowering operators for isospin.
 \begin{gather}
-  W^\pm = \frac{1}{\sqrt2}\left(W^{(1)} \mp i W^{(2)}\right)
+  W^\pm = \frac{1}{\sqrt2}\left(W^{(1)} \mp i W^{(2)}\right) \label{eq:w-form}
 \end{gather}
 The second term of Equation~(\ref{eq:expanded}) can be further expanded.
 \begin{gather}
@@ -196,7 +196,8 @@ strength of a vertex with a Higgs and two $W$ bosons.
   g_{HWW} = \frac12 g^2_W v = g_W m_W
 \end{gather}
 The coupling to the $Z$ boson can also be found from
-Equation~(\ref{eq:zmass}) by substituting $(v + h)^2$ back in for $v^2$.
+Equation~(\ref{eq:zmass}) by substituting $(v + h)^2$ back in for $v^2$ and
+extracting the terms proportional to $h Z_\mu Z^\mu$.
 \begin{gather}
   g_{HZZ} = \frac12 \left(g^2_W + g'^2\right) v = \sqrt{g^2_W + g'^2} m_Z
 \end{gather}
@@ -339,6 +340,12 @@ from annihilating quarks.
           }
   \label{fig:w-production}
 \end{figure}
+The $\gamma$ matrices in the interaction are present because the SU(2) component of
+the Standard Model only interacts with left-handed fermions and right-handed anti-fermions.
+For this reason, the SU(2) component is more accurately labelled SU$(2)_L$.
+From Equation~(\ref{eq:w-form}), the $W^\pm$ bosons are completely made up of the
+$W^{(1)}$ and $W^{(2)}$ components of the SU$(2)_L$, so they also only interact with
+left-handed fermions and right-handed anti-fermions.
 
 Unifying electroweak forces doesn't quite get the Z to be an obvious thing.
 
