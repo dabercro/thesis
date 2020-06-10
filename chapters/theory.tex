@@ -124,7 +124,7 @@ The quadratic terms for $W^{(3)}$ and $B$ mix to give a non-diagonal mass matrix
   \begin{matrix}
   W^{(3)\mu} \\ B^\mu
   \end{matrix}
-  \right)
+  \right) \label{eq:mixing}
 \end{gather}
 The non-diagonal matrix allow $W^{(3)}$ and $B$ to mix.
 Physical states must be represented by a diagonal Hamiltonian.
@@ -180,7 +180,7 @@ The next thing to consider is the couplings also produced by this process.
 The couplings will allow us to determine more precisely the parameters above
 by measuring cross sections.
 
-The physical states of $W^+$ and $W^-$ bosons can be determined by
+The physical states of $W^+$ and $W^-$ bosons can be written as
 the raising and lowering operators for isospin.
 \begin{gather}
   W^\pm = \frac{1}{\sqrt2}\left(W^{(1)} \mp i W^{(2)}\right) \label{eq:w-form}
@@ -242,12 +242,12 @@ Table~\ref{tab:quarks} displays some of the characteristics of these quarks.
   \centering
   \caption[Quark flavors]{The quarks and some stuff about them.}
   {\renewcommand{\arraystretch}{1.5}
-  \begin{tabular}{|l|c c c c|}
+  \begin{tabular}{|l|c c c c c|}
     \hline
-    & 1st gen. & 2nd gen. & 3rd gen. & charge \\
+    & 1st gen. & 2nd gen. & 3rd gen. & Q & I_W^{(3)} \\
     \hline
-    down-type & $d$ & $s$ & $b$ & $-\frac13$ \\
-    up-type & $u$ & $c$ & $t$ & $\frac23$ \\
+    down-type & $d$ & $s$ & $b$ & $-\frac13$ & $-\frac12$ \\
+    up-type & $u$ & $c$ & $t$ & $+\frac23$ & $+\frac12$ \\
     \hline
   \end{tabular}}
   \label{tab:quarks}
@@ -281,7 +281,8 @@ Cabibbo-Kobayashi-Maskawa (CKM) matrix.
 \end{gather}
 The mass eigenstates are denoted as $d, s$, and $b$,
 while $d', s'$, and $b'$ are the weak eigenstates.
-This mixing allows quarks to change generations through interaction with the weak force.
+This mixing allows quarks to change generations through interaction with $W^\pm$ bosons,
+which raise or lower the weak isospin.
 The following is the charge current vertex interaction.
 \[
 -i \frac{g_W}{\sqrt{2}}
@@ -347,10 +348,109 @@ From Equation~(\ref{eq:w-form}), the $W^\pm$ bosons are completely made up of th
 $W^{(1)}$ and $W^{(2)}$ components of the SU$(2)_L$, so they also only interact with
 left-handed fermions and right-handed anti-fermions.
 
-Unifying electroweak forces doesn't quite get the Z to be an obvious thing.
+Both the photon and the $Z$ boson mix the SU$(2)_L$ and U(1) components of the Standard Model.
+Production of the $Z$ needs to be directly understood for this measurement,
+but it is more straightforward to determine the strength of the $Z$ couplings to left-
+and right-handed fermions by exploiting the symmetry of photon interactions.
+That is, the photon interacts the same with left and right handed charged fermions,
+and not at all with neutral fermions.
+This is shown directly with experiments with leptons.
+The charged leptons, electrons, muons, and taus, interact with photons,
+while the respective neutrinos do not.
+From the mixing in Equation~(\ref{eq:mixing}),
+the photon and $Z$ fields can be expressed as the following.
+\begin{gather}
+  A_\mu = B_\mu \cos \theta_W + W_\mu^{(3)} \sin \theta_W \\
+  Z_\mu = - B_\mu \sin \theta_W + W_\mu^{(3)} \cos \theta_W \label{eq:z-force}
+\end{gather}
+$\theta_W$ is known as the weak mixing angle.
+The relative strengths of the $B$ and $W^{(3)}$ couplings
+are determined directly through lepton electro-magnetic characteristics,
+keeping in mind that $W^{(3)}$ only interacts with left handed particles.
+The following are the electro-magnetic interaction strengths of left- and right-handed electrons and neutrinos.
+\begin{align}
+  e_L:& \qquad Qe = \frac12 g' Y_{e_L} \cos \theta_W - \frac12 g_W \sin \theta_W \\
+  \nu_L:& \qquad \phantom{Q}0 = \frac12 g' Y_{\nu_L} \cos \theta_W - \frac12 g_W \sin \theta_W \\
+  e_R:& \qquad Qe = \frac12 g' Y_{e_R} \cos \theta_W \\
+  \nu_R:& \qquad \phantom{Q}0 = \frac12 g' Y_{\nu_R} \cos \theta_W
+\end{align}
+$Y_{e_L}$ and $Y_{\nu_L}$ must be equal to maintain SU$(2)_L$ symmetry.
+To satisfy these contraints, the follow definition of $Y$ is needed.
+\begin{gather}
+  Y = 2\left(Q - I_W^{(3)}\right)
+\end{gather}
+The following relationship also arises from these experimental constraints.
+\begin{gather}
+  e = g_W \sin \theta_W = g' \cos \theta_W
+\end{gather}
 
-Hadrons have anti-quarks in them too.
-I'll show a diagram of the P.D.F.
+Returning to the $Z$ boson, from Equation~(\ref{eq:z-force}),
+and defining
+\begin{gather}
+  g_Z = \frac{e}{\sin \theta_W \cos \theta_W},
+\end{gather}
+we have the following couplings to left- and right-handed fermions.
+\begin{align}
+  -\frac12 g' \sin \theta_W (Y_{f_L} \bar{u}_L \gamma^\mu u_L &+ Y_{f_R} \bar{u}_R \gamma^\mu u_R) + I_W^{(3)} g_W \cos \theta_W \left( \bar{u}_L \gamma^\mu u_L \right) = \nonumber \\
+  & g_Z\left(\left( I^{(3)} - Q \sin^2 \theta_W \right)\bar{u}_L \gamma^\mu u_L
+  - Q \sin^2 \theta_W \bar{u}_R \gamma^\mu u_R\right)
+\end{align}
+Now the coupling of the $Z$ to left- and right-handed quarks can be calculated from
+Table~\ref{tab:quarks}, remembering that $I_W^{(3)}$ for right-handed fermions is 0.
+Diagrams showing the interaction strengths of fermion-$Z$ vertices are shown
+in Figure~\ref{fig:z-production}.
+\begin{figure}
+  \centering
+  \begin{fmffile}{z_left_production}
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{quark}{i0,v0,i1}
+      \fmf{boson, label=$Z$}{v0,o0}
+      \fmflabel{$f_L$}{i0}
+      \fmflabel{$\bar{f}_R$}{i1}
+      \fmflabel{$g_Z(\left I^{(3)} - Q \sin^2 \theta_W\right)$}{v0}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \hspace{24pt}
+  \begin{fmffile}{z_right_production}
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{quark}{i1,v0,i0}
+      \fmf{boson, label=$Z$}{v0,o0}
+      \fmflabel{$\bar{f}_L$}{i0}
+      \fmflabel{$f_R$}{i1}
+      \fmflabel{$- g_Z Q \sin^2 \theta_W$}{v0}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \vspace{6pt}
+  \caption[Feynman diagram of generating $Z$]
+          {
+            Above are diagrams for generating $Z$ bosons.
+            Left- and right-handed fermions are both coupled to,
+            but with different coupling strengths.
+          }
+  \label{fig:z-production}
+\end{figure}
+
+Thus vector bosons couple to quarks, the constituents of hadrons.
+This means, they can be produced at the LHC.
+For this experiment, protons are collided.
+Typically, protons are described as containing two up and one down quark.
+This forms a color singlet.
+But there are other quark/anti-quark pairs that are floating around inside of each proton.
+These anti-quarks couple with quarks of either the sea or valence variety,
+and we get vector bosons.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/CTEQ6_parton_distribution_functions.png}
+  \caption{The P.D.F.}
+  \label{fig:pdf}
+\end{figure}
+
+% https://en.wikipedia.org/wiki/Parton_(particle_physics)#/media/File:CTEQ6_parton_distribution_functions.png
 
 % \cite{PhysRevD.2.1285}
 
