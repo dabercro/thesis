@@ -434,23 +434,54 @@ in Figure~\ref{fig:z-production}.
   \label{fig:z-production}
 \end{figure}
 
-Thus vector bosons couple to quarks, the constituents of hadrons.
-This means, they can be produced at the LHC.
-For this experiment, protons are collided.
-Typically, protons are described as containing two up and one down quark.
-This forms a color singlet.
-But there are other quark/anti-quark pairs that are floating around inside of each proton.
-These anti-quarks couple with quarks of either the sea or valence variety,
-and we get vector bosons.
+Thus vector bosons couple to quarks, the constituents of hadrons,
+which means they can be produced at the LHC.
+As mentioned earlier in this section,
+quarks interact through an SU(3) symmetry that results in the strong force.
+The three states that this symmetry supports are known as color states,
+and they are labelled red, green, and blue, or $r$, $g$, and $b$.
+The resulting gauge bosons are known as gluons, and they carry the following color states.
+\[
+r\bar{g}, g\bar{r}, r\bar{b}, b\bar{r}, g\bar{b}, b\bar{g}, \frac{1}{\sqrt{2}}(r\bar{r} - g\bar{g}) \mathrm{and} \frac{1}{\sqrt{6}}(r\bar{r} + g\bar{g} - 2b\bar{b})
+\]
+At low energy, the coupling constant for the strong force is on the order of unity.
+This leads to color confinement,
+so that quarks an appreciable distance apart do not interact with each other.
+To achieve this, all observable hadronic states are color singlets.
+The most common hadronic states are mesons, made of a quark/anti-quark pair
+with the color singlet state
+\begin{gather}
+  \psi(q\bar{q}) = \frac1{\sqrt{3}} (r\bar{r} + g\bar{g} + b\bar{b}),
+\end{gather}
+and baryons, made of three quarks with the following color singlet state.
+\begin{gather}
+  \psi(qqq) = \frac{1}{\sqrt{6}}(rgb - rbg + gbr  grb + brg - bgr) \label{eq:baryon-singlet}
+\end{gather}
+Baryons can also be composed of three anti-quarks,
+which has a state corresponding to Equation~(\ref{eq:baryon-singlet}),
+but with anti-color.
 
+For this measurement, protons are collided at the LHC.
+The proton consists of two $u$ quarks, and one $d$ quark.
+Since the three quarks inside the proton interact strongly,
+there are also many virtual gluons and quark/anti-quark pairs present at all times.
+The quantity and energies of all these partons are not able to be calculated
+since QCD is non-perturbative.
+They can be measured in deep inelastic scattering experiements though.
+In these, electrons are scattered off of protons,
+and parton distribution functions (PDFs) can be measured.
+The PDFs for protons are shown in Figure~\ref{fig:pdf}.
 \begin{figure}
   \centering
   \includegraphics[width=0.7\linewidth]{figures/CTEQ6_parton_distribution_functions.png}
   \caption{The P.D.F.}
   \label{fig:pdf}
 \end{figure}
-
 % https://en.wikipedia.org/wiki/Parton_(particle_physics)#/media/File:CTEQ6_parton_distribution_functions.png
+
+From these things, we can predict the cross section of generating $W$ and $Z$ bosons at the LHC.
+These need to be very massive though, since they're going to radiate a Higgs.
+This complicates the calculation a bit.
 
 % \cite{PhysRevD.2.1285}
 
