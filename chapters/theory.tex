@@ -77,7 +77,7 @@ $\phi$ can be rewritten to satisfy the vacuum expectation value in the gauge tha
     0 \\
     v + h(x)
   \end{matrix}
-  \right)
+  \right) \label{eq:higgs-doublet}
 \end{gather}
 This leads to the following expansion for the kinetic term of the Lagrangian.
 \begin{align}
@@ -493,18 +493,86 @@ However, in the hadronic environment produced at the LHC
 these are not the best indicators of a vector boson intermediate state.
 This measurement uses leptonic decays in the final state
 since the contributions of the vector boson intermediate states to leptonic final states
-of appropriate kinematics are significantly larger.
+of appropriate kinematics are larger compared to other contributions to this final state.
 
+There are three generations of leptons.
+Each generation consists of a charged lepton, and a neutral neutrino.
+The left-handed charged lepton and neutrino of each generation form an electroweak SU(2) doublet.
+In order of increasing mass, the three generations are called electron, muon, and tau.
+Heavier charged leptons decay into lighter leptons via the weak force.
+Two neutrinos result from this decay, as shown in Figure~\ref{fig:tau-decay},
+making the characteristics of the parent lepton's parent difficult to reconstruct.
+The tau lepton has enough mass to consistently decay before reaching the CMS detector.
+The tau lepton is also massive enough to also decay into quarks,
+making its measurement even more complicated.
+Muons have an average lifetime long enough to penetrate the entire detector,
+and electrons are stable particles.
+As a result, only muons and electrons are considered in this analysis.
+\begin{figure}
+  \centering
+  \begin{fmffile}{tau_decay}
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0}
+      \fmfright{o0,o1,o2}
+      \fmf{fermion}{i0,v0,o0}
+      \fmf{boson, label=$W^-$}{v0,v1}
+      \fmf{fermion}{o1,v1,o2}
+      \fmflabel{$\tau^-$}{i0}
+      \fmflabel{$\nu_\tau$}{o0}
+      \fmflabel{$\bar{\nu}_\mu$}{o1}
+      \fmflabel{$\mu^-$}{o2}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \label{fig:tau-decay}
+  \caption[Tau decay]{
+    Heavier leptons can decay to lighter leptons while emitting two neutrinos.
+    Above is an example of a decay of $\tau \rightarrow \nu_\tau\mu\bar{\nu}_\mu$.
+    The neutrinos cannot be measured at CMS, so it is better to avoid such decays
+    in the analysis.
+  }
+\end{figure}
 
 \section{Characteristics of the Higgs}
 
 What we are ultimately interested in measuring is the contribution of the
 Higgs intermediate state to the final state of \bb.
+Since the Higgs is a SU$(2)_L$ doublet of scalar fields,
+the term $-g_f(\bar{L}\phi R + \bar{R} \phi^\dagger L)$ in the
+Standard Model Lagrangian is invariant under SU$(2)_L \times$ SU$(1)_Y$,
+where $L$ is a left-handed fermion doublet, and $R$ is a right-handed singlet.
+If the Higgs doublet is expanded around the vacuum expectation value,
+as Equation~(\ref{eq:higgs-doublet}), the Lagrangian term becomes the following.
+\begin{gather}
+  \mathcal{L}_f =
+  -\frac{g_f}{\sqrt2} v \left(\bar{f}_L f_R + \bar{f}_R f_L \right)
+  -\frac{g_f}{\sqrt2} h \left(\bar{f}_L f_R + \bar{f}_R f_L \right)
+  \label{eq:fermion-mass}
+\end{gather}
+In Equation~(\ref{eq:fermion-mass}),
+$f$ refers to the lower field of the fermion's SU$(2)_L$ doublet.
+The Lagrangian also includes terms for the upper field since the conjugate of $\phi$
+has the same symmetries as $\phi$.
 
-\subsection{Energy Spectrum}
-
-\subsection{Decay to \bb}
+The Lagrangian showing fermion-Higgs interactions in
+Equation~(\ref{eq:fermion-mass}) consists of two terms.
+Since $v$ is constant, the first term would be consistent with a fermion's mass,
+assuming an appropriate coupling constant.
+\begin{gather}
+  g_f = \sqrt2 \frac{m_f}{v}
+\end{gather}
+The second term is the coupling of the fermion to the Higgs field
+with the same coupling constant.
+This is the mechanism by which the Higgs give fermions their masses,
+and also why the Higgs couples more strongly to massive particles.
+The Feynman rule for the interaction vertex between the Higgs and fermions
+is proportional to the fermion's mass.
+Of the quarks, the $b$ quark is the second most massive.
+The most massive $t$ quark is too massive to be the final decay product of an on-shell Higgs.
+In fact, the predicted branching ratio of $H \rightarrow \bb$ is 57.8\%.
+Therefore, measuring $H \rightarrow \bb$ is the most direct measurement to confirm
+this theory of quark masses.
 
 \section{Other Relevant Standard Model Processes}
 
 There are other processes that must be acknowledged in order to explain how the CMS detector works.
+I'll fill those in as needed?
