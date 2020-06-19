@@ -1,38 +1,75 @@
 \chapter{The CMS Detector} \label{ch:detector}
 
-The Compact Muon Solenoid (CMS) detector is a complex device located at the LHC.
-Ideally, a lot of time could be saved for the reader by only detailing the parts of the detector that are relevant for the analysis presented in this work.
-Unfortunately, a characteristic of contemporary collider measurements is that almost all sub-systems of the detector are used to make the final measurement.
+The Compact Muon Solenoid (CMS) detector, located at the LHC,
+consists of multiple sub-detectors.
+Ideally, time could be saved for the dedicated reader by only detailing
+the parts of the detector that are relevant for the analysis presented in this work.
+Unfortunately, a characteristic of hadron collider measurements is that
+almost all sub-systems of the detector are used to make the final measurement.
 
 A brief overview of all the detector subsystems are therefore presented in this chapter.
-A curious reader can learn more about the design and motivations for said design in the TDR \cite{cms-tdr}.
-
+More can be learned about the design and motivations for the detector in the TDR \cite{cms-tdr}.
 
 \section{Associated Production at the LHC}
 
+The CMS detector only observes events.
 Before describing the devices that are used to observe and record events,
 the method of generating interesting events must be described.
 The CMS detector is located at the Large Hadron Collider (LHC).
 Described in detail in multiple publications \cite{Evans_2008},
 a brief description is given here.
 
-The LHC, with a circumference of 26.7 km, is large enough to be considered located in multiple towns and countries,
-but it will suffice to say it is near Geneva, Switzerland at the European Organization for Nuclear Research (CERN), the main campus of which is addressed in Meyrin, Switzerland.
+The LHC, with a circumference of 26.7 km,
+is large enough to be considered located in multiple towns and countries,
+but it will suffice to say it is near Geneva, Switzerland
+at the European Organization for Nuclear Research (CERN),
+the main campus of which is addressed in Meyrin, Switzerland.
 This campus itself also spans the border between Switzerland and France.
+This large circumference is needed since charged particles traveling
+in a circular path with radius $r$ emit synchrotron radiation at the following rate.
+\begin{gather}
+  P = \frac{q^2 p^4}{6\pi \epsilon_0 m^4 c^5 r^2}
+\end{gather}
+The amount of power lost by the particles decreases quadratically
+with the size of the collider.
+In addition, the energy lost decreases with the mass of the accelerated particles
+to the fourth power.
+The LHC was built in the same tunnels that were used for LEP,
+which was a collider for electrons and positrons that took much of its data at
+$\sqrt{s} = \SI{98}{GeV}$.
+The resulting LHC is designed to collide protons at energies of $\sqrt{s} = \SI{14}{TeV}$,
+with the data for this analysis taken at \SI{13}{TeV}.
 
-Quark interactions can lead to Vector boson production,
-since the protons are at high energy.
+Though Figure~\ref{fig:pdf} showed that not all of the energy from each proton
+goes into the interaction,
+there still is adequate phase space available to generate the massive off-shell
+vector bosons that are needed for \emph{Higgstrahlung},
+via the mechanisms described in Section~\ref{sec:produce-vector}.
 
-Virtual vector bosons can radiate a Higgs.
-
-This happens along with additional event stuff,
-caused by breaking apart the protons and pileup.
+The removal of a quark from one proton and an anti-quark from the other leads to two
+non-color-singlet states in close proximity to each other.
+The resulting spray of hadronic particles generated from the vacuum to restore
+color singlets are called jets.
+The detectors are designed to distinguish these jets from more interesting decay products
+in the interaction.
 
 \section{Observables of Associated Production}
 
-We can count charged leptons or infer neutrinos to tag vector bosons.
+One configuration of possible final state particles is shown in Figure~\ref{fig:two-lep-diagram}.
+There, two oppositely charged leptons and two b quarks are the end decay products.
+The $b$ quarks also hadronize form color singlets well before reaching the detector,
+but the resulting jets can actually be distinguished well from the jets resulting
+from the fragmenting protons.
 
-We are interested in Higgs to \bb.
+Alternate signatures of interest can be seen by substituting other vector boson final states
+from Figure~\ref{fig:v-decay}.
+In these, there may be one or zero charged leptons.
+Neutral particles are difficult to detect,
+with neutral leptons being capable of passing through the entire Earth without
+being part of a detectable interaction.
+The CMS detector therefore ignores the neutrinos,
+but their presence can still be inferred.
+
 
 \section{Detector Requirements}
 

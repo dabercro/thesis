@@ -485,7 +485,7 @@ This complicates the calculation a bit.
 
 % \cite{PhysRevD.2.1285}
 
-\subsection{Decay Channels of Vector Bosons}
+\subsection{Decay Channels of Vector Bosons} \label{sec:v-decay}
 
 Due to the couplings described in Section~\ref{sec:produce-vector},
 the vector bosons decay into quarks.
@@ -523,16 +523,65 @@ As a result, only muons and electrons are considered in this analysis.
       \fmflabel{$\mu^-$}{o2}
     \end{fmfgraph*}
   \end{fmffile}
-  \label{fig:tau-decay}
   \caption[Tau decay]{
     Heavier leptons can decay to lighter leptons while emitting two neutrinos.
     Above is an example of a decay of $\tau \rightarrow \nu_\tau\mu\bar{\nu}_\mu$.
     The neutrinos cannot be measured at CMS, so it is better to avoid such decays
     in the analysis.
   }
+  \label{fig:tau-decay}
+\end{figure}
+The Feynman diagrams for the decay channels of interest are shown in Figure~\ref{fig:v-decay}.
+\begin{figure}
+  \centering
+  \begin{fmffile}{z_zero_lep}
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0}
+      \fmfright{o0,o1}
+      \fmf{boson, label=$Z$}{i0,v0}
+      \fmf{fermion}{o0,v0,o1}
+      \fmflabel{$\bar{\nu}_e/\bar{\nu}_\mu$}{o0}
+      \fmflabel{$\nu_e/\nu_\mu$}{o1}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \begin{fmffile}{z_two_lep}
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0}
+      \fmfright{o0,o1}
+      \fmf{boson, label=$Z$}{i0,v0}
+      \fmf{fermion}{o0,v0,o1}
+      \fmflabel{$e^+/\mu^+$}{o0}
+      \fmflabel{$e^-/\mu^-$}{o1}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \begin{fmffile}{w_one_lep}
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0}
+      \fmfright{o0,o1}
+      \fmf{boson, label=$W^-$}{i0,v0}
+      \fmf{fermion}{o0,v0,o1}
+      \fmflabel{$\bar{\nu}_e/\bar{\nu}_\mu$}{o0}
+      \fmflabel{$e^-/\mu^-$}{o1}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \begin{fmffile}{wp_one_lep}
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0}
+      \fmfright{o0,o1}
+      \fmf{boson, label=$W^+$}{i0,v0}
+      \fmf{fermion}{o0,v0,o1}
+      \fmflabel{$\nu_e/\nu_\mu$}{o0}
+      \fmflabel{$e^+/\mu^+$}{o1}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \caption[Vector Boson decays in the analysis]{
+    Above are the three different vector boson decays we are interested in.
+  }
+  \label{fig:v-decay}
 \end{figure}
 
-\section{Characteristics of the Higgs}
+
+\section{Decay Channels of the Higgs}
 
 What we are ultimately interested in measuring is the contribution of the
 Higgs intermediate state to the final state of \bb.
@@ -571,6 +620,35 @@ The most massive $t$ quark is too massive to be the final decay product of an on
 In fact, the predicted branching ratio of $H \rightarrow \bb$ is 57.8\%.
 Therefore, measuring $H \rightarrow \bb$ is the most direct measurement to confirm
 this theory of quark masses.
+The diagram for this decay can be combined with the Feynman diagrams in
+Figure~\ref{fig:associated-production}, Figure~\ref{fig:w-production} or \ref{fig:z-production},
+and one of the decays in Figure~\ref{fig:v-decay} in order to generate the full
+Feynman diagrams for the processes being measured in this analysis.
+One such full diagram is shown in Figure~\ref{fig:two-lep-diagram}.
+\begin{figure}
+  \centering
+  \begin{fmffile}{two_lep_diagram}
+    \begin{fmfgraph*}(250, 150)
+      \fmfleft{i0,i1}
+      \fmfright{o0,o1,o2,o3}
+      \fmf{quark}{i1,v0,i0}
+      \fmflabel{$\bar{f}$}{i0}
+      \fmflabel{$f$}{i1}
+      \fmf{boson, label=$Z$}{v0,v1,v2}
+      \fmf{fermion}{o0,v2,o1}
+      \fmflabel{$\ell^+$}{o0}
+      \fmflabel{$\ell^-$}{o1}
+      \fmf{dashes, label=$H$}{v1,v3}
+      \fmf{fermion}{o2,v3,o3}
+      \fmflabel{$\bar{b}$}{o2}
+      \fmflabel{$b$}{o3}
+    \end{fmfgraph*}
+  \end{fmffile}
+  \caption[Full Feynman diagram for the two lepton process]{
+    Above is the full Feynman diagram for $ZH \rightarrow \ell^+\ell^- \bb$.
+  }
+  \label{fig:two-lep-diagram}
+\end{figure}
 
 \section{Other Relevant Standard Model Processes}
 
