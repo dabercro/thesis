@@ -53,7 +53,7 @@ color singlets are called jets.
 The detectors are designed to distinguish these jets from more interesting decay products
 in the interaction.
 
-\section{Observables of Associated Production}
+\section{Detector Requirements}
 
 One configuration of possible final state particles is shown in Figure~\ref{fig:two-lep-diagram}.
 There, two oppositely charged leptons and two b quarks are the end decay products.
@@ -61,33 +61,89 @@ The $b$ quarks also hadronize form color singlets well before reaching the detec
 but the resulting jets can actually be distinguished well from the jets resulting
 from the fragmenting protons.
 
+Hadrons containing $b$ quarks decay through the weak force since they require a flavor change.
+As mentioned before, the CKM matrix in Equation~\ref{eq:ckm} quantifies the mixing between the different quark flavors.
+The value of $V_{tb}$ is close to unity, and since the CKM matrix is unitary,
+$V_{cb}$ and $V_{ub}$ are small.
+This means the matrix element weak decays of the $b$ hadrons is small.
+This is the only decay channel available to the lightest $b$ hadrons,
+so their lifetimes are relatively long.
+The delayed decay results in a jet with a secondary vertex where many of its particles
+are generated from the vacuum at a distance from the initial collision point.
+
 Alternate signatures of interest can be seen by substituting other vector boson final states
 from Figure~\ref{fig:v-decay}.
-In these, there may be one or zero charged leptons.
+In these, there may be one or zero charged leptons,
+with one or two neutral leptons, respectively.
 Neutral particles are difficult to detect,
 with neutral leptons being capable of passing through the entire Earth without
 being part of a detectable interaction.
 The CMS detector therefore ignores the neutrinos,
 but their presence can still be inferred.
+Even with the variation in momentum along the beam direction,
+all partons in each proton have approximately zero momentum in the transverse direction.
+Therefore, the sum of the transverse momenta of all final state particles must also be zero.
+Many events in CMS have an overall imbalance in the transverse plane.
+This imbalance is labelled Missing Transverse Energy, $E^\textrm{miss}_T$, or MET.
+Large MET in an event is often a sign of high energy neutrinos that the detector cannot detect.
 
-
-\section{Detector Requirements}
-
-We need to identify interesting particles,
-be able to reconstruct missing transverse momentum,
-and remove pileup.
-
-\subsection{Particle Types and Energies}
-
-\subsection{Pileup Conditions at the LHC}
+We need to identify all of these interesting particles,
+as well as be able to reconstruct missing transverse momentum.
+In addition, the additional hadronic activity in the event, called pileup, must be mitigated.
+The energy of the decay products have energies on the scale of the masses of the parent particles.
+The detector must be capable of measuring jets and leptons with energies on the
+order of 10s or 100s of GeV.
+Better energy resolution for each of these decay products allows better separation
+of our signal process from background processes that generate very similar final states.
 
 \section{Detector Design}
 
+The CMS detector as a whole has cylindrical symmetry around the beam access.
+It is 21 meters long and 15 meters in diameter.
+There are gaps at either end to allow the beam,
+but otherwise tries to cover the full solid angle around the collision point.
+The azimuthal angle of a particle relative to the beam axis is described
+by pseudorapidity, $\eta$.
+\begin{gather}
+  \eta = -\ln \left[\tan \left( \frac \theta 2 \right) \right]
+\end{gather}
+The barrel portion of CMS can detect particles with $|\eta| < 2.4$,
+while the forward caps of the detector can reach $|\eta| < 5.0$.
+
+Different technologies are better for measuring the energy
+or other kinematics variables of different particles.
+As a result, the CMS detector is made up of different sub-detector systems,
+arranged in cylindrical layers.
+
+The innermost layer is designed to extrapolate the tracks of charged particles
+back to their point of origin.
+This is called the Silicon Pixel Detector.
+The next layer is designed to measure the energies of photons and electrons.
+The third layer measures the energies of both charged and neutral hadrons.
+Outside of these three layers is a superconducting solenoid,
+which generates a magnetic field for the entire detector.
+On the very outside of the detector are gas chambers designed to detect muons
+interspersed with the iron return yoke for the solenoid.
+A slice of the CMS detector showing the relative positions of each layer
+is shown in Figure~\ref{fig:slice}.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/CMSslice_whiteBackground.png}
+  \caption[CMS detector slice]{
+    A slice of the CMS detector is shown above\cite{Barney:2120661}.
+    The four detector layers are labelled and show the penetration
+    depths of various particles stable enough to travel a measureable distance.
+    }
+  \label{fig:slice}
+\end{figure}
+
+\subsection{Solenoid Magnet}
+
 \subsection{Silicon Pixel Detector}
 
-\subsection{ECAL}
+\subsection{Electromagnetic Calorimeter}
 
-\subsection{HCAL}
+\subsection{Hadronic Calorimeter}
 
 \subsection{Muon Chambers}
 
