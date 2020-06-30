@@ -9,6 +9,8 @@ almost all sub-systems of the detector are used to make the final measurement.
 
 A brief overview of all the detector subsystems are therefore presented in this chapter.
 More can be learned about the design and motivations for the detector in the TDR \cite{cms-tdr}.
+Information presented on the CMS design parameters are taken directly from that document
+unless otherwise noted.
 
 \section{Associated Production at the LHC}
 
@@ -52,6 +54,11 @@ The resulting spray of hadronic particles generated from the vacuum to restore
 color singlets are called jets.
 The detectors are designed to distinguish these jets from more interesting decay products
 in the interaction.
+
+In order to generate a large amount of data needed for measurements like associated production,
+the LHC operates at a high frequency of collisions.
+For Run 2, there is a proton bunch crossing every \SI{25}{ns}.
+The CMS detector must be able to read out and process data on that timescale.
 
 \section{Detector Requirements}
 
@@ -128,7 +135,7 @@ A slice of the CMS detector showing the relative positions of each layer
 is shown in Figure~\ref{fig:slice}.
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{figures/CMSslice_whiteBackground.png}
+  \includegraphics[width=0.9\linewidth]{figures/CMSslice_whiteBackground.png}
   \caption[CMS detector slice]{
     A slice of the CMS detector is shown above\cite{Barney:2120661}.
     The four detector layers are labelled and show the penetration
@@ -137,28 +144,117 @@ is shown in Figure~\ref{fig:slice}.
   \label{fig:slice}
 \end{figure}
 
+The magnet is described first since the magnetic field it produces is a key
+part of most of the rest of the detector.
+After that, the sub-detectors are summarized in the order of closest to farthest
+from the beamline, since this is the order that particles would interact with the layers.
+
 \subsection{Solenoid Magnet}
+
+Part of the CMS acronym acknowledges the role of the solenoid magnet.
+The presence of a magnetic field is necessary for accurate measurements
+of charged particles passing through the silicon pixel detector and muon chambers.
+
+The magnetic field generated is designed to cause the path of
+a muon with \SI{1}{TeV} of energy to bend enough to have a momentum resolution of 10\%.
+Inside the solenoid, the magnetic field reaches \SI{4}{T},
+with a return field that is large enough to cause muon tracks to curve throughout
+the muon chambers outside the magnet.
+
+A super-conducting solenoid enables the creation of a magnetic field
+with the required strength.
+A current of \SI{19.5}{kA} is sent through 2168 turns over \SI{12.9}{m}.
+The magnetic field stores \SI{2.7}{GJ} of energy.
+In order to hold this, the structural components holding the magnet and
+the detector in place are strong enough to withstand \SI{64}{atm} of hoop pressure.
 
 \subsection{Silicon Pixel Detector}
 
+The layer closest to the beamline is designed to obtain a precise track pointing
+to the orgin of particles passing into the detector.
+It is made up of layers of many small pixels to do this.
+As distance from the interaction point increases, the pixel size also increases.
+
+The innermost three layers, with the closest layer being a distance of $r=\SI{4}{cm}$ from the interaction point,
+are made of hybrid pixel detectors.
+Each pixel has dimensions of $100 \times \SI{150}{\micro m}$.
+At this size, only one out of every ten thousand inner layer pixels is triggered in a typical LHC bunch crossing.
+Outside of the pixel detector layers,
+silicon strip detectors are used.
+These are placed in the region that is $20 < r < \SI{55}{cm}$ from the beamline.
+Strip dimensions give a cell size of approximately $\SI{10}{cm} \times \SI{80}{\micro m}$.
+2--3\% of cells are activiated during a typical bunch crossing.
+The outermost layers are made of larger strips with cell sizes of $\SI{25}{cm} \times \SI{180}{\micro m}$.
+About 1\% of these pixels are triggered each bunch crossing.
+
+The active material of the silicon pixel detector is semi-conducting silicon.
+When charged particles pass through, electron-hole pairs are generated and drift apart due to a bias voltage.
+The voltage change when these pairs reach their respective electrodes indicates a charged particle passed through.
+Because of this, the silicon pixel detector cannot detect any neutral particles,
+but it gives a point of origin for charged particles that is accurate enough to identify pileup.
+
 \subsection{Electromagnetic Calorimeter}
+
+The next layer of the detector is called the Electromagnetic Calorimeter or ECAL.
+This layer is designed to fully capture and measure the energy of photons and electrons.
+The ECAL is made of crystals of the scintillating material Lead Tungstate (\ch{PbWO4}).
+Each crystal is placed in the detector so that its smallest face is facing the collision point.
+These small faces have dimensions of $22\times\SI{22}{mm}$.
+The length of each crystal is \SI{230}{mm},
+and the far face is slightly larger at $26\times\SI{26}{mm}$.
+\ch{PbWO4} has a radiation length of $\chi_0 = \SI{8.9}{mm}$ and a Moliere radius of \SI{21}{mm}.
+This means each crystal is 25.8 radiation lengths, containing the full shower within the ECAL,
+and each shower is also localized to within one crystal from the initial ionization.
+
+The scintillating properties of \ch{PbWO4} are also desireable for observing LHC collisions.
+4.5 photons for every MeV of deposited energy are ultimately detected by the photo-multipliers at the far end of the crystals.
+This is a low number for most experiments, but the only photons and electrons of interest in this measurement deposit at least 10s of GeV of energy.
+This gives the ECAL energy resolutions in the range of $5-10\%$.
+More importantly, the scintillation is very fast.
+80\% of the light from an interaction is emitted within the \SI{25}{ns} between bunch crossings,
+making it easy to associate the readouts with the appropriate collision.
 
 \subsection{Hadronic Calorimeter}
 
+The Hadronic Calorimeter (HCAL) has the same goal as the ECAL,
+where it contains particles and measures the energy emitted by them.
+However, it tries to do this for hadrons, such as protons, neutrons, and stable mesons.
+Since they are all much more massive than electrons,
+the ionizing collisions in a typical scintillator does not slow them down enough to contain them.
+
+
 \subsection{Muon Chambers}
+
+(MuCham)
 
 \section{Detector Performance}
 
+Is okay
+
 \subsection{Test Beam Performance}
+
+Very nice
 
 \subsection{Trigger}
 
+warning
+
 \subsection{Online Calibration}
+
+uses lasers
 
 \section{Data Format}
 
+ROOT files
+
 \subsection{Event Reconstruction} \label{sec:event-reco}
+
+???
 
 \subsection{Offline Calibration}
 
+POGs
+
 \section{Accessing Data}
+
+XRootD
