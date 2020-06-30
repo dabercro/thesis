@@ -41,7 +41,6 @@ which was a collider for electrons and positrons that took much of its data at
 $\sqrt{s} = \SI{98}{GeV}$.
 The resulting LHC is designed to collide protons at energies of $\sqrt{s} = \SI{14}{TeV}$,
 with the data for this analysis taken at \SI{13}{TeV}.
-
 Though Figure~\ref{fig:pdf} showed that not all of the energy from each proton
 goes into the interaction,
 there still is adequate phase space available to generate the massive off-shell
@@ -55,10 +54,25 @@ color singlets are called jets.
 The detectors are designed to distinguish these jets from more interesting decay products
 in the interaction.
 
+The luminosity of the LHC is given by the following formula.
+\begin{gather}
+  \mathcal{L} = \frac{N^2_B f_{\text{rev}} k_B}{4\pi B^* \epsilon_{xy}} \times F
+\end{gather}
+$N_B$ is the number of protons per bunch,
+$f_{\text{rev}}$ is the frequency of beam revolutions,
+$k_B$ is the number of bunches per beam,
+$B^*$ and $\epsilon_{xy}$ describe the goodness of the beam,
+and $F$ is a geometric collision factor.
+\begin{gather}
+  F = \frac{1}{\sqrt{1 + \frac{(\sigma_s \tan \phi)^2}{\epsilon_{xy} \beta^*}}}
+\end{gather}
+$\sigma_s$ is the length of each bunch,
+and $\phi$ is the crossing angle.
 In order to generate a large amount of data needed for measurements like associated production,
-the LHC operates at a high frequency of collisions.
+the LHC operates at a high frequency of collisions, and generates many simultaneous collisions.
 For Run 2, there is a proton bunch crossing every \SI{25}{ns}.
 The CMS detector must be able to read out and process data on that timescale.
+Each proton bunch includes over 100 billion protons\cite{Bruce:2201447}.
 
 \section{Detector Requirements}
 
@@ -121,6 +135,7 @@ Different technologies are better for measuring the energy
 or other kinematics variables of different particles.
 As a result, the CMS detector is made up of different sub-detector systems,
 arranged in cylindrical layers.
+Each layer consists of a ``barrel'' portion and two endcaps on either side.
 
 The innermost layer is designed to extrapolate the tracks of charged particles
 back to their point of origin.
@@ -148,6 +163,12 @@ The magnet is described first since the magnetic field it produces is a key
 part of most of the rest of the detector.
 After that, the sub-detectors are summarized in the order of closest to farthest
 from the beamline, since this is the order that particles would interact with the layers.
+Each sub-detector section also describes the measured performance during Run 2.
+Note that this measurement is an iterative process that depends on the event reconstruction
+described in Section~\label{sec:event-reco},
+which in turn depends on the performance of the entire detector.
+The performance numbers are presented with each sub-detector design though so that
+it is immediately clear how effective each design has been.
 
 \subsection{Solenoid Magnet}
 
@@ -207,7 +228,7 @@ This means each crystal is 25.8 radiation lengths, containing the full shower wi
 and each shower is also localized to within one crystal from the initial ionization.
 
 The scintillating properties of \ch{PbWO4} are also desireable for observing LHC collisions.
-4.5 photons for every MeV of deposited energy are ultimately detected by the photo-multipliers at the far end of the crystals.
+4.5 photons for every MeV of deposited energy are ultimately detected by the photodiodes at the far end of the crystals.
 This is a low number for most experiments, but the only photons and electrons of interest in this measurement deposit at least 10s of GeV of energy.
 This gives the ECAL energy resolutions in the range of $5-10\%$.
 More importantly, the scintillation is very fast.
@@ -219,41 +240,46 @@ making it easy to associate the readouts with the appropriate collision.
 The Hadronic Calorimeter (HCAL) has the same goal as the ECAL,
 where it contains particles and measures the energy emitted by them.
 However, it tries to do this for hadrons, such as protons, neutrons, and stable mesons.
-Since they are all much more massive than electrons,
+Since hadrons are much more massive than electrons,
 the ionizing collisions in a typical scintillator does not slow them down enough to contain them.
+Instead, they must interact via nuclear collisions to be attentuated.
+CMS uses brass for its HCAL due to its relatively short interaction length,
+the fact that it is non-magnetic, and it affordability.
 
+The barrel of the HCAL is jacketed in stainless steel for structural support.
+This layer is \SI{61}{mm} on the layer immediately next to the ECAL and \SI{75}{mm} thick on the outer edge.
+The inside of the HCAL consists of brass absorber plates interspersed with plastic scintillator tiles.
+The layers closer to the beamline alterate \SI{50.5}{mm} brass plates with \SI{3.7}{mm} scintillator plates.
+Farther away, the brass plates are instead \SI{56.5}{mm} thick.
+Wavelength shifting fibers are run through the scintillator tiles
+to allow photons to travel to the outside of the HCAL where they are detected by photodiodes.
 
 \subsection{Muon Chambers}
 
-(MuCham)
+Muons are the most penetrative particles that CMS attempts to detect.
+They are heavier than electrons, so they are not stopped in the ECAL.
+They do not interact via the strong nuclear force,
+so the high density of the HCAL also does not cause measurable interactions.
+Instead of stopping and measuring muons in calorimeters,
+CMS tracks their trajectory with both the pixel detectors on the inside of the detector
+and the muon chambers that make up the outer layer of the detector.
 
-\section{Detector Performance}
+This is the only subdetector system outside of the solenoid,
+but the returning magnetic field is still present,
+allowing the momentum of the muons to be extracted from the curvature of their trajectory.
+Layers of muon chambers act much like the pixel detectors, but at a larger and more distant scale.
+The muon chambers in the barrel region of $|\eta| < 1.2$ consist of drift tube chambers.
+In the endcaps, cathode strip chambers are used.
+The difference is to account for higher neutron backgrounds in the endcap, as well as a greater magnetic field.
+In both regions, resistive plate chambers are spaced between the layers of the other muon chambers.
 
-Is okay
-
-\subsection{Test Beam Performance}
-
-Very nice
-
-\subsection{Trigger}
-
-warning
-
-\subsection{Online Calibration}
-
-uses lasers
-
-\section{Data Format}
-
-ROOT files
-
-\subsection{Event Reconstruction} \label{sec:event-reco}
+\section{Event Reconstruction} \label{sec:event-reco}
 
 ???
 
-\subsection{Offline Calibration}
+\section{Trigger}
 
-POGs
+warning
 
 \section{Accessing Data}
 
