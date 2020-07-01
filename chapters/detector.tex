@@ -9,8 +9,8 @@ almost all sub-systems of the detector are used to make the final measurement.
 
 A brief overview of all the detector subsystems are therefore presented in this chapter.
 More can be learned about the design and motivations for the detector in the TDR \cite{cms-tdr}.
-Information presented on the CMS design parameters are taken directly from that document
-unless otherwise noted.
+Information presented on the physical CMS design parameters are
+taken directly from that document unless otherwise noted.
 
 \section{Associated Production at the LHC}
 
@@ -214,7 +214,13 @@ The voltage change when these pairs reach their respective electrodes indicates 
 Because of this, the silicon pixel detector cannot detect any neutral particles,
 but it gives a point of origin for charged particles that is accurate enough to identify pileup.
 
-\subsection{Electromagnetic Calorimeter}
+In the beginning of 2017, the pixel detector was upgraded to handle the higher radiation environment of Run 2\cite{Dominguez:1481838}.
+A layer was added to both the barrel and endcap sections of the pixel detector.
+Firmware was also upgraded to keep the pixel detector operating at a frequency higher than the Run 2 collision frequency.
+With this upgrade, the detector operated with a 97\% hit efficiency for all layers at the highest instantaneous luminosity.
+Layers beyond the first performed with greater than 99\% hit efficiency\cite{Modak:2712284}.
+
+\subsection{Electromagnetic Calorimeter} \label{sec:ecal}
 
 The next layer of the detector is called the Electromagnetic Calorimeter or ECAL.
 This layer is designed to fully capture and measure the energy of photons and electrons.
@@ -235,6 +241,14 @@ More importantly, the scintillation is very fast.
 80\% of the light from an interaction is emitted within the \SI{25}{ns} between bunch crossings,
 making it easy to associate the readouts with the appropriate collision.
 
+During the operation of the CMS, the ECAL crystals are damaged by radiation.
+Some recovery occurs as the crystal structure falls back into the ground state,
+but over time, the performance of the crystals degrade.
+That degradation happens at different rates in different areas of the detector.
+Lasers are used to calibrate the ECAL online during the gaps between beams\cite{Monti:2653861}.
+Resolution is measured by looking at $Z\rightarrow ee$ events.
+For Run 2, the barrel region of the ECAL performed with 1.6\% resolution, and the other regions had a 5\% resolution\cite{Bartosik:2712238}.
+
 \subsection{Hadronic Calorimeter}
 
 The Hadronic Calorimeter (HCAL) has the same goal as the ECAL,
@@ -253,6 +267,12 @@ The layers closer to the beamline alterate \SI{50.5}{mm} brass plates with \SI{3
 Farther away, the brass plates are instead \SI{56.5}{mm} thick.
 Wavelength shifting fibers are run through the scintillator tiles
 to allow photons to travel to the outside of the HCAL where they are detected by photodiodes.
+
+The HCAL performance also degrades as it is exposed to radiation, like the ECAL in Section~\ref{sec:ecal}.
+The calibration for HCAL is performed using an embedded radioactive source,
+lasers and LEDs, and an \emph{in situ} calibration using assumed symmetry in $\phi$.
+With these methods, a response within 3.4\% was maintained in the HCAL barrel
+and within 2.6\% in the HCAL endcap\cite{Chadeeva_2018}}.
 
 \subsection{Muon Chambers}
 
@@ -273,13 +293,20 @@ In the endcaps, cathode strip chambers are used.
 The difference is to account for higher neutron backgrounds in the endcap, as well as a greater magnetic field.
 In both regions, resistive plate chambers are spaced between the layers of the other muon chambers.
 
+The muon detectors were triggered above 90\% of the time a muon passed through.
+The overall efficiency of the muon trigger, which relies heavily on the muon system
+and is described in more detail in Section~\ref{sec:trigger},
+increases as a function of muon $p_T$ and plateaus around 90\% efficiency.
+The timing of the muon system assigns 1\% of muons to the wrong event\cite{Pozzobon_2019}.
+
+
+\section{Trigger} \label{sec:trigger}
+
+warning
+
 \section{Event Reconstruction} \label{sec:event-reco}
 
 ???
-
-\section{Trigger}
-
-warning
 
 \section{Accessing Data}
 
