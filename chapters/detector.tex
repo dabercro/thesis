@@ -72,7 +72,7 @@ In order to generate a large amount of data needed for measurements like associa
 the LHC operates at a high frequency of collisions, and generates many simultaneous collisions.
 For Run 2, there is a proton bunch crossing every \SI{25}{ns}.
 The CMS detector must be able to read out and process data on that timescale.
-Each proton bunch includes over 100 billion protons\cite{Bruce:2201447}.
+Each proton bunch includes over 100 billion protons \cite{Bruce:2201447}.
 
 \section{Detector Requirements}
 
@@ -152,7 +152,7 @@ is shown in Figure~\ref{fig:slice}.
   \centering
   \includegraphics[width=0.9\linewidth]{figures/CMSslice_whiteBackground.png}
   \caption[CMS detector slice]{
-    A slice of the CMS detector is shown above\cite{Barney:2120661}.
+    A slice of the CMS detector is shown above \cite{Barney:2120661}.
     The four detector layers are labelled and show the penetration
     depths of various particles stable enough to travel a measureable distance.
     }
@@ -214,11 +214,11 @@ The voltage change when these pairs reach their respective electrodes indicates 
 Because of this, the silicon pixel detector cannot detect any neutral particles,
 but it gives a point of origin for charged particles that is accurate enough to identify pileup.
 
-In the beginning of 2017, the pixel detector was upgraded to handle the higher radiation environment of Run 2\cite{Dominguez:1481838}.
+In the beginning of 2017, the pixel detector was upgraded to handle the higher radiation environment of Run 2 \cite{Dominguez:1481838}.
 A layer was added to both the barrel and endcap sections of the pixel detector.
 Firmware was also upgraded to keep the pixel detector operating at a frequency higher than the Run 2 collision frequency.
 With this upgrade, the detector operated with a 97\% hit efficiency for all layers at the highest instantaneous luminosity.
-Layers beyond the first performed with greater than 99\% hit efficiency\cite{Modak:2712284}.
+Layers beyond the first performed with greater than 99\% hit efficiency \cite{Modak:2712284}.
 
 \subsection{Electromagnetic Calorimeter} \label{sec:ecal}
 
@@ -245,9 +245,9 @@ During the operation of the CMS, the ECAL crystals are damaged by radiation.
 Some recovery occurs as the crystal structure falls back into the ground state,
 but over time, the performance of the crystals degrade.
 That degradation happens at different rates in different areas of the detector.
-Lasers are used to calibrate the ECAL online during the gaps between beams\cite{Monti:2653861}.
+Lasers are used to calibrate the ECAL online during the gaps between beams \cite{Monti:2653861}.
 Resolution is measured by looking at $Z\rightarrow ee$ events.
-For Run 2, the barrel region of the ECAL performed with 1.6\% resolution, and the other regions had a 5\% resolution\cite{Bartosik:2712238}.
+For Run 2, the barrel region of the ECAL performed with 1.6\% resolution, and the other regions had a 5\% resolution \cite{Bartosik:2712238}.
 
 \subsection{Hadronic Calorimeter}
 
@@ -272,7 +272,7 @@ The HCAL performance also degrades as it is exposed to radiation, like the ECAL 
 The calibration for HCAL is performed using an embedded radioactive source,
 lasers and LEDs, and an \emph{in situ} calibration using assumed symmetry in $\phi$.
 With these methods, a response within 3.4\% was maintained in the HCAL barrel
-and within 2.6\% in the HCAL endcap\cite{Chadeeva_2018}}.
+and within 2.6\% in the HCAL endcap \cite{Chadeeva_2018}}.
 
 \subsection{Muon Chambers}
 
@@ -297,16 +297,60 @@ The muon detectors were triggered above 90\% of the time a muon passed through.
 The overall efficiency of the muon trigger, which relies heavily on the muon system
 and is described in more detail in Section~\ref{sec:trigger},
 increases as a function of muon $p_T$ and plateaus around 90\% efficiency.
-The timing of the muon system assigns 1\% of muons to the wrong event\cite{Pozzobon_2019}.
-
-
-\section{Trigger} \label{sec:trigger}
-
-warning
+The timing of the muon system assigns 1\% of muons to the wrong event \cite{Pozzobon_2019}.
 
 \section{Event Reconstruction} \label{sec:event-reco}
 
-???
+Event reconstruction is done using a combination of tracks and calorimeter deposits.
+These are then linked across the different detector components to identify particles.
+
+\cite{Sirunyan_2017}
+
+\section{Trigger} \label{sec:trigger}
+
+Collisions happen every \SI{25}{ns}, corresponding to a frequency of \SI{400}{MHz}.
+The amount of data that the detector generates at each collision is
+too large to store all of it at this frequency.
+Luckily, most collisions result in uninteresting data.
+A trigger system is used to identify interesting events
+and reduce the frequency of event writing to \SI{1}{kHz}.
+This is done using two stages.
+The Level-1 (L1) trigger passes events with a frequency of \SI{100}{kHz},
+and the High Level Trigger (HLT) picks from the remaining events
+with a frequency of \SI{1}{kHz} \cite{Tosi:2290106}.
+
+The L1 trigger is implemented in hardware.
+It was upgraded for Run 2 of the LHC to run on FPGAs on an Advanced Mezzanine Card.
+There are two main components of the L1 trigger.
+One considers calorimeter deposits, and the other examines the muon chambers.
+The overall L1 trigger fires when there are high energy, resolved calorimeter hits
+or if a possible muon is reconstructed.
+Due to the flexibility of FPGAs,
+the exact conditions of the firing are configurable \cite{Cadamuro_2017}.
+
+After the L1 is fired, the data is sent to the High-Level Trigger (HLT),
+which is a computing farm that makes a final decision on whether or not to save the data
+using a rough event reconstruction.
+The use of 30,000 cores in the HLT allows for buffering data
+so the HLT has plenty of time to make this decision \cite{Sert:2712275}.
+
+For this analysis, only a few of the possible HLT paths are of interest.
+The exact trigger names are given in Chapter~\ref{ch:selection},
+but for the most part, they only depend on three different identifiable objects.
+Figures~\ref{fig:v-decay} and \ref{fig:two-lep-diagram}
+show the different final states of interest.
+$b$ jets are difficult to identify quickly since we must rely on the pixel detector's
+reconstruction of the secondary vertex,
+but the decay mode of the vector boson can be used for the trigger.
+In that case, only events with one of the following are
+worth saving and examining for $VH\rightarrow\bb$.
+\begin{itemize}
+  \item ECAL deposits consistent with a high $p_T$ electron
+  \item muon chamber hits consistent with a high $p_T$ muon
+  \item an overall energy imbalance consistent with MET from neutrinos
+\end{itemize}
+For the specific decay channel in Figure~\ref{fig:two-lep-diagram},
+the HLT also includes paths where two electrons or two muons are identified.
 
 \section{Accessing Data}
 
