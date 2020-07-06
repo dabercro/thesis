@@ -74,7 +74,7 @@ For Run 2, there is a proton bunch crossing every \SI{25}{ns}.
 The CMS detector must be able to read out and process data on that timescale.
 Each proton bunch includes over 100 billion protons \cite{Bruce:2201447}.
 
-\section{Detector Requirements}
+\section{Detector Requirements} \label{sec:requirements}
 
 One configuration of possible final state particles is shown in Figure~\ref{fig:two-lep-diagram}.
 There, two oppositely charged leptons and two b quarks are the end decay products.
@@ -303,8 +303,138 @@ The timing of the muon system assigns 1\% of muons to the wrong event \cite{Pozz
 
 Event reconstruction is done using a combination of tracks and calorimeter deposits.
 These are then linked across the different detector components to identify particles.
+This overview is taken largely from reference \cite{Sirunyan_2017}.
+An interested reader can find more details there.
 
-\cite{Sirunyan_2017}
+\subsection{Charged Particle Tracks} \label{sec:tracks}
+
+Both the Silicon Pixel Detector and the Muon Chambers are designed
+for charged particles to leave tracks.
+In both sub-detectors, the basic steps for track reconstruction are the same.
+First, a track must be seeded.
+Usually, this is done by finding hits in consecutive layers that are consistent
+with a particle coming from the beamline.
+A Kalman Filter is then used to find hits in the other layers of the appropriate sub-detector
+that are consistent with the initial seed.
+Once more hits have been found, a fit is performed for the precise trajectory of the track.
+
+Tracks are kept or discarded based on the number of layers that are missing hits
+and on the momentum of a charged track in the magnetic field of the solenoid.
+Making these parameters looser results in better recovery of tracks,
+but the high activity within the detector results in a combinatorial background.
+This background increases exponentially when the momentum cut is reduced, for example.
+To help reduce this background, tracks with missing hits use an iterative fit.
+Different seeds are found for each track to make sure that the resulting collections
+of hits remain the same.
+
+Additional complictions arise for each the pixel and muon detectors.
+The Silicon Pixel Detector is the only tracking detector that deals with electrons.
+Because of their small mass, electrons are likely to radiate energy
+while travelling through the magnetic field of CMS.
+This leads to complications in the calorimeters described in Section~\ref{sec:calorimeters}.
+It also means that the radius of curvature of an electron track can decrease appreciably
+within the pixel detector.
+This can lead to the Kalman Filter approach missing tracks entirely,
+depending on the number of hits required.
+Tracks with a large $\chi^2$ and a certain number of hits are fit again
+using a Gaussian-Sum Filter (GSF).
+The GSF allows for fitting tracks that have significant energy loss,
+recovering electron and positron tracks.
+
+A change of trajectory may also happen in the muon chambers,
+but this is due to multiple scattering in the return yoke.
+No specialized tracking algorithm is used to account for it.
+The muon tracking performs best when the tracks in the muon chambers are successfully
+linked to a track in the pixel detector.
+The most common backgrounds in the muon chambers
+is caused when hadrons manage to punch through the HCAL.
+This can often be mitigated by considering the amount of energy deposited along the particle
+track in the other sub-detector systems.
+
+\subsection{Calorimeters} \label{sec:calorimeters}
+
+Clusters are identified in calorimeters, also using a seeding algorithm.
+First clusters with a large energy deposit are identified,
+and then nearby crystals are checked against noise thresholds.
+The energy deposition is assumed to have a Gaussian profile,
+and so a fit is performed to show that there are not multiple deposits in the same
+region of the calorimeter.
+
+As mentioned in Section~\ref{sec:ecal}, the dimensions of the ECAL crystals
+are comparable to the Moliere radius, keeping clusters localized.
+Although a complication arises due to the bremsstrahlung from electrons that also leads to
+the need for using GSF to find tracks.
+Superclusters that are linked to electrons have
+a larger allowed range over $\phi$ to account for this.
+Photons are still well behaved within the ECAL,
+and the ECAL is therefore calibrated for photon deposits.
+
+The calibration of HCAL is complicated by the fact that particles reaching it
+have to first pass through the ECAL.
+Initial calibration was done with a \SI{50}{GeV} pion test beam,
+but the actual response is non-linear in energy
+as well as different for charged and neutral particles.
+Reasons for this difficulty include particles losing energy in the region
+between the ECAL and the HCAL, in addition to the energy lost in the ECAL.
+Therefore, there are calibration coefficients that are used
+depending on if the energy deposits are all in the HCAL,
+or in preceding sub-detectors as well.
+
+\subsection{Linking and Particle Identification}
+
+An important step in making sense of the various sub-detector readouts is linking
+tracks to calorimeter clusters.
+The general procedure is to extrapolate tracks from the inner tracker
+out to each calorimeter.
+A shower that originates within one radiation or interaction length in the calorimeter
+along that track is linked with the track.
+
+The bremsstrahlung from GSF electrons is linked to the track by looking along track tangents.
+A dedicated conversion finder is used to identify pair production within the pixel detector
+caused by either bremsstrahlung or prompt photons in order to not mistakenly link
+a charged particle track with what should otherwise be measured as a photon.
+This step, in addition to some ECAL clusters that do not have a track
+make it possible to identify isolated photons.
+On the other hand, it is still difficult to determine
+whether an electron track is well isolated or not.
+The large number of variables that go into identifying an electron
+leads to the training of a Boosted Decision Tree (BDT) to identify an electron.
+Separate BDTs are needed for the barrel and endcap regions of the detector.
+
+For accurate HCAL readings,
+the linking algorithm also ECAL clusters and HCAL clusters along a path.
+These may not always be along a charged particle track.
+Multiple calorimeter links of this nature may be found,
+but only a single link is kept based on a distance assigned to each link.
+HCAL hits without a track are identified as neutral hadrons.
+HCAL hits with a linked track are likely charged hadrons.
+Though the ECAL clusters must be linked in order to determine the energy
+coefficient to calibrate the HCAL,
+ECAL hits without tracks are still identified as photons since photons
+carry some of the energy of jets.
+
+Of particular interest to this analysis is also the secondary vertex step of linking.
+Charged particle tracks that do not go back to the interaction vertex
+are linked together if they share a common secondary vertex.
+These tracks must have an invariant mass of greater than \SI{0.2}{GeV} to be kept.
+There must also be a track from the secondary vertex to the primary vertex,
+which would belong to a long-lived hadron.
+As mentioned in Section~\ref{sec:requirements}, this is the signature of a $b$ jet.
+It is possible, however, that the secondary vertex is generated
+by a nuclear scattering within the pixel detector,
+so additional analysis is needed for each secondary vertex.
+
+The final link is made between tracks in the muon chambers and tracks in the inner tracker.
+Muons are identified as tracker muons if they only leave tracks in the inner tracker.
+This can often happen with low energy muons.
+They are called standalone muons when only the track in the muon chamber is identified.
+When tracks are successfully linked in both sub-detectors,
+the resulting reconstructed particle is called a global muon.
+When a global muon is not well-isolated from other energy deposits,
+it must have tighter requirements on how it behaves in the muon chambers.
+This is to prevent energy from a jet from being attributed to a muon or vice versa.
+This is important for $b$ jets since the decay that happens at a displaced vertex
+is a decay through the weak nuclear force.
 
 \section{Trigger} \label{sec:trigger}
 
