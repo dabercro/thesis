@@ -1,19 +1,105 @@
 \chapter{Event Selection} \label{ch:selection}
 
+Since Chapter~\ref{ch:theory},
+a picture of the overall event topology of interest has been depicted.
+Until now, the description of the events have been vague.
+This chapter gives the specific cuts used to identify each particle
+and to reject or otherwise classify events.
+First, objects will be defined in terms of reconstructed variables.
+Then common cuts used to reject events are given.
+After that, cuts used to classify events into different decay channels are specified.
+This chapter ends with the differentiation between events where
+the Higgs decay products can be resolved as separate jets
+and where they are merged into a single massive jet.
+
 \section{Object Definitions}
 
 Section~\ref{sec:event-reco} describes how
 detector responses are linked to possible physical particles.
-We want to remove false positives,
-so here are some tighter requirements for counting for event selection.
+Most of the particle ID techniques described so far also give false positives.
+What follows are tighter selections used in order to reduce these backgrounds.
+Once objects are defined, they can be counted for event classification.
 
-Once we have our objects defined,
-we can count them.
+Each type of particle generally has a method of pre-selection
+and additional cuts for a selection.
+For these objects, pre-selection often means that the object is defined
+well enough to veto events in categories that don't want the object to exist.
+The additional cuts are required for an event to classify as a category
+that wants the object to exist with reduced false positives.
+
+\subsection{Variable Definitions}
+
+Many of the object definitions use variables that have not been defined yet.
+They can be understood in terms of the reconstruction
+described in Section~\ref{sec:event-reco}.
+
+Lepton isolation is quantified using the following formula.
+\begin{gather}
+  I = \frac{1}{p_T^\ell} \left(\sum p_T^\mathrm{charged} +
+      \max\left[0, \sum p_T^\mathrm{neutral} +
+               \sum p_T^\mathrm{\gamma} - p_T^\mathrm{PU}
+               \right]\right) \label{eq:isolation}
+\end{gather}
+The sums are over charged hadrons originating from the primary vertex
+and all neutral hadrons and photons
+within a distance of $\Delta R < 0.4$ from the muon.
+$\Delta R$ is a distance used in the $(\eta, \phi)$ plane.
+\begin{gather}
+  \Delta R = \sqrt{\Delta\eta^2 + \Delta\phi^2}
+\end{gather}
+The term $P_T^\mathrm{PU}$ is defined as the following.
+\begin{gather}
+  P_T^\mathrm{PU} = 0.5 \times \sum_i p_T^{\mathrm{PU},i}
+\end{gather}
+Where $i$ refers to charged hadrons that do not originate from the primary vertex.
+
+Particles can also be defined as coming from the primary vertex of an event or from pileup.
+Vertices are defined through deterministic annealing \cite{726788},
+using the closest approach of tracks to the beamline \cite{Collaboration_2014}.
+The primary vertex is the vertex with
+the greatest sum of $E_T$ of the charged particles originating from it.
+After idenfication of the primary vertex,
+charged particles are classified as originating from the primary vertex or as pileup
+using their extrapolated track's distance in the transverse plane, $d_{xy}$
+and distance along the beamline, $d_z$.
 
 \subsection{Muons}
 
-Muons can show up in weakly decaying jets,
-so we're only interested in isolated ones here.
+An isolated muon gives one of the cleanest signatures in CMS,
+with only perhaps the exception of an isolated photon that does not
+undergo pair production in the pixel tracker.
+Muons can also show up in jets from weakly decaying hadrons,
+in which case they are not isolated.
+Since weakly decaying $b$ jets are central to this analysis,
+events with non-isolated leptons are not rejected,
+but the distinction is important.
+
+Pre-selected muons must meet the following requirements.
+\begin{itemize}
+\item The muon must have a relatively high energy of $p_T > \SI{5}{GeV}$.
+\item The muon should be located in the barrel within $|\eta| < 2.4$.
+\item The muon originates from the primary vertex, satisfying both
+  $d_{xy} < \SI{0.5}{cm}$ and $d_z < \SI{1.0}{cm}$.
+\item The muon must pass a loose isolation cut of $I < 0.4$.
+\item The muon must be a PF muon.
+\item The muon is either a global muon or a tracker muon.
+\end{itemize}
+
+Fully selected muons have some additional cuts they must pass.
+\begin{itemize}
+\item They must have a higher transverse momentum at $p_T > \SI{25}{GeV}$.
+  In events with two muons, such as caused by $Z \rightarrow \mu\mu$,
+  the second muon can pass the slightly looser cut of $p_T > \SI{15}{GeV}$.
+\item The muon must be a global muon, leaving tracks in both the central tracker
+  and the muon chambers.
+\item There must be more than five hits in the inner tracker with one hit on a pixel.
+\item The fit for the global muon track must be good with $\chi^2/ndof < 10$.
+\item The muon must be well isolated with $I < 0.06$
+\end{itemize}
+
+These definitions are accepted by all members of the CMS collaberation
+as loose and tight working points, respectively.
+This allows the analysis to use efficiency measurements created for wider use.
 
 \subsection{Electrons}
 
