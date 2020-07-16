@@ -41,17 +41,23 @@ Lepton isolation is quantified using the following formula.
                \right]\right) \label{eq:isolation}
 \end{gather}
 The sums are over charged hadrons originating from the primary vertex
-and all neutral hadrons and photons
-within a distance of $\Delta R < 0.4$ from the muon.
+and all neutral hadrons and photons within a distance of $\Delta R < 0.4$
+from the lepton if it is a muon, or $\Delta R < 0.3$ from an electron.
 $\Delta R$ is a distance used in the $(\eta, \phi)$ plane.
 \begin{gather}
   \Delta R = \sqrt{\Delta\eta^2 + \Delta\phi^2}
 \end{gather}
-The term $P_T^\mathrm{PU}$ is defined as the following.
+The term $p_T^\mathrm{PU}$ is defined as the following for muons.
 \begin{gather}
-  P_T^\mathrm{PU} = 0.5 \times \sum_i p_T^{\mathrm{PU},i}
+  p_T^\mathrm{PU} = 0.5 \times \sum_i p_T^{\mathrm{PU},i}
 \end{gather}
-Where $i$ refers to charged hadrons that do not originate from the primary vertex.
+$i$ refers to charged hadrons that do not originate from the primary vertex.
+Electrons use the following definition.
+\begin{gather}
+  p_T^\mathrm{PU} = \rho \times A_\mathrm{eff}
+\end{gather}
+$A_\mathrm{eff}$ is the area of the isolation cone,
+and $\rho$ is the median of the $p_T$ density of neutral particles in that area.
 
 Particles can also be defined as coming from the primary vertex of an event or from pileup.
 Vertices are defined through deterministic annealing \cite{726788},
@@ -103,8 +109,45 @@ This allows the analysis to use efficiency measurements created for wider use.
 
 \subsection{Electrons}
 
-Electrons do the same thing as muons,
-but messier because the ECAL isn't as clean as the muon chambers.
+The kinematic variables associated with an electron are extracted from the GSF fit.
+Pre-selected electrons must meet the following requirements.
+\begin{itemize}
+\item They must have a high transverse momentum with $p_T > \SI{7}{GeV}$
+\item They should be centered in the detector with $|\eta| < 2.4$.
+\item They originate from the primary vertex with
+  $d_{xy} < \SI{0.05}{cm}$ and $d_Z < \SI{0.2}{cm}$.
+\item They pass a loose isolation cut of $I < 0.4$.
+\end{itemize}
+
+To reduce backgrounds, electrons are identified with the aid of an MVA \cite{Rembser_2019}.
+Fully selected electrons pass the tight working point used by the CMS collaboration.
+In order to also match the samples of simulated electrons used in the training sample,
+the selected electrons also must pass the following cuts.
+\begin{itemize}
+\item The electron must have higher energy with $p_T > \SI{15}{GeV}$.
+\item The deposit of HCAL energy must be less than 9\% of the ECAL energy deposit
+  along the electron track.
+\item The track sum $p_T$ component of the isolation must be
+  less than 18\% of the electron $p_T$.
+\item The electron must either have $|\eta| < 1.4442$ or $|\eta| > 1.5660$
+\item For electrons with $|\eta| < 1.4442$:
+  \begin{itemize}
+  \item $\sigma_{i\eta i\eta} < 0.012$
+  \item Isolation in the ECAL cluster must be less than 0.4,
+    and isolation in the HCAL must be less than 0.25.
+  \item The difference between super cluster and track location of the electron
+    must be small with $\Delta \eta < 0.0095$ and $\Delta \phi < 0.065$.
+  \end{itemize}
+\item For electrons with $|\eta| > 1.5660$:
+  \begin{itemize}
+  \item $\sigma_{i\eta i\eta} < 0.033$
+  \item Isolation in the ECAL cluster must be less than 0.45,
+    and isolation in the HCAL must be less than 0.28.
+  \end{itemize}
+\end{itemize}
+There is a gap in the $\eta$ direction that accounts for a gap in the CMS detector.
+This gap in the active detecting volume is needed to
+accomadate various electronics and structural components.
 
 \subsection{Jets}
 
