@@ -160,20 +160,63 @@ with the anti-$k_T$ algorithm \cite{Cacciari_2008} using $R = 0.4$.
 Due to factors like pileup and detector response,
 the energy of the reconstructed jets are corrected \cite{Khachatryan_2017}.
 
+Loose jet cuts, based on the constituents,
+are applied to remove jets constructed from detector noise.
+Jets that get a significant fraction of their energy from pileup are also removed.
+Preselected electrons and muons are also often reconstructed as jets.
+Any jet within $\Delta R < 0.4$ from a preselected lepton is removed.
+
+To be considered for the study of decay products of the Higgs boson,
+jets must be within the barrel of the detector with $|\eta| < 2.5$.
+The jets must satisfy $p_T > \SI{25}{GeV}$ for the zero and one lepton signatures.
+The two lepton signature from $Z(\ell\ell)H$ is cleaner and can apply the looser
+criteria of $p_T > \SI{20}{GeV}$ to the jets.
+
 \subsubsection{Identification of $b$ Jets}
+
+As mentioned in Section~\ref{sec:requirements} while motivating the design of CMS,
+jets containing $b$ hadrons have a distinct signature.
+This includes secondary vertices displaced from the beamline,
+as well as non-isolated leptons from weak decays.
+All of these features are considered in a deep neural network (DNN)
+called Deep Combined Secondary Vertex (DeepCSV) \cite{Sirunyan_2018}.
+The output of DeepCSV has three working points
+that are defined based on the amount of false positives that can be expected
+in a collection of jets passing the cut.
+The specific values are different for each year of operation.
+They are given in Table~\ref{tab:deepcsv}.
+\begin{table}
+  \centering
+  \caption[DeepCSV working points]{
+    The cuts for each DeepCSV working point are defined for each year of Run~2 of the LHC.
+    The working points are defined by their mistag rates.
+  }
+  {\renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|c | c | c c c|}
+    \hline
+    Working Point & Mistag Rate & 2016 & 2017 & 2018 \\
+    \hline
+    Loose  &  10\% & 0.2219 & 0.1522 & 0.1241 \\
+    Medium &   1\% & 0.6324 & 0.4941 & 0.4184 \\
+    Tight  & 0.1\% & 0.8958 & 0.8001 & 0.7527 \\
+    \hline
+  \end{tabular}
+  }
+  \label{tab:deepcsv}
+\end{table}
 
 \subsection{MET}
 
 MET is corrected.
 
-\subsection{Undesirable Particles}
-
-There are certain particles that we do not want present.
-We make very loose selections for those and veto on them.
-
-\subsubsection{Photons}
-
-\subsubsection{Tau Leptons}
+%\subsection{Undesirable Particles}
+%
+%There are certain particles that we do not want present.
+%We make very loose selections for those and veto on them.
+%
+%\subsubsection{Photons}
+%
+%\subsubsection{Tau Leptons}
 
 \section{Removal of QCD}
 
@@ -203,3 +246,11 @@ We reconstruct two $b$ jets.
 When the Higgs has very high $p_T$,
 the jet clustering algorithms can find both daughter particles
 as being part of a single jet.
+
+\section{Control Regions}
+
+\subsection{Light Flavor Jets}
+
+\subsection{Heavy Flavor Jets}
+
+\subsection{$t\bar{t}$}
