@@ -2,12 +2,12 @@
 
 Before diving into the description of the experimental apparatus,
 an explanation of why it is expected to work is needed.
-There are many textbooks that cover the Standard Model, as there are many students who study it.
-Much of what follows is taken from the book by Mark Thompson \cite{Thomson:1529540}.
+There are many textbooks that cover the Standard Model, as there are many scientists and students who study it.
+For a more in depth presentation of the Standard Model, please refer to Reference~\cite{Thomson:1529540}.
 
-The Standard Model Lagrangian can be defined as a sum of Lagrangians that each describe
-the interactions between different fermions and bosons.
-Equations of motion can be extracted from a Lagrangian $\mathcal{L}$
+The Standard Model is defined by its Lagrangian, which consistes of varioius parts describing
+fundamental particles and their interactions.
+Equations of motion are extracted from a Lagrangian $\mathcal{L}$
 for a particle field $\phi_i$ using the Euler-Lagrange equations.
 
 \begin{gather}
@@ -25,7 +25,7 @@ the cross section of associated production depends on
 the coupling of the Higgs boson to the $W$ and $Z$ vector bosons.
 The coupling of the electroweak force to fermions is also important to
 understand both the generation of these intermediate states and
-the resulting final state that the CMS detector records.
+the resulting final state that can be observed.
 Another important factor for this work is a the decay of the Higgs boson itself into bottom quarks.
 This depends on the Higgs directly coupling to fermions.
 Finally, we will briefly consider the part of the Lagrangian describing the strong force.
@@ -42,7 +42,7 @@ The granting of mass happens for two reasons:
 the Higgs field has a non-zero vacuum expectation value,
 and the Higgs field couples to vector boson and massive fermion fields.
 
-The Higgs can be described as two complex scalar fields in a weak isospin doublet
+The Higgs is described as two complex scalar fields in a weak isospin doublet
 with a quartic potential.
 The Lagrangian for a free Higgs is then
 \begin{gather}
@@ -240,7 +240,12 @@ Their mass eigenstates are denoted as down-type or up-type.
 Table~\ref{tab:quarks} displays some of the characteristics of these quarks.
 \begin{table}
   \centering
-  \caption[Quark flavors]{The quarks and some stuff about them.}
+  \caption[Quark flavors]{
+    All of the quarks are listed below,
+    along with their charges and weak isospin values.
+    The three generations are listed from least to most massive,
+    meaning only the first generation of quarks is stable.
+  }
   {\renewcommand{\arraystretch}{1.5}
   \begin{tabular}{|l|c c c c c|}
     \hline
@@ -335,7 +340,7 @@ from annihilating quarks.
   \caption[Feynman diagram of generating $W^\pm$]
           {
             Above are diagrams for generating $W^+$ and $W^-$ bosons.
-            the $u$ and $d$ quarks in the diagram can be replaced with
+            The $u$ and $d$ quarks in the diagram can be replaced with
             any up-type or down-type quark, respectively.
             The CKM matrix element would in the vertex element would be changed accordingly.
           }
@@ -349,8 +354,8 @@ $W^{(1)}$ and $W^{(2)}$ components of the SU$(2)_L$, so they also only interact 
 left-handed fermions and right-handed anti-fermions.
 
 Both the photon and the $Z$ boson mix the SU$(2)_L$ and U(1) components of the Standard Model.
-Production of the $Z$ needs to be directly understood for this measurement,
-but it is more straightforward to determine the strength of the $Z$ couplings to left-
+Production of the $Z$ boson needs to be directly understood for this measurement,
+but it is more straightforward to determine the strength of the $Z$ boson couplings to left-
 and right-handed fermions by exploiting the symmetry of photon interactions.
 That is, the photon interacts the same with left and right handed charged fermions,
 and not at all with neutral fermions.
@@ -440,6 +445,8 @@ As mentioned earlier in this section,
 quarks interact through an SU(3) symmetry that results in the strong force.
 The three states that this symmetry supports are known as color states,
 and they are labelled red, green, and blue, or $r$, $g$, and $b$.
+There are also anti-states for each color state,
+labelled $\bar{r}$, $\bar{g}$, and $\bar{b}$.
 The resulting gauge bosons are known as gluons, and they carry the following color states.
 \[
 r\bar{g}, g\bar{r}, r\bar{b}, b\bar{r}, g\bar{b}, b\bar{g}, \frac{1}{\sqrt{2}}(r\bar{r} - g\bar{g}) \mathrm{and} \frac{1}{\sqrt{6}}(r\bar{r} + g\bar{g} - 2b\bar{b})
@@ -467,7 +474,7 @@ Since the three quarks inside the proton interact strongly,
 there are also many virtual gluons and quark/anti-quark pairs present at all times.
 The quantity and energies of all these partons are not able to be calculated
 since QCD is non-perturbative.
-They can be measured in deep inelastic scattering experiements though.
+They can be measured in deep inelastic scattering experiments though.
 In these, electrons are scattered off of protons,
 and parton distribution functions (PDFs) can be measured.
 The PDFs for protons are shown in Figure~\ref{fig:pdf}.
@@ -496,7 +503,7 @@ since the contributions of the vector boson intermediate states to leptonic fina
 of appropriate kinematics are larger compared to other contributions to this final state.
 
 There are three generations of leptons.
-Each generation consists of a charged lepton, and a neutral neutrino.
+Each generation consists of a charged lepton, and a neutral lepton, also referred to as a neutrino.
 The left-handed charged lepton and neutrino of each generation form an electroweak SU(2) doublet.
 In order of increasing mass, the three generations are called electron, muon, and tau.
 Heavier charged leptons decay into lighter leptons via the weak force.
@@ -604,7 +611,7 @@ has the same symmetries as $\phi$.
 
 The Lagrangian showing fermion-Higgs interactions in
 Equation~(\ref{eq:fermion-mass}) consists of two terms.
-Since $v$ is constant, the first term would be consistent with a fermion's mass,
+Since $v$ is constant, the first term is consistent with a fermion's mass,
 assuming an appropriate coupling constant.
 \begin{gather}
   g_f = \sqrt2 \frac{m_f}{v}
