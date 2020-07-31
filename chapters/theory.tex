@@ -1,12 +1,44 @@
 \chapter{Theory} \label{ch:theory}
 
-Before diving into the description of the experimental apparatus,
-an explanation of why it is expected to work is needed.
+The Standard Model describes the interactions of all observable matter.
+Matter is made up of 12 kinds of fermions which are classified as quarks or leptons.
+There are six types of quarks, separated into three generations of two quarks each.
+Three charged leptons and three neutral leptons, called neutrinos, comprise the other six fermions.
+The fermions interact with each other by exchanging gauge bosons.
+The electroweak force is mediated by the neutral photon and $Z$ boson, and the charged $W$ boson.
+The Higgs boson is a scalar which grants all of the charged fermions and
+the $Z$ and $W$ bosons their mass through interactions.
 There are many textbooks that cover the Standard Model, as there are many scientists and students who study it.
-For a more in depth presentation of the Standard Model, please refer to Reference~\cite{Thomson:1529540}.
+For an in depth presentation of the Standard Model beyond what is presented in this chapter,
+please refer to Reference~\cite{Thomson:1529540}.
 
-The Standard Model is defined by its Lagrangian, which consistes of varioius parts describing
-fundamental particles and their interactions.
+In associated production, a Higgs boson is created through radiation from the $Z$ and $W$ bosons,
+which are also known as vector bosons.
+The measurement of $H\rightarrow \bb$ in associated production
+is therefore primarily concerned with the interactions between the Higgs boson and vector bosons
+and the coupling between the Higgs boson and bottom, or $b$, quarks.
+The generation and observable decay of the vector bosons are also important to make this measurement,
+but the parameters for those interactions are measured more accurately by other analyses
+\cite{sabrandt}.
+The coupling of the Higgs boson with the vector bosons and with fermions also gives rise to the masses
+of each in the Standard Model through what is called electroweak symmetry breaking or the Higgs mechanism.
+Most discussions of Higgs couplings therefore include an explanation of the Higgs mechanism.
+
+The treatment of these topics in this chapter are arranged as follows.
+First, I will give a brief explanation of Higgs field's non-zero vacuum energy,
+a trait that makes the electroweak symmetry breaking possible.
+After that, the coupling of the Higgs boson to the $W$ and $Z$ vector bosons will be described.
+These interactions arise from a mixing of the weak force with the electromagnetic force.
+What results is collectively known as the electroweak force.
+The coupling of the electroweak force to fermions is then discussed to
+understand both the generation of the vector boson intermediate states and
+the resulting final state that can be observed.
+Finally, the decay of the Higgs boson itself into bottom quarks is explained.
+This is allowed because the Higgs boson couples directly to massive fermions
+and gives them mass through the Higgs mechanism.
+
+The Standard model is described by its Lagrangian,
+which is the difference between a system's kinetic and potential energies.
 Equations of motion are extracted from a Lagrangian $\mathcal{L}$
 for a particle field $\phi_i$ using the Euler-Lagrange equations.
 
@@ -15,40 +47,35 @@ for a particle field $\phi_i$ using the Euler-Lagrange equations.
   \frac{\delta \mathcal{L}}{\delta \phi_i} = 0
 \end{gather}
 
-In the measurement of $H\rightarrow \bb$ in associated production,
-many components of the Standard Model are of interest.
-These will be introduced as needed.
-First, I will give a brief explanation of Higgs field's non-zero vacuum energy,
-a trait that makes the Higgs one of the central keystones to Standard Model.
-After that, the electroweak Lagrangian will be described since
-the cross section of associated production depends on
-the coupling of the Higgs boson to the $W$ and $Z$ vector bosons.
-The coupling of the electroweak force to fermions is also important to
-understand both the generation of these intermediate states and
-the resulting final state that can be observed.
-Another important factor for this work is a the decay of the Higgs boson itself into bottom quarks.
-This depends on the Higgs directly coupling to fermions.
-Finally, we will briefly consider the part of the Lagrangian describing the strong force.
-Since the LHC is a hadron collider,
-understanding of the strong force is required to extract data from LHC collisions.
-
-\section{The Higgs Mechanism}
-
-In both of these components of the Standard Model Lagrangian,
-the Higgs coupling actually gives the vector bosons and massive fermions their mass
-\cite{PhysRevLett.13.321, PhysRevLett.13.508, PhysRevLett.13.585}.
-(In this work, neutrinos can be treated as massless.)
+Gauge bosons are produced by symmetries of the Lagrangian.
+The Standard Model has SU(3) $\times$ SU(2$)_L$ $\times$ U(1$)_Y$ symmetry.
+The SU(3) symmetry produces gluons which mediate the strong force between quarks \cite{PhysRevLett.30.1343}.
+The SU(2$)_L$ $\times$ U(1$)_Y$ symmetry produces two gauge fields.
+The first interacts with left handed fermions,
+and the second interacts with all fermions through their hypercharge, $Y$.
+These forces are ultimately mixed into what is known as the electroweak force
+due to electroweak symmetry breaking \cite{PhysRevLett.19.1264}.
+Electroweak symmetry breaking is the required solution of the problem that
+vector gauge bosons of the electroweak force had mass.
+It was not possible to grant these bosons mass while maintaining the symmetries of the Standard Model
+without the Higgs boson \cite{PhysRevLett.13.321, PhysRevLett.13.508, PhysRevLett.13.585}.
 The granting of mass happens for two reasons:
 the Higgs field has a non-zero vacuum expectation value,
-and the Higgs field couples to vector boson and massive fermion fields.
+and the Higgs field couples directly to vector boson and massive fermion fields.
 
-The Higgs is described as two complex scalar fields in a weak isospin doublet
-with a quartic potential.
+\section{Electroweak Symmetry Breaking}
+
+First, consider the SU(2) $\times$ U(1) symmetry where the Higgs interacts with the electroweak bosons.
+The $L$ and $Y$ of the SU(2$)_L$ $\times$ U(1$)_Y$ symmetry can be forgotten for the moment,
+since they describe fermion interactions with the electroweak force.
+To preserve SU(2) symmetry, the Higgs boson is described as two complex scalar fields in
+a weak isospin doublet with a quartic potential.
+The SU(2) symmetry means rotations between the doublet states must be equivalent in the Lagrangian.
 The Lagrangian for a free Higgs is then
 \begin{gather}
   \mathcal{L} = (\delta_\mu \phi)^\dagger (\delta^\mu \phi) - (\mu^2(\phi^\dagger\phi) + \lambda(\phi^\dagger\phi)^2) \label{eq:free}
 \end{gather}
-Through the virial theorem, the potential has a minimum value when
+Through the virial theorem \cite{1930ZPhy...63..855F}, the potential has a minimum value when
 \begin{gather}
   \phi^\dagger\phi = \frac{-\mu^2}{2\lambda} = \frac{v^2}{2} \label{eq:vacuum}
 \end{gather}
@@ -57,19 +84,19 @@ This potential of the Higgs field breaks the SU(2) $\times$ U(1)
 symmetry of the Standard Model Lagrangian.
 Through this non-zero vacuum expectation value, the Higgs then has a constant influence
 in other parts of the Standard Model Lagrangian.
-For this measurement, three interactions that the Higgs makes
-with this influence need to be considered:
-the Higgs interacting with itself,
-the Higgs interacting with the electroweak vector bosons,
-and the Higgs interacting with quarks.
+In this way, it gives mass to electroweak vector bosons,
+to itself, and to massive fermions.
 
-The first two interactions manifest in the Lagrangian when
-we force the SU(2) $\times$ U(1) symmetry on the Lagrangian in Equation~(\ref{eq:free}).
+The first two sets of masses manifest when
+we force the SU(2) $\times$ U(1) symmetry back onto the Lagrangian in Equation~(\ref{eq:free}).
 The derivatives must be replaced.
 \begin{gather}
   \delta_\mu \rightarrow D_\mu = \delta_\mu + i\frac{g_W}{2} {\boldsymbol \sigma} \cdot {\bf W_\mu} + ig'\frac{Y}{2}B_\mu
 \end{gather}
-$\phi$ can be rewritten to satisfy the vacuum expectation value in the gauge that will give us the massless neutral boson known as a photon.
+To simplify the expansion of Equation~(\ref{eq:free}),
+a particular gauge, or particular doublet state, is chosen.
+$\phi$ is written to satisfy the vacuum expectation value of Equation~(\ref{eq:vacuum})
+in the gauge that will give us the massless neutral boson known as a photon.
 \begin{gather}
   \phi(x) = \frac{1}{\sqrt{2}}
   \left(
@@ -173,6 +200,7 @@ This gives us the masses of the neutral gauge bosons.
 From the simple act of requiring SU(2) $\times$ U(1) symmetry on the Lagrangian of a scalar
 doublet with non-zero vacuum expectation value,
 the masses of all the electroweak gauge bosons have been produced.
+A similar procedure will produce the masses of fermions due to their coupling to the electroweak force.
 
 \section{Associated Production}
 
@@ -208,12 +236,14 @@ The vertex showing associated production is pictured in Figure~\ref{fig:associat
 \begin{figure}
   \centering
   \begin{fmffile}{associated_production}
+    \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(200, 120)
       \fmfleft{i0}
       \fmfright{o0,o1}
       \fmf{dashes, label=$H$}{v0,o1}
       \fmf{boson, label=$W/Z$}{i0,v0,o0}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \caption[Feynman diagram of associated production]
           {
@@ -225,7 +255,7 @@ The vertex showing associated production is pictured in Figure~\ref{fig:associat
 \end{figure}
 
 
-\subsection{Production Mechanisms of Vector Bosons} \label{sec:produce-vector}
+\subsection{Coupling Between Vector Bosons and Fermions} \label{sec:produce-vector}
 
 The $W$ and $Z$ bosons are themselves intermediate states,
 never existing in a directly observable manner.
@@ -233,7 +263,7 @@ They must be produced through interacts with stable fermions.
 Since the LHC is a hadron collider,
 considering the vector bosons' couplings with quarks would be most relevant.
 
-Quarks are fermions that couple to each other through the strong force,
+Quarks couple to each other through the strong force,
 resulting from a SU(3) symmetry.
 There are three generations of quarks each consisting of a pair of quark types.
 Their mass eigenstates are denoted as down-type or up-type.
@@ -316,6 +346,7 @@ from annihilating quarks.
 \begin{figure}
   \centering
   \begin{fmffile}{w_plus_production}
+    \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(180, 120)
       \fmfleft{i0,i1}
       \fmfright{o0}
@@ -325,8 +356,10 @@ from annihilating quarks.
       \fmflabel{$\bar{d}$}{i1}
       \fmflabel{$V_{ud}\frac{g_W}{2}$}{v0}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \begin{fmffile}{w_minus_production}
+    \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(180, 120)
       \fmfleft{i0,i1}
       \fmfright{o0}
@@ -336,6 +369,7 @@ from annihilating quarks.
       \fmflabel{$d$}{i1}
       \fmflabel{$V_{ud}\frac{g_W}{2}$}{v0}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \caption[Feynman diagram of generating $W^\pm$]
           {
@@ -353,7 +387,7 @@ From Equation~(\ref{eq:w-form}), the $W^\pm$ bosons are completely made up of th
 $W^{(1)}$ and $W^{(2)}$ components of the SU$(2)_L$, so they also only interact with
 left-handed fermions and right-handed anti-fermions.
 
-Both the photon and the $Z$ boson mix the SU$(2)_L$ and U(1) components of the Standard Model.
+Both the photon and the $Z$ boson mix the SU$(2)_L$ and U(1$)_Y$ components of the Standard Model.
 Production of the $Z$ boson needs to be directly understood for this measurement,
 but it is more straightforward to determine the strength of the $Z$ boson couplings to left-
 and right-handed fermions by exploiting the symmetry of photon interactions.
@@ -407,6 +441,7 @@ in Figure~\ref{fig:z-production}.
 \begin{figure}
   \centering
   \begin{fmffile}{z_left_production}
+    \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(150, 120)
       \fmfleft{i0,i1}
       \fmfright{o0}
@@ -416,9 +451,11 @@ in Figure~\ref{fig:z-production}.
       \fmflabel{$\bar{f}_R$}{i1}
       \fmflabel{$g_Z\left( I^{(3)} - Q \sin^2 \theta_W \right)$}{v0}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \hspace{24pt}
   \begin{fmffile}{z_right_production}
+    \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(150, 120)
       \fmfleft{i0,i1}
       \fmfright{o0}
@@ -428,6 +465,7 @@ in Figure~\ref{fig:z-production}.
       \fmflabel{$f_R$}{i1}
       \fmflabel{$- g_Z Q \sin^2 \theta_W$}{v0}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \vspace{6pt}
   \caption[Feynman diagram of generating $Z$]
@@ -499,25 +537,25 @@ the vector bosons decay into quarks.
 However, in the hadronic environment produced at the LHC
 these are not the best indicators of a vector boson intermediate state.
 This measurement uses leptonic decays in the final state
-since the contributions of the vector boson intermediate states to leptonic final states
-of appropriate kinematics are larger compared to other contributions to this final state.
+since they are easier to identify and separate from background processes.
 
 There are three generations of leptons.
 Each generation consists of a charged lepton, and a neutral lepton, also referred to as a neutrino.
-The left-handed charged lepton and neutrino of each generation form an electroweak SU(2) doublet.
+The left-handed charged lepton and neutrino of each generation form an electroweak SU(2$)_L$ doublet.
 In order of increasing mass, the three generations are called electron, muon, and tau.
 Heavier charged leptons decay into lighter leptons via the weak force.
 Two neutrinos result from this decay, as shown in Figure~\ref{fig:tau-decay},
 making the characteristics of the parent lepton's parent difficult to reconstruct.
-The tau lepton has enough mass to consistently decay before reaching the CMS detector.
+The tau lepton has a short enough lifetime to consistently decay before reaching the CMS detector.
 The tau lepton is also massive enough to also decay into quarks,
 making its measurement even more complicated.
 Muons have an average lifetime long enough to penetrate the entire detector,
 and electrons are stable particles.
-As a result, only muons and electrons are considered in this analysis.
+As a result, only final states with muons and electrons are considered in this analysis.
 \begin{figure}
   \centering
   \begin{fmffile}{tau_decay}
+    \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(150, 120)
       \fmfleft{i0}
       \fmfright{o0,o1,o2}
@@ -529,12 +567,11 @@ As a result, only muons and electrons are considered in this analysis.
       \fmflabel{$\bar{\nu}_\mu$}{o1}
       \fmflabel{$\mu^-$}{o2}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \caption[Tau decay]{
     Heavier leptons can decay to lighter leptons while emitting two neutrinos.
     Above is an example of a decay of $\tau \rightarrow \nu_\tau\mu\bar{\nu}_\mu$.
-    The neutrinos cannot be measured at CMS, so it is better to avoid such decays
-    in the analysis.
   }
   \label{fig:tau-decay}
 \end{figure}
@@ -542,16 +579,19 @@ The Feynman diagrams for the decay channels of interest are shown in Figure~\ref
 \begin{figure}
   \centering
   \begin{fmffile}{z_zero_lep}
+    \fmfframe(0, 0)(0, 30){
     \begin{fmfgraph*}(150, 120)
       \fmfleft{i0}
       \fmfright{o0,o1}
       \fmf{boson, label=$Z$}{i0,v0}
       \fmf{fermion}{o0,v0,o1}
-      \fmflabel{$\bar{\nu}_e/\bar{\nu}_\mu$}{o0}
-      \fmflabel{$\nu_e/\nu_\mu$}{o1}
+      \fmflabel{$\bar{\nu}_e/\bar{\nu}_\mu/\bar{\nu}_\tau$}{o0}
+      \fmflabel{$\nu_e/\nu_\mu/\nu_\tau$}{o1}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \begin{fmffile}{z_two_lep}
+    \fmfframe(0, 0)(0, 30){
     \begin{fmfgraph*}(150, 120)
       \fmfleft{i0}
       \fmfright{o0,o1}
@@ -560,8 +600,10 @@ The Feynman diagrams for the decay channels of interest are shown in Figure~\ref
       \fmflabel{$e^+/\mu^+$}{o0}
       \fmflabel{$e^-/\mu^-$}{o1}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \begin{fmffile}{w_one_lep}
+    \fmfframe(0,30)(0, 20){
     \begin{fmfgraph*}(150, 120)
       \fmfleft{i0}
       \fmfright{o0,o1}
@@ -570,8 +612,10 @@ The Feynman diagrams for the decay channels of interest are shown in Figure~\ref
       \fmflabel{$\bar{\nu}_e/\bar{\nu}_\mu$}{o0}
       \fmflabel{$e^-/\mu^-$}{o1}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \begin{fmffile}{wp_one_lep}
+    \fmfframe(0,30)(0, 20){
     \begin{fmfgraph*}(150, 120)
       \fmfleft{i0}
       \fmfright{o0,o1}
@@ -580,9 +624,13 @@ The Feynman diagrams for the decay channels of interest are shown in Figure~\ref
       \fmflabel{$\nu_e/\nu_\mu$}{o0}
       \fmflabel{$e^+/\mu^+$}{o1}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \caption[Vector Boson decays in the analysis]{
     Above are the three different vector boson decays we are interested in.
+    $\tau$ decays do also contribute to the charged lepton final states as seen by a detector,
+    but the energy carried away by neutrinos significantly reduces those decay modes' contribution
+    to the accepted states.
   }
   \label{fig:v-decay}
 \end{figure}
@@ -635,6 +683,7 @@ One such full diagram is shown in Figure~\ref{fig:two-lep-diagram}.
 \begin{figure}
   \centering
   \begin{fmffile}{two_lep_diagram}
+    \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(250, 150)
       \fmfleft{i0,i1}
       \fmfright{o0,o1,o2,o3}
@@ -650,14 +699,10 @@ One such full diagram is shown in Figure~\ref{fig:two-lep-diagram}.
       \fmflabel{$\bar{b}$}{o2}
       \fmflabel{$b$}{o3}
     \end{fmfgraph*}
+    }
   \end{fmffile}
   \caption[Full Feynman diagram for the two lepton process]{
     Above is the full Feynman diagram for $ZH \rightarrow \ell^+\ell^- \bb$.
   }
   \label{fig:two-lep-diagram}
 \end{figure}
-
-\section{Other Relevant Standard Model Processes}
-
-There are other processes that must be acknowledged in order to explain how the CMS detector works.
-I'll fill those in as needed?
