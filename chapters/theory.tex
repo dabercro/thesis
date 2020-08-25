@@ -1,28 +1,67 @@
 \chapter{Theory} \label{ch:theory}
 
 The Standard Model describes the interactions of all observable matter.
-Matter is made up of 12 kinds of fermions which are classified as quarks or leptons.
-There are six types of quarks, separated into three generations of two quarks each.
-Three charged leptons and three neutral leptons, called neutrinos, comprise the other six fermions.
-The fermions interact with each other by exchanging gauge bosons.
-The electroweak force is mediated by the neutral photon and $Z$ boson, and the charged $W$ boson.
-The Higgs boson is a scalar which grants all of the charged fermions and
-the $Z$ and $W$ bosons their mass through interactions.
 There are many textbooks that cover the Standard Model, as there are many scientists and students who study it.
 For an in depth presentation of the Standard Model beyond what is presented in this chapter,
 please refer to Reference~\cite{Thomson:1529540}.
 
+Matter is made up of 12 kinds of fermions.
+The forces between the fermions are mediated by the gauge fields
+created by the Standard Model's SU(3) $\times$ SU(2$)_L$ $\times$ U(1$)_Y$ symmetry.
+Fermions with the appropriate charge are affected by the gauge fields.
+Fermions are classified as quarks or leptons.
+There are six types of quarks, separated into three generations of two quarks each.
+Each quark has a color charge associated with the SU(3) symmetry.
+The interactions arising from this is called QCD.
+Each pair of quarks in a family also have an approximate SU(2) symmetry,
+which allows interactions via the weak force.
+Quarks also have a hypercharge, which is a relation of electromagnetic charge and weak isospin,
+meaning the gauge field from the U(1) symmetry affects them as well.
+Three charged leptons and three neutral leptons, called neutrinos, comprise the other six fermions.
+The leptons do not carry a color charge, so they are not affected by the SU(3) symmetry,
+but they do carry weak isospin and hypercharge.
+Table~\ref{tab:fermions} displays the values of these charges for all fermions.
+Fermions also have anti-particles, which carry the opposite charges of their counterparts.
+\begin{table}
+  \centering
+  \caption[Fermion charges]{
+    All of the fermions are listed below,
+    along with their charges and weak isospin values.
+    The three generations are listed from least to most massive,
+    meaning only the first generation of quarks and charged leptons is stable.
+    The masses and decays of neutrinos is beyond the scope of the Standard Model and this analysis.
+  }
+  {\renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|l|c c c c c c c|}
+    \hline
+    & 1st gen. & 2nd gen. & 3rd gen. & Color & $Q$ & $I_W^{(3)}$ & Y \\
+    \hline
+    down-type quarks & $d$ & $s$ & $b$ & yes & $-\frac13$ & $-\frac12$ & $-\frac13$ \\
+    up-type quarks & $u$ & $c$ & $t$ & yes & $+\frac23$ & $+\frac12$ & $+\frac53$ \\
+    charged leptons & $e$ & $\mu$ & $\tau$ & no & -1 & $-\frac12$ & -1 \\
+    neutral leptons & $\nu_e$ & $\nu_\mu$ & $\nu_\tau$ & no & 0 & $+\frac12$ & -1 \\
+    \hline
+  \end{tabular}}
+  \label{tab:fermions}
+\end{table}
+
+In the Standard Model, the gauge files from the SU(2$)_L$ $\times$ U(1$)_Y$ symmetries are mixed
+into what is known as the electroweak force.
+The electroweak force is mediated by the neutral photon and $Z$ boson, and the charged $W$ boson.
+This mixing happens due to the Higgs boson, a scalar which grants all of the charged fermions and
+the $Z$ and $W$ bosons mass through interactions.
+
 In associated production, a Higgs boson is created through radiation from the $Z$ and $W$ bosons,
 which are also known as vector bosons.
 The measurement of $H\rightarrow \bb$ in associated production
-is therefore primarily concerned with the interactions between the Higgs boson and vector bosons
+is therefore a measurement of interactions between the Higgs boson and vector bosons
 and the coupling between the Higgs boson and bottom, or $b$, quarks.
-The generation and observable decay of the vector bosons are also important to make this measurement,
-but the parameters for those interactions are measured more accurately by other analyses
-\cite{sabrandt}.
-The coupling of the Higgs boson with the vector bosons and with fermions also gives rise to the masses
-of each in the Standard Model through what is called electroweak symmetry breaking or the Higgs mechanism.
-Most discussions of Higgs couplings therefore include an explanation of the Higgs mechanism.
+The generation and observable decay of the vector bosons are also important to make this measurement.
+The parameters for those interactions are measured more accurately by other analyses
+not involving an observation of the Higgs \cite{sabrandt}.
+Since the coupling of the Higgs boson with the vector bosons and with fermions also gives rise to the masses
+of each in the Standard Model through what is called electroweak symmetry breaking or the Higgs mechanism,
+most discussions of Higgs couplings include an explanation of the Higgs mechanism.
 
 The treatment of these topics in this chapter are arranged as follows.
 First, I will give a brief explanation of Higgs field's non-zero vacuum energy,
@@ -267,26 +306,6 @@ Quarks couple to each other through the strong force,
 resulting from a SU(3) symmetry.
 There are three generations of quarks each consisting of a pair of quark types.
 Their mass eigenstates are denoted as down-type or up-type.
-Table~\ref{tab:quarks} displays some of the characteristics of these quarks.
-\begin{table}
-  \centering
-  \caption[Quark flavors]{
-    All of the quarks are listed below,
-    along with their charges and weak isospin values.
-    The three generations are listed from least to most massive,
-    meaning only the first generation of quarks is stable.
-  }
-  {\renewcommand{\arraystretch}{1.5}
-  \begin{tabular}{|l|c c c c c|}
-    \hline
-    & 1st gen. & 2nd gen. & 3rd gen. & $Q$ & $I_W^{(3)}$ \\
-    \hline
-    down-type & $d$ & $s$ & $b$ & $-\frac13$ & $-\frac12$ \\
-    up-type & $u$ & $c$ & $t$ & $+\frac23$ & $+\frac12$ \\
-    \hline
-  \end{tabular}}
-  \label{tab:quarks}
-\end{table}
 A feature of quarks is that their mass eigenstates do not match their weak eigenstates.
 There is a mixing among the down-type quarks that is parametrized by the
 Cabibbo-Kobayashi-Maskawa (CKM) matrix.
@@ -435,7 +454,7 @@ we have the following couplings to left- and right-handed fermions.
   - Q \sin^2 \theta_W \bar{u}_R \gamma^\mu u_R\right)
 \end{align}
 Now the coupling of the $Z$ to left- and right-handed quarks can be calculated from
-Table~\ref{tab:quarks}, remembering that $I_W^{(3)}$ for right-handed fermions is 0.
+Table~\ref{tab:fermions}, remembering that $I_W^{(3)}$ for right-handed fermions is 0.
 Diagrams showing the interaction strengths of fermion-$Z$ vertices are shown
 in Figure~\ref{fig:z-production}.
 \begin{figure}
@@ -489,10 +508,12 @@ The resulting gauge bosons are known as gluons, and they carry the following col
 \[
 r\bar{g}, g\bar{r}, r\bar{b}, b\bar{r}, g\bar{b}, b\bar{g}, \frac{1}{\sqrt{2}}(r\bar{r} - g\bar{g}) \mathrm{and} \frac{1}{\sqrt{6}}(r\bar{r} + g\bar{g} - 2b\bar{b})
 \]
-At low energy, the coupling constant for the strong force is on the order of unity.
-This leads to color confinement,
-so that quarks an appreciable distance apart do not interact with each other.
-To achieve this, all observable hadronic states are color singlets.
+Since gluons carry color charge, they interact with other gluons.
+As the distance between two color-charged particles grows,
+the energy density of the self-interacting gluon field remains constant.
+It soon becomes energetically favorable for new a particle/anti-particle pair
+to pop into existence if it simultaneously reduces the distance that the strong force is interacting.
+As a result, all observable hadronic states are color singlets.
 The most common hadronic states are mesons, made of a quark/anti-quark pair
 with the color singlet state
 \begin{gather}
@@ -519,14 +540,66 @@ The PDFs for protons are shown in Figure~\ref{fig:pdf}.
 \begin{figure}
   \centering
   \includegraphics[width=0.7\linewidth]{figures/CTEQ6_parton_distribution_functions.png}
-  \caption{The P.D.F.}
+  \caption[Parton Distribution Function for protons]{
+    The Parton Distribution Function for protons is shown above.
+    Most of the proton's momentum is carried by $u$ and $d$ quarks,
+    but virtual $s$ quarks as well as gluons can also interact with particles passing through the proton.
+  }
   \label{fig:pdf}
 \end{figure}
 % https://en.wikipedia.org/wiki/Parton_(particle_physics)#/media/File:CTEQ6_parton_distribution_functions.png
 
-From these things, we can predict the cross section of generating $W$ and $Z$ bosons at the LHC.
-These need to be very massive though, since they're going to radiate a Higgs.
-This complicates the calculation a bit.
+Combining the known proton energy, PDFs, the CKM matrix, and the theory of the electroweak force,
+we can predict the cross section of generating $W$ and $Z$ bosons at the LHC.
+These initial vector bosons will be off-shell,
+which means they will have a mass much different than the resonance peak.
+Then they will radiate a Higgs in order to most commonly produce an on-shell vector boson and on-shell Higgs boson.
+The cross section of generating off-shell particles are suppressed according to
+the required center-of-mass energy, $E$, and the resonance mass $M$.
+The suppression is in the form of the relativistic Breit-Wigner formula.
+\begin{gather}
+  f(E) = \frac{k}{(E^2 - M^2)^2 + M^2\Gamma^2} \label{eq:breitwigner}
+\end{gather}
+This associated production is one of three production mechanisms of the Higgs Boson.
+The other two are gluon fusion, where gluons form a top loop, and vector boson fusion,
+both shown in Figure~\ref{fig:other-prod}.
+\begin{figure}
+  \centering
+  \begin{fmffile}{gluon_fusion}
+    \fmfframe(0,0)(0, 20){
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{gluon}{i0,v0}
+      \fmf{gluon}{i1,v1}
+      \fmf{fermion, label=$t$}{v0,v1,v2,v0}
+      \fmf{dashes, label=$H$}{v2,o0}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+  \hspace{24pt}
+  \begin{fmffile}{vbf}
+    \fmfframe(0,0)(0, 20){
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{boson, label=$W/Z$}{i0,v0,i1}
+      \fmf{dashes, label=$H$}{v0,o0}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+  \vspace{6pt}
+  \caption[Feynman diagrams of other production mechanisms]
+          {
+            Above are the Feynman diagrams for other production mechanisms of the Higgs boson.
+            Gluon fusion is shown on the left, and vector boson fusion is shown on the right.
+          }
+  \label{fig:other-prod}
+\end{figure}
+In these other two production mechanisms, only the Higgs is in the final state.
+These events can only offer additional identification through initial state radiation.
+In contrast, associated production also results in leptons from the vector boson decay,
+which allow for tighter selection criteria for event identification.
 
 % \cite{PhysRevD.2.1285}
 
@@ -672,7 +745,16 @@ The Feynman rule for the interaction vertex between the Higgs and fermions
 is proportional to the fermion's mass.
 Of the quarks, the $b$ quark is the second most massive.
 The most massive $t$ quark is too massive to be the final decay product of an on-shell Higgs.
-In fact, the predicted branching ratio of $H \rightarrow \bb$ is 57.8\%.
+The required off-shell Higgs would need a center of mass energy, $E$, at least \SI{350}{GeV},
+and the cross section for this production drops off as the tail of a relativistic Breit-Wigner function
+in Equation~(\ref{eq:breitwigner}) with a mass $M$ of \SI{125}{GeV}.
+The Higgs can also decay to two vector bosons.
+In this case, instead of requiring the Higgs to be off-shell,
+one of the unstable vector bosons can be less massive than its resonance mass.
+However, this still results cross section suppression in the form of Equation~(\ref{eq:breitwigner}).
+
+As the decay mode with the highest coupling requiring no off-shell particles,
+the predicted branching ratio of $H \rightarrow \bb$ is 57.8\%.
 Therefore, measuring $H \rightarrow \bb$ is the most direct measurement to confirm
 this theory of quark masses.
 The diagram for this decay can be combined with the Feynman diagrams in
