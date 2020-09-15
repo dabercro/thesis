@@ -235,7 +235,7 @@ The resulting collection of soft jets is used to define four variables:
 \item $H_T^\mathrm{soft}$ -- The scalar sum of soft jets' $p_T$ for jets with $p_T > \SI{1}{GeV}$
 \item $N_2^\mathrm{soft}$ -- The number of soft jets with $p_T > \SI{2}{GeV}$
 \item $N_5^\mathrm{soft}$ -- The number of soft jets with $p_T > \SI{5}{GeV}$
-\item $N_10^\mathrm{soft}$ -- The number of soft jets with $p_T > \SI{10}{GeV}$
+\item $N_{10}^\mathrm{soft}$ -- The number of soft jets with $p_T > \SI{10}{GeV}$
 \end{itemize}
 
 These variables are used in the training of the BDT that discriminates signal and background events.
@@ -244,17 +244,48 @@ These variables are used in the training of the BDT that discriminates signal an
 
 In the two-lepton region, the all of the $Z$ boson's decay products can be observed and
 its momentum can be reconstructed precisely.
+A kinematic fit is performed to constrain the leptons' momenta additionally by requiring their
+invariant mass to match the $Z$ boson mass.
+After this constraint is applied, the tranvserve momentum of the dijet system,
+along with ISR jets, is balanced with the transverse momentum of the dilepton system.
+The fit is performed by minimizing the chi-squared of the kinematic system that meets these constraints.
 
-%\subsection{Undesirable Particles}
-%
-%There are certain particles that we do not want present.
-%We make very loose selections for those and veto on them.
-%
-%\subsubsection{Photons}
-%
-%\subsubsection{Tau Leptons}
+For electrons and muons, the corrections defined by their respective Physics Objects Groups
+in CMS include uncertainties.
+The energy uncertainty used for the $b$-jets and recoils jets is the same as that used
+by the $HH \rightarrow \bb\bb$ analysis from CMS \cite{Sirunyan_2019}.
+The mass of the $Z$ boson also has a width.
+The kinematic fit minimizes the chi-squared value of these constraints,
+resulting in new energies for all particles in the fit.
+The full implementation is in the \texttt{PhysicsTools/KinFitter} package of
+\texttt{CMSSW\_10\_2\_0\_pre3} \cite{cmssw_doxygen}.
+Only the resulting energies of the $b$-jets, which are otherwise relatively loosely constrained,
+are used for analyzing the two-lepton regions.
+The improvement of the di-jet mass in the signal sample as a result of the kinematic fit
+can be seen in Figure~\ref{fig:kinfit} and Table~\ref{tab:kinfit}.
 
-\section{Removal of QCD}
+\begin{figure}
+  \includegraphics[width=\linewidth]{figures/fits_SR_medhigh_Hmass__.pdf}
+  \caption[Higgs di-jet mass fit with kinematic fit]{}
+  \label{fig:kinfit}
+\end{figure}
+
+\begin{table}
+  \centering
+  \caption[Mass resolutions after kinematic fit]{}
+  \begin{tabular}{|r|c|c|c|}
+    \hline
+    & Low $p_T$ & High $p_T$ & incl. \\
+    \hline
+    No R. & 0.157 & 0.133 & 0.150 \\
+    Reg.  & 0.134 & 0.121 & 0.130 \\
+    Fit   & 0.129 & 0.112 & 0.124 \\
+    \hline
+  \end{tabular}
+  \label{tab:kinfit}
+\end{table}
+
+\section{Common Cuts}
 
 We have some cuts across the board on our objects
 in order to remove events that are just QCD.
