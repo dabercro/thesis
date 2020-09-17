@@ -254,7 +254,8 @@ For electrons and muons, the corrections defined by their respective Physics Obj
 in CMS include uncertainties.
 The energy uncertainty used for the $b$-jets and recoils jets is the same as that used
 by the $HH \rightarrow \bb\bb$ analysis from CMS \cite{Sirunyan_2019}.
-The mass of the $Z$ boson also has a width.
+The mass of the $Z$ boson is given a Gaussian uncertainty of \SI{5}{GeV},
+and it is assumed that the MET in the event is 0.
 The kinematic fit minimizes the chi-squared value of these constraints,
 resulting in new energies for all particles in the fit.
 The full implementation is in the \texttt{PhysicsTools/KinFitter} package of
@@ -285,39 +286,113 @@ can be seen in Figure~\ref{fig:kinfit} and Table~\ref{tab:kinfit}.
   \label{tab:kinfit}
 \end{table}
 
-\section{Common Cuts}
+\section{Resolved Analysis Selection}
 
-We have some cuts across the board on our objects
-in order to remove events that are just QCD.
-
-\section{Categories of Vector Boson Decay}
-
-Now that we are ready to count,
-we can count leptons in order to characterise
-potential vector bosons.
+With objects defined, the selections differ mostly in counting the number
+of charged leptons present in the event.
+However, other adjustments are made per channel to optimize the presence of signal events.
+Therefore, the first channels described will have the most thorough selection description,
+with later channel sections noting many similarities and differences.
+For each channel, multiple control region selections are also used in order to more accurately
+estimate the approximate contribution of each physics process to the events in each phase space,
+and these will be described after each channel's signal region.
 
 \subsection{0 Leptons}
+
+In the 0-lepton channel, the transverse momentum carried away by the neutrinos
+in the $Z$ boson decay results in a large amount of MET.
+Therefore, the MET for the event must be larger than \SI{170}{GeV}.
+During the 2018 run, a number of HCAL endcap modules were taken offline
+due to power supply problems.
+These modules were all located in the region $-1.57 < \phi < -0.87$,
+so an excess number of high MET events with $\phi_\mathrm{MET}$ in that region were recorded
+in later 2018 runs when jets would have been registered in the deactivated detector elements.
+The resulting peak can be seen in Figure~\ref{fig:met-peak}.
+To handle this, all events with $-1.86 < \phi_\mathrm{MET} < -0.7$ that occurred
+during and after run 319077, when the faulty detector elements were shut off.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/METPhi319077.pdf}
+  \caption[MET $\phi$ distribution before and after shutting off HCAL modules]{
+    Above compares the MET $\phi$ distributions before and after shutting off
+    problematic HCAL modules during for run 319077.
+    The excess of events in the region $-1.86 < \phi_\mathrm{MET} < -0.7$
+    is caused by mis-measuring the momenta of forward jets in that region.
+  }
+  \label{fig:met-peak}
+\end{figure}
+
+In addition to the neutrino decay of the $Z$ boson,
+the \bb decay of the Higgs also needs to be selected and backgrounds need to be removed.
+Many of the following cuts are similar for all of the channels.
+For the Higgs decay, Two jets are selected:
+the jet with the highest $b$-tag score with $p_T > \SI{60}{GeV}$,
+and the jet with the highest or second highest (if the first jet is the highest)
+$b$-tag score with $p_T > \SI{35}{GeV}$.
+Both of these $p_T$ values are evaluated after applying the $b$-jet energy regression.
+The di-jet mass is required to be less than \SI{500}{GeV} and to satisfy $p_T > \SI{120}{GeV}$.
+Also the di-jet system is selected to be back-to-back with the MET
+by requiring $\Delta\phi(\mathrm{MET}, jj) > 2.0$.
+To reduce additional backgrounds, events are not considered if there are any isolated leptons
+with $|\eta| < 2.5$ and $p_T > \SI{15}{GeV}$.
+Finally, to reduce QCD background contributions, all jets in the event with $p_T > \SI{30}{GeV}$
+must be a minimum distance from the event MET satisfying $\Delta \phi(\mathrm{MET}, j) > 0.5$.
+
+
+The signal region is additionally defined by requiring
+the selected $b$-jets to be of high quality,
+the di-jet system has a mass close to the Higgs,
+and low additional hadronic activity.
+At least one of the $b$-jets must pass the medium working point for the appropriate year,
+and the other $b$-jet must pass the loose working point.
+The value of the di-jet mass must satisfy $\SI{90}{GeV} < m_{jj} < \SI{150}{GeV}$.
+At most only one jet with $p_T > \SI{30}{GeV}$ is allows in addition to the selected $b$-jets.
+Finally, the PF MET and Track MET must have good agreement with
+$\Delta \phi(\mathrm{MET}, \mathrm{trkMET}) < 0.5$.
+
+There are three background processes that are present in the signal selection.
+Two processes that need to be treated separately are both when a $Z \rightarrow \nu\bar{\nu}$
+occurs recoiling off of jets.
+In one processes, the recoiling jets are $b$-jets,
+and in the other, the jets are light jets.
+Since the fraction of actual $Z \rightarrow \nu\bar{\nu}$ events
+containing $b$-jets is not well known, we want to scale them separately.
+The third background process that needs to be separately measured in this phase space
+is a $t\bar{t}$ semi-leptonic decay where the lepton falls outside of the detector acceptance.
+This type of background would also result in a final state with high MET and $b$-jets.
+
+Of the three processes,
+the $Z$ + heavy flavor jets selection is the most similar to the signal selection.
+The only difference is the di-jet mass.
+Events with a mass between $\SI{50}{GeV} < m_{jj} < \SI{500}{GeV}$ but not between
+$\SI{90}{GeV} < m_{jj} < \SI{150}{GeV}$, which is the signal region window,
+are selected to quantify the $Z$ + heavy flavor.
+The $Z$ + light flavor selection includes the entire mass range,
+without a veto for the Higgs mass.
+It is instead enriched with light jets by requiring that the selected $b$-jet with
+a higher $b$-tag score fails the medium working point.
+The selection for $t\bar{t}$ events is different from the signal selection
+mostly because more hadronic activity is expected.
+It uses the same full di-jet mass window as the $Z$ + light flavor region,
+but requires at least two additional jets with $p_T > \SI{30}{GeV}$ instead of zero or one.
+Also, the $\Delta \phi(\mathrm{MET}, \mathrm{trkMET})$ requirement is dropped.
 
 \subsection{1 Lepton}
 
 \subsection{2 Leptons}
 
-\section{Topology of Higgs Decay}
-
-\subsection{Resolved Jets}
-
-We reconstruct two $b$ jets.
-
-\subsection{Boosted Jet}
+\section{Boosted Analysis Selection}
 
 When the Higgs has very high $p_T$,
 the jet clustering algorithms can find both daughter particles
 as being part of a single jet.
 
-\section{Control Regions}
+\section{Overlap in Resolved and Boosted Selections}
 
-\subsection{Light Flavor Jets}
-
-\subsection{Heavy Flavor Jets}
-
-\subsection{$t\bar{t}$}
+An important note is that each signal and control region described in this section and the next
+is orthogonal to all other regions.
+To prevent any statistical bias in the analysis,
+both simulated and measured events must not be double counted.
+This is most relevant when comparing the resolved and boosted channels since
+the same PF Candidates are reused to define two different kinds of jet collections,
+making it harder to enforce orthogonality with a single cut.
