@@ -69,7 +69,7 @@ charged particles are classified as originating from the primary vertex or as pi
 using their extrapolated track's distance in the transverse plane, $d_{xy}$
 and distance along the beamline, $d_z$.
 
-\subsection{Muons}
+\subsection{Muons} \label{sec:muon-def}
 
 An isolated muon gives one of the cleanest signatures in CMS,
 with only perhaps the exception of an isolated photon that does not
@@ -107,7 +107,7 @@ These definitions are accepted by all members of the CMS collaberation
 as loose and tight working points, respectively.
 This allows the analysis to use efficiency measurements created for wider use.
 
-\subsection{Electrons}
+\subsection{Electrons} \label{sec:ele-def}
 
 The kinematic variables associated with an electron are extracted from the GSF fit.
 Pre-selected electrons must meet the following requirements.
@@ -379,7 +379,58 @@ Also, the $\Delta \phi(\mathrm{MET}, \mathrm{trkMET})$ requirement is dropped.
 
 \subsection{1 Lepton}
 
+In the 1-lepton channel, a single fully-selected isolated lepton as defined in
+Section~\ref{sec:muon-def} or Section~\ref{sec:ele-def} is required.
+That lepton must point in a similar direction of the MET,
+satisfying $\Delta \phi(\ell, \mathrm{MET}) < 2.0$.
+The $p_T$ of the reconstructed $W$ boson, consisting of the vector sum of MET and the lepton,
+must satisfy $p_T > \SI{150}{GeV}$.
+If there are any additional leptons, the event is not used.
+The presence of an isolated lepton provides
+a much cleaner signal than in the zero lepton channel.
+Therefore, the kinematic cuts on the selected $b$-jets can be looser.
+The $b$-jets only need to satisfy $p_T > \SI{25}{GeV}$,
+and the di-jet system only needs $p_T > \SI{100}{GeV}$.
+Any events with $m_{jj} \ge \SI{250}{GeV}$ are not considered for any regions.
+The $b$-tagging requirement is the same as the 0-lepton channel.
+There is a slightly tighter cut on the di-jet direction of $\Delta\phi(\mathrm{MET}, jj) > 2.5$.
+
+In the signal region, the additional cuts are again similar to the 0-lepton channel.
+The di-jet mass window is the same, as is the requirement of at most one additional jet.
+The only other difference aside from the adjusted common cuts listed above
+is a lack of dependence on the Track MET.
+The change to create the $W$ + heavy flavor jets control region is the exact same as the
+$Z$ + heavy flavor region in the 0-lepton channel.
+The mass window for the Higgs is vetoed.
+The cut for the $W$ + light flavor control region is also the same in terms of $b$-tagging,
+but the additional jet requirement is also removed.
+The $t\bar{t}$ control region is also the same in that the only changes from the signal region
+are a relaxed mass window, the requirement of at least two additional jets,
+and no requirement on the di-jet direction relative to MET.
+
 \subsection{2 Leptons}
+
+For the 2-lepton channel, two oppositely charged leptons with the same flavor are required.
+They must have an invariant mass satisfying $\SI{75}{GeV} < m_{\ell\ell} < SI{105}{GeV}$.
+This process is clean enough to relax the kinematic cuts on the selected $b$-jets
+even further than the relaxed cuts of the 1-lepton channel.
+The selected $b$-jets only need to have a regressed $p_T > \SI{20}{GeV}$,
+and the di-jet system only needs $p_T > \SI{50}{GeV}$.
+There are no cuts on the number of additional, outside of categorization for STXS bins.
+The di-jet system still needs to satisfy the tighter cut of $\Delta\phi(jj,V) > 2.5$.
+
+The signal region uses the same $b$-tag and mass window cuts as the other two channels.
+For the $Z$ + heavy flavor control region,
+the di-lepton mass cut is narrowed to $\SI{85}{GeV} < m_{\ell\ell} < \SI{97}{GeV}$
+in order to cut out $t\bar{t}$, and the usual Higgs mass veto is applied.
+The MET is also required to be low with $\mathrm{MET} < \SI{60}{GeV}$
+for the $Z$ + heavy region, but no other.
+For the $Z$ + light flavor region, purity is achieved by making the $b$ tagging requirement
+that both selected jets fail the loose working point.
+The $t\bar{t}$ region is then selected by requiring
+one selected jet to pass the tight working point.
+The di-lepton mass value also must be either $\SI{10}{GeV} < m_{\ell\ell} < \SI{75}{GeV}$
+or $m_{\ell\ell} > \SI{120}{GeV}$.
 
 \section{Boosted Analysis Selection}
 
