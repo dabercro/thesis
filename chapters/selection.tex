@@ -411,7 +411,7 @@ and no requirement on the di-jet direction relative to MET.
 \subsection{2 Leptons}
 
 For the 2-lepton channel, two oppositely charged leptons with the same flavor are required.
-They must have an invariant mass satisfying $\SI{75}{GeV} < m_{\ell\ell} < SI{105}{GeV}$.
+They must have an invariant mass satisfying $\SI{75}{GeV} < m_{\ell\ell} < \SI{105}{GeV}$.
 This process is clean enough to relax the kinematic cuts on the selected $b$-jets
 even further than the relaxed cuts of the 1-lepton channel.
 The selected $b$-jets only need to have a regressed $p_T > \SI{20}{GeV}$,
@@ -431,6 +431,55 @@ The $t\bar{t}$ region is then selected by requiring
 one selected jet to pass the tight working point.
 The di-lepton mass value also must be either $\SI{10}{GeV} < m_{\ell\ell} < \SI{75}{GeV}$
 or $m_{\ell\ell} > \SI{120}{GeV}$.
+
+\subsection{Summary}
+
+A summary of cuts for each region in each channel
+is given in Table~\ref{tab:resolved}.
+A few channel- or region-specific cuts are left out,
+but are described in the preceding sections.
+
+\begin{table}
+  \centering
+  \caption[Summary of resolved selection cuts]{
+    Below is a summary of common cuts for all regions in the resolved channels.
+    See the text for each channel for an explanation of variables.
+    All energy equivalent values are in GeV.
+  }
+  \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{9}{|l|}{0-lepton channel} \\
+    \hline
+    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 170 & 60, 35 & med. & loose & 120 & >90, <150 & $\le 1$ & $> 2.0$ \\
+    Z + $b$ & 170 & 60, 35 & med. & loose & 120 & <90 or >150 & $\le 1$ & $> 2.0$ \\
+    Z + $udsg$ & 170 & 60, 35 & !med. & loose & 120 & >50, <500 & $\le 1$ & $> 2.0$ \\
+    $t\bar{t}$ & 170 & 60, 35 & med. & loose & 120 & >50, <500 & $\ge 2$ & -- \\
+    \hline
+    \hline
+    \multicolumn{9}{|l|}{1-lepton channel} \\
+    \hline
+    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 150 & 25 & med. & loose & 100 & >90, <150 & $\le 1$ & $> 2.5$ \\
+    W + $b$ & 150 & 25 & med. & loose & 100 & <90 or >150 & $\le 1$ & $> 2.5$ \\
+    W + $udsg$ & 150 & 25 & !med. & loose & 100 & >50, <250 & -- & $> 2.5$ \\
+    $t\bar{t}$ & 150 & 25 & med. & loose & 100 & >50, <250 & $\ge 2$ & -- \\
+    \hline
+    \hline
+    \multicolumn{9}{|l|}{2-lepton channel} \\
+    \hline
+    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 50 & 20 & med. & loose & 50 & >90, <150 & -- & $> 2.5$ \\
+    Z + $b$ & 50 & 20 & med. & loose & 50 & <90 or >150 & -- & $> 2.5$ \\
+    Z + $udsg$ & 50 & 20 & !loose & !loose & 50 & >50, <250 & -- & $> 2.5$ \\
+    $t\bar{t}$ & 50 & 20 & tight & loose & 50 & >50, <250 & -- & -- \\
+    \hline
+  \end{tabular}
+  \label{tab:resolved}
+\end{table}
 
 \section{Boosted Analysis Selection}
 
