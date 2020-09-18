@@ -149,7 +149,7 @@ There is a gap in the $\eta$ direction that accounts for a gap in the CMS detect
 This gap in the active detecting volume is needed to
 accomadate various electronics and structural components.
 
-\subsection{Jets}
+\subsection{Jets} \label{sec:jets-def}
 
 As described in Section~\ref{sec:lhc},
 hadrons produced at the LHC are often accompanied by sprays of particles called jets.
@@ -172,7 +172,34 @@ The jets must satisfy $p_T > \SI{25}{GeV}$ for the zero and one lepton signature
 The two lepton signature from $Z(\ell\ell)H$ is cleaner and can apply the looser
 criteria of $p_T > \SI{20}{GeV}$ to the jets.
 
-\subsubsection{Identification of $b$ Jets}
+\subsection{Fat Jets}
+
+A second collection of jets is made from the same set of PF Candidates that are
+clustered to create the jets described in Section~\ref{sec:jets-def}.
+This collection also uses the anti-$k_T$ algorithm, but with $R = 0.8$.
+This results in larger jets, which are labelled fat jets.
+The purpose of this collection is to study events where the Higgs is highly boosted
+and its decay products are close enough together that they would not be clustered
+into two separate jets.
+The larger cone size of the fat jet allows the single jets analyzed to contain
+all radiation from the decay products.
+The requirement on the fat jet to ensure that most Higgs decay products are contained
+in the jet is $p_T > \SI{250}{GeV}$.
+
+Being significantly larger,
+the fat jets also contain much additional radiation from the underlying event.
+As a result, the invariant mass of the constituents collected into the jet
+ends up being much larger than the original mass of the primary parent particle
+that contributed most to the jet.
+A number of grooming algorithms were considered within CMS \cite{dabercro2014}.
+The soft drop algorithm \cite{Larkoski_2014} was chosen as the standard in the experiement
+and is used in this analysis.
+The resulting groomed mass of the jet is close to its original parent particle.
+It has the additional benefit of forcing pileup jets to low mass.
+Due to this, a second requirement on fat jets considered for the analysis is
+$m_\mathrm{SD} > \SI{50}{GeV}$.
+
+\subsection{Identification of $b$ Jets}
 
 As mentioned in Section~\ref{sec:requirements} while motivating the design of CMS,
 jets containing $b$ hadrons have a distinct signature.
@@ -267,13 +294,19 @@ can be seen in Figure~\ref{fig:kinfit} and Table~\ref{tab:kinfit}.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figures/fits_SR_medhigh_Hmass__.pdf}
-  \caption[Higgs di-jet mass fit with kinematic fit]{}
+  \caption[Higgs di-jet mass fit with kinematic fit]{
+    The Higgs di-jet mass in the 2-lepton signal samples is shown above.
+    Peaks from the raw jet, the regressed jet energy, and the kinematic fit are compared.
+  }
   \label{fig:kinfit}
 \end{figure}
 
 \begin{table}
   \centering
-  \caption[Mass resolutions after kinematic fit]{}
+  \caption[Mass resolutions after kinematic fit]{
+    The value of $\sigma/\mu$ for each fitted di-jet mass peak is shown below.
+    Figure~\ref{fig:kinfit} shows the mass peaks that were fit to fill the inclusive column.
+  }
   \begin{tabular}{|r|c|c|c|}
     \hline
     & Low $p_T$ & High $p_T$ & incl. \\
@@ -286,6 +319,28 @@ can be seen in Figure~\ref{fig:kinfit} and Table~\ref{tab:kinfit}.
   \label{tab:kinfit}
 \end{table}
 
+\section{Simplified Template Cross Section Bins}
+
+The measurement performed in this analysis follows the plan to make a
+Simplified Template Cross Section (STXS) measurement \cite{Kato:2687920}.
+For this measurement, the vector boson produced as well as the $p_T$ of the vector boson
+separates data points into different bins.
+The clean signal of the $Z\rightarrow\ell\ell$ decay channel allows for more
+bins to be measured for $ZH$ processes.
+In addition, the middle $p_T$ bin for $Z$ boson production is split by multiplicity
+of additional jets.
+There are six bins overall:
+\begin{itemize}
+\item $WH, 150 < p_{T,V} \le 250$
+\item $WH, 250 < p_{T,V}$
+\item $ZH, 75 < p_{T,V} \le 150$
+\item $ZH, 150 < p_{T,V} \le 250, 0J$
+\item $ZH, 150 < p_{T,V} \le 250, \ge 1J$
+\item $ZH, 250 < p_{T,V}$
+\end{itemize}
+All of the selections in the following sections are also divided into the appropriate
+set of STXS bins for the generation of datacards and fits.
+
 \section{Resolved Analysis Selection}
 
 With objects defined, the selections differ mostly in counting the number
@@ -296,8 +351,54 @@ with later channel sections noting many similarities and differences.
 For each channel, multiple control region selections are also used in order to more accurately
 estimate the approximate contribution of each physics process to the events in each phase space,
 and these will be described after each channel's signal region.
+A summary of cuts for each region in each channel
+is given in Table~\ref{tab:resolved}.
+A few channel- or region-specific cuts are left out,
+but are described in the appropriate sections.
 
-\subsection{0 Leptons}
+\begin{table}
+  \centering
+  \caption[Summary of resolved selection cuts]{
+    Below is a summary of common cuts for all regions in the resolved channels.
+    See the text for each channel for an explanation of variables.
+    All energy equivalent values are in GeV.
+  }
+  \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{9}{|l|}{0-lepton channel} \\
+    \hline
+    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 170 & 60, 35 & med. & loose & 120 & >90, <150 & $\le 1$ & $> 2.0$ \\
+    Z + $b$ & 170 & 60, 35 & med. & loose & 120 & <90 or >150 & $\le 1$ & $> 2.0$ \\
+    Z + $udsg$ & 170 & 60, 35 & !med. & loose & 120 & >50, <500 & $\le 1$ & $> 2.0$ \\
+    $t\bar{t}$ & 170 & 60, 35 & med. & loose & 120 & >50, <500 & $\ge 2$ & -- \\
+    \hline
+    \hline
+    \multicolumn{9}{|l|}{1-lepton channel} \\
+    \hline
+    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 150 & 25 & med. & loose & 100 & >90, <150 & $\le 1$ & $> 2.5$ \\
+    W + $b$ & 150 & 25 & med. & loose & 100 & <90 or >150 & $\le 1$ & $> 2.5$ \\
+    W + $udsg$ & 150 & 25 & !med. & loose & 100 & >50, <250 & -- & $> 2.5$ \\
+    $t\bar{t}$ & 150 & 25 & med. & loose & 100 & >50, <250 & $\ge 2$ & -- \\
+    \hline
+    \hline
+    \multicolumn{9}{|l|}{2-lepton channel} \\
+    \hline
+    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 50 & 20 & med. & loose & 50 & >90, <150 & -- & $> 2.5$ \\
+    Z + $b$ & 50 & 20 & med. & loose & 50 & <90 or >150 & -- & $> 2.5$ \\
+    Z + $udsg$ & 50 & 20 & !loose & !loose & 50 & >50, <250 & -- & $> 2.5$ \\
+    $t\bar{t}$ & 50 & 20 & tight & loose & 50 & >50, <250 & -- & -- \\
+    \hline
+  \end{tabular}
+  \label{tab:resolved}
+\end{table}
+
+\subsection{0 Leptons} \label{sec:resolved-0}
 
 In the 0-lepton channel, the transverse momentum carried away by the neutrinos
 in the $Z$ boson decay results in a large amount of MET.
@@ -377,7 +478,7 @@ It uses the same full di-jet mass window as the $Z$ + light flavor region,
 but requires at least two additional jets with $p_T > \SI{30}{GeV}$ instead of zero or one.
 Also, the $\Delta \phi(\mathrm{MET}, \mathrm{trkMET})$ requirement is dropped.
 
-\subsection{1 Lepton}
+\subsection{1 Lepton} \label{sec:resolved-1}
 
 In the 1-lepton channel, a single fully-selected isolated lepton as defined in
 Section~\ref{sec:muon-def} or Section~\ref{sec:ele-def} is required.
@@ -408,7 +509,7 @@ The $t\bar{t}$ control region is also the same in that the only changes from the
 are a relaxed mass window, the requirement of at least two additional jets,
 and no requirement on the di-jet direction relative to MET.
 
-\subsection{2 Leptons}
+\subsection{2 Leptons} \label{sec:resolved-2}
 
 For the 2-lepton channel, two oppositely charged leptons with the same flavor are required.
 They must have an invariant mass satisfying $\SI{75}{GeV} < m_{\ell\ell} < \SI{105}{GeV}$.
@@ -432,60 +533,70 @@ one selected jet to pass the tight working point.
 The di-lepton mass value also must be either $\SI{10}{GeV} < m_{\ell\ell} < \SI{75}{GeV}$
 or $m_{\ell\ell} > \SI{120}{GeV}$.
 
-\subsection{Summary}
-
-A summary of cuts for each region in each channel
-is given in Table~\ref{tab:resolved}.
-A few channel- or region-specific cuts are left out,
-but are described in the preceding sections.
-
-\begin{table}
-  \centering
-  \caption[Summary of resolved selection cuts]{
-    Below is a summary of common cuts for all regions in the resolved channels.
-    See the text for each channel for an explanation of variables.
-    All energy equivalent values are in GeV.
-  }
-  \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
-    \hline
-    \multicolumn{9}{|l|}{0-lepton channel} \\
-    \hline
-    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
-    \hline
-    Signal & 170 & 60, 35 & med. & loose & 120 & >90, <150 & $\le 1$ & $> 2.0$ \\
-    Z + $b$ & 170 & 60, 35 & med. & loose & 120 & <90 or >150 & $\le 1$ & $> 2.0$ \\
-    Z + $udsg$ & 170 & 60, 35 & !med. & loose & 120 & >50, <500 & $\le 1$ & $> 2.0$ \\
-    $t\bar{t}$ & 170 & 60, 35 & med. & loose & 120 & >50, <500 & $\ge 2$ & -- \\
-    \hline
-    \hline
-    \multicolumn{9}{|l|}{1-lepton channel} \\
-    \hline
-    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
-    \hline
-    Signal & 150 & 25 & med. & loose & 100 & >90, <150 & $\le 1$ & $> 2.5$ \\
-    W + $b$ & 150 & 25 & med. & loose & 100 & <90 or >150 & $\le 1$ & $> 2.5$ \\
-    W + $udsg$ & 150 & 25 & !med. & loose & 100 & >50, <250 & -- & $> 2.5$ \\
-    $t\bar{t}$ & 150 & 25 & med. & loose & 100 & >50, <250 & $\ge 2$ & -- \\
-    \hline
-    \hline
-    \multicolumn{9}{|l|}{2-lepton channel} \\
-    \hline
-    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
-    \hline
-    Signal & 50 & 20 & med. & loose & 50 & >90, <150 & -- & $> 2.5$ \\
-    Z + $b$ & 50 & 20 & med. & loose & 50 & <90 or >150 & -- & $> 2.5$ \\
-    Z + $udsg$ & 50 & 20 & !loose & !loose & 50 & >50, <250 & -- & $> 2.5$ \\
-    $t\bar{t}$ & 50 & 20 & tight & loose & 50 & >50, <250 & -- & -- \\
-    \hline
-  \end{tabular}
-  \label{tab:resolved}
-\end{table}
-
 \section{Boosted Analysis Selection}
 
 When the Higgs has very high $p_T$,
 the jet clustering algorithms can find both daughter particles
 as being part of a single jet.
+The boosted analysis only targets the STXS bins with $p_{T,V} > \SI{250}{GeV}$.
+The selection differs primarily in the fact that a single fat jet
+which passes a double $b$-tag cut \cite{Sirunyan_2018}
+is used to reconstruct the potential Higgs instead of two $b$-tagged jets.
+The double $b$-tagger used in this analysis is DeepAK8,
+a DNN as opposed to a BDT tagger.
+The output is decorrelated with mass, allowing for the jet mass to be used
+to generate control regions, as is done in the resolved analysis.
+
+Additional $b$ jets outside of the fat jet are also counted to define selections.
+These come from the regular jet collections of Section~\ref{sec:jets-def}.
+In order to count as an additional $b$-jet,
+the jet must pass the DeepCSV medium working point,
+have a regressed $p_T > \SI{25}{GeV}$, and be outside of the selected fat jet
+so that $\Delta R(j, fj) > 0.8$.
+
+\subsection{0 Leptons}
+
+As in Section~\ref{sec:resolved-0}, the lack of measured leptons is caused by
+the $Z$ boson decaying to neutrinos, so the 0-lepton channel has high MET.
+A requirement of $\mathrm{MET} > \SI{250}{GeV}$ is applied,
+balancing out the $p_T$ requirement of the fat jet.
+As for the resolved analysis, any extra leptons leads to the event not being considered
+for the 0-lepton channel.
+To remove QCD background for all regions, the same cut from the resolved analysis of
+$\Delta \phi(\mathrm{MET}, j) > 0.5$ for all jets with $p_T > \SI{30}{GeV}$ is used.
+
+In the signal region, jets must have a score of 0.8 or higher in the
+bbVsLight output node of the DeepAK8 tagger.
+They must also have a soft drop mass in the range of $90 < m_\mathrm{SD} < \SI{150}{GeV}$.
+No additional jets outside of the fatjet are allowed in the event.
+The control regions are the same as for the resovled analysis:
+$Z$ + heavy flavor, $Z$ + light flavor, and $t\bar{t}$.
+For the $Z$ + heavy flavor control region,
+the mass cut is changed to instead veto the Higgs mass window.
+For the $Z$ + light flavor, there is no mass requirement outside of the
+$m_\textrm{SD} > \SI{50}{GeV}$ required for all fat jets.
+Orthogonality is enforced by requiring the bbVsLight score to be less than 0.8.
+For $t\bar{t}$, the lack of mass requirement is also present,
+but there must be at least one $b$ jet outside of the fat jet.
+
+\subsection{1 Lepton}
+
+For the single lepton channel, exactly one selected lepton must be present.
+It must also point in the same direction as the MET with $\Delta \phi(MET, \ell) < 2.0$.
+Otherwise, the selection criteria for the different 1-lepton regions
+are the exact same as for the boosted 0-lepton regions.
+
+\subsection{2 Leptons}
+
+For the two lepton channel, two oppositely charged, same flavor leptons must be present,
+as described in Section~\ref{sec:resolved-2}.
+These leptons must also have an invariant mass near the $Z$ boson mass for the signal region
+and the two $Z$ + jets regions.
+The selection for the signal and control regions are otherwise similar to the selections
+for the 0- and 1-lepton channels in the boosted analysis.
+The only difference is that instead of requiring a $b$ jet outside of the fat jet
+for the $t\bar{t}$ control region,
+a mass veto of the di-lepton mass is applied, just as was done for the resolved analysis.
 
 \section{Overlap in Resolved and Boosted Selections}
 
@@ -496,3 +607,5 @@ both simulated and measured events must not be double counted.
 This is most relevant when comparing the resolved and boosted channels since
 the same PF Candidates are reused to define two different kinds of jet collections,
 making it harder to enforce orthogonality with a single cut.
+The overlapping events were given priority to boosted or resolved depending on
+a study done to optimize each STXS bin.
