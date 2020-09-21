@@ -1,11 +1,132 @@
 \chapter{Simulation} \label{ch:simulation}
 
+After the detector is well understood,
+predictions on how it responds in the LHC enviroment can be made.
+The number of ways the detector could possibly respond are nearly infinite.
+Therefore, simulation is performed using Monte Carlo methods,
+and the resulting analysis is statistical in nature.
+The data format for simulation results is similar to the data format for
+data collected from the detector.
+Unobservable information about intermediate steps
+in the simulation is also stored,
+but otherwise the data is the predicted output of a collection of events.
+
+The simulation itself consists of several steps
+each outlined in a separate section of this chapter.
+First the background processes that will appear in our analysis must be known.
+Identifying all of these processes is necessary to quantify and characterize
+the signal events that are also mixed in to our selection.
+Then each of these processes must be simulated to determine the final state particles
+that the detector will observe.
+Each process will looks slightly different in our signal selection.
+Events outside of the selection must also be simulated so that they can be studied
+for accuracy in separate phase spaces that do not include the Higgs events.
+After the final state particles are predicted,
+the detector response to those particles passing through must be simulated.
+This allows researchers to compare the physical readouts they can observe to predicted readouts.
+Finally, using the phase spaces outside of the desired signal,
+minor corrections to the simulation must be made.
+Simulated energies from the detector model might not be the exact same as
+what the physical detector produces, for example,
+and they must be made to match to make the signal analysis clean.
+
 \section{Backgrounds to the Analysis}
 
 In order to effectively measure Higgs production,
 we need to be able to accurately estimate other events
 that end up in our selection.
-To get started, a loose understanding of 
+For example, the final state for the two lepton decay in Figure~\ref{fig:two-lep-diagram}
+can also be achieved by a Drell-Yan process radiating jets
+or a $t\bar{t}$ event where both $W$ bosons from the top decays decay leptonically.
+Feynman diagrams in Figure~\ref{fig:dy-2lep} and Figure~\ref{fig:tt-2lep}
+show how the two respective processes can result in the same final state as the signal process.
+The Drell-Yan process can also radiate jets initiated by lighter flavor quarks
+that are mistakenly identified as $b$-jets,
+and those make up a significant portion of the backgrounds as well.
+Less significant, but still important backgrounds include processes like
+di-boson production, QCD jets, and signal top processes.
+
+\begin{figure}
+  \centering
+  \begin{fmffile}{dy_2lep}
+    \fmfframe(0,0)(0, 20){
+    \begin{fmfgraph*}(250, 150)
+      \fmfleft{i0,i1}
+      \fmfright{o2,o3,o0,o1}
+      \fmf{quark}{i1,v0,v1,i0}
+      \fmflabel{$\bar{f}$}{i0}
+      \fmflabel{$f$}{i1}
+      \fmf{boson, label=$Z$}{v0,v2}
+      \fmf{fermion}{o0,v2,o1}
+      \fmflabel{$\ell^+$}{o0}
+      \fmflabel{$\ell^-$}{o1}
+      \fmf{gluon, label=$g$}{v1,v3}
+      \fmf{fermion}{o2,v3,o3}
+      \fmflabel{$\bar{b}$}{o2}
+      \fmflabel{$b$}{o3}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+  \caption[Feynman diagram for DY + jets background]{
+    Above is the Feynman diagram matching the two lepton final state coming from
+    Drell-Yan and jets.
+  }
+  \label{fig:dy-2lep}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{fmffile}{tt_2lep}
+    \fmfframe(0,0)(0, 20){
+    \begin{fmfgraph*}(250, 150)
+      \fmfleft{i0,i1}
+      \fmfright{o0,o1,o2,o3,o4,o5}
+      \fmf{quark}{i1,v0,i0}
+      \fmflabel{$\bar{f}$}{i0}
+      \fmflabel{$f$}{i1}
+      \fmf{gluon, label=$g$}{v0,v1}
+      \fmf{fermion, label=$\bar{t}$}{v2,v1}
+      \fmf{fermion, label=$t$}{v1,v3}
+      \fmf{fermion}{v2,o0}
+      \fmflabel{$\bar{b}$}{o0}
+      \fmf{boson, label=$W^-$}{v2,v4}
+      \fmf{fermion}{o1,v4,o2}
+      \fmflabel{$\bar{\nu}$}{o1}
+      \fmflabel{$\ell^-$}{o2}
+      \fmf{fermion}{v3,o5}
+      \fmflabel{$b$}{o5}
+      \fmf{boson, label=$W^+$}{v3,v5}
+      \fmf{fermion}{o3,v5,o4}
+      \fmflabel{$\ell^+$}{o3}
+      \fmflabel{$\nu$}{o4}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+  \caption[Feynman diagram for $t\bar{t}$ background]{
+    Above is the Feynman diagram matching the two lepton final state coming from
+    fully leptonic $t\bar{t}$ decay.
+    In events with little energy carried away by the neutrinos,
+    this can appear to be the same as the two-lepton signal process.
+  }
+  \label{fig:tt-2lep}
+\end{figure}
+
+The backgrounds for the one- and zero-lepton signal decay channels are
+caused by similar processes.
+For the one-lepton decays of $WH$, the Drell-Yan background in Figure~\ref{fig:dy-2lep}
+is replaced with a flavor changing current of $W$ + jets.
+The $t\bar{t}$ background would instead be caused by either a hadronic decay of
+one of the $W$ bosons in Figure~\ref{fig:tt-2lep}
+or by one of the pictured leptons travelling out of the detector without being observed.
+For the zero-lepton channel, the Drell Yan process is instead replaced with
+$Z \rightarrow \nu\bar{\nu}$.
+The $t\bar{t}$ process still needs high MET in order to appear to
+contain a hard neutrino presence,
+so it is most often caused when a single $W$ decays leptonically with the lepton
+falling outside of the detector acceptance.
+For both of these channels, di-boson, QCD, and single top backgrounds can also contribute.
+This simplifies the methods needed to generate Monte Carlo samples,
+since the decay mode of each intermediate particle can be randomly selected for each trial.
 
 \section{Event Generation}
 
@@ -21,10 +142,8 @@ Details in Appendix~\ref{app:generator}.
 
 \section{Corrections to Simulation}
 
-\subsection{Smearing}
+\subsection{Muons}
 
-\subsubsection{Muons}
+\subsection{Electrons}
 
-\subsubsection{Electrons}
-
-\subsubsection{Jets}
+\subsection{Jets and MET}
