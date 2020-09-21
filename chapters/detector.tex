@@ -485,5 +485,14 @@ the HLT also includes paths where two electrons or two muons are identified.
 \section{Accessing Data}
 
 The final important piece of the CMS detector is its offline computing resources.
-
-Tier-1 sites typically provide 30,000 CPU cores, while Tier-2 sites provide another 60,000 \cite{Bloom_2017}.
+The data that is gathered by the detector must be processed and stored.
+This is done by using computing resources spread around the world.
+They are grouped into Tier-1 and Tier-2 sites,
+based largely on the geographic space that they are meant to provide computing services for.
+Tier-1 sites typically provide 30,000 CPU cores, while the more numerous Tier-2 sites provide
+another 60,000 \cite{Bloom_2017}.
+Together they also provide around 100 Petabytes of space \cite{Ratnikova_2014}.
+Keeping these services running smoothly is important for the CMS collaboration to function,
+and two projects that aid in this are outlined in Appendix~\ref{app:project}.
+Since the data is event-based, they are stored in n-tuple format.
+These n-tuples are created and read by the CMS Software (CMSSW) \cite{INNOCENTE200131}.
