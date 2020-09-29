@@ -23,12 +23,13 @@ Events outside of the selection must also be simulated so that they can be studi
 for accuracy in separate phase spaces that do not include the Higgs events.
 After the final state particles are predicted,
 the detector response to those particles passing through must be simulated.
-This allows researchers to compare the physical readouts they can observe to predicted readouts.
-Finally, using the phase spaces outside of the desired signal,
-minor corrections to the simulation must be made.
+This allows researchers to compare the physical readouts
+they can observe to predicted detector signals.
+Finally, using the phase spaces outside of the desired signal process,
+minor corrections to the simulation can be made.
 Simulated energies from the detector model might not be the exact same as
 what the physical detector produces, for example,
-and they must be made to match to make the signal analysis clean.
+and they must be made to match to make the signal process cleanly appear in the analysis.
 
 \section{Backgrounds to the Analysis}
 
@@ -39,7 +40,8 @@ For example, the final state for the two lepton decay in Figure~\ref{fig:two-lep
 can also be achieved by a Drell-Yan process radiating jets
 or a $t\bar{t}$ event where both $W$ bosons from the top decays decay leptonically.
 Feynman diagrams in Figure~\ref{fig:dy-2lep} and Figure~\ref{fig:tt-2lep}
-show how the two respective processes can result in the same final state as the signal process.
+show how the two respective processes can result in
+the same final state as the signal process.
 The Drell-Yan process can also radiate jets initiated by lighter flavor quarks
 that are mistakenly identified as $b$-jets,
 and those make up a significant portion of the backgrounds as well.
@@ -176,9 +178,37 @@ are POWHEG \cite{Oleari_2010} and MadGraph5 \cite{hirschi2015automated}.
 
 \subsection{Parton Showers}
 
-After final state particles are predicted, they take a shower.
+The final state particles from the short-scale simulation
+include a number of free quarks and gluons.
+As mentioned in Section~\ref{sec:produce-vector},
+it is energetically favorable for color-charged particles to create additional
+quark/anti-quark pairs to screen the color charge.
+This is known as hadronization or parton showering and
+is simulated separately from the calculation of tree-level processes.
+Hadronization happens well before particles reach the CMS detector,
+so the results are needed to predict the detector response.
+Accurate simulation of this process is important for all collisions at the LHC,
+which produces much QCD background.
+It is also important to accurately simulate the constituents of individual jets
+since this analysis includes detailed inspection of each jet
+in order to identify $b$-jets and to estimate the amount of energy carried away by neutrinos.
+
+To be able to analyze the simulation in the same way data is processed,
+Monte Carlo simulation is used to predict precise final states of the jets.
+CMS uses the Lund model \cite{ANDERSSON198331} as implemented in
+\texttt{PYTHIA8} \cite{SJOSTRAND2015159}.
 
 \section{Detector Simulation}
+
+After determining all of the final state particles that will reach the detector,
+the interaction between these particles and the detector components must be simulated.
+Multiple simulations of $pp$ collisions are combined to simulate pileup,
+and then the particle propagation through various materials is done with
+\texttt{GEANT4} \cite{AGOSTINELLI2003250}.
+The full CMS detector geometry is maintained within CMSSW \cite{Hildreth_2015}
+using a framework written in the Unified Modelling Language \cite{Lefebure:687188}.
+To be able to process the simulated data in the exact same fashion as the measured data,
+the readout of the electronics is also simulated.
 
 \section{Corrections to Simulation}
 
