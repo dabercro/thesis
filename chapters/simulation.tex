@@ -212,6 +212,20 @@ the readout of the electronics is also simulated.
 
 \section{Corrections to Simulation}
 
+Despite efforts to simulate LHC collisions as accurately as possible,
+a number of differences in the distributions predicted by MC and present in data arise.
+This is a result of not being able to predict the beam conditions exactly
+and not being able to predict the calibration accurately.
+This is made more difficult since the detector degrades in its high radiation environment.
+
+Corrections are made to the simulation by reweighting based on the pileup
+and by scaling the predicted energies based on particle type.
+Most of the corrections are derived by dedicated groups that provide
+the entire CMS collaboration with proper calibrations.
+This analysis does depend in particular on predictions of $b$-jet energies,
+which are not corrected centrally.
+Therefore this section includes a description of how that correction is derived.
+
 \subsection{Muons}
 
 \subsection{Electrons}
