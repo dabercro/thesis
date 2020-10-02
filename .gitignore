@@ -6,6 +6,7 @@
 *.lot
 *.bbl
 *.blg
+*.out
 
 *.1
 *.mp
