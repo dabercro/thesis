@@ -1,6 +1,65 @@
 \chapter{Analysis Results} \label{ch:results}
 
-\section{Systematic Uncertainties}
+\section{Corrections and Uncertainties}
+
+Despite efforts to simulate LHC collisions as accurately as possible,
+a number of differences in the distributions predicted by MC and present in data arise.
+This is a result of not being able to predict the beam conditions exactly
+and not being able to predict the calibration accurately.
+This is made more difficult since the detector degrades in its high radiation environment.
+
+Corrections are made to the simulation by reweighting based on the pileup
+and by scaling the predicted energies based on particle type.
+Most of the corrections are derived by dedicated groups that provide
+the entire CMS collaboration with proper calibrations.
+This analysis does depend in particular on predictions of $b$-jet energies,
+which are not corrected centrally.
+Therefore this section includes a description of how that correction is derived.
+
+\subsection{Muons}
+
+\subsection{Electrons}
+
+\subsection{Jets and MET}
+
+\subsection{$b$-Jet Energy Correction}
+
+Even when distributions of individual variables agree between MC and data,
+correlations are often different.
+These correlations are also important in the evaluation of a DNN.
+The DNN used to estimate the energy of $b$-jets therefore has differing performance
+in MC and data.
+In particular, it is better at estimating the true energy of a b-jet in MC.
+The energies evaulated in MC must be smeared in order to accurately simulate
+the resolution of jets in data after they have been modified by the DNN regression.
+
+One way to measure jet energy resolution is to consider an event
+where a jet is recoiling off of a Z boson that decays into leptons.
+In principle, the Z boson's transverse momentum is balanced with the
+jet's transverse momentum.
+Measurements of lepton energies in the CMS detector is relatively precise,
+so the ratio of the reconstructed jet's
+$p_T$ to the Z boson's $p_T$ allows measurement of the jet energy resolution.
+Ideally, this measurement would be done with an collision resulting in one $Z$ boson decay,
+and one jet.
+However, this is an infrequent occurrence.
+Instead, events with two jets are selected, with one jet having relatively low $p_T$.
+A fit is performed to estimate resolution characteristics
+where the second jet would have $p_T = \SI{0}{GeV}$.
+
+These events are selected using the following requirements:
+
+\begin{itemize}
+\item Exactly two muons or two electrons must pass the selection criteria for the
+  di-leptons channels described in Section~\ref{sec:resolved-2}.
+\item The two selected leptons must be oppositely charged.
+\item The di-lepton kinematics must satisfy \\ $p_{T,\ell\ell} > \SI{100}{GeV}$ and
+  $\SI{71}{GeV} < m_{\ell\ell} < \SI{111}{GeV}$.
+\item Exactly two jets must pass the preselection described in Section~\ref{sec:resolved-2}.
+\item The leading jet must also satisfy $\Delta\phi(j, \ell\ell) > 2.8$
+\item The ratio between the sub-leading jet $p_T$ and
+  the di-lepton $p_T$ must be less than 0.3.
+\end{itemize}
 
 \section{Combination Fit Method}
 
