@@ -8,7 +8,7 @@ This is a result of not being able to predict the beam conditions exactly
 and not being able to predict the calibration accurately.
 This is made more difficult since the detector degrades in its high radiation environment.
 
-Corrections are made to the simulation by reweighting based on the pileup
+Corrections are made to the simulation by re-weighting based on the pileup
 and by scaling the predicted energies based on particle type.
 Most of the corrections are derived by dedicated groups that provide
 the entire CMS collaboration with proper calibrations.
@@ -29,17 +29,17 @@ correlations are often different.
 These correlations are also important in the evaluation of a DNN.
 The DNN used to estimate the energy of $b$-jets therefore has differing performance
 in MC and data.
-In particular, it is better at estimating the true energy of a b-jet in MC.
-The energies evaulated in MC must be smeared in order to accurately simulate
+In particular, it is better at estimating the true energy of a $b$-jet in MC.
+The energies evaluated in MC must be smeared in order to accurately simulate
 the resolution of jets in data after they have been modified by the DNN regression.
 
 One way to measure jet energy resolution is to consider an event
 where a jet is recoiling off of a Z boson that decays into leptons.
-In principle, the Z boson's transverse momentum is balanced with the
+In principle, the $Z$ boson's transverse momentum is balanced with the
 jet's transverse momentum.
 Measurements of lepton energies in the CMS detector is relatively precise,
 so the ratio of the reconstructed jet's
-$p_T$ to the Z boson's $p_T$ allows measurement of the jet energy resolution.
+$p_T$ to the $Z$ boson's $p_T$ allows measurement of the jet energy resolution.
 Ideally, this measurement would be done with an collision resulting in one $Z$ boson decay,
 and one jet.
 However, this is an infrequent occurrence.
@@ -55,7 +55,7 @@ These events are selected using the following requirements:
 \item The two selected leptons must be oppositely charged.
 \item The di-lepton kinematics must satisfy \\ $p_{T,\ell\ell} > \SI{100}{GeV}$ and
   $\SI{71}{GeV} < m_{\ell\ell} < \SI{111}{GeV}$.
-\item Exactly two jets must pass the preselection described in Section~\ref{sec:resolved-2}.
+\item Exactly two jets must pass the pre-selection described in Section~\ref{sec:resolved-2}.
 \item The leading jet must also satisfy $\Delta\phi(j, \ell\ell) > 2.8$
 \item The ratio between the sub-leading jet $p_T$ and
   the di-lepton $p_T$ must be less than 0.3.
