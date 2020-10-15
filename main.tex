@@ -43,6 +43,40 @@
 \usepackage{chemformula}
 \usepackage[skip=0.5\baselineskip]{caption}
 \usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows, positioning, intersections}
+
+\tikzset{
+  goodstep/.style={
+    minimum width=2cm, 
+    minimum height=1cm, 
+    align=center, 
+    draw=black,
+    rounded corners=0.1cm,
+    font=\scriptsize
+  },
+  async/.style={
+    minimum width=2cm, 
+    minimum height=1cm, 
+    align=center, 
+    draw=blue,
+    rounded corners=0.1cm,
+    font=\scriptsize
+  },
+  direct/.style={
+    minimum width=2.5cm, 
+    minimum height=0.75cm, 
+    align=center,
+    draw=black,
+    rounded corners=0.25cm
+  },
+  note/.style={
+    minimum width=2cm, 
+    minimum height=1cm, 
+    align=center
+  },
+  arrow/.style={draw,thick,->,>=stealth}
+}
 
 %% This bit allows you to either specify only the files which you wish to
 %% process, or `all' to process all files which you \include.

@@ -14,7 +14,221 @@ Both projects produced software packages written in Python \cite{van1995python, 
 
 \section{Dynamo Consistency}
 
-\cite{dorigo2005xrootd} \cite{laure2006programming}
+Dynamo Consistency is a plugin for Dynamo Dynamic Data Management System that checks
+consistency between Dynamo’s inventory and files actually located at managed sites.
+Even though Dynamo controls and tracks the history of file transfers between computing sites,
+a separate check is needed to ensure files are not lost or accumulated due to user or system errors.
+For example, sites that can no longer access some files after a power outage
+can cause problems for many related activities.
+File transfers requested from a inconsistent site to another site will fail when files are missing.
+Sites will be chosen incorrectly for production jobs that assume the presence of a local file.
+Last disk copies may also be missing, causing a delay when a user requests data.
+Another type of inconsistency arises when files thought to be deleted are still on disk.
+This leads to wasted disk space for files that are not accessed, except by accident.
+Dynamo Consistency regularly checks consistency by listing each remote site and
+comparing the listed contents to Dynamo’s inventory database.
+The results are reported back to Dynamo, which can then take corrective measures.
+
+A single executable \texttt{dynamo-consistency} is provided to run the consistency check.
+This executable can be used directly in Dynamo’s scheduling system.
+Most of the behaviour is controlled via a simple JSON configuration file,
+with options for site selection, passed via command line arguments.
+This allows Dynamo to run separate schedules for differing site architectures.
+
+Because Dynamo runs in a heterogenous computing environment,
+different sites need to be listed remotely using different methods.
+Currently implemented are listings using XRootD Python bindings, the \texttt{gfal-ls} CLI, and a \texttt{xrdfs} subshell.
+These listers are easily extensible in Python,
+allowing for new site architectures to be checked by Dynamo Consistency as well.
+
+The default executable performs the check as expected,
+listing files that are not tracked by Dynamo as orphans
+and listing files that are not found at sites as missing,
+with the exception of a few configurable filters.
+Dynamo Consistency avoids listing orphan files that have a modification time that is recent.
+Paths to avoid deleting can also be set.
+Deletion and transfer requests that are queued are also used to filter the final report
+to avoid redundant actions from Dynamo.
+
+In addition to tracking the consistency between Dynamo’s inventory and physical site storage,
+Dynamo Consistency can report all remote files older than a certain age in general directories.
+These files can also be filtered with path patterns, just as the regular consistency check.
+The time-based only reporting allows for cleaning of directories that Dynamo does not track.
+This is a setting recommended for large file systems that are written to with a high frequency.
+
+Summaries of check results, as well as the statuses of running checks, are displayed in a webpage.
+The page consists of a table that includes links to logs and lists of orphan and missing files.
+Cells are color coded to allow operators to quickly identify problematic sites.
+Historic summary data for each site is also accessible through this page.
+
+If the available configuration options and listers are not enough,
+advanced users can also directly use the Python API to run a custom consistency check.
+For more details on the Dynamo Consistency package, see \hyperref{https://dynamo-consistency.readthedocs.io}.
+
+\subsection{Installation}
+
+Dynamo Consistency requires the XRootD \cite{dorigo2005xrootd}
+Python module to be installed separately.
+In addition, it uses the Dynamo Dynamic Data Management package to get inventory listings
+and to report results of the consistency check.
+Any other needed packages are installed with Dynamo Consistency during installation.
+
+The simplest way to install is through pip:
+
+\begin{verbatim}
+pip install dynamo-consistency
+\end{verbatim}
+
+The source code is maintained on GitHub \cite{}.
+Other typical \texttt{setuptools} methods are supported by the repository’s \texttt{setup.py}.
+
+\subsection{Generating File Lists}
+
+Two listings must be done to compare.
+One is the Inventory Listing,
+and the other is the Remote Listing.
+
+
+\subsection{Inventory Listing}
+\label{\detokenize{listing:inventory-listing}}\label{\detokenize{listing:inventory-listing-ref}}
+Dynamo Consistency only interacts with Dynamo at two points during a check.
+First, it gets a listing of what should be at a site.
+The next time it interacts with Dynamo is at the end when it reports results.
+
+The inventory is queried before the site is listed remotely due to possible race conditions.
+It is not uncommon for a site listing to take multiple days.
+In the meanwhile, two things can change in the inventory.
+A file can be deleted from a site or it can be added to a site.
+An added file is ignored by setting \sphinxstylestrong{IgnoreAge} in the {\hyperref[\detokenize{cms:consistency-config-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Configuration}}}} to a large enough value.
+Files that are deleted during the remote listing are filtered out by checking deletion requests.
+
+There are currently multiple ways to get the site contents from Dynamo.
+One is to access the MySQL database use for Dynamo storage directly.
+This will work as long as the schema does not change.
+A more reliable way to keep up with major changes in Dyanmo is to use the Dynamo inventory object.
+This method is less optimized when working with the MySQL storage plugin,
+but will work for different schemas and any different storage types that are added in the future.
+
+The type of inventory lister is selected via command line options,
+or by setting \sphinxcode{\sphinxupquote{dynamo\_consistency.opt.V1}} to \sphinxcode{\sphinxupquote{True}} or \sphinxcode{\sphinxupquote{False}} before importing any modules that rely on the backend.
+By implementing the three modules \sphinxcode{\sphinxupquote{inventory}}, \sphinxcode{\sphinxupquote{registry}}, and \sphinxcode{\sphinxupquote{siteinfo}}, described in {\hyperref[\detokenize{backend:backend-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Back End Requirements}}}},
+any other method of communicating with an inventory can be added.
+
+After selecting the backend, the inventory can be listed transparently using the method shown in {\hyperref[\detokenize{intro:intro-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Introduction}}}}:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{dynamo\PYGZus{}consistency} \PYG{k+kn}{import} \PYG{n}{inventorylister}
+
+\PYG{n}{listing} \PYG{o}{=} \PYG{n}{inventorylister}\PYG{o}{.}\PYG{n}{listing}\PYG{p}{(}\PYG{n}{sitename}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+Here, \sphinxcode{\sphinxupquote{listing}} is a {\hyperref[\detokenize{reference:dynamo_consistency.datatypes.DirectoryInfo}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{dynamo\_consistency.datatypes.DirectoryInfo}}}}} object.
+\sphinxcode{\sphinxupquote{DirectoryInfo}} contains meta data about a directory, such as its modification timestamp and name.
+It also holds a list of sub-directories, in the form of \sphinxcode{\sphinxupquote{DirectoryInfo}} objects, and a list of files.
+The files are represented as dictionaries containing the name, size, and modification time of the file.
+Each file and \sphinxcode{\sphinxupquote{DirectoryInfo}} also stores a hash of the meta data.
+The \sphinxcode{\sphinxupquote{DirectoryInfo}} hash includes information from the object’s files and subdirectories too.
+This is to speed up the file tree comparison, described in {\hyperref[\detokenize{compare:compare-algo-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Comparison Algorithm}}}}.
+
+
+\subsection{Remote Listing}
+\label{\detokenize{listing:remote-listing}}\label{\detokenize{listing:remote-listing-ref}}
+The remote listing is equally flexible.
+The factory function {\hyperref[\detokenize{backend:dynamo_consistency.backend.get_listers}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{dynamo\_consistency.backend.get\_listers()}}}}} reads the {\hyperref[\detokenize{cms:consistency-config-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Configuration}}}}
+file to determine the type of lister for a site.
+There are currently three different classes implemented,
+and more can be added by extending the \sphinxcode{\sphinxupquote{dynamo\_consistency.backend.listers.Lister}} class and
+implementing its \sphinxtitleref{ls\_directory} method.
+The three current listers are the following:
+\begin{itemize}
+\item {} 
+\sphinxcode{\sphinxupquote{dynamo\_consistency.backend.listers.XRootDLister}} -
+This listing object uses the \sphinxcode{\sphinxupquote{XRootD}} Python module to connect to and query each site.
+
+\item {} 
+\sphinxcode{\sphinxupquote{dynamo\_consistency.backend.listers.GFalLister}} -
+This listing object uses the \sphinxcode{\sphinxupquote{gfal-ls}} command line tool to list remote sites.
+
+\item {} 
+\sphinxcode{\sphinxupquote{dynamo\_consistency.backend.listers.XRootDLister}} -
+This listing object opens a subshell using the \sphinxcode{\sphinxupquote{xrdfs}} command line tool and queries the remote site.
+
+\end{itemize}
+
+Once the type of lister is set in the {\hyperref[\detokenize{cms:consistency-config-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Configuration}}}},
+the contents of the remote site can be listed transparently:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{dynamo\PYGZus{}consistency} \PYG{k+kn}{import} \PYG{n}{remotelister}
+
+\PYG{n}{listing} \PYG{o}{=} \PYG{n}{remotelister}\PYG{o}{.}\PYG{n}{listing}\PYG{p}{(}\PYG{n}{sitename}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+This takes much longer than the {\hyperref[\detokenize{listing:inventory-listing-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Inventory Listing}}}}, since every directory of the site needs to be queried.
+The layer between the listing class and the final output creates multiple connections and works on two queues with multiple threads.
+There is the input queue, which is a list of directories that still need to be listed, and
+an output queue which holds the result of each directory listed so far.
+The workflow of each queue is shown below.
+\begin{figure}[htp]\centering\capstart\begin{tikzpicture}
+[node distance=0.5cm, every edge/.style={arrow}]
+\node (start) [goodstep] at (0, 0) {List directory};
+\node (good) [goodstep, right=of start] {Was the listing successful?};
+\node (yes) [below=of good] {Yes};
+\node (outqueue) [async, below=of yes] {Output name of \\ this directory \\
+  and lists of \\ subdirectories and files};
+\node (inqueue) [async, left=of yes] {For each in \\ queue};
+\node (master) [goodstep, right=of outqueue] {Get this from master \\
+  add directories \\ add files};
+\node (try) [async, above=of good] {Try again};
+\draw [->, thick] (good) -- node [left] {No} (try);
+\node (storestart) [goodstep, left=of outqueue] {Add starting directory \\
+  to listing queue};
+\path
+(start) edge (good)
+(inqueue) edge [bend left] node [left] {} (start)
+(outqueue) edge (master)
+(good) edge (yes)
+(yes) edge (inqueue) edge (outqueue)
+(try) edge [bend right] node [above] {} (start)
+(storestart) edge (inqueue);
+
+\end{tikzpicture}\caption{Listing algorithm. TODO: Make better colors and words and stuff}\label{\detokenize{listing:id1}}\end{figure}
+
+\subsection{Comparison Algorithm}
+\label{\detokenize{compare:comparison-algorithm}}\label{\detokenize{compare:compare-algo-ref}}\label{\detokenize{compare::doc}}\begin{figure}[htp]\centering\capstart\begin{tikzpicture}
+[node distance=0.3cm, every edge/.style={arrow}]
+\node (start) [goodstep] at (0,0) {Init empty \\ file list};
+\node (realstart) [goodstep, below=of start] {Start \\ compare};
+\node (treecheck) [goodstep, right=of start] {Other \\ tree?};
+\node (tree) [goodstep, above=0.5cm of treecheck] {Hash \\ match?};
+\draw [->, thick] (treecheck) -- node [font=\scriptsize, left] {Yes} (tree);
+\node (nohash) [goodstep, below right=0.2cm and 0.6cm of tree] {For sub- \\ directory};
+\draw [->, thick] (tree) -- node [font=\scriptsize, above] {No} (nohash);
+\node (subdir) [goodstep, below=0.5cm of nohash] {if comparable \\
+  \textcolor{gray}{get other and} \\
+  add files \\ (start again)};
+\node (files) [goodstep, right=of nohash] {for file};
+\node (checkfile) [goodstep, below=0.5cm of files] {if comparable \\
+  \textcolor{gray}{and no matching} \\
+  \textcolor{gray}{hash in other,} \\ filter and append};
+\draw [->, thick] (treecheck) -- node [font=\scriptsize, below] {No} (nohash);
+\draw [->, dashed] (subdir) -- (realstart);
+\draw [->, thick] (nohash) -- node [font=\scriptsize, right] {Loop} (subdir);
+\draw [->, thick] (files) -- node [font=\scriptsize, right] {Loop} (checkfile);
+\node (final) [goodstep, above=of files] {return full \\ files list};
+\node (match) [goodstep, right=0.6cm of tree] {Return empty \\ file list};
+\draw [->, thick] (tree) -- node [font=\scriptsize, above] {Yes} (match);
+\path
+(realstart) edge (start)
+(start) edge (treecheck)
+(nohash) edge (files)
+(files) edge (final);
+
+\end{tikzpicture}\caption{Comparison algorithm}\label{\detokenize{compare:id1}}\end{figure}
+
+
+
+ \cite{laure2006programming}
 
 
 \section{Workflow Web Tools}
