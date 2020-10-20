@@ -2,17 +2,26 @@
 
 The Compact Muon Solenoid (CMS) detector, located at the LHC,
 consists of multiple sub-detectors.
-Ideally, time could be saved for the dedicated reader by only detailing
-the parts of the detector that are relevant for the analysis presented in this work.
-Unfortunately, a characteristic of hadron collider measurements is that
-almost all sub-systems of the detector are used to make the final measurement.
+The analysis in this work is quite complex,
+and depends on all parts of the detector.
+Therefore, a full description of CMS is presented in this chapter.
 
-A brief overview of all the detector subsystems are therefore presented in this chapter.
-More can be learned about the design and motivations for the detector in the TDR \cite{cms-tdr}.
+First, a brief description of the LHC is given in Section~\ref{sec:lhc}.
+Then design requirements and considerations are outlined for the CMS detector
+in Section~\ref{sec:requirements}.
+Specific design decisions and descriptions of subdetectors are given
+in Section~\ref{sec:design}.
+Section~\ref{sec:event-reco} describes event reconstruction algorithms,
+Section~\ref{sec:trigger} describes the triggers used to collect data,
+and Section~\ref{sec:simulation} outlines simulation techniques used for CMS.
+Finally, Section~\ref{sec:accessing-data} describes how data is stored and accessed
+by members of the collaboration.
+More can be learned about the design and motivations for the detector
+in the TDR \cite{cms-tdr}.
 Information presented on the physical CMS design parameters are
 taken directly from that document unless otherwise noted.
 
-\section{Associated Production at the LHC} \label{sec:lhc}
+\section{The Large Hadron Collider} \label{sec:lhc}
 
 The CMS detector only observes events.
 Before describing the devices that are used to observe and record events,
@@ -38,21 +47,13 @@ In addition, the energy lost decreases with the mass of the accelerated particle
 to the fourth power.
 The LHC was built in the same tunnels that were used for LEP,
 which was a collider for electrons and positrons that took much of its data at
-$\sqrt{s} = \SI{98}{GeV}$.
+$\sqrt{s} = \SI{91}{GeV}$ in order to study the $Z$ boson resonance.
 The resulting LHC is designed to collide protons at energies of $\sqrt{s} = \SI{14}{TeV}$,
-with the data for this analysis taken at \SI{13}{TeV}.
-Though Figure~\ref{fig:pdf} showed that not all of the energy from each proton
-goes into the interaction,
-there still is adequate phase space available to generate the massive off-shell
+with the data for this analysis taken at $\sqrt{s} = \SI{13}{TeV}$.
+This is more than enough energy to generate the massive off-shell
 vector bosons that are needed for \emph{Higgstrahlung},
-via the mechanisms described in Section~\ref{sec:produce-vector}.
-
-The removal of a quark from one proton and an anti-quark from the other leads to two
-non-color-singlet states in close proximity to each other.
-The resulting spray of hadronic particles generated from the vacuum to restore
-color singlets are called jets.
-The detectors are designed to distinguish these jets from more interesting decay products
-in the interaction.
+as well as many accompanying jets,
+via the mechanisms described previously in Chapter~\ref{ch:theory}.
 
 The luminosity of the LHC is given by the following formula.
 \begin{gather}
@@ -67,23 +68,28 @@ and $F$ is a geometric collision factor.
   F = \frac{1}{\sqrt{1 + \frac{(\sigma_s \tan \phi)^2}{\epsilon_{xy} \beta^*}}}
 \end{gather}
 $\sigma_s$ is the length of each bunch,
-and $\phi$ is the crossing angle.
-In order to generate a large amount of data needed for measurements like associated production,
-the LHC operates at a high frequency of collisions, and generates many simultaneous collisions.
+$\phi$ is the crossing angle,
+and $\beta^*$ is the value of the amplitude function at the focal point.
+In order to generate as much collision data as possible,
+the LHC operates at a high frequency of collisions,
+and generates many simultaneous collisions.
 For Run 2, there is a proton bunch crossing every \SI{25}{ns}.
 The CMS detector must be able to read out and process data on that timescale.
 Each proton bunch includes over 100 billion protons \cite{Bruce:2201447}.
 
 \section{Detector Requirements} \label{sec:requirements}
 
-One configuration of possible final state particles is shown in Figure~\ref{fig:two-lep-diagram}.
+One configuration of possible final state particles was shown previously
+in Figure~\ref{fig:two-lep-diagram}.
 There, two oppositely charged leptons and two b quarks are the end decay products.
 The $b$ quarks also hadronize form color singlets well before reaching the detector,
 but the resulting jets can actually be distinguished well from the jets resulting
 from the fragmenting protons.
 
-Hadrons containing $b$ quarks decay through the weak force since they require a flavor change.
-As mentioned before, the CKM matrix in Equation~\ref{eq:ckm} quantifies the mixing between the different quark flavors.
+Hadrons containing $b$ quarks decay through the weak force
+since they require a flavor change.
+As mentioned before, the CKM matrix in Equation~\ref{eq:ckm}
+quantifies the mixing between the different quark flavors.
 The value of $V_{tb}$ is close to unity, and since the CKM matrix is unitary,
 $V_{cb}$ and $V_{ub}$ are small.
 This means the matrix element weak decays of the $b$ hadrons is small.
@@ -117,19 +123,21 @@ order of 10s or 100s of GeV.
 Better energy resolution for each of these decay products allows better separation
 of our signal process from background processes that generate very similar final states.
 
-\section{Detector Design}
+\section{Detector Design} \label{sec:design}
 
-The CMS detector as a whole has cylindrical symmetry around the beam access.
+The CMS detector as a whole has cylindrical symmetry around the proton beams.
 It is 21 meters long and 15 meters in diameter.
-There are gaps at either end to allow the beam,
-but otherwise tries to cover the full solid angle around the collision point.
+There are gaps at either end to allow the beams to enter and leave,
+but otherwise the design tries to cover the full solid angle around the collision point.
 The azimuthal angle of a particle relative to the beam axis is described
 by pseudorapidity, $\eta$.
 \begin{gather}
   \eta = -\ln \left[\tan \left( \frac \theta 2 \right) \right]
 \end{gather}
-The barrel portion of CMS can detect particles with $|\eta| < 2.4$,
+The barrel portion of CMS detects particles up to $|\eta| < 1.5$,
 while the forward caps of the detector can reach $|\eta| < 5.0$.
+The muon and pixel trackers reach up to $|\eta| < 2.5$,
+with additional space covered by calorimetry.
 
 Different technologies are better for measuring the energy
 or other kinematics variables of different particles.
@@ -137,12 +145,19 @@ As a result, the CMS detector is made up of different sub-detector systems,
 arranged in cylindrical layers.
 Each layer consists of a ``barrel'' portion and two end caps on either side.
 
-The innermost layer is designed to extrapolate the tracks of charged particles
+The innermost sub-detector is designed to extrapolate the tracks of charged particles
 back to their point of origin.
 This is called the Silicon Pixel Detector.
-The next layer is designed to measure the energies of photons and electrons.
-The third layer measures the energies of both charged and neutral hadrons.
-Outside of these three layers is a superconducting solenoid,
+One key design feature of the pixel detector is that it is non-destructive.
+Particles it detects pass through to the rest of the detector for additional
+measurement and identification.
+The next sub-detector encountered by most particles is the Electromagnetic Calorimeter,
+which is designed to measure the energies of photons and electrons.
+The next sub-detector, the Hadronic Calorimeter,
+measures the energies of both charged and neutral hadrons.
+The two calorimeters are destructive because absorb the particles that interact with them
+in order to measure their full energy.
+Outside of these three sub-detectors is a superconducting solenoid,
 which generates a magnetic field for the entire detector.
 On the very outside of the detector are gas chambers designed to detect muons
 interspersed with the iron return yoke for the solenoid.
@@ -173,13 +188,14 @@ it is immediately clear how effective each design has been.
 \subsection{Solenoid Magnet}
 
 Part of the CMS acronym acknowledges the role of the solenoid magnet.
-The presence of a magnetic field is necessary for accurate measurements
-of charged particles passing through the silicon pixel detector and muon chambers.
+The presence of a magnetic field is paramount for accurate measurements
+of charged particles passing through the silicon pixel detector and the muon chambers.
 
 The magnetic field generated is designed to cause the path of
 a muon with \SI{1}{TeV} of energy to bend enough to have a momentum resolution of 10\%.
-Inside the solenoid, the magnetic field reaches \SI{4}{T},
-with a return field that is large enough to cause muon tracks to curve throughout
+Inside the solenoid, the magnetic field operates at \SI{3.8}{T},
+with the solenoid design being capable of achieving \SI{4}{T}.
+The return field is large enough to cause muon tracks to curve throughout
 the muon chambers outside the magnet.
 
 A super-conducting solenoid enables the creation of a magnetic field
@@ -192,27 +208,35 @@ the detector in place are strong enough to withstand \SI{64}{atm} of hoop pressu
 \subsection{Silicon Pixel Detector}
 
 The layer closest to the beamline is designed to obtain a precise track pointing
-to the orgin of particles passing into the detector.
+to the origin of particles passing into the detector.
 It is made up of layers of many small pixels to do this.
-As distance from the interaction point increases, the pixel size also increases.
+As distance from the interaction point increases, the pixel size also increases
+since the absolution spacial resolution does not need to be as fine.
 
-The innermost three layers, with the closest layer being a distance of $r=\SI{4}{cm}$ from the interaction point,
+The innermost three layers, with the closest layer being a distance of
+$r=\SI{4}{cm}$ from the interaction point,
 are made of hybrid pixel detectors.
-Each pixel has dimensions of $100 \times \SI{150}{\micro m}$.
-At this size, only one out of every ten thousand inner layer pixels is triggered in a typical LHC bunch crossing.
+Each pixel has dimensions of $100 \times \SI{150}{\micro m}$
+in order to achieve fine resolution of where the detected particles originiated.
+The TDR also claims an occupancy of $10^{-4}$ per pixel per LHC bunch crossing,
+which improves the pixel's longevity and reduces problems from detector deadtime.
 Outside of the pixel detector layers,
 silicon strip detectors are used.
 These are placed in the region that is $20 < r < \SI{55}{cm}$ from the beamline.
 Strip dimensions give a cell size of approximately $\SI{10}{cm} \times \SI{80}{\micro m}$.
 2--3\% of cells are activiated during a typical bunch crossing.
-The outermost layers are made of larger strips with cell sizes of $\SI{25}{cm} \times \SI{180}{\micro m}$.
+The outermost layers are made of larger strips with cell sizes of
+$\SI{25}{cm} \times \SI{180}{\micro m}$.
 About 1\% of these pixels are triggered each bunch crossing.
 
 The active material of the silicon pixel detector is semi-conducting silicon.
-When charged particles pass through, electron-hole pairs are generated and drift apart due to a bias voltage.
+When charged particles pass through,
+electron-hole pairs are generated and drift apart due to a bias voltage.
 The voltage change when these pairs reach their respective electrodes indicates a charged particle passed through.
-Because of this, the silicon pixel detector cannot detect any neutral particles,
-but it gives a point of origin for charged particles that is accurate enough to identify pileup.
+Because of this, the silicon pixel detector cannot detect neutral particles,
+but it gives a precise point of origin for charged particles.
+The points of origin allow for the determination of locations of primary and secondary
+collision vertices, which plays an important role in the identification of pileup.
 
 In the beginning of 2017, the pixel detector was upgraded to handle the higher radiation environment of Run 2 \cite{Dominguez:1481838}.
 A layer was added to both the barrel and endcap sections of the pixel detector.
@@ -482,7 +506,7 @@ worth saving and examining for $VH\rightarrow\bb$.
 For the specific decay channel in Figure~\ref{fig:two-lep-diagram},
 the HLT also includes paths where two electrons or two muons are identified.
 
-\section{Simulation}
+\section{Simulation} \label{sec:simulation}
 
 After the detector is well understood,
 predictions on how it responds in the LHC enviroment can be made.
@@ -595,7 +619,7 @@ using a framework written in the Unified Modelling Language \cite{Lefebure:68718
 To be able to process the simulated data in the exact same fashion as the measured data,
 the readout of the electronics is also simulated.
 
-\section{Accessing Data}
+\section{Accessing Data} \label{sec:accessing-data}
 
 The final important piece of the CMS detector is its offline computing resources.
 The data that is gathered by the detector must be processed and stored.
