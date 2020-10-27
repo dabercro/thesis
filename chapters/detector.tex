@@ -149,7 +149,7 @@ Each layer consists of a ``barrel'' portion and two end caps on either side.
 
 The innermost sub-detector is designed to extrapolate the tracks of charged particles
 back to their point of origin.
-This is called the Silicon Pixel Detector.
+This is called the Silicon Tracker.
 One key design feature of the pixel detector is that it is non-destructive.
 Particles it detects pass through to the rest of the detector for additional
 measurement and identification.
@@ -191,7 +191,7 @@ it is immediately clear how effective each design has been.
 
 Part of the CMS acronym acknowledges the role of the solenoid magnet.
 The presence of a magnetic field is paramount for accurate measurements
-of charged particles passing through the silicon pixel detector and the muon chambers.
+of charged particles passing through the silicon detector and the muon chambers.
 
 The magnetic field generated is designed to cause the path of
 a muon with \SI{1}{TeV} of energy to bend enough to have a momentum resolution of 10\%.
@@ -207,7 +207,7 @@ The magnetic field stores \SI{2.7}{GJ} of energy.
 In order to hold this, the structural components holding the magnet and
 the detector in place are strong enough to withstand \SI{64}{atm} of hoop pressure.
 
-\subsection{Silicon Pixel Detector}
+\subsection{Silicon Tracker}
 
 The layer closest to the beamline is designed to obtain a precise track pointing
 to the origin of particles passing into the detector.
@@ -295,18 +295,22 @@ and the other regions had a 5\% resolution \cite{Bartosik:2712238}.
 
 \subsection{Hadronic Calorimeter}
 
-The Hadronic Calorimeter (HCAL) has the same goal as the ECAL,
-where it contains particles and measures the energy emitted by them.
-However, it tries to do this for hadrons, such as protons, neutrons, and stable mesons.
+The ECAL absorbs electromagnetic particles and measures their energies
+which are dispersed in electromagnetic showers.
+Hadrons deposit energy in hadronic showers,
+which require a different mechanism to contain and measure.
+The Hadronic Calorimeter (HCAL) does this.
+Like the ECAL it contains particles and measures their energy destructively.
+However, it does this for hadrons, such as protons, neutrons, and stable mesons.
 Since hadrons are much more massive than electrons,
 the ionizing collisions in a typical scintillator does not slow them down
 enough to contain them.
 Instead, they must interact via nuclear collisions to be attenuated.
 CMS uses brass for its HCAL due to its relatively short interaction length,
-the fact that it is non-magnetic, and it affordability.
+the fact that it is non-magnetic, and its affordability.
 
 The barrel of the HCAL is jacketed in stainless steel for structural support.
-This layer is \SI{61}{mm} on the layer immediately next to the ECAL and
+This layer is \SI{61}{mm} thick on the layer immediately next to the ECAL and
 \SI{75}{mm} thick on the outer edge.
 The inside of the HCAL consists of brass absorber plates
 interspersed with plastic scintillator tiles.
@@ -316,21 +320,21 @@ Farther away, the brass plates are instead \SI{56.5}{mm} thick.
 Wavelength shifting fibers are run through the scintillator tiles
 to allow photons to travel to the outside of the HCAL where they are detected by photodiodes.
 
-The HCAL performance also degrades as it is exposed to radiation,
-like the ECAL in Section~\ref{sec:ecal}.
+Like the ECAL, the HCAL performance also degrades as it is exposed to radiation.
 The calibration for HCAL is performed using an embedded radioactive source,
 lasers and LEDs, and an \emph{in situ} calibration using assumed symmetry in $\phi$.
 With these methods, a response within 3.4\% was maintained in the HCAL barrel
-and within 2.6\% in the HCAL endcap \cite{Chadeeva_2018}.
+and within 2.6\% in the HCAL endcap up to $|\eta| < 2$ \cite{Chadeeva_2018}.
 
 \subsection{Muon Chambers}
 
-Muons are the most penetrative particles that CMS attempts to detect.
+Muons are the most penetrative particles that CMS detects.
+Through the calorimeters, muons act as minimum-ionizing particles \cite{James:927392}.
 They are heavier than electrons, so they are not stopped in the ECAL.
 They do not interact via the strong nuclear force,
-so the high density of the HCAL also does not cause measurable interactions.
+so the high density of the HCAL also does not cause significant interactions.
 Instead of stopping and measuring muons in calorimeters,
-CMS tracks their trajectory with both the pixel detectors on the inside of the detector
+CMS tracks their trajectory with both the silicon tracker on the inside of the detector
 and the muon chambers that make up the outer layer of the detector.
 
 This is the only sub-detector system outside of the solenoid,
@@ -360,7 +364,7 @@ An interested reader can find more details there.
 
 \subsection{Charged Particle Tracks} \label{sec:tracks}
 
-Both the Silicon Pixel Detector and the Muon Chambers are designed
+Both the Silicon Tracker and the Muon Chambers are designed
 for charged particles to leave tracks.
 In both sub-detectors, the basic steps for track reconstruction are the same.
 First, a track must be seeded.
@@ -380,7 +384,7 @@ Different seeds are found for each track to make sure that the resulting collect
 of hits remain the same.
 
 Additional complications arise for each the pixel and muon detectors.
-The Silicon Pixel Detector is the only tracking detector that deals with electrons.
+The Silicon Tracker is the only tracking detector that deals with electrons.
 Because of their small mass, electrons are likely to radiate energy
 while travelling through the magnetic field of CMS.
 This leads to complications in the calorimeters described in Section~\ref{sec:calorimeters}.
@@ -462,18 +466,19 @@ HCAL hits without a track are identified as neutral hadrons.
 HCAL hits with a linked track are likely charged hadrons.
 Though the ECAL clusters must be linked in order to determine the energy
 coefficient to calibrate the HCAL,
-ECAL hits without tracks are still identified as photons since photons
+ECAL hits without tracks are still identified as photons because photons
 carry some of the energy of jets.
 
 Of particular interest to this analysis is also the secondary vertex step of linking.
 Charged particle tracks that do not go back to the interaction vertex
 are linked together if they share a common secondary vertex.
-These tracks must have an invariant mass of greater than \SI{0.2}{GeV} to be kept.
+These tracks must have a mass greater than \SI{0.2}{GeV} to be kept.
 There must also be a track from the secondary vertex to the primary vertex,
 which would belong to a long-lived hadron.
 As mentioned in Section~\ref{sec:requirements}, this is the signature of a $b$ jet.
 It is possible, however, that the secondary vertex is generated
-by a nuclear scattering within the pixel detector,
+by a nuclear scattering, pair production, or other long-lived particles
+like $K_S$ or $\Lambda$ within the pixel detector,
 so additional analysis is needed for each secondary vertex.
 
 The final link is made between tracks in the muon chambers and tracks in the inner tracker.
@@ -485,14 +490,16 @@ the resulting reconstructed particle is called a global muon.
 When a global muon is not well-isolated from other energy deposits,
 it must have tighter requirements on how it behaves in the muon chambers.
 This is to prevent energy from a jet from being attributed to a muon or vice versa.
-This is important for $b$ jets since the decay that happens at a displaced vertex
-is a decay through the weak nuclear force.
+This is important for $b$ jets because the decay that happens at a displaced vertex
+is a decay through the weak nuclear force,
+which can result in leptons being present inside of a jet.
 
 \section{Trigger} \label{sec:trigger}
 
-Collisions happen every \SI{25}{ns}, corresponding to a frequency of \SI{400}{MHz}.
-The amount of data that the detector generates at each collision is
-too large to store all of it at this frequency.
+Bunch crossings happen every \SI{25}{ns},
+with each bunch crossing producing on average 20 collisions.
+The amount of data that the detector generates for each bunch crossing is
+too large to store all of it at this rate.
 Luckily, most collisions result in uninteresting data.
 A trigger system is used to identify interesting events
 and reduce the frequency of event writing to \SI{1}{kHz}.
@@ -521,7 +528,7 @@ The exact trigger names are given in Chapter~\ref{ch:selection},
 but for the most part, they only depend on three different identifiable objects.
 Figures~\ref{fig:v-decay} and \ref{fig:two-lep-diagram}
 show the different final states of interest.
-$b$ jets are difficult to identify quickly since we must rely on the pixel detector's
+$b$ jets are difficult to identify quickly because we must rely on the Silicon Tracker's
 reconstruction of the secondary vertex,
 but the decay mode of the vector boson can be used for the trigger.
 In that case, only events with one of the following are
@@ -627,7 +634,7 @@ so the results are needed to predict the detector response.
 Accurate simulation of this process is important for all collisions at the LHC,
 which produces much QCD background.
 It is also important to accurately simulate the constituents of individual jets
-since this analysis includes detailed inspection of each jet
+because this analysis includes detailed inspection of each jet
 in order to identify $b$-jets and to estimate the amount of energy carried away by neutrinos.
 
 To be able to analyze the simulation in the same way data is processed,
