@@ -338,7 +338,8 @@ CMS tracks their trajectory with both the silicon tracker on the inside of the d
 and the muon chambers that make up the outer layer of the detector.
 
 This is the only sub-detector system outside of the solenoid,
-but the returning magnetic field is still present,
+but the returning magnetic field is still present outside of the return yoke
+\cite{828264,Klyukhin:2062915},
 allowing the momentum of the muons to be extracted from the curvature of their trajectory.
 Layers of muon chambers act much like the pixel detectors,
 but at a larger and more distant scale.
@@ -349,18 +350,19 @@ as well as a greater magnetic field.
 In both regions, resistive plate chambers are spaced
 between the layers of the other muon chambers.
 
-The muon detectors were triggered above 90\% of the time a muon passed through.
+Each muon chamber has a detection efficiency greater than 95\%.
 The overall efficiency of the muon trigger, which relies heavily on the muon system
 and is described in more detail in Section~\ref{sec:trigger},
-increases as a function of muon $p_T$ and plateaus around 90\% efficiency.
-The timing of the muon system assigns 1\% of muons to the wrong event \cite{Pozzobon_2019}.
+increases as a function of muon $p_T$ and plateaus around 90\%.
+The timing of the muon system leads to 1\% of muons
+to be assigned as originating from the wrong bunch crossing \cite{Pozzobon_2019}.
 
 \section{Event Reconstruction} \label{sec:event-reco}
 
-Event reconstruction is done using a combination of tracks and calorimeter deposits.
-These are then linked across the different detector components to identify particles.
+Each sub-detector reconstructs the particles that passes through it.
+The independent reconstructions are then linked
+across the different detector components to identify particles.
 This overview is taken largely from reference \cite{Sirunyan_2017}.
-An interested reader can find more details there.
 
 \subsection{Charged Particle Tracks} \label{sec:tracks}
 
@@ -370,7 +372,10 @@ In both sub-detectors, the basic steps for track reconstruction are the same.
 First, a track must be seeded.
 Usually, this is done by finding hits in consecutive layers that are consistent
 with a particle coming from the beamline.
-A Kalman Filter is then used to find hits in the other layers of the appropriate sub-detector
+Particles loose energy as they pass through matter,
+and they can also be redirected through multiple scattering,
+so the extrapolation is non-trivial.
+A Kalman Filter is used to find hits in the other layers of the appropriate sub-detector
 that are consistent with the initial seed.
 Once more hits have been found, a fit is performed for the precise trajectory of the track.
 
@@ -404,7 +409,7 @@ The muon tracking performs best when the tracks in the muon chambers are success
 linked to a track in the pixel detector.
 The most common backgrounds in the muon chambers
 is caused when hadrons manage to punch through the HCAL.
-This can often be mitigated by considering the amount of energy deposited along the particle
+This is often mitigated by considering the amount of energy deposited along the particle
 track in the other sub-detector systems.
 
 \subsection{Calorimeters} \label{sec:calorimeters}
@@ -413,17 +418,14 @@ Clusters are identified in calorimeters, also using a seeding algorithm.
 First clusters with a large energy deposit are identified,
 and then nearby crystals are checked against noise thresholds.
 The energy deposition is assumed to have a Gaussian profile,
-and so a fit is performed to show that there are not multiple deposits in the same
-region of the calorimeter.
+and a fit is performed to disentangle overlapping energy depositions.
 
-As mentioned in Section~\ref{sec:ecal}, the dimensions of the ECAL crystals
+The dimensions of the ECAL crystals
 are comparable to the Moliere radius, keeping clusters localized.
-Although a complication arises due to the bremsstrahlung from electrons that also leads to
-the need for using GSF to find tracks.
+Although a complication arises due to curvature of the electromagnetic shower
+caused by the magnetic field, leading to the need for using GSF to find tracks.
 Superclusters that are linked to electrons have
 a larger allowed range over $\phi$ to account for this.
-Photons are still well behaved within the ECAL,
-and the ECAL is therefore calibrated for photon deposits.
 
 The calibration of HCAL is complicated by the fact that particles reaching it
 have to first pass through the ECAL.
