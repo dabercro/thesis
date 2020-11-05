@@ -27,6 +27,20 @@ Therefore this section includes a description of how that correction is derived.
 
 \subsection{Muons}
 
+To remove fake muons from events, muons are selected in three ways.
+Muon identification cuts are applied, isolation cuts are applied,
+and certain triggers are required.
+These three things each behave differently in MC and data.
+For each of these, a separate efficiency is derived in MC and data.
+These are measured via the Tag and Probe method,
+selecting muons that reconstruct the $Z$ boson resonance.
+A scale factor is then applied to MC to match the data efficiency.
+
+Each of the efficiency measurements and scale factors are binned
+in muon $p_T$ and $\eta$.
+The $p_T$ bins are $[20, 25, 30, 40, 50, 60, \infty)$ in GeV.
+Bins in $|\eta|$ are delimited at $[0, 0.9, 1.2, 2.1, 2.4]$.
+
 \subsection{Electrons}
 
 \subsection{Jets and MET}
@@ -138,6 +152,93 @@ The resulting smearings are in Table~\ref{tab:jetsmear-res}.
   \end{tabular}
   \label{tab:jetsmear-res}
 \end{table}
+
+\section{Multivariate Discriminator}
+
+In each STXS bin, a mutlivariate discriminator is plotted which separates
+the signal events from background events.
+A Deep Neural Network (DNN) is trained for the resolved selection,
+and a Boosted Decision Tree (BDT) is trained for the boosted selection.
+Using fewer discriminating variables in the boosted events
+leads to this difference in architecture.
+
+\subsection{Resolved DNN}
+
+The DNN classifier for distinguishing background and signal events is prepared using
+Keras with a Tensorflow backend using an Adam optimizer.
+It has five hidden layers.
+The number of nodes in each layer, from input to output, is 512, 256, 128, 64, 64, and 64.
+The final layer is a softmax layer with the target of predicting the probability
+of each event belonging to a particular class.
+
+Each channel of 0-, 1-, and 2-leptons is trained separately,
+and has slightly different input variables.
+The list of input variables is given in Table~\ref{tab:dnn-inputs}.
+All variables that are affected by the kinematic fit in the 2-lepton region
+use the values calculated by the fit.
+
+\begin{table}
+  \caption[Resolved DNN inputs]{
+    The list of input variables used for each DNN training is shown.
+  }
+  \centering
+  \begin{tabularx}{\textwidth}{|l|X|c|c|c|}
+    \hline
+    Variable & Explanation & 0-lepton & 1-lepton & 2-lepton \\
+    \hline\hline
+    $m_{jj}$ & Di-jet mass & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $p_{T,jj}$ & Di-jet transverse momentum & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    MET & Missing transverse energy & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $m_{T,V}$ & Vector boson transverse mass & & $\checkmark$ & \\
+    $p_{T,V}$ & Vector boson $p_T$ & & $\checkmark$ & $\checkmark$ \\
+    $p_{T,jj}/p_{T,V}$ & Redundant ratio & & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $\Delta\phi(V, jj)$ & Azimuthal angle between vector boson and di-jet & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $b$-tag$_\mathrm{max}$ WP & 1, 2, or 3 if higher $b$-tag discriminate meets the tight, medium, or loose working point respectively & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $b$-tag$_\mathrm{min}$ WP & 1, 2, or 3 if lower $b$-tag discriminate meets the tight, medium, or loose working point respectively & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $\Delta\eta(jj)$ & $\eta$ difference between jets & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $\Delta\phi(jj)$ & Azimuthal angle between jets & $\checkmark$ & $\checkmark$ & \\
+    $p_{T, \mathrm{lead}}$ & Leading jet $p_T$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $p_{T, \mathrm{trail}}$ & Trailing jet $p_T$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    SA5 & Number of soft jets, $p_T > \SI{5}{GeV}$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    N_{aj} & Number of additional jets & $\checkmark$ & $\checkmark$ & \\
+    \hline
+    $b$-tag$_\mathrm{add}$ & Maximum $b$-tag of additional jets & $\checkmark$ & & \\
+    $p_{T,\mathrm{add}}$ & Maximum $p_T$ of additional jets & $\checkmark$ & & \\
+    $\Delta\phi(\mathrm{add, MET})$ & Azimuthal angle between additional jet and MET & $\checkmark$ & & \\
+    \hline
+    $\Delta\phi(\ell, \mathrm{MET})$ & Azimuthal angle between lepton and MET & & $\checkmark$ & \\
+    $m_t$ & Reconstruction top mass & & $\checkmark$ & \\
+    $m_V$ & Vector boson mass & & & $\checkmark$ \\
+    \hline
+    $\Delta R(V, jj)$ & Separation between vector boson and di-jet & & & $\checkmark$ \\
+    $\Delta R_{jj}$ & Separation between jets & & & $\checkmark$ \\
+    \hline
+  \end{tabularx}
+  \label{tab:dnn-inputs}
+\end{table}
+
+\subsection{Boosted BDT}
+
+The BDT used to classify signal and background events in the boosted region
+was trained using ROOT.
+The model uses 100 trees with 20 cuts and a minimum node size of 0.05.
+The QCD multijet backgrounds were not used in the training since the sample's large weights
+of individual events affected the training.
+
+The list of input variables for the BDT is the following:
+\begin{itemize}
+\item Soft-drop mass of the recontructed fat jet
+\item Transverse momentum of the fat jet
+\item Transverse momentum of the recontructed vector boson
+\item Number of soft-track jets with $p_T > \SI{5}{GeV}$
+\item Double $b$-tagger output node for boosted jets
+\end{itemize}
+All of these variables were all used in the 0-, 1-, and 2-lepton regions,
+even though the regions were trained separately.
 
 \section{Combination Fit Method}
 
