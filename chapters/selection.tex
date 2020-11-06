@@ -1,31 +1,40 @@
 \chapter{Event Selection} \label{ch:selection}
 
-Since Chapter~\ref{ch:theory},
-a picture of the overall event topology of interest has been depicted.
-Until now, the description of the events have been vague.
-This chapter gives the specific cuts used to identify each particle
-and to reject or otherwise classify events.
-First, objects will be defined in terms of reconstructed variables.
-Then common cuts used to reject events are given.
-After that, cuts used to classify events into different decay channels are specified.
-This chapter ends with the differentiation between events where
-the Higgs decay products can be resolved as separate jets
+This chapter gives the specific selection requirements on each physics object
+that allows us to count particle candidates and to reject or otherwise classify events,
+based on the decription of physics processes described thus far.
+First, objects are defined in terms of variables and particle candidates provided by the
+detector reconstruction algorithms.
+Then selection requirements based on these objects used to reject events entirely
+from the analysis are given.
+After that, selection requirements used to classify events
+into different decay channels of the vector boson are specified.
+There are also selection requirements that allow events to be treated separately
+when the Higgs decay products can be resolved as separate jets
 and where they are merged into a single massive jet.
 
 \section{Object Definitions}
 
-Section~\ref{sec:event-reco} describes how
-detector responses are linked to possible physical particles.
-Most of the particle ID techniques described so far also give false positives.
+Detector responses are linked to possible physical particles.
+Most of the particle ID techniques described so far can give
+false positives for individual particle candidates
+or provide composite physics objects that are in reality composed of background particles.
 What follows are tighter selections used in order to reduce these backgrounds.
-Once objects are defined, they can be counted for event classification.
+Once objects are more strictly defined,
+they can be used for more reliable event classification.
 
-Each type of particle generally has a method of pre-selection
+Each type of object generally has a method of pre-selection
 and additional cuts for a selection.
-For these objects, pre-selection often means that the object is defined
-well enough to veto events in categories that don't want the object to exist.
-The additional cuts are required for an event to classify as a category
-that wants the object to exist with reduced false positives.
+The distinction is particularly useful for categorizing events.
+Each category is designed to be enriched with a particular physics process.
+Each physics process would result in certain final states
+with specific multiplicities for some particles.
+For objects, passing a pre-selection often means that the object is defined
+well enough to veto events for inclusion in categories that
+would not include the corresponding particle.
+Additional selection requirements are added for objects to classify
+as a particular particle candidate in order to reduce false positives
+of events that are included in a given category.
 
 \subsection{Variable Definitions}
 
