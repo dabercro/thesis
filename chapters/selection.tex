@@ -181,34 +181,7 @@ The jets must satisfy $p_T > \SI{25}{GeV}$ for the zero and one lepton signature
 The two lepton signature from $Z(\ell\ell)H$ is cleaner and can apply the looser
 criteria of $p_T > \SI{20}{GeV}$ to the jets.
 
-\subsection{Fat Jets}
-
-A second collection of jets is made from the same set of PF Candidates that are
-clustered to create the jets described in Section~\ref{sec:jets-def}.
-This collection also uses the anti-$k_T$ algorithm, but with $R = 0.8$.
-This results in larger jets, which are labelled fat jets.
-The purpose of this collection is to study events where the Higgs is highly boosted
-and its decay products are close enough together that they would not be clustered
-into two separate jets.
-The larger cone size of the fat jet allows the single jets analyzed to contain
-all radiation from the decay products.
-The requirement on the fat jet to ensure that most Higgs decay products are contained
-in the jet is $p_T > \SI{250}{GeV}$.
-
-Being significantly larger,
-the fat jets also contain much additional radiation from the underlying event.
-As a result, the invariant mass of the constituents collected into the jet
-ends up being much larger than the original mass of the primary parent particle
-that contributed most to the jet.
-A number of grooming algorithms were considered within CMS \cite{dabercro2014}.
-The soft drop algorithm \cite{Larkoski_2014} was chosen as the standard in the experiement
-and is used in this analysis.
-The resulting groomed mass of the jet is close to its original parent particle.
-It has the additional benefit of forcing pileup jets to low mass.
-Due to this, a second requirement on fat jets considered for the analysis is
-$m_\mathrm{SD} > \SI{50}{GeV}$.
-
-\subsection{Identification of $b$ Jets}
+\subsection{Identification of $b$ Jets and Energy Regression}
 
 As mentioned in Section~\ref{sec:requirements} while motivating the design of CMS,
 jets containing $b$ hadrons have a distinct signature.
@@ -240,6 +213,67 @@ They are given in Table~\ref{tab:deepcsv}.
   }
   \label{tab:deepcsv}
 \end{table}
+
+The non-isolated leptons within $b$ jets are caused
+by flavor-changing weak decay of $b$ hadrons.
+This decay mode also results in neutrinos which carry away a portion of the jet energy.
+In order to more accurately reconstruct the di-jet mass of a candidate Higgs decay,
+a prediction on the amount of energy carried away by undetected neutrinos is made.
+A Deep Neural Network (DNN) is trained in Tensorflow
+\cite{DBLP:journals/corr/AbadiABBCCCDDDG16},
+which is designed to improve the energy measurement and resolution of all $b$ jets for CMS
+\cite{collaboration2019deep}.
+The following variables are used as inputs to the regression:
+\begin{itemize}
+\item the jet's $p_T$, $\eta$, mass and transverse mass
+\item the event's median energy density, commonly denoted as $\rho$
+\item information about the hardest lepton clustered into the jet,
+  including momentum perpendicular to the jet,
+  distance $\Delta R$ from the center of the jet,
+  and the lepton's flavor
+\item the $p_T$, mass, and number of tracks from any secondary vertex linked to the jet,
+  as well as the secondary vertex's distance from the collision point and
+  associated uncertainties
+\item the fractions energy in the jet due to
+  charged and neutral hadrons and electromagnetic consistuents
+\item the highest $p_T$ of charged hadron consituents
+\item the energy fraction contained in five concentric rings around the jet center
+  binned by $\Delta R \in [0, 0.05, 0.1, 0.2, 0.3, 0.4]$
+\item number of PF candidates in a jet
+\item energy sharing computed by
+  \[
+  \frac{\sqrt{\sum_i p_{T,i}^2}}{\sum_i p_{T,i}}}
+  \]
+  where $i$ runs over the jet constituents
+\end{itemize}
+This list results in 41 input variables for the DNN.
+
+\subsection{Fat Jets}
+
+A second collection of jets is made from the same set of PF Candidates that are
+clustered to create the jets described in Section~\ref{sec:jets-def}.
+This collection also uses the anti-$k_T$ algorithm, but with $R = 0.8$.
+This results in larger jets, which are labelled fat jets.
+The purpose of this collection is to study events where the Higgs is highly boosted
+and its decay products are close enough together that they would not be clustered
+into two separate jets.
+The larger cone size of the fat jet allows the single jets analyzed to contain
+all radiation from the decay products.
+The requirement on the fat jet to ensure that most Higgs decay products are contained
+in the jet is $p_T > \SI{250}{GeV}$.
+
+Being significantly larger,
+the fat jets also contain much additional radiation from the underlying event.
+As a result, the invariant mass of the constituents collected into the jet
+ends up being much larger than the original mass of the primary parent particle
+that contributed most to the jet.
+A number of grooming algorithms were considered within CMS \cite{dabercro2014}.
+The soft drop algorithm \cite{Larkoski_2014} was chosen as the standard in the experiement
+and is used in this analysis.
+The resulting groomed mass of the jet is close to its original parent particle.
+It has the additional benefit of forcing pileup jets to low mass.
+Due to this, a second requirement on fat jets considered for the analysis is
+$m_\mathrm{SD} > \SI{50}{GeV}$.
 
 \subsection{Missing Transverse Energy}
 
