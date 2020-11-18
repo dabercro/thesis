@@ -23,13 +23,13 @@ What follows are tighter selections used in order to reduce these backgrounds.
 Once objects are more strictly defined,
 they can be used for more reliable event classification.
 
-Each type of object generally has a method of pre-selection
-and additional cuts for a selection.
+Each type of object generally has a method of loose pre-selection
+and additional tighter requirements for a selection.
 The distinction is particularly useful for categorizing events.
 Each category is designed to be enriched with a particular physics process.
 Each physics process would result in certain final states
 with specific multiplicities for some particles.
-For objects, passing a pre-selection often means that the object is defined
+For objects, passing the loose selection often means that the object is defined
 well enough to veto events for inclusion in categories that
 would not include the corresponding particle.
 Additional selection requirements are added for objects to classify
@@ -38,10 +38,9 @@ of events that are included in a given category.
 
 \subsection{Variable Definitions}
 
-Many of the object definitions use variables that have not been defined yet.
+Many of the object definitions use variables that are derived from reconstructed quantities.
 They can be understood in terms of the reconstruction
 described in Section~\ref{sec:event-reco}.
-
 Lepton isolation is quantified using the following formula.
 \begin{gather}
   I = \frac{1}{p_T^\ell} \left(\sum p_T^\mathrm{charged} +
@@ -51,17 +50,16 @@ Lepton isolation is quantified using the following formula.
 \end{gather}
 The sums are over charged hadrons originating from the primary vertex
 and all neutral hadrons and photons within a distance of $\Delta R < 0.4$
-from the lepton if it is a muon, or $\Delta R < 0.3$ from an electron.
-$\Delta R$ is a distance used in the $(\eta, \phi)$ plane.
+from the lepton if it is a muon, or $\Delta R < 0.3$ from an electron,
+where $\Delta R$ is a distance on the $(\eta, \phi)$ plane.
 \begin{gather}
   \Delta R = \sqrt{\Delta\eta^2 + \Delta\phi^2}
 \end{gather}
 The term $p_T^\mathrm{PU}$ is defined as the following for muons.
 \begin{gather}
-  p_T^\mathrm{PU} = 0.5 \times \sum_i p_T^{\mathrm{PU},i}
+  p_T^\mathrm{PU} = 0.5 \times \sum p_T^{\mathrm{PU}, \mathrm{charged}}
 \end{gather}
-$i$ refers to charged hadrons that do not originate from the primary vertex.
-Electrons use the following definition.
+Electrons use a different definition.
 \begin{gather}
   p_T^\mathrm{PU} = \rho \times A_\mathrm{eff}
 \end{gather}
@@ -88,23 +86,22 @@ in which case they are not isolated.
 Since weakly decaying $b$ jets are central to this analysis,
 events with non-isolated leptons are not rejected,
 but the distinction is important.
-
-Pre-selected muons must meet the following requirements.
+Loosely selected muons must meet the following requirements.
 \begin{itemize}
 \item The muon must have a relatively high energy of $p_T > \SI{5}{GeV}$.
-\item The muon should be located in the barrel within $|\eta| < 2.4$.
+\item The muon should pass through the inner tracker within $|\eta| < 2.4$.
 \item The muon originates from the primary vertex, satisfying both
   $d_{xy} < \SI{0.5}{cm}$ and $d_z < \SI{1.0}{cm}$.
 \item The muon must pass a loose isolation cut of $I < 0.4$.
 \item The muon must be a PF muon.
 \item The muon is either a global muon or a tracker muon.
 \end{itemize}
-
-Fully selected muons have some additional cuts they must pass.
+Tightly identified muons have some additional cuts they must pass.
 \begin{itemize}
 \item They must have a higher transverse momentum at $p_T > \SI{25}{GeV}$.
   In events with two muons, such as caused by $Z \rightarrow \mu\mu$,
-  the second muon can pass the slightly looser cut of $p_T > \SI{15}{GeV}$.
+  one muon only needs to satisfy the slightly looser selection of $p_T > \SI{15}{GeV}$,
+  as long as the other has $p_T > \SI{25}{GeV}$.
 \item The muon must be a global muon, leaving tracks in both the central tracker
   and the muon chambers.
 \item There must be more than five hits in the inner tracker with one hit on a pixel.
@@ -119,16 +116,16 @@ This allows the analysis to use efficiency measurements created for wider use.
 \subsection{Electrons} \label{sec:ele-def}
 
 The kinematic variables associated with an electron are extracted from the GSF fit.
-Pre-selected electrons must meet the following requirements.
+Loosely selected electrons must meet the following requirements.
 \begin{itemize}
-\item They must have a high transverse momentum with $p_T > \SI{7}{GeV}$
+\item They must have a transverse momentum satisfying $p_T > \SI{7}{GeV}$.
 \item They should be centered in the detector with $|\eta| < 2.4$.
-\item They originate from the primary vertex with
+\item The distance from the primary vertex is limited, requiring
   $d_{xy} < \SI{0.05}{cm}$ and $d_Z < \SI{0.2}{cm}$.
 \item They pass a loose isolation cut of $I < 0.4$.
 \end{itemize}
-
-To reduce backgrounds, electrons are identified with the aid of an MVA \cite{Rembser_2019}.
+To optimize the electron selection,
+electrons are identified with the aid of an MVA \cite{Rembser_2019}.
 Fully selected electrons pass the tight working point used by the CMS collaboration.
 In order to also match the samples of simulated electrons used in the training sample,
 the selected electrons also must pass the following cuts.
@@ -138,10 +135,11 @@ the selected electrons also must pass the following cuts.
   along the electron track.
 \item The track sum $p_T$ component of the isolation must be
   less than 18\% of the electron $p_T$.
-\item The electron must either have $|\eta| < 1.4442$ or $|\eta| > 1.5660$
+\item There is a gap in the ECAL geometry,
+  so the electron must either have $|\eta| < 1.4442$ or $|\eta| > 1.5660$.
 \item For electrons with $|\eta| < 1.4442$:
   \begin{itemize}
-  \item $\sigma_{i\eta i\eta} < 0.012$
+  \item The shower shape must satisfy $\sigma_{i\eta i\eta} < 0.012$
   \item Isolation in the ECAL cluster must be less than 0.4,
     and isolation in the HCAL must be less than 0.25.
   \item The difference between super cluster and track location of the electron
@@ -149,24 +147,21 @@ the selected electrons also must pass the following cuts.
   \end{itemize}
 \item For electrons with $|\eta| > 1.5660$:
   \begin{itemize}
-  \item $\sigma_{i\eta i\eta} < 0.033$
+  \item The shower shape must satisfy $\sigma_{i\eta i\eta} < 0.033$
   \item Isolation in the ECAL cluster must be less than 0.45,
     and isolation in the HCAL must be less than 0.28.
   \end{itemize}
 \end{itemize}
-There is a gap in the $\eta$ direction that accounts for a gap in the CMS detector.
-This gap in the active detecting volume is needed to
-accommodate various electronics and structural components.
 
 \subsection{Jets} \label{sec:jets-def}
 
-As described in Section~\ref{sec:lhc},
-hadrons produced at the LHC are often accompanied by sprays of particles called jets.
+Strong interactions cause jets of particles when quarks or gluons hadronize.
 Conservation of energy and momentum means that the sum of jet constituents
 give the kinematics of the initial parton that produced them.
 Jets are constructed by clustering all particle-flow candidates
-with the anti-$k_T$ algorithm \cite{Cacciari_2008} using $R = 0.4$.
-Due to factors like pileup and detector response,
+with the anti-$k_T$ algorithm \cite{Cacciari_2008}
+using the jet clustering parameter $R = 0.4$.
+Due to factors like pileup and imperfect detector response,
 the energy of the reconstructed jets are corrected \cite{Khachatryan_2017}.
 
 Loose jet cuts, based on the constituents,
@@ -176,28 +171,33 @@ Pre-selected electrons and muons are also often reconstructed as jets.
 Any jet within $\Delta R < 0.4$ from a pre-selected lepton is removed.
 
 To be considered for the study of decay products of the Higgs boson,
-jets must be within the barrel of the detector with $|\eta| < 2.5$.
+jets must be within the inner tracker of the detector with $|\eta| < 2.5$.
+This allows pileup to be removed and for accurate vertexing of the consituents.
 The jets must satisfy $p_T > \SI{25}{GeV}$ for the zero and one lepton signatures.
-The two lepton signature from $Z(\ell\ell)H$ is cleaner and can apply the looser
-criteria of $p_T > \SI{20}{GeV}$ to the jets.
+The two lepton signature from $Z(\ell\ell)H$ is cleaner,
+and looser jet selection criteria of $p_T > \SI{20}{GeV}$ are applied to the jets.
 
 \subsection{Identification of $b$ Jets and Energy Regression}
 
-As mentioned in Section~\ref{sec:requirements} while motivating the design of CMS,
-jets containing $b$ hadrons have a distinct signature.
+Jets containing $b$ hadrons have a distinct signature.
 This includes secondary vertices displaced from the beamline,
 as well as non-isolated leptons from weak decays.
-All of these features are considered in a deep neural network (DNN)
-called Deep Combined Secondary Vertex (DeepCSV) \cite{Sirunyan_2018}.
+When looking at jets in the inner tracker,
+all of these features can be considered in a deep neural network (DNN)
+called Deep Combined Secondary Vertex (DeepCSV)
+designed to identify $b$ jets \cite{Sirunyan_2018}.
 The output of DeepCSV has three working points
 that are defined based on the amount of false positives that can be expected
 in a collection of jets passing the cut.
 The specific values are different for each year of operation.
-They are given in Table~\ref{tab:deepcsv}.
+The detector and collision conditions change,
+and a separate model is trained each year to account for that.
+The working points for each year are given in Table~\ref{tab:deepcsv}.
 \begin{table}
   \centering
   \caption[DeepCSV working points]{
-    The cuts for each DeepCSV working point are defined for each year of Run~2 of the LHC.
+    The minimal cut value on the neural network output for each DeepCSV working point
+    are defined for each year of Run~2 of the LHC.
     The working points are defined by their mis-tag rates.
   }
   {\renewcommand{\arraystretch}{1.5}
@@ -250,9 +250,10 @@ This list results in 41 input variables for the DNN.
 
 \subsection{Fat Jets}
 
-A second collection of jets is made from the same set of PF Candidates that are
-clustered to create the jets described in Section~\ref{sec:jets-def}.
-This collection also uses the anti-$k_T$ algorithm, but with $R = 0.8$.
+A second collection of jets is made from the same set of PF candidates that are
+clustered to create the jets described previously.
+This collection also uses the anti-$k_T$ algorithm,
+but with the jet clustering parameter $R = 0.8$.
 This results in larger jets, which are labelled fat jets.
 The purpose of this collection is to study events where the Higgs is highly boosted
 and its decay products are close enough together that they would not be clustered
@@ -262,25 +263,28 @@ all radiation from the decay products.
 The requirement on the fat jet to ensure that most Higgs decay products are contained
 in the jet is $p_T > \SI{250}{GeV}$.
 
-Being significantly larger,
+Being significantly larger in area,
 the fat jets also contain much additional radiation from the underlying event.
-As a result, the invariant mass of the constituents collected into the jet
-ends up being much larger than the original mass of the primary parent particle
-that contributed most to the jet.
-A number of grooming algorithms were considered within CMS \cite{dabercro2014}.
-The soft drop algorithm \cite{Larkoski_2014} was chosen as the standard in the experiement
+As a result, the mass of the constituents collected into the jet
+is also significantly larger than the original mass of the primary parent particle
+whose daughters make up most of the jet constituents.
+A number of grooming algorithms,
+which are designed to remove particles from pileup from the jets,
+were considered within CMS \cite{dabercro2014}.
+The soft drop algorithm \cite{Larkoski_2014} was chosen as the standard in the experiment
 and is used in this analysis.
 The resulting groomed mass of the jet is close to its original parent particle.
-It has the additional benefit of forcing pileup jets to low mass.
-Due to this, a second requirement on fat jets considered for the analysis is
+The soft drop algorithm has the additional benefit of forcing pileup jets to low mass,
+which is why a second requirement on fat jets considered for the analysis is
 $m_\mathrm{SD} > \SI{50}{GeV}$.
 
 \subsection{Missing Transverse Energy}
 
-Missing transverse energy, also labelled $E_T^\mathrm{miss}$ or MET,
+Missing transverse energy, which is actually the missing transverse momentum,
+also labelled $E_T^\mathrm{miss}$ or MET,
 is a vector that takes advantage of the fact that momentum
 transverse to the beamline is conserved.
-MET is calculated by first taking the negative vector sum of the transverse momentum of
+MET is calculated by taking the negative vector sum of the transverse momentum of
 all particle flow candidates in the event.
 The resulting vector is then adjusted by taking into account the difference
 between the uncorrected and corrected jet energies \cite{collaboration_2015}.
@@ -288,41 +292,45 @@ The resulting magnitude and direction is a proxy for the transverse momentum of
 any neutrinos in the event.
 However, large MET values can be generated by instrumental and beam effects as well.
 Therefore, there are additional event filters applied to events with large MET
-that removes events where the rest of the detector exhibits suspicious behavior.
+that removes events where these known instrumental and beam effects have been identified.
 
 \subsection{Soft Hadronic Activity}
 
-In signal $VH$ events, hadronic activity outside of the \bb decay of the Higgs is expected to be low.
-This hadronic activity is defined by considering the additional charged PF tracks coming from the primary vertex.
-An exclusion region is defined in an ellipse in $(\eta, \phi)$ space containing the two selected $b$ jets
+In signal $VH$ events, hadronic activity outside of the $b\bar{b}$ decay of the Higgs
+is expected to be low.
+This hadronic activity is defined by considering the
+additional charged PF tracks coming from the primary vertex.
+An exclusion region is defined in an ellipse in $(\eta, \phi)$ space
+containing the two selected $b$ jets
 with a major axis length of $\Delta R (\bb) + 1$ and a minor axis length of 1.
-All charged tracks outside of this ellipse that also do not correspond with the selected leptons and
-that satisfy $p_T > \SI{300}{MeV}$ and $d_Z < \SI{0.2}{cm}$ are clustered
-using the anti-$k_T$ algorithm \cite{Cacciari_2008} with $R = 0.4$.
+All charged tracks outside of this ellipse that also do not correspond with
+the selected leptons and that satisfy $p_T > \SI{300}{MeV}$ and $d_Z < \SI{0.2}{cm}$
+are clustered using the anti-$k_T$ algorithm \cite{Cacciari_2008} with $R = 0.4$.
 The resulting collection of soft jets is used to define four variables:
-
 \begin{itemize}
-\item $H_T^\mathrm{soft}$ -- The scalar sum of soft jets' $p_T$ for jets with $p_T > \SI{1}{GeV}$
+\item $H_T^\mathrm{soft}$ -- The scalar sum of soft jets' $p_T$ for
+  jets with $p_T > \SI{1}{GeV}$
 \item $N_2^\mathrm{soft}$ -- The number of soft jets with $p_T > \SI{2}{GeV}$
 \item $N_5^\mathrm{soft}$ -- The number of soft jets with $p_T > \SI{5}{GeV}$
 \item $N_{10}^\mathrm{soft}$ -- The number of soft jets with $p_T > \SI{10}{GeV}$
 \end{itemize}
-
-These variables are used in the training of the BDT that discriminates signal and background events.
+These variables are used in the training of the BDT that discriminates
+signal and background events.
 
 \subsection{Kinematic Fit}
 
-In the two-lepton region, the all of the $Z$ boson's decay products can be observed and
-its momentum can be reconstructed precisely.
-A kinematic fit is performed to constrain the leptons' momenta additionally by requiring their
-invariant mass to match the $Z$ boson mass.
+In the two-lepton region, the $Z$ boson's decay products are observed directly, and
+the $Z$ boson momentum can be reconstructed precisely.
+A kinematic fit is performed to constrain the momenta of the two leptons by requiring their
+combined mass to match the $Z$ boson mass.
 After this constraint is applied, the tranvserve momentum of the dijet system,
 along with ISR jets, is balanced with the transverse momentum of the dilepton system.
-The fit is performed by minimizing the chi-squared of the kinematic system that meets these constraints.
+The fit is performed by minimizing the chi-squared of the kinematic system that
+meets these constraints.
 
-For electrons and muons, the corrections defined by their respective Physics Objects Groups
-in CMS include uncertainties.
-The energy uncertainty used for the $b$-jets and recoils jets is the same as that used
+For electrons and muons,
+the corrections defined in centralized efforts by the CMS collaboration include uncertainties.
+The energy uncertainty used for the $b$-jets and recoil jets is the same as that used
 by the $HH \rightarrow \bb\bb$ analysis from CMS \cite{Sirunyan_2019}.
 The mass of the $Z$ boson is given a Gaussian uncertainty of \SI{5}{GeV},
 and it is assumed that the MET in the event is 0.
@@ -333,7 +341,7 @@ The full implementation is in the \texttt{PhysicsTools/KinFitter} package of
 Only the resulting energies of the $b$-jets, which are otherwise relatively loosely constrained,
 are used for analyzing the two-lepton regions.
 The improvement of the di-jet mass in the signal sample as a result of the kinematic fit
-can be seen in Figure~\ref{fig:kinfit} and Table~\ref{tab:kinfit}.
+are shown in Figure~\ref{fig:kinfit} and Table~\ref{tab:kinfit}.
 
 \begin{figure}
   \includegraphics[width=\linewidth]{figures/fits_SR_medhigh_Hmass__.pdf}
@@ -470,25 +478,31 @@ scaling corrections to the simulation can be made for the phase space.
 
 \section{Simplified Template Cross Section Bins}
 
-The measurement performed in this analysis follows the plan to make a
-Simplified Template Cross Section (STXS) measurement \cite{Kato:2687920}.
+The measurement performed in this analysis is a differential cross section of Higgs production.
+This is done with a Simplified Template Cross Section (STXS) measurement \cite{Kato:2687920},
+where the Higgs boson production cross sections are measured in multiple kinematic bins.
+This allowed for sensitivity to new physics with reduced model dependence.
 For this measurement, the vector boson produced as well as the $p_T$ of the vector boson
 separates data points into different bins.
 The clean signal of the $Z\rightarrow\ell\ell$ decay channel allows for more
 bins to be measured for $ZH$ processes.
 In addition, the middle $p_T$ bin for $Z$ boson production is split by multiplicity
 of additional jets.
-There are six bins overall:
+There are eight bins overall:
 \begin{itemize}
-\item $WH, 150 < p_{T,V} \le 250$
-\item $WH, 250 < p_{T,V}$
-\item $ZH, 75 < p_{T,V} \le 150$
-\item $ZH, 150 < p_{T,V} \le 250, 0J$
-\item $ZH, 150 < p_{T,V} \le 250, \ge 1J$
-\item $ZH, 250 < p_{T,V}$
+\item $WH, \SI{150}{GeV} < p_{T,V} \le \SI{250}{GeV}$
+\item $WH, \SI{250}{GeV} < p_{T,V} \le \SI{400}{GeV}$
+\item $WH, \SI{400}{GeV} < p_{T,V}$
+\item $ZH, \SI{75}{GeV} < p_{T,V} \le \SI{150}{GeV}$
+\item $ZH, \SI{150}{GeV} < p_{T,V} \le \SI{250}{GeV}, n_\mathrm{jet} = 0$
+\item $ZH, \SI{150}{GeV} < p_{T,V} \le \SI{250}{GeV}, n_\mathrm{jet} \ge 1$
+\item $ZH, \SI{250}{GeV} < p_{T,V} \le \SI{400}{GeV}$
+\item $ZH, \SI{400}{GeV} < p_{T,V}$
 \end{itemize}
 All of the selections in the following sections are also divided into the appropriate
 set of STXS bins for the generation of datacards and fits.
+Since the fat jets are most helpful in events where intermediate particles are highly boosted,
+they are only considered in selections for the bins where $p_{T,V} > \SI{250}{GeV}$.
 
 \section{Resolved Analysis Selection}
 
