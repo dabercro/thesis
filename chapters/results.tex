@@ -244,6 +244,46 @@ The list of input variables for the BDT is the following:
 All of these variables were all used in the 0-, 1-, and 2-lepton regions,
 even though the regions were trained separately.
 
-\section{Combination Fit Method}
+\section{Combination Fit}
 
-\section{Results}
+A simultaneous fit is run over all channels, control regions, and the signal selection region
+in order to determine the most likely values for all
+parameters with systematic uncertainties, called nuisance parameters,
+as well as the most likely scale factors for all the MC backgrounds and signal.
+The fit is done by using the \texttt{combine} tool \cite{cmsdocumentation} as part of
+\texttt{CMSSW\_10\_2\_13} \cite{cmssw_doxygen}.
+It is commonly used in searches of new physics processes within the CMS collaboration.
+Part of the method for discovery involves finding the most likely values
+for all nuisance parameters and signal strength simultaneously.
+This maximum likelihood feature is used for the measurement of signal strength in
+the STXS bins.
+
+In addition to the most likely nuisance parameter and scale factor values,
+the output of \texttt{combine} includes likelihood values at
+multiple signal strengths with and without variation of
+nuisance parameters from their most likely values.
+This allows separation of systematic and statistical uncertainties from the global fit.
+The \texttt{combine} tool also evaulated the impacts of each individual
+nuisance parameter on the likelihood by varying them individually.
+
+\subsection{$V\!Z$ Cross Check Analysis}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/201118_inclVZ/scan_nominal_r.pdf}
+  \caption[Inclusive likelihood scan of $V\!Z$]{
+    The likelihood scan of the inclusive signal strength of the
+    $V\!Z$ cross check analysis.
+  }
+  \label{fig:vz-inclusive}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/201118_STXS_VZ/summary_stxs.pdf}
+  \caption[Measured STXS values of $V\!Z$]{
+    The measured most likely values of all STXS bins in the
+    $V\!Z$ cross check analysis.
+  }
+  \label{fig:vz_stxs}
+\end{figure}

@@ -1,74 +1,123 @@
 \chapter{Introduction} \label{ch:intro}
 
-One of the most curious features of physics at small scales, which will likely frustrate students for the rest of time,
+One of the most curious features of physics at small scales,
+which will likely frustrate students for the rest of time,
 is that certain events are not deterministic and only have a probability of happening.
-There is no guarantee that an electron and a positron approaching each other at high energies will annihilate and produce a muon and an anti-muon.
-However, this event might still occur at a later time at with the exact same initial conditions.
-Furthermore, the observation of resonances, where this is more likely to happen when the electron and positron approach each other at particular speeds,
+There is no guarantee that an electron and a positron
+approaching each other will annihilate and produce a muon and an anti-muon,
+even if their energies in the center-of-mass frame are adequate for muon production.
+However, trying long enough with the same initial conditions will eventually
+produce a muon and anti-muon pair.
+Furthermore, the observation of resonances, where this is more likely to happen
+when the electron and positron approach each other at particular speeds,
 does not mean that a $Z$ boson was present in a given interaction.
-It just means that the weak component of the electroweak force significantly increases the probability of the muonic final state, given the total energy of the initial state.
-The sum of probabilities from different possible field interactions with particular initial conditions is the only thing we can measure.
+It just means that the weak component of the electroweak force significantly increases
+the probability of the muonic final state, given the total energy of the initial state.
+The sum of probabilities from different possible field interactions with
+particular initial conditions is the only thing we can measure.
 This is also only possible when observing many events with the same initial conditions.
 
-This point is difficult to convey concisely, so many laypeople, as well as some practicing physicists, are confused by the terminology adopted by the field.
+This point is difficult to convey concisely, so many laypeople,
+as well as some practicing physicists, are confused by the terminology adopted by the field.
 But this distinction is relevant to the topic of this work.
 This document presents a measurement of a cross section.
 Cross section is the name given to the probability of an interaction occurring.
 Reported cross sections can be split up to describe different contributions to final states,
 and they can be collated into what are called ``production cross sections'' which describe
-the probabilities of particular intermediate states ``occurring'' (even though intermediate states never exist in reality).
+the probabilities of particular intermediate states ``occurring''
+(even though intermediate states never exist in reality).
 
-The main point is that if there exists some interesting particle, and it interacts with other particles,
-you can see an increased probability of certain initial states resulting in certain final states.
-This can teach the observer about the role of the interesting particle, without ever directly seeing it.
+The main point is that if there exists some interesting particle,
+and it interacts with other particles,
+you can see an increased probability of certain initial states
+resulting in certain final states.
+This can teach the observer about the role of the interesting particle,
+without ever directly seeing it.
 
 \section{Measurement of the Higgs Cross Section}
 
-The purpose of the following document is to present the methods and results of measuring the strength of the coupling between the Higgs boson and bottom quarks.
-In this context, the Higgs boson makes up one of the previously mentioned intermediate states that cannot be shown as present in a given event.
-The cross section measurement relies on a number of physics processes that will be accounted for in this document.
+The purpose of the following document is to present the methods and results
+of measuring the strength of the coupling between the Higgs boson and bottom quarks.
+In this context, the Higgs boson makes up one of the previously mentioned
+intermediate states that cannot be shown as present in a given event.
+The coupling strength is directly related to the probability contribution
+the Higgs field has on processes involving bottom quarks.
+However, the cross section measurement also relies on a number of other physics processes.
 
-To measure this coupling, the Higgs boson must first be ``produced'' before measuring its coupling strength to bottom quarks.
-Since we are not technologically advanced enough to achieve this generation using bottom quarks directly,
-we use measured Higgs generation rates from normal constituents of protons.
-We constrain ourselves further by requiring that the Higgs is generated by associated production.
+To measure this coupling, the Higgs boson must first be ``produced''
+before measuring its coupling strength to bottom quarks.
+This analysis takes advantage of a process known as associated production,
+where a vector boson, one of the intermediate particles of the weak nuclear force,
+couples to and radiates a Higgs boson.
+The vector boson is in turn produced by the collision of high energy protons.
 
-After the Higgs is generated, it can decay into a number of different particles.
-This work is only concerned with one kind of decay.
+The measurement is not complete once the intermediate state is generated.
+The Higgs boson can decay into a number of different particles,
+with bottom quarks being only one type.
+The bottom quarks must be identified.
+The vector bosons have multiple decay modes as well.
+In this analysis, we only use the leptonic decays because
+these give us the cleanest signature,
+where enough of the contribution to the final state probability
+is from associated production for it to be measured.
 
-The math that this all relies on is presented in Chapter~\ref{ch:theory}.
+There are also other physics processes that create the same final states,
+as well as processes that create final states that look similar enough
+to be practically indistinguishable.
+These processes must also be well understood before a Higgs boson cross section measurement
+can be undertaken.
 
 \section{Motivation for the Measurement}
 
-This is Thomas Kuhn's ``normal science''.
+The measurement of a cross section of a known particle is ``normal science,''
+and that is the space in which this analysis operates \cite{Kuhn:1970}.
+Much of the community of physics researchers have been operating under the paradigm
+of the Standard Model for the better part of a century.
+The Standard Model has known gaps,
+such as missing explanations for neutrino mass,
+as well as the origin Dark Matter and Dark Energy.
+However, none of these research fields have yielded any results
+that will trigger a paradigm shift.
+In fact, the most exciting discoveries of new particles,
+such as the weak $W$ \cite{PhysRevLett.50.1738} and $Z$ \cite{dau1983ua1}
+bosons and the Higgs boson \cite{Chatrchyan_2012,PhysRevD.86.032003} only confirmed
+predictions by the Standard Model.
 
-Precision measurements are needed to be certain of what we think.
+In the meanwhile, precision measurements are performed on
+processes that we expect to already understand very well.
+Repeating measurements while the state of the art is improving is interesting,
+no matter the outcome.
+Over time, the uncertainty in the measurement outcome shrinks,
+leading to more precise knowledge of parameters of the Standard Model.
+If the precise parameters cause excessive tension in that they cannot exist
+assuming the Standard Model is true,
+the discrepancies would need to be explained by a different or ammended model.
 
-Precision measurements often lead to discrepancies that are explained by a fundamental shift in the model.
+The Higgs decaying to $b\bar{b}$, or a bottom quark and bottom anti-quark,
+was observed in 2018 \cite{obs-18, Aaboud_2018}.
+The measurement outlined in this document goes further in that
+it measures the contribution of $H \rightarrow b\bar{b}$ in associated production
+to final states of different energy.
+This is called a differential cross section,
+and places greater constraints on the parameters of the Standard Model.
+These constraints lead to more precise measurements of the parameters,
+and have the potential to discover discrepancies that have hitherto been missed.
 
-The Standard Model is a good one.
-It will not be fully replaced, but at worst expanded upon.
-Just like Newton's Laws are still a reasonable approximation for General Relativity, The Standard Model is a good approximation for most things we have been able to interact with so far.
+\section{Using the CMS Detector at the LHC}
 
-The only lingering questions are Dark Matter and Dark Energy,
-but there is no reason to assume that precise measurements of known phenomena will not lead to an explanation.
+This measurement is only possible due to massive efforts by the scientific community.
+The Higgs boson is not typically generated in conditions on Earth.
+The Large Hadron Collider (LHC) at the European Organization for Nuclear Research (CERN)
+was constructed due to the efforts of thousands of scientists and engineers,
+as well as the funding from countries distributed all around the globe.
+The LHC performs the proton collisions needed.
 
-\section{Historic Context}
-
-First, we have The Standard Model.
-
-Parts were proven correct by the observation of the weak bosons.
-
-The Higgs was observed in 2013.
-
-The Higgs decaying to \bb\! was observed in 2018.
-\cite{obs-18, Aaboud_2018}
-
-\section{Using the CMS Detector}
-
-The CMS detector is a general purpose detector used to make many observations of conditions
-unattainable on Earth outside of the LHC.
-
-It has many stationary parts, and a couple of moving ones too.
-
-This device is described in detail in Chapter~\ref{ch:detector}.
+To observe the final states of collisions at the LHC,
+multiple detectors have also been constructed,
+due to the efforts of hundreds or thousands of individuals.
+This analysis is done using data from the Compact Muon Solenoid (CMS).
+Other experiments are ATLAS, ALICE, LHCb, TOTEM, LHCf, MoDEL, and FRASER.
+The CMS detector is a general purpose detector,
+which was used in the discovery of the Higgs boson.
+Its detection capabilities make it instrumental in a number of state of the art
+measurements of the Standard Model as well as the potential beyond the Standard Model.

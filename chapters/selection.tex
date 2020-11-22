@@ -250,18 +250,21 @@ This list results in 41 input variables for the DNN.
 
 \subsection{Fat Jets}
 
+When the Higgs boson is highly boosted, its decay products are closer together
+in the frame of the detector.
+At some point, the jets from the $b$ quarks would not be clustered separately.
+These highly boosted events are interesting for the differential cross section measurements,
+and they are more enriched with the signal associated production process than
+events with lower $p_T$ intermediate particles.
+To not loose the events, single jets are analyzed for evidence of containing two $b$ hadrons.
+In order to handle the transistion from resolved jets to boosted single jets,
+larger jets, labelled fat jets, are used.
 A second collection of jets is made from the same set of PF candidates that are
 clustered to create the jets described previously.
 This collection also uses the anti-$k_T$ algorithm,
 but with the jet clustering parameter $R = 0.8$.
-This results in larger jets, which are labelled fat jets.
-The purpose of this collection is to study events where the Higgs is highly boosted
-and its decay products are close enough together that they would not be clustered
-into two separate jets.
-The larger cone size of the fat jet allows the single jets analyzed to contain
-all radiation from the decay products.
-The requirement on the fat jet to ensure that most Higgs decay products are contained
-in the jet is $p_T > \SI{250}{GeV}$.
+The requirement on the fat jet which ensures that Higgs decay products are contained
+in the jet when they are at a maximum opening angle is $p_T > \SI{250}{GeV}$.
 
 Being significantly larger in area,
 the fat jets also contain much additional radiation from the underlying event.
@@ -478,7 +481,8 @@ scaling corrections to the simulation can be made for the phase space.
 
 \section{Simplified Template Cross Section Bins}
 
-The measurement performed in this analysis is a differential cross section of Higgs production.
+The measurement performed in this analysis is a differential
+cross section of Higgs production.
 This is done with a Simplified Template Cross Section (STXS) measurement \cite{Kato:2687920},
 where the Higgs boson production cross sections are measured in multiple kinematic bins.
 This allowed for sensitivity to new physics with reduced model dependence.
@@ -501,18 +505,23 @@ There are eight bins overall:
 \end{itemize}
 All of the selections in the following sections are also divided into the appropriate
 set of STXS bins for the generation of datacards and fits.
-Since the fat jets are most helpful in events where intermediate particles are highly boosted,
+Since the fat jets are most helpful in events where
+intermediate particles are highly boosted,
 they are only considered in selections for the bins where $p_{T,V} > \SI{250}{GeV}$.
 
 \section{Resolved Analysis Selection}
 
+First, the selection for events with two $b$-tagged jets,
+also known as resolved events, will be given.
+The next section will explain the selections relying on a single fat jet.
 With objects defined, the selections differ mostly in counting the number
 of charged leptons present in the event.
 However, other adjustments are made per channel to optimize the presence of signal events.
 Therefore, the first channels described will have the most thorough selection description,
 with later channel sections noting many similarities and differences.
-For each channel, multiple control region selections are also used in order to more accurately
-estimate the approximate contribution of each physics process to the events in each phase space,
+For each channel,
+multiple control region selections are also used in order to more accurately
+estimate the contribution of each physics process to the events in each phase space,
 and these will be described after each channel's signal region.
 A summary of cuts for each region in each channel
 is given in Table~\ref{tab:resolved}.
@@ -565,6 +574,35 @@ but are described in the appropriate sections.
 
 In the 0-lepton channel, the transverse momentum carried away by the neutrinos
 in the $Z$ boson decay results in a large amount of MET.
+CMS has triggers that identify events with large values of MET.
+Slightly different triggers are used for each year of Run 2 of the LHC,
+and they are listed in Table~\ref{tab:0-triggers}.
+\begin{table}
+  \centering
+  \caption[Triggers for the 0 lepton selection]{
+    Below are the trigger paths used for all of the 0 lepton selections
+    for all three years of Run 2 of the LHC.
+  }
+  \begin{tabular}{|l|l|}
+    \hline
+    Year & Trigger path(s) \\
+    \hline
+    2016 & HLT\_PFMET110\_PFMHT110\_IDTight \\
+    & HLT\_PFMET120\_PFMHT120\_IDTight \\
+    & HLT\_PFMET170\_NoiseCleaned \\
+    & HLT\_PFMET170\_BeamHaloCleaned \\
+    & HLT\_PFMET170\_HBHECleaned \\
+    \hline
+    2017 & HLT\_PFMET120\_PFMHT120\_IDTight \\
+    & HLT\_PFMET120\_PFMHT120\_IDTight\_PFHT60 \\
+    \hline
+    2018 & HLT\_PFMET120\_PFMHT120\_IDTight \\
+    \hline
+  \end{tabular}
+  \label{tab:0-triggers}
+\end{table}
+The efficiency of each trigger or combination of triggers increases as a function of MET,
+and that efficiency plateaus at \SI{170}{GeV}.
 Therefore, the MET for the event must be larger than \SI{170}{GeV}.
 During the 2018 run, a number of HCAL endcap modules were taken offline
 due to power supply problems.
@@ -572,8 +610,6 @@ These modules were all located in the region $-1.57 < \phi < -0.87$,
 so an excess number of high MET events with $\phi_\mathrm{MET}$ in that region were recorded
 in later 2018 runs when jets would have been registered in the deactivated detector elements.
 The resulting peak can be seen in Figure~\ref{fig:met-peak}.
-To handle this, all events with $-1.86 < \phi_\mathrm{MET} < -0.7$ that occurred
-during and after run 319077, when the faulty detector elements were shut off.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\linewidth]{figures/METPhi319077.pdf}
@@ -585,6 +621,8 @@ during and after run 319077, when the faulty detector elements were shut off.
   }
   \label{fig:met-peak}
 \end{figure}
+To handle this, all events with $-1.86 < \phi_\mathrm{MET} < -0.7$ that occurred
+during and after run 319077, when the faulty detector elements were shut off.
 
 In addition to the neutrino decay of the $Z$ boson,
 the \bb decay of the Higgs also needs to be selected and backgrounds need to be removed.
