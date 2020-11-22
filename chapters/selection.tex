@@ -523,11 +523,16 @@ For each channel,
 multiple control region selections are also used in order to more accurately
 estimate the contribution of each physics process to the events in each phase space,
 and these will be described after each channel's signal region.
+The most significant contributions to background contamination of the signal region are from
+$Z/W$ + jets (depending on the number of leptons in the selection) and $t\bar{t}$ processes.
+The vector boson plus jets regions are separated into heavy-flavor and light-flavor jets
+to control the relative contributions independently since they are not well-known.
+For each channel, there are therefore three control regions in addition to the signal region.
+
 A summary of cuts for each region in each channel
 is given in Table~\ref{tab:resolved}.
 A few channel- or region-specific cuts are left out,
 but are described in the appropriate sections.
-
 \begin{table}
   \centering
   \caption[Summary of resolved selection cuts]{
@@ -569,6 +574,19 @@ but are described in the appropriate sections.
   \end{tabular}
   \label{tab:resolved}
 \end{table}
+The common variables that are cut on are the following:
+\begin{itemize}
+\item $p_{T,V}$ -- The transverse momentum of the reconstructed vector boson
+\item $p_{T,j}$ -- The minimum transverse momentum of both jets,
+  which may be an asymmetric cut
+\item max $b$ -- The working point that the jet with the higher $b$-tag value must satisfy
+\item min $b$ -- The working point that the jet with the lower $b$-tag value must satisfy
+\item $p_{T,jj}$ -- The summed transverse momentum of the di-jet system
+\item $m_{jj}$ -- The mass of the di-jet system
+\item $N_\textrm{aj}$ -- The number of additional jets outside of the selected di-jet system
+\item $\Delta\phi(jj, V)$ -- The distance in angle $\phi$ between the di-jet system
+  and the recoiling reconstructed vector boson
+\end{itemize}
 
 \subsection{0 Leptons} \label{sec:resolved-0}
 
@@ -580,7 +598,7 @@ and they are listed in Table~\ref{tab:0-triggers}.
 \begin{table}
   \centering
   \caption[Triggers for the 0 lepton selection]{
-    Below are the trigger paths used for all of the 0 lepton selections
+    Below are the trigger paths used for the 0 lepton selections
     for all three years of Run 2 of the LHC.
   }
   \begin{tabular}{|l|l|}
@@ -601,9 +619,19 @@ and they are listed in Table~\ref{tab:0-triggers}.
   \end{tabular}
   \label{tab:0-triggers}
 \end{table}
-The efficiency of each trigger or combination of triggers increases as a function of MET,
-and that efficiency plateaus at \SI{170}{GeV}.
-Therefore, the MET for the event must be larger than \SI{170}{GeV}.
+The MET for the event must be larger than \SI{170}{GeV}.
+The trigger efficiency does not quite plateau at that point,
+as can be seen in Figure~\ref{fig:0-lep-trigger-eff}.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/CompData3Years.pdf}
+  \caption[Efficiency for MET trigger in data]{
+    The efficiency for the MET triggers are shown for all three years in data.
+  }
+  \label{fig:0-lep-trigger-eff}
+\end{figure}
+However, the extracted efficiency scale factor for MC matches
+for both $t\bar{t}$ and $W$ + jets simulation at and above this value.
 During the 2018 run, a number of HCAL endcap modules were taken offline
 due to power supply problems.
 These modules were all located in the region $-1.57 < \phi < -0.87$,
@@ -632,13 +660,16 @@ the jet with the highest $b$-tag score with $p_T > \SI{60}{GeV}$,
 and the jet with the highest or second highest (if the first jet is the highest)
 $b$-tag score with $p_T > \SI{35}{GeV}$.
 Both of these $p_T$ values are evaluated after applying the $b$-jet energy regression.
-The di-jet mass is required to be less than \SI{500}{GeV} and to satisfy $p_T > \SI{120}{GeV}$.
+The di-jet mass is required to be less than \SI{500}{GeV}
+and to satisfy $p_T > \SI{120}{GeV}$.
 Also the di-jet system is selected to be back-to-back with the MET
 by requiring $\Delta\phi(\mathrm{MET}, jj) > 2.0$.
 To reduce additional backgrounds, events are not considered if there are any isolated leptons
 with $|\eta| < 2.5$ and $p_T > \SI{15}{GeV}$.
-Finally, to reduce QCD background contributions, all jets in the event with $p_T > \SI{30}{GeV}$
-must be a minimum distance from the event MET satisfying $\Delta \phi(\mathrm{MET}, j) > 0.5$.
+Finally, to reduce QCD background contributions,
+all jets in the event with $p_T > \SI{30}{GeV}$
+must be a minimum distance from the event MET satisfying
+$\Delta \phi(\mathrm{MET}, j) > 0.5$.
 
 
 The signal region is additionally defined by requiring
@@ -648,7 +679,8 @@ and low additional hadronic activity.
 At least one of the $b$-jets must pass the medium working point for the appropriate year,
 and the other $b$-jet must pass the loose working point.
 The value of the di-jet mass must satisfy $\SI{90}{GeV} < m_{jj} < \SI{150}{GeV}$.
-At most only one jet with $p_T > \SI{30}{GeV}$ is allows in addition to the selected $b$-jets.
+At most only one jet with $p_T > \SI{30}{GeV}$ is allowed
+in addition to the selected $b$-jets.
 Finally, the PF MET and Track MET must have good agreement with
 $\Delta \phi(\mathrm{MET}, \mathrm{trkMET}) < 0.5$.
 
@@ -660,7 +692,8 @@ and in the other, the jets are light jets.
 Since the fraction of actual $Z \rightarrow \nu\bar{\nu}$ events
 containing $b$-jets is not well known, we want to scale them separately.
 The third background process that needs to be separately measured in this phase space
-is a $t\bar{t}$ semi-leptonic decay where the lepton falls outside of the detector acceptance.
+is a $t\bar{t}$ semi-leptonic decay
+where the lepton falls outside of the detector acceptance.
 This type of background would also result in a final state with high MET and $b$-jets.
 
 Of the three processes,
@@ -683,6 +716,36 @@ Also, the $\Delta \phi(\mathrm{MET}, \mathrm{trkMET})$ requirement is dropped.
 
 In the 1-lepton channel, a single fully-selected isolated lepton as defined in
 Section~\ref{sec:muon-def} or Section~\ref{sec:ele-def} is required.
+CMS has triggers for isolated leptons,
+and the ones used in the analysis are listed in Table~\ref{tab:1-triggers}.
+\begin{table}
+  \centering
+  \caption[Triggers for the 1 lepton selections]{
+    Below are the trigger paths used for the 1 lepton selections
+    for all three years of Run 2 of the LHC.
+    Different triggers are used for the electron and muon channel,
+    and are labelled separately.
+  }
+  \begin{tabular}{|l|c|l|}
+    \hline
+    Year & Lepton & Trigger path(s) \\
+    \hline
+    2016 & $e$ & HLT\_Ele27\_WPTight\_Gsf \\
+    \hline
+    2016 & $\mu$ & HLT\_IsoMu24 \\
+    & & HLT\_IsoTkMu24 \\
+    \hline
+    2017 & $e$ & HLT\_Ele32\_WPTight\_Gsf\_L1DoubleEG \\
+    \hline
+    2017 & $\mu$ & HLT\_IsoMu27 \\
+    \hline
+    2018 & $e$ & HLT\_Ele32\_WPTight\_Gsf \\
+    \hline
+    2018 & $\mu$ & HLT\_IsoMu24 \\
+    \hline
+  \end{tabular}
+  \label{tab:1-triggers}
+\end{table}
 That lepton must point in a similar direction of the MET,
 satisfying $\Delta \phi(\ell, \mathrm{MET}) < 2.0$.
 The $p_T$ of the reconstructed $W$ boson, consisting of the vector sum of MET and the lepton,
@@ -695,7 +758,8 @@ The $b$-jets only need to satisfy $p_T > \SI{25}{GeV}$,
 and the di-jet system only needs $p_T > \SI{100}{GeV}$.
 Any events with $m_{jj} \ge \SI{250}{GeV}$ are not considered for any regions.
 The $b$-tagging requirement is the same as the 0-lepton channel.
-There is a slightly tighter cut on the di-jet direction of $\Delta\phi(\mathrm{MET}, jj) > 2.5$.
+There is a slightly tighter cut on the di-jet direction of
+$\Delta\phi(\mathrm{MET}, jj) > 2.5$.
 
 In the signal region, the additional cuts are again similar to the 0-lepton channel.
 The di-jet mass window is the same, as is the requirement of at most one additional jet.
@@ -713,6 +777,39 @@ and no requirement on the di-jet direction relative to MET.
 \subsection{2 Leptons} \label{sec:resolved-2}
 
 For the 2-lepton channel, two oppositely charged leptons with the same flavor are required.
+The triggers used that are designed to match this requirement are given
+in Table~\ref{tab:2-triggers}.
+\begin{table}
+  \centering
+  \caption[Triggers for the 2 lepton selections]{
+    Below are the trigger paths used for the 2 lepton selections
+    for all three years of Run 2 of the LHC.
+    Different triggers are used for the electron and muon channel,
+    and are labelled separately.
+  }
+  \begin{tabular}{|l|c|l|}
+    \hline
+    Year & Leptons & Trigger path(s) \\
+    \hline
+    2016 & $e^+e^-$ & HLT\_Ele23\_Ele12\_CaloIdL\_TrackIdL\_IsoVL\_DZ \\
+    \hline
+    2016 & $\mu^+\mu^-$ & HLT\_Mu17\_TrkIsoVVL\_Mu8\_TrkIsoVVL \\
+    & & HLT\_Mu17\_TrkIsoVVL\_TkMu8\_TrkIsoVVL \\
+    & & HLT\_Mu17\_TrkIsoVVL\_Mu8\_TrkIsoVVL\_DZ \\
+    & & HLT\_Mu17\_TrkIsoVVL\_TkMu8\_TrkIsoVVL\_DZ \\
+    \hline
+    2017 & $e^+e^-$ & HLT\_Ele23\_Ele12\_CaloIdL\_TrackIdL\_IsoVL\_DZ \\
+    \hline
+    2017 & $\mu^+\mu^-$ & HLT\_Mu17\_TrkIsoVVL\_Mu8\_TrkIsoVVL\_DZ\_Mass3p8 \\
+    & & HLT\_Mu17\_TrkIsoVVL\_TkMu8\_TrkIsoVVL\_DZ\_Mass8 \\
+    \hline
+    2018 & $e^+e^-$ & HLT\_Ele23\_Ele12\_CaloIdL\_TrackIdL\_IsoVL\_DZ \\
+    \hline
+    2018 & $\mu^+\mu^-$ & HLT\_Mu17\_TrkIsoVVL\_Mu8\_TrkIsoVVL\_DZ\_Mass3p8 \\
+    \hline
+  \end{tabular}
+  \label{tab:2-triggers}
+\end{table}
 They must have an invariant mass satisfying $\SI{75}{GeV} < m_{\ell\ell} < \SI{105}{GeV}$.
 This process is clean enough to relax the kinematic cuts on the selected $b$-jets
 even further than the relaxed cuts of the 1-lepton channel.
