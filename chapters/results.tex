@@ -108,8 +108,8 @@ $\sigma/\mu$ is fit as a function of $\alpha$.
   \includegraphics[width=0.23\linewidth]{figures/201019_2018/smearplot_2_jet1_adjusted_response.pdf}
   \includegraphics[width=0.23\linewidth]{figures/201019_2018/smearplot_3_jet1_adjusted_response.pdf}
   \includegraphics[width=0.23\linewidth]{figures/201019_2018/smearplot_4_jet1_adjusted_response.pdf} \\
-  \caption[Reponse to evaluate jet smearing]{
-    The histograms of reponse for each event are shown above.
+  \caption[Response to evaluate jet smearing]{
+    The histograms of response for each event are shown above.
     The top row shows 2016, the middle shows 2017, and the bottom row shows 2018 histograms.
   }
   \label{fig:jetsmear-responses}
@@ -124,7 +124,7 @@ The fit results are shown in Fig.~\ref{fig:jetsmear-fits}.
 Smearing is done by scaling difference between $p_{T,reco}$ and $p_{T,gen}$ by $b_{data}/b_{MC}$.
 This causes the post-smearing fits to agree at $\alpha = 0$.
 Uncertainties are extracted from the fit uncertainties of $b$ for data and MC.
-The resulting smearings are in Table~\ref{tab:jetsmear-res}.
+The resulting smearing values are in Table~\ref{tab:jetsmear-res}.
 
 \begin{figure}
   \centering
@@ -159,7 +159,7 @@ The resulting smearings are in Table~\ref{tab:jetsmear-res}.
 
 \section{Multivariate Discriminator}
 
-In each STXS bin, a mutlivariate discriminator is plotted which separates
+In each STXS bin, a multivariate discriminator is plotted which separates
 the signal events from background events.
 A Deep Neural Network (DNN) is trained for the resolved selection,
 and a Boosted Decision Tree (BDT) is trained for the boosted selection.
@@ -235,9 +235,9 @@ of individual events affected the training.
 
 The list of input variables for the BDT is the following:
 \begin{itemize}
-\item Soft-drop mass of the recontructed fat jet
+\item Soft-drop mass of the reconstructed fat jet
 \item Transverse momentum of the fat jet
-\item Transverse momentum of the recontructed vector boson
+\item Transverse momentum of the reconstructed vector boson
 \item Number of soft-track jets with $p_T > \SI{5}{GeV}$
 \item Double $b$-tagger output node for boosted jets
 \end{itemize}
@@ -263,7 +263,7 @@ the output of \texttt{combine} includes likelihood values at
 multiple signal strengths with and without variation of
 nuisance parameters from their most likely values.
 This allows separation of systematic and statistical uncertainties from the global fit.
-The \texttt{combine} tool also evaulated the impacts of each individual
+The \texttt{combine} tool also evaluated the impacts of each individual
 nuisance parameter on the likelihood by varying them individually.
 
 \subsection{$V\!Z$ Cross Check Analysis}

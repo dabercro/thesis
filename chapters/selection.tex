@@ -2,7 +2,7 @@
 
 This chapter gives the specific selection requirements on each physics object
 that allows us to count particle candidates and to reject or otherwise classify events,
-based on the decription of physics processes described thus far.
+based on the description of physics processes described thus far.
 First, objects are defined in terms of variables and particle candidates provided by the
 detector reconstruction algorithms.
 Then selection requirements based on these objects used to reject events entirely
@@ -172,7 +172,7 @@ Any jet within $\Delta R < 0.4$ from a pre-selected lepton is removed.
 
 To be considered for the study of decay products of the Higgs boson,
 jets must be within the inner tracker of the detector with $|\eta| < 2.5$.
-This allows pileup to be removed and for accurate vertexing of the consituents.
+This allows pileup to be removed and for accurate vertexing of the constituents.
 The jets must satisfy $p_T > \SI{25}{GeV}$ for the zero and one lepton signatures.
 The two lepton signature from $Z(\ell\ell)H$ is cleaner,
 and looser jet selection criteria of $p_T > \SI{20}{GeV}$ are applied to the jets.
@@ -235,14 +235,14 @@ The following variables are used as inputs to the regression:
   as well as the secondary vertex's distance from the collision point and
   associated uncertainties
 \item the fractions energy in the jet due to
-  charged and neutral hadrons and electromagnetic consistuents
-\item the highest $p_T$ of charged hadron consituents
+  charged and neutral hadrons and electromagnetic constituents
+\item the highest $p_T$ of charged hadron constituents
 \item the energy fraction contained in five concentric rings around the jet center
   binned by $\Delta R \in [0, 0.05, 0.1, 0.2, 0.3, 0.4]$
 \item number of PF candidates in a jet
 \item energy sharing computed by
   \[
-  \frac{\sqrt{\sum_i p_{T,i}^2}}{\sum_i p_{T,i}}}
+  \frac{\sqrt{\sum_i p_{T,i}^2}}{\sum_i p_{T,i}}
   \]
   where $i$ runs over the jet constituents
 \end{itemize}
@@ -259,7 +259,7 @@ These highly boosted events are interesting for the differential cross section m
 and they are more enriched with the signal associated production process than
 events with lower $p_T$ intermediate particles.
 To not loose the events, single jets are analyzed for evidence of containing two $b$ hadrons.
-In order to handle the transistion from resolved jets to boosted single jets,
+In order to handle the transition from resolved jets to boosted single jets,
 larger jets, labelled fat jets, are used.
 A second collection of jets is made from the same set of PF candidates that are
 clustered to create the jets described previously.
@@ -313,7 +313,7 @@ instrumental failures in purely hadronic environments.
 
 \subsection{Soft Hadronic Activity}
 
-In signal $VH$ events, hadronic activity outside of the $b\bar{b}$ decay of the Higgs
+In signal $V\!H$ events, hadronic activity outside of the $b\bar{b}$ decay of the Higgs
 is expected to be low.
 This hadronic activity is defined by considering the
 additional charged PF tracks coming from the primary vertex.
@@ -340,7 +340,7 @@ In the two-lepton region, the $Z$ boson's decay products are observed directly, 
 the $Z$ boson momentum can be reconstructed precisely.
 A kinematic fit is performed to constrain the momenta of the two leptons by requiring their
 combined mass to match the $Z$ boson mass.
-After this constraint is applied, the tranvserve momentum of the dijet system,
+After this constraint is applied, the transverse momentum of the dijet system,
 along with ISR jets, is balanced with the transverse momentum of the dilepton system.
 The fit is performed by minimizing the chi-squared of the kinematic system that
 meets these constraints.
@@ -429,7 +429,7 @@ which allows more direct comparison between simulation of these processes and co
 When fitting for the signal strength, the background process yields are simultaneously fit
 from these control regions.
 
-\subsection{Indentification of Background Processes}
+\subsection{Identification of Background Processes}
 
 The final state for the two lepton decay in Figure~\ref{fig:two-lep-diagram}
 contains two oppositely-charged, same flavor leptons and two $b$-tagged jets.
@@ -521,7 +521,7 @@ contain a hard neutrino presence,
 so it is most often caused when a single $W$ decays leptonically with the lepton
 falling outside of the detector acceptance.
 For both of these channels, di-boson, QCD, and single top backgrounds can also contribute,
-but not signficantly enough to require a tight constraint on their yields.
+but not significantly enough to require a tight constraint on their yields.
 
 \subsection{Goals for Control Regions}
 
@@ -908,8 +908,8 @@ $\Delta \phi(\mathrm{MET}, j) > 0.5$ for all jets with $p_T > \SI{30}{GeV}$ is u
 In the signal region, jets must have a score of 0.8 or higher in the
 bbVsLight output node of the DeepAK8 tagger.
 They must also have a soft drop mass in the range of $90 < m_\mathrm{SD} < \SI{150}{GeV}$.
-No additional jets outside of the fatjet are allowed in the event.
-The control regions are the same as for the resovled analysis:
+No additional jets outside of the fat jet are allowed in the event.
+The control regions are the same as for the resolved analysis:
 $Z$ + heavy flavor, $Z$ + light flavor, and $t\bar{t}$.
 For the $Z$ + heavy flavor control region,
 the mass cut is changed to instead veto the Higgs mass window.
@@ -944,7 +944,7 @@ An important note is that each signal and control region described in this chapt
 must be orthogonal to all other regions.
 To prevent any statistical bias in the analysis,
 both simulated and measured events must not be double counted.
-It is easy to make orthagonal selections within resolved or boosted categories
+It is easy to make orthogonal selections within resolved or boosted categories
 by counting the number of leptons, comparing their flavor, and reversing other selections
 to go from signal to control regions.
 However, when making selections for the resolved and boosted channels,
