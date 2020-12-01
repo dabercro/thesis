@@ -78,11 +78,12 @@
   arrow/.style={draw,thick,->,>=stealth}
 }
 
+\usepackage{tabularx}
+\usepackage[export]{adjustbox}
+
 \makeatletter
 \g@addto@macro\bfseries{\boldmath}
 \makeatother
-
-\usepackage{tabularx}
 
 %% This bit allows you to either specify only the files which you wish to
 %% process, or `all' to process all files which you \include.
@@ -109,6 +110,7 @@
 \include{chapters/theory}
 \include{chapters/detector}
 \include{chapters/selection}
+\include{chapters/corrections}
 \include{chapters/results}
 \include{chapters/conclusion}
 \appendix

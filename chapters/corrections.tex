@@ -1,0 +1,246 @@
+\chapter{Corrections and Uncertainties}
+
+Despite efforts to simulate LHC collisions as accurately as possible,
+a number of differences in the distributions predicted by MC and present in data arise.
+This is a result of not being able to predict the beam conditions exactly
+and not being able to predict the calibration accurately.
+This is made more difficult since the detector degrades in its high radiation environment.
+Corrections are made to the simulation by re-weighting based on the pileup,
+efficiencies of particle identification,
+and by scaling the predicted energies based on particle type.
+
+\section{Efficiency Scale Factors}
+
+The identification of particles based on working points happen at different rates
+between simulation and collected data.
+These efficiencies are measured separately in data and Monte Carlo.
+The difference is accounted for by a scale factor,
+which is often calculated as a function of particle energy and location within the detector.
+Since this analysis relies on counting leptons for its categorization,
+selection efficiency for both muons and electrons must be measured.
+A scale factor for the MET trigger is also derived due to
+the 0-lepton categories' reliance on the trigger.
+
+\subsection{Muons}
+
+To remove fake muons from events, muons are selected in three ways.
+Muon identification cuts are applied, isolation cuts are applied,
+and certain triggers are required.
+These three things each behave differently in MC and data.
+For each of these, a separate efficiency is derived in MC and data,
+and then a total scale factor is derived via the following formula.
+\begin{gather}
+  \epsilon^\mu = \epsilon^\mu_\mathrm{ID} \times \epsilon^\mu_\mathrm{ISO|ID} \times \epsilon^\mu_\mathrm{Trig|ISO}
+\end{gather}
+The scale factor for muon ID, which is tight for positively counting muons,
+and loose for counting muons to veto, is $\epsilon^\mu_\mathrm{ID}$.
+Passing the isolation cut, given the ID is scaled by $\epsilon^\mu_\mathrm{ISO|ID}$,
+and the scale factor for the trigger, after passing the isolation cut is
+$\epsilon^\mu_\mathrm{Trig|ISO}$.
+
+These are each separately measured via the Tag and Probe method.
+A single muon, the tag, is selected, and for events with a second, oppositely-charged muon
+that reconstructs the $Z$ boson resonance with the first,
+the second probe muon is checked for identification efficiency.
+A Breit-Wigner convoluted with a Gaussian and a falling combinatoric background
+is fit to the peak to estimate the contribution
+of the $Z$ boson resonance in both the passing and failing probes.
+A scale factor is then applied to MC to match the data efficiency.
+Figure~\ref{fig:muon-tag-probe} shows one of these measurements of efficiency in Data.
+\begin{figure}
+  \centering
+  \adjincludegraphics[width=0.7\linewidth,trim={0 0 {0.5\width} {0.5\height}},clip]{figures/fit1.png} \\
+  \adjincludegraphics[width=0.5\linewidth,trim={0 {0.5\height} {0.5\width} 0},clip]{figures/fit1.png}~
+  \adjincludegraphics[width=0.5\linewidth,trim={{0.5\width} {0.5\height} 0 0},clip]{figures/fit1.png}
+  \caption[Tag and probe fits]{
+    Example tag and probe fits are shown above.
+    The top plot shows the di-lepton mass fit for all tagged events.
+    The lower left plot shows the events where the probe passed muon identification,
+    and the lower right plot show the events when the probe failed.
+    }
+  \label{fig:muon-tag-probe}
+\end{figure}
+Each of the efficiency measurements and scale factors are binned
+in muon $p_T$ and $\eta$.
+The $p_T$ bins are $[20, 25, 30, 40, 50, 60, \infty)$ in GeV.
+Bins in $|\eta|$ are delimited at $[0, 0.9, 1.2, 2.1, 2.4]$.
+
+The uncertainties from the scale factors are also combined in the final analysis.
+Loosely identified muons have an average scale factor of $0.998\pm0.002$,
+and tightly identified muons have an average scale factor of $0.98\pm0.005$
+\cite{CMS-DP-2019-022}.
+In general, the scale factors are half a percent or one percent lower, respectively,
+at values of $|\eta| > 2.0$, and flat across $p_T$ bins.
+
+\subsection{Electrons}
+
+The electron scale factors are measured in a similar manner as the muon scale factors,
+using the tag and probe method.
+The relative difficulty in reconstructing electrons, which are contained in the ECAL,
+compared to muons leaving tracks through the muon chambers
+means that a reconstruction scale factor is also factored into the full scale factor.
+\begin{gather}
+  \epsilon^e = \epsilon^e_\mathrm{RECO} \times \epsilon^e_\mathrm{ISO + ID|RECO} \times \epsilon^e_\mathrm{Trigger|ISO + ID + RECO}
+\end{gather}
+The binning for the electron scale factors is the same as the binning
+for the muon scale factors.
+The scale factor is around $1.0 \pm 0.1$ for most of the bins.
+
+\subsection{MET Trigger Scale Factors}
+
+The MET trigger efficiencies are measured in events with a single electron and large MET.
+This allows tagging events with the single $e$ triggers, and selecting mostly
+events from $W$+jets and $t\bar{t}$ events.
+The events are additionally required to be similar to the events of interest in the analysis.
+There must be two jets with $p_T > \SI{20}{GeV}$ and $|\eta| < 2.5$,
+and the events must pass the MET filters.
+The event must also not be biased by the L1 MET triggers activated by the calorimeters,
+which is acheived by requiring that the $\Delta\phi$ between the electron and MET is
+less than 2.5.
+The nominal values for the scale factors are derived by measuring
+the MET trigger efficiency in data and scaling the trigger efficiency in
+the $t\bar{t}$ Monte Carlo sample to match.
+Uncertainties are derived by repeating the measurement using a $W$+jets sample.
+The scale factors for the nominal measurement and the $W$+jets sample are shown in
+Figure~\ref{fig:met-sf}.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/METSF2016.pdf}~
+  \includegraphics[width=0.5\linewidth]{figures/METSF2017.pdf}
+  \includegraphics[width=0.5\linewidth]{figures/METSF2018.png}
+  \caption[MET trigger scale factors]{
+    The MET scale factors for two varying simulations are given.
+    The $t\bar{t}$ sample is used for the nominal scale factor,
+    and the $W$+jets is used to estimate systematic uncertainties.
+    The top left plot shows the measurements for 2016,
+    the top right plot shows 2017,
+    and the bottom plot shows the MET scale factors for 2018.
+    Each scale factor is a function of the minimum MET or missing hadronic energy.
+  }
+  \label{fig:met-sf}
+\end{figure}
+
+\section{$b$-Jet Energy Correction}
+
+This analysis does depend in particular on predictions of $b$-jet energies,
+which are not corrected centrally.
+Even when distributions of individual variables agree between MC and data,
+correlations are often different.
+These correlations are also important in the evaluation of a DNN.
+The DNN used to estimate the energy of $b$-jets therefore has differing performance
+in MC and data.
+In particular, it is better at estimating the true energy of a $b$-jet in MC.
+The energies evaluated in MC must be smeared in order to accurately simulate
+the resolution of jets in data after they have been modified by the DNN regression.
+
+One way to measure jet energy resolution is to consider an event
+where a jet is recoiling off of a Z boson that decays into leptons.
+In principle, the $Z$ boson's transverse momentum is balanced with the
+jet's transverse momentum.
+Measurements of lepton energies in the CMS detector is relatively precise,
+so the ratio of the reconstructed jet's
+$p_T$ to the $Z$ boson's $p_T$ allows measurement of the jet energy resolution.
+Ideally, this measurement would be done with an collision resulting in one $Z$ boson decay,
+and one jet.
+However, this is an infrequent occurrence.
+Instead, events with two jets are selected, with one jet having relatively low $p_T$.
+A fit is performed to estimate resolution characteristics
+where the second jet would have $p_T = \SI{0}{GeV}$.
+
+These events are selected using the following requirements:
+
+\begin{itemize}
+\item Exactly two muons or two electrons must pass the selection criteria for the
+  di-leptons channels described in Section~\ref{sec:resolved-2}.
+\item The two selected leptons must be oppositely charged.
+\item The di-lepton kinematics must satisfy \\ $p_{T,\ell\ell} > \SI{100}{GeV}$ and
+  $\SI{71}{GeV} < m_{\ell\ell} < \SI{111}{GeV}$.
+\item Exactly two jets must pass the pre-selection described in Section~\ref{sec:resolved-2}.
+\item The leading jet must also satisfy $\Delta\phi(j, \ell\ell) > 2.8$
+\item The ratio between the sub-leading jet $p_T$ and
+  the di-lepton $p_T$ must be less than 0.3.
+\item The leading jet must pass the tight working point for the $b$-tagger,
+  as defined for each year in Table~\ref{tab:deepcsv}.
+\end{itemize}
+
+The selected events are divided into four bins of $\alpha = p_{T,j2}/p_{T, \ell\ell}$
+with bounds $(0, 0.155, 0.185, 0.23, 0.3)$.
+The jet response ($p_{T, j1}/p_{T, \ell\ell + j2}$) is plotted in each bin,
+with uncertainties from renormalization and refactorization scale weights
+and parton shower weights.
+These histograms of jet response are shown in Fig.~\ref{fig:jetsmear-responses}.
+From each plot, the mean ($\mu$) and the standard deviation ($\sigma$) are extracted.
+$\sigma/\mu$ is fit as a function of $\alpha$.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.23\linewidth]{figures/201019_2016/smearplot_1_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2016/smearplot_2_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2016/smearplot_3_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2016/smearplot_4_jet1_adjusted_response.pdf} \\
+  \includegraphics[width=0.23\linewidth]{figures/201019_2017/smearplot_1_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2017/smearplot_2_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2017/smearplot_3_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2017/smearplot_4_jet1_adjusted_response.pdf} \\
+  \includegraphics[width=0.23\linewidth]{figures/201019_2018/smearplot_1_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2018/smearplot_2_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2018/smearplot_3_jet1_adjusted_response.pdf}
+  \includegraphics[width=0.23\linewidth]{figures/201019_2018/smearplot_4_jet1_adjusted_response.pdf} \\
+  \caption[Response to evaluate jet smearing]{
+    The histograms of response for each event are shown above.
+    The top row shows 2016, the middle shows 2017, and the bottom row shows 2018 histograms.
+  }
+  \label{fig:jetsmear-responses}
+\end{figure}
+
+\begin{gather}
+  f(\alpha) = (m \times \alpha) \oplus b \times (1 + c_k \times \alpha)
+\end{gather}
+
+$c_k$ is fixed by a linear fit to the MC's intrinsic jet resolution
+($p_{T, reco}/p_{T, gen}$) over $\alpha$ as $c_k = m_0/q_0$.
+The fit results are shown in Fig.~\ref{fig:jetsmear-fits}.
+Smearing is done by scaling difference between
+$p_{T,reco}$ and $p_{T,gen}$ by $b_{data}/b_{MC}$.
+This causes the post-smearing fits to agree at $\alpha = 0$.
+Uncertainties are extracted from the fit uncertainties of $b$ for data and MC.
+The resulting smearing values are in Table~\ref{tab:jetsmear-res}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.3\linewidth]{figures/201015_smear_201015_2016_tight_divmean/resolution_jet1_adjusted_response_smear_0.pdf}
+  \includegraphics[width=0.3\linewidth]{figures/201012_smear_201012_2017_tight_divmean/resolution_jet1_adjusted_response_smear_0.pdf}
+  \includegraphics[width=0.3\linewidth]{figures/201004_smear_201002_2018_divmean/resolution_jet1_adjusted_response_smear_0.pdf}
+  \caption[Resolution fits for jet smearing]{
+    The fits to Data, MC, and intrinsic resolutions are shown.
+    From left to right are the fits for 2016, 2017, and 2018.
+  }
+  \label{fig:jetsmear-fits}
+\end{figure}
+
+\begin{table}
+  \centering
+  \caption[$b$-jet energy smearing parameters]{
+    The extracted smearing needed for each year of data as a percent of the jet's $p_T$.
+  }
+  \begin{tabular}{c|c|c}
+    \hline
+    Year & Scaling & Smearing \\
+    \hline
+    2016 & $0.998 \pm 0.019$ & $0.017 \pm 0.060$ \\
+    2017 & $1.020 \pm 0.023$ & $0.088 \pm 0.071$ \\
+    2018 & $0.985 \pm 0.019$ & $0.080 \pm 0.073$ \\
+    \hline
+  \end{tabular}
+  \label{tab:jetsmear-res}
+\end{table}
+
+\section{Theoretical Corrections}
+
+\subsection{$V$ + Jets Reweighting}
+
+\subsection{Vector Boson Transverse Momentum}
+
+\subsection{Electroweak Corrections to Signal Process}
+
+\section{Theoretical Uncertainties}
