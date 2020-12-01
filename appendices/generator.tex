@@ -1,2 +1,241 @@
-\chapter{Generator Parameters} \label{app:generator}
+\chapter{Simulation Details} \label{app:generator}
 
+The datasets use for each year are given in
+Table~\ref{tab:mc_2016}, Table~\ref{tab:mc_2017}, and Table~\ref{tab:mc_2018}.
+
+\begin{table}
+\begin{center} 
+\resizebox{\textwidth}{!}{ 
+\begin{tabular}{|l|c|c|c|c|c|c|} 
+\hline
+Sample Name & Xsec (pb) & KFactor & Total Events &  Weight \\ 
+\hline
+DYBJetsToLL\_M-50\_Zpt-100to200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 3.086 & 1.23 & 8.38e+06 & 1.63e-02 \\
+DYBJetsToLL\_M-50\_Zpt-200toInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 0.3167 & 1.23 & 1.28e+06 & 1.10e-02 \\
+DYJetsToLL\_BGenFilter\_Zpt-100to200\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 3.414 & 1.23 & 2.67e+05 & {\color{orange}5.65e-01} \\
+DYJetsToLL\_BGenFilter\_Zpt-200toInf\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 0.5084 & 1.23 & 1.29e+05 & 1.75e-01 \\
+DYJetsToLL\_M-50\_HT-100to200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 147.3 & 1.23 & 9.37e+06 & {\color{orange}6.96e-01} \\
+DYJetsToLL\_M-50\_HT-1200to2500\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 0.1512 & 1.23 & 5.96e+05 & 1.12e-02 \\
+DYJetsToLL\_M-50\_HT-200to400\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 41.04 & 1.23 & 8.65e+06 & 2.10e-01 \\
+DYJetsToLL\_M-50\_HT-2500toInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 0.003659 & 1.23 & 3.99e+05 & 4.06e-04 \\
+DYJetsToLL\_M-50\_HT-400to600\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 5.676 & 1.23 & 7.66e+06 & 3.28e-02 \\
+DYJetsToLL\_M-50\_HT-600to800\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 1.359 & 1.23 & 8.29e+06 & 7.26e-03 \\
+DYJetsToLL\_M-50\_HT-800to1200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 0.623 & 1.23 & 2.67e+06 & 1.03e-02 \\
+DYJetsToLL\_M-50\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 4954.0 & 1.0 & 1.46e+08 & {\color{orange}1.22e+00} \\
+QCD\_HT1000to1500\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 1208.0 & 1.0 & 1.52e+07 & {\color{red}2.86e+00} \\
+QCD\_HT100to200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 27940000.0 & 1.0 & 8.23e+07 & {\color{red}1.22e+04} \\
+QCD\_HT1500to2000\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 120.4 & 1.0 & 1.18e+07 & {\color{orange}3.66e-01} \\
+QCD\_HT2000toInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 25.27 & 1.0 & 5.97e+06 & 1.52e-01 \\
+QCD\_HT200to300\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 1712000.0 & 1.0 & 5.76e+07 & {\color{red}1.07e+03} \\
+QCD\_HT300to500\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 345900.0 & 1.0 & 5.46e+07 & {\color{red}2.28e+02} \\
+QCD\_HT500to700\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 31630.0 & 1.0 & 6.26e+07 & {\color{red}1.82e+01} \\
+QCD\_HT700to1000\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 6828.0 & 1.0 & 3.72e+07 & {\color{red}6.61e+00} \\
+ST\_t-channel\_antitop\_4f\_inclusiveDecays\_13TeV-powhegV2-madspin-pythia8\_TuneCUETP8M1/ & 80.95 & 1.0 & 3.88e+07 & 7.51e-02 \\
+TT\_TuneCUETP8M2T4\_13TeV-powheg-pythia8/ & 831.76 & 1.0 & 7.69e+07 & {\color{orange}3.89e-01} \\
+ST\_s-channel\_4f\_InclusiveDecays\_13TeV-amcatnlo-pythia8/ & 3.36 & 1.0 & 2.95e+07 & 4.10e-03 \\
+ST\_t-channel\_top\_4f\_inclusiveDecays\_13TeV-powhegV2-madspin-pythia8\_TuneCUETP8M1/ & 136.02 & 1.0 & 6.71e+07 & 7.30e-02 \\
+ST\_tW\_top\_5f\_inclusiveDecays\_13TeV-powheg-pythia8\_TuneCUETP8M1/ & 35.6 & 1.0 & 6.95e+06 & 1.84e-01 \\
+ST\_tW\_antitop\_5f\_inclusiveDecays\_13TeV-powheg-pythia8\_TuneCUETP8M1/ & 35.6 & 1.0 & 6.93e+06 & 1.85e-01 \\
+WBJetsToLNu\_Wpt-100to200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 5.969 & 1.22 & 3.98e+06 & 6.59e-02 \\
+WBJetsToLNu\_Wpt-200toInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 0.8744 & 1.22 & 5.43e+05 & 7.07e-02 \\
+WJetsToLNu\_HT-100To200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 1349.0 & 1.22 & 7.60e+07 & {\color{orange}7.80e-01} \\
+WJetsToLNu\_HT-1200To2500\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 1.329 & 1.22 & 3.17e+06 & 1.84e-02 \\
+WJetsToLNu\_HT-200To400\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 359.3 & 1.22 & 3.90e+07 & {\color{orange}4.05e-01} \\
+WJetsToLNu\_HT-2500ToInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 0.03216 & 1.22 & 2.64e+06 & 5.35e-04 \\
+WJetsToLNu\_HT-400To600\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 48.86 & 1.22 & 6.07e+06 & {\color{orange}3.54e-01} \\
+WJetsToLNu\_HT-600To800\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 12.03 & 1.22 & 1.87e+07 & 2.83e-02 \\
+WJetsToLNu\_HT-70To100\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 1352.0 & 1.22 & 3.26e+07 & {\color{red}1.82e+00} \\
+WJetsToLNu\_HT-800To1200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 5.482 & 1.22 & 6.29e+06 & 3.83e-02 \\
+WJetsToLNu\_BGenFilter\_Wpt-100to200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 26.89 & 1.22 & 4.19e+05 & {\color{red}2.82e+00} \\
+WJetsToLNu\_BGenFilter\_Wpt-200toInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 3.786 & 1.22 & 2.15e+05 & {\color{orange}7.72e-01} \\
+WJetsToLNu\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8/ & 61526.7 & 1.0 & 8.69e+07 & {\color{red}2.55e+01} \\
+WW\_TuneCUETP8M1\_13TeV-pythia8/ & 117.6 & 1.0 & 7.98e+06 & {\color{orange}5.30e-01} \\
+WWTo1L1Nu2Q\_13TeV\_amcatnloFXFX\_madspin\_pythia8/ & 51.87 & 1.0 & 4.41e+08 & 4.23e-03 \\
+WZ\_TuneCUETP8M1\_13TeV-pythia8/ & 48.1 & 1.0 & 4.00e+06 & {\color{orange}4.33e-01} \\
+WZTo1L1Nu2Q\_13TeV\_amcatnloFXFX\_madspin\_pythia8/ & 10.875 & 1.0 & 1.94e+08 & 2.01e-03 \\
+WminusH\_HToBB\_WToLNu\_M125\_13TeV\_powheg\_pythia8/ & 0.10899 & 1.0 & 4.21e+05 & 9.32e-03 \\
+WplusH\_HToBB\_WToLNu\_M125\_13TeV\_powheg\_pythia8/ & 0.17202 & 1.0 & 6.90e+05 & 8.97e-03 \\
+ZBJetsToNuNu\_Zpt-100to200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8 & 5.93 & 1.23 & 6.79e+06 & 3.87e-02 \\
+ZBJetsToNuNu\_Zpt-200toInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8 & 0.6075 & 1.23 & 4.44e+05 & 6.06e-02 \\
+ZH\_HToBB\_ZToLL\_M125\_13TeV\_powheg\_pythia8/ & 0.04718 & 1.0 & 2.24e+05 & 7.59e-03 \\
+ZH\_HToBB\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/ & 0.09322 & 1.0 & 4.35e+05 & 7.72e-03 \\
+ZJetsToNuNu\_BGenFilter\_Zpt-100to200\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8 & 2.162 & 1.23 & 1.50e+05 & {\color{orange}6.37e-01} \\
+ZJetsToNuNu\_BGenFilter\_Zpt-200toInf\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8 & 0.3151 & 1.23 & 9.78e+04 & 1.43e-01 \\
+ZJetsToNuNu\_HT-100To200\_13TeV-madgraph & 280.59 & 1.23 & 2.42e+07 & {\color{orange}5.12e-01} \\
+ZJetsToNuNu\_HT-1200To2500\_13TeV-madgraph & 0.28629 & 1.23 & 5.13e+05 & 2.47e-02 \\
+ZJetsToNuNu\_HT-200To400\_13TeV-madgraph & 77.79 & 1.23 & 2.48e+07 & 1.39e-01 \\
+ZJetsToNuNu\_HT-2500ToInf\_13TeV-madgraph & 0.006912 & 1.23 & 4.05e+05 & 7.56e-04 \\
+ZJetsToNuNu\_HT-400To600\_13TeV-madgraph & 10.755 & 1.23 & 8.84e+06 & 5.38e-02 \\
+ZJetsToNuNu\_HT-600To800\_13TeV-madgraph & 2.5644 & 1.23 & 5.77e+06 & 1.97e-02 \\
+ZJetsToNuNu\_HT-800To1200\_13TeV-madgraph & 1.1802 & 1.23 & 2.17e+06 & 2.41e-02 \\
+ZZ\_TuneCUETP8M1\_13TeV-pythia8/ & 17.2 & 1.0 & 1.69e+06 & {\color{orange}3.66e-01} \\
+ZZTo2L2Q\_13TeV\_amcatnloFXFX\_madspin\_pythia8/ & 2.387 & 1.0 & 7.34e+07 & 1.17e-03 \\
+ZZTo2Q2Nu\_13TeV\_amcatnloFXFX\_madspin\_pythia8/ & 4.726 & 1.0 & 1.99e+08 & 8.55e-04 \\
+ggZH\_HToBB\_ZToLL\_M125\_13TeV\_powheg\_pythia8/ & 0.0072 & 1.0 & 3.00e+06 & 8.65e-05 \\
+ggZH\_HToBB\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/ & 0.01437 & 1.0 & 3.00e+06 & 1.72e-04 \\
+\hline 
+\end{tabular}} 
+\end{center} 
+\caption[2016 MC samples]{ 
+  The MC datasets used for 2016 are listed above.
+}
+\label{tab:mc_2016} 
+\end{table}
+
+\begin{table}
+\begin{center} 
+\resizebox{\textwidth}{!}{ 
+\begin{tabular}{|l|c|c|c|c|c|c|} 
+\hline
+Sample Name & Xsec (pb) & KFactor & Total Events &  Weight \\ 
+\hline
+DYBJetsToLL\_M-50\_Zpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 3.224 & 1.23 & 2.72e+06 & 6.09e-02 \\
+DYBJetsToLL\_M-50\_Zpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 0.3298 & 1.23 & 2.40e+05 & 7.05e-02 \\
+DYJetsToLL\_BGenFilter\_Zpt-100to200\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 2.671 & 1.23 & 1.91e+06 & 7.16e-02 \\
+DYJetsToLL\_BGenFilter\_Zpt-200toInf\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 0.3934 & 1.23 & 3.21e+05 & 6.28e-02 \\
+DYJetsToLL\_M-50\_HT-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 161.1 & 1.23 & 1.51e+07 & {\color{orange}5.45e-01} \\
+DYJetsToLL\_M-50\_HT-1200to2500\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.1933 & 1.23 & 6.25e+05 & 1.59e-02 \\
+DYJetsToLL\_M-50\_HT-200to400\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 48.66 & 1.23 & 9.74e+06 & 2.56e-01 \\
+DYJetsToLL\_M-50\_HT-2500toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.003468 & 1.23 & 4.19e+05 & 4.24e-04 \\
+DYJetsToLL\_M-50\_HT-400to600\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 6.968 & 1.23 & 7.05e+06 & 5.07e-02 \\
+DYJetsToLL\_M-50\_HT-600to800\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1.743 & 1.23 & 6.22e+06 & 1.44e-02 \\
+DYJetsToLL\_M-50\_HT-800to1200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.8052 & 1.23 & 2.10e+06 & 1.96e-02 \\
+DYJetsToLL\_M-4to50\_HT-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 204.0 & 1.23 & 9.88e+06 & {\color{orange}1.06e+00} \\
+DYJetsToLL\_M-4to50\_HT-200to400\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 54.39 & 1.23 & 4.02e+06 & {\color{orange}6.94e-01} \\
+DYJetsToLL\_M-4to50\_HT-400to600\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 5.697 & 1.23 & 2.98e+06 & 9.81e-02 \\
+DYJetsToLL\_M-4to50\_HT-600toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1.85 & 1.23 & 2.93e+06 & 3.24e-02 \\
+DYJetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 5343.0 & 1.23 & 9.70e+07 & {\color{red}2.83e+00} \\
+QCD\_HT1000to1500\_TuneCP5\_13TeV-madgraph-pythia8/ & 1088.0 & 1.0 & 1.66e+07 & {\color{red}2.73e+00} \\
+QCD\_HT1500to2000\_TuneCP5\_13TeV-madgraph-pythia8/ & 99.11 & 1.0 & 1.16e+07 & {\color{orange}3.55e-01} \\
+QCD\_HT2000toInf\_TuneCP5\_13TeV-madgraph-pythia8/ & 20.23 & 1.0 & 5.94e+06 & 1.42e-01 \\
+QCD\_HT200to300\_TuneCP5\_13TeV-madgraph-pythia8/ & 1547000.0 & 1.0 & 5.94e+07 & {\color{red}1.09e+03} \\
+QCD\_HT300to500\_TuneCP5\_13TeV-madgraph-pythia8/ & 322600.0 & 1.0 & 6.02e+07 & {\color{red}2.23e+02} \\
+QCD\_HT500to700\_TuneCP5\_13TeV-madgraph-pythia8/ & 29980.0 & 1.0 & 5.62e+07 & {\color{red}2.22e+01} \\
+QCD\_HT700to1000\_TuneCP5\_13TeV-madgraph-pythia8/ & 6334.0 & 1.0 & 7.53e+07 & {\color{red}3.51e+00} \\
+ST\_s-channel\_4f\_leptonDecays\_TuneCP5\_PSweights\_13TeV-amcatnlo-pythia8/ & 3.74 & 1.0 & 9.91e+06 & 1.57e-02 \\
+ST\_t-channel\_antitop\_4f\_InclusiveDecays\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 80.95 & 1.0 & 6.26e+07 & 5.39e-02 \\
+ST\_t-channel\_top\_4f\_InclusiveDecays\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 136.02 & 1.0 & 1.75e+08 & 3.23e-02 \\
+ST\_tW\_antitop\_5f\_inclusiveDecays\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 35.85 & 1.0 & 7.75e+06 & 1.93e-01 \\
+ST\_tW\_top\_5f\_inclusiveDecays\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 35.85 & 1.0 & 7.95e+06 & 1.88e-01 \\
+TTToHadronic\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 377.96 & 1.0 & 1.30e+08 & 1.21e-01 \\
+TTTo2L2Nu\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 88.29 & 1.0 & 3.78e+07 & 9.73e-02 \\
+TTToSemiLeptonic\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 365.34 & 1.0 & 8.41e+07 & 1.81e-01 \\
+WBJetsToLNu\_Wpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 5.542 & 1.21 & 4.15e+06 & 6.74e-02 \\
+WBJetsToLNu\_Wpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 0.801 & 1.21 & 7.72e+05 & 5.24e-02 \\
+WJetsToLNu\_HT-100To200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1395.0 & 1.21 & 3.45e+07 & {\color{red}2.04e+00} \\
+WJetsToLNu\_HT-1200To2500\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1.074 & 1.21 & 1.24e+07 & 4.36e-03 \\
+WJetsToLNu\_HT-200To400\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 407.9 & 1.21 & 2.13e+07 & {\color{orange}9.69e-01} \\
+WJetsToLNu\_HT-2500ToInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.03216 & 1.21 & 1.28e+07 & 1.26e-04 \\
+WJetsToLNu\_HT-400To600\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 57.48 & 1.21 & 5.63e+06 & {\color{orange}5.15e-01} \\
+WJetsToLNu\_HT-600To800\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 12.87 & 1.21 & 1.88e+07 & 3.45e-02 \\
+WJetsToLNu\_HT-800To1200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 5.366 & 1.21 & 8.15e+06 & 3.32e-02 \\
+WJetsToLNu\_BGenFilter\_Wpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 20.56 & 1.21 & 1.34e+07 & 7.76e-02 \\
+WJetsToLNu\_BGenFilter\_Wpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 2.936 & 1.21 & 2.48e+06 & 5.96e-02 \\
+WJetsToLNu\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 52940.0 & 1.0 & 7.77e+07 & {\color{red}2.84e+01} \\
+WW\_TuneCP5\_13TeV-pythia8/ & 115.3 & 1.0 & 7.71e+06 & {\color{orange}6.24e-01} \\
+WWTo1L1Nu2Q\_13TeV\_amcatnloFXFX\_madspin\_pythia8/ & 50.858 & 1.0 & 5.05e+06 & {\color{orange}4.20e-01} \\
+WWToLNuQQ\_NNPDF31\_TuneCP5\_PSweights\_13TeV-powheg-pythia8/ & 50.858 & 1.0 & 8.79e+06 & 2.41e-01 \\
+WZ\_TuneCP5\_13TeV-pythia8/ & 48.1 & 1.0 & 3.93e+06 & {\color{orange}5.11e-01} \\
+WminusH\_HToBB\_WToLNu\_M125\_13TeV\_powheg\_pythia8/ & 0.10899 & 1.0 & 2.38e+06 & 1.91e-03 \\
+WplusH\_HToBB\_WToLNu\_M125\_13TeV\_powheg\_pythia8/ & 0.17202 & 1.0 & 4.84e+06 & 1.48e-03 \\
+ZBJetsToNuNu\_Zpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 6.209 & 1.23 & 4.98e+06 & 6.40e-02 \\
+ZBJetsToNuNu\_Zpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 0.6286 & 1.23 & 5.14e+05 & 6.27e-02 \\
+ZH\_HToBB\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/ & 0.09322 & 1.0 & 2.58e+06 & 1.51e-03 \\
+ZJetsToNuNu\_BGenFilter\_Zpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 1.689 & 1.23 & 1.37e+06 & 6.31e-02 \\
+ZJetsToNuNu\_BGenFilter\_Zpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8\_newgridpack/ & 0.2476 & 1.23 & 1.89e+05 & 6.73e-02 \\
+ZJetsToNuNu\_HT-100To200\_13TeV-madgraph/ & 302.8 & 1.23 & 2.27e+07 & {\color{orange}6.83e-01} \\
+ZJetsToNuNu\_HT-200To400\_13TeV-madgraph/ & 92.59 & 1.23 & 2.17e+07 & 2.19e-01 \\
+ZJetsToNuNu\_HT-2500ToInf\_13TeV-madgraph/ & 0.005146 & 1.23 & 6.73e+03 & 3.92e-02 \\
+ZJetsToNuNu\_HT-400To600\_13TeV-madgraph/ & 13.18 & 1.23 & 1.83e+07 & 3.70e-02 \\
+ZJetsToNuNu\_HT-600To800\_13TeV-madgraph/ & 3.257 & 1.23 & 1.13e+07 & 1.47e-02 \\
+ZJetsToNuNu\_HT-800To1200\_13TeV-madgraph/ & 1.496 & 1.23 & 2.06e+06 & 3.73e-02 \\
+ZZ\_TuneCP5\_13TeV-pythia8/ & 14.6 & 1.0 & 1.95e+06 & {\color{orange}3.12e-01} \\
+ZZTo2L2Q\_13TeV\_amcatnloFXFX\_madspin\_pythia8/ & 10.88 & 1.0 & 2.45e+07 & 1.85e-02 \\
+ZZTo4L\_13TeV\_powheg\_pythia8/ & 2.038 & 1.0 & 2.50e+07 & 3.40e-03 \\
+ggZH\_HToBB\_ZToLL\_M125\_13TeV\_powheg\_pythia8/ & 0.0072 & 1.0 & 2.85e+06 & 1.05e-04 \\
+ggZH\_HToBB\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/ & 0.01437 & 1.0 & 2.98e+06 & 2.01e-04 \\
+ 
+\hline 
+\end{tabular}} 
+\end{center} 
+\caption[2017 MC samples]{ 
+  The MC datasets used for 2017 are listed above.
+}
+\label{tab:mc_2017} 
+\end{table}
+
+
+\begin{table}
+\begin{center} 
+\resizebox{\textwidth}{!}{ 
+\begin{tabular}{|l|c|c|c|c|c|c|} 
+\hline
+Sample Name & Xsec (pb) & KFactor & Total Events &  Weight \\ 
+\hline
+DYBJetsToLL\_M-50\_Zpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 3.206 & 1.23 & 1.99e+07 & 1.19e-02 \\
+DYBJetsToLL\_M-50\_Zpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.3304 & 1.23 & 1.75e+06 & 1.40e-02 \\
+DYJetsToLL\_BGenFilter\_Zpt-100to200\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 2.662 & 1.23 & 6.54e+05 & {\color{orange}3.01e-01} \\
+DYJetsToLL\_BGenFilter\_Zpt-200toInf\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.3949 & 1.23 & 1.03e+05 & 2.83e-01 \\
+DYJetsToLL\_M-50\_HT-100to200\_TuneCP5\_PSweights\_13TeV-madgraphMLM-pythia8/ & 160.8 & 1.23 & 1.15e+07 & {\color{orange}1.03e+00} \\
+DYJetsToLL\_M-50\_HT-1200to2500\_TuneCP5\_PSweights\_13TeV-madgraphMLM-pythia/ & 0.1931 & 1.23 & 5.32e+05 & 2.68e-02 \\
+DYJetsToLL\_M-50\_HT-200to400\_TuneCP5\_PSweights\_13TeV-madgraphMLM-pythia8/ & 48.63 & 1.23 & 1.07e+07 & {\color{orange}3.35e-01} \\
+DYJetsToLL\_M-50\_HT-2500toInf\_TuneCP5\_PSweights\_13TeV-madgraphMLM-pythia8/ & 0.003513 & 1.23 & 4.16e+05 & 6.24e-04 \\
+DYJetsToLL\_M-50\_HT-400to600\_TuneCP5\_PSweights\_13TeV-madgraphMLM-pythia8/ & 6.982 & 1.23 & 3.44e+07 & 1.50e-02 \\
+DYJetsToLL\_M-50\_HT-600to800\_TuneCP5\_PSweights\_13TeV-madgraphMLM-pythia8/ & 1.756 & 1.23 & 8.83e+06 & 1.47e-02 \\
+DYJetsToLL\_M-50\_HT-800to1200\_TuneCP5\_PSweights\_13TeV-madgraphMLM-pythia8/ & 0.8094 & 1.23 & 3.12e+06 & 1.91e-02 \\
+DYJetsToLL\_M-50\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 5343.0 & 1.23 & 9.78e+07 & {\color{red}4.03e+00} \\
+QCD\_HT1000to1500\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1088.0 & 1.0 & 1.54e+07 & {\color{red}4.24e+00} \\
+QCD\_HT1500to2000\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 99.11 & 1.0 & 1.01e+07 & {\color{orange}5.87e-01} \\
+QCD\_HT2000toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 20.23 & 1.0 & 5.41e+06 & 2.24e-01 \\
+QCD\_HT200to300\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1547000.0 & 1.0 & 5.42e+07 & {\color{red}1.71e+03} \\
+QCD\_HT300to500\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 322600.0 & 1.0 & 5.46e+07 & {\color{red}3.55e+02} \\
+QCD\_HT500to700\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 29980.0 & 1.0 & 5.50e+07 & {\color{red}3.27e+01} \\
+QCD\_HT700to1000\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 6334.0 & 1.0 & 4.47e+07 & {\color{red}8.50e+00} \\
+ST\_s-channel\_4f\_leptonDecays\_TuneCP5\_13TeV-madgraph-pythia8/ & 3.74 & 1.0 & 1.48e+08 & 1.51e-03 \\
+ST\_t-channel\_antitop\_4f\_InclusiveDecays\_TuneCP5\_13TeV-powheg-madspin-pythia8/ & 80.95 & 1.0 & 5.13e+09 & 9.48e-04 \\
+ST\_t-channel\_top\_4f\_InclusiveDecays\_TuneCP5\_13TeV-powheg-madspin-pythia8/ & 136.02 & 1.0 & 1.66e+10 & 4.92e-04 \\
+ST\_tW\_antitop\_5f\_inclusiveDecays\_TuneCP5\_13TeV-powheg-pythia8/ & 35.85 & 1.0 & 2.66e+08 & 8.07e-03 \\
+ST\_tW\_antitop\_5f\_NoFullyHadronicDecays\_TuneCP5\_13TeV-powheg-pythia8/ & 19.56 & 1.0 & 2.42e+08 & 4.86e-03 \\
+ST\_tW\_top\_5f\_inclusiveDecays\_TuneCP5\_13TeV-powheg-pythia8/ & 35.85 & 1.0 & 3.35e+08 & 6.42e-03 \\
+ST\_tW\_top\_5f\_NoFullyHadronicDecays\_TuneCP5\_13TeV-powheg-pythia8/ & 19.56 & 1.0 & 3.04e+08 & 3.86e-03 \\
+TTToHadronic\_TuneCP5\_13TeV-powheg-pythia8/ & 377.96 & 1.0 & 1.03e+11 & 2.20e-04 \\
+TTTo2L2Nu\_TuneCP5\_13TeV-powheg-pythia8/ & 88.29 & 1.0 & 4.50e+09 & 1.18e-03 \\
+TTToSemiLeptonic\_TuneCP5\_13TeV-powheg-pythia8/ & 365.34 & 1.0 & 5.38e+10 & 4.07e-04 \\
+WBJetsToLNu\_Wpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 5.527 & 1.21 & 7.36e+06 & 5.45e-02 \\
+WBJetsToLNu\_Wpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.7996 & 1.21 & 3.02e+05 & 1.92e-01 \\
+WJetsToLNu\_HT-100To200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1392.0 & 1.21 & 2.83e+07 & {\color{red}3.57e+00} \\
+WJetsToLNu\_HT-1200To2500\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1.084 & 1.21 & 7.40e+06 & 1.06e-02 \\
+WJetsToLNu\_HT-200To400\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 410.3 & 1.21 & 2.22e+07 & {\color{orange}1.34e+00} \\
+WJetsToLNu\_HT-2500ToInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 0.008067 & 1.21 & 3.19e+06 & 1.84e-04 \\
+WJetsToLNu\_HT-400To600\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 57.85 & 1.21 & 5.91e+06 & {\color{orange}7.10e-01} \\
+WJetsToLNu\_HT-600To800\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 12.95 & 1.21 & 1.68e+07 & 5.61e-02 \\
+WJetsToLNu\_HT-800To1200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 5.45 & 1.21 & 8.36e+06 & 4.73e-02 \\
+WJetsToLNu\_BGenFilter\_Wpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 20.49 & 1.21 & 2.36e+05 & {\color{red}6.30e+00} \\
+WJetsToLNu\_BGenFilter\_Wpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 2.935 & 1.21 & 8.30e+05 & 2.57e-01 \\
+WJetsToLNu\_HT-70To100\_TuneCP5\_13TeV-madgraphMLM-pythia8/ & 1353.0 & 1.21 & 7.04e+07 & {\color{orange}1.40e+00} \\
+WminusH\_HToBB\_WToLNu\_M125\_13TeV\_powheg\_pythia8/ & 0.10899 & 1.0 & 6.40e+05 & 1.02e-02 \\
+WplusH\_HToBB\_WToLNu\_M125\_13TeV\_powheg\_pythia8/ & 0.17202 & 1.0 & 1.01e+06 & 1.02e-02 \\
+ZBJetsToNuNu\_Zpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8 & 6.195 & 1.23 & 6.65e+07 & 6.87e-03 \\
+ZBJetsToNuNu\_Zpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8 & 0.6293 & 1.23 & 7.35e+06 & 6.32e-03 \\
+ZH\_HToBB\_ZToLL\_M125\_13TeV\_powheg\_pythia8/ & 0.04718 & 1.0 & 5.53e+05 & 5.12e-03 \\
+ZH\_HToBB\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/ & 0.09322 & 1.0 & 7.15e+05 & 7.82e-03 \\
+ZJetsToNuNu\_BGenFilter\_Zpt-100to200\_TuneCP5\_13TeV-madgraphMLM-pythia8 & 1.679 & 1.23 & 2.01e+05 & {\color{orange}6.16e-01} \\
+ZJetsToNuNu\_BGenFilter\_Zpt-200toInf\_TuneCP5\_13TeV-madgraphMLM-pythia8 & 0.2468 & 1.23 & 3.73e+04 & {\color{orange}4.88e-01} \\
+ZJetsToNuNu\_HT-100To200\_13TeV-madgraph & 303.4 & 1.23 & 2.37e+07 & {\color{orange}9.46e-01} \\
+ZJetsToNuNu\_HT-1200To2500\_13TeV-madgraph & 0.3425 & 1.23 & 3.40e+05 & 7.43e-02 \\
+ZJetsToNuNu\_HT-200To400\_13TeV-madgraph & 91.71 & 1.23 & 2.32e+07 & 2.91e-01 \\
+ZJetsToNuNu\_HT-2500ToInf\_13TeV-madgraph & 0.005263 & 1.23 & 3.50e+05 & 1.11e-03 \\
+ZJetsToNuNu\_HT-400To600\_13TeV-madgraph & 13.1 & 1.23 & 9.48e+06 & 1.02e-01 \\
+ZJetsToNuNu\_HT-600To800\_13TeV-madgraph & 3.248 & 1.23 & 5.73e+06 & 4.19e-02 \\
+ZJetsToNuNu\_HT-800To1200\_13TeV-madgraph & 1.496 & 1.23 & 2.06e+06 & 5.37e-02 \\
+ggZH\_HToBB\_ZToLL\_M125\_13TeV\_powheg\_pythia8/ & 0.01437 & 1.0 & 2.70e+04 & 3.20e-02 \\
+ggZH\_HToBB\_ZToNuNu\_M125\_13TeV\_powheg\_pythia8/ & 0.01437 & 1.0 & 5.62e+04 & 1.53e-02 \\
+ 
+\hline 
+\end{tabular}} 
+\end{center} 
+\caption[2018 MC samples]{ 
+  The MC datasets used for 2018 are listed above.
+}
+\label{tab:mc_2018} 
+\end{table}
