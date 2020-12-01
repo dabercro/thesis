@@ -49,7 +49,7 @@ Most of the behaviour is controlled via a simple JSON configuration file,
 with options for site selection, passed via command line arguments.
 This allows Dynamo to run separate schedules for differing site architectures.
 
-Because Dynamo runs in a heterogenous computing environment,
+Because Dynamo runs in a heterogeneous computing environment,
 different sites need to be listed remotely using different methods.
 Currently implemented are listings using XRootD Python bindings,
 the \texttt{gfal-ls} CLI \cite{laure2006programming}, and a \texttt{xrdfs} subshell.
@@ -74,7 +74,7 @@ This is a setting recommended for large file systems
 that are written to with a high frequency.
 
 Summaries of check results, as well as the statuses of running checks,
-are displayed in a webpage.
+are displayed in a web page.
 The page consists of a table that includes links to logs and
 lists of orphan and missing files.
 Cells are color coded to allow operators to quickly identify problematic sites.
@@ -129,7 +129,7 @@ This will work as long as the schema does not change.
 A more reliable way to keep up with major changes in Dyanmo
 is to use the Dynamo inventory object.
 This method is less optimized when working with the MySQL storage plugin,
-but will work for different schemas and any different storage types
+but will work for different schema and any different storage types
 that are added in the future.
 
 The type of inventory lister is selected via command line options,
@@ -156,7 +156,7 @@ The files are represented as dictionaries containing the name, size,
 and modification time of the file.
 Each file and \texttt{DirectoryInfo} also stores a hash of the meta data.
 The \texttt{DirectoryInfo} hash includes information from the object’s
-files and subdirectories too.
+files and sub-directories too.
 This is to speed up the file tree comparison, shown in Figure~\ref{fig:comparison}
 
 \begin{figure}[htp]\centering\capstart\begin{tikzpicture}
