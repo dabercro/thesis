@@ -323,6 +323,84 @@ The reweighting function is shown in Figure~\ref{fig:EWKcorr}.
 \end{figure}
 
 
-\subsection{Electroweak Corrections to Signal Process}
+\subsection{Corrections to Signal Process}
 
-\section{Theoretical Uncertainties}
+The samples produced for signal are NLO.
+For an accurate measurement of the $V\!H$ cross section,
+the simulation is scaled to Next to Next to Leading Order (NNLO) QCD effects,
+where two gluons are added to the Feynman diagrams.
+An example NNLO VH process is shown in Figure~\ref{fig:nnlo-qcd}.
+\begin{figure}
+  \centering
+  \begin{fmffile}{nnlo_qcd}
+    \fmfframe(0,0)(0, 20){
+    \begin{fmfgraph*}(250, 150)
+      \fmfleft{i0,i1}
+      \fmfright{o0,o1,o2,o3,og0}
+      \fmf{quark}{i1,vg0,vg1,v0,vg2,i0}
+      \fmf{gluon,tension=0}{vg0,vg2}
+      \fmf{gluon,tension=0}{vg1,og0}
+      \fmf{boson}{v0,v1,v2}
+      \fmf{fermion}{o0,v2,o1}
+      \fmf{dashes}{v1,v3}
+      \fmf{fermion}{o2,v3,o3}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+  \caption[$V\!H$ in NNLO QCD]{
+    Above is an example diagram used to calculate NNLO QCD corrections to the
+    $V\!H$ production cross section.
+  }
+  \label{fig:nnlo-qcd}
+\end{figure}
+Electroweak corrections can still be factored out,
+and total $V\!H$ production cross sections are given as the following
+\cite{DeFlorianSabaris:2215893}.
+\begin{gather}
+  \sigma^{WH} = \sigma^{WH,DY}_\mathrm{NNLOQCD} (1 + \delta_\mathrm{EWK}) + \sigma_{t-\mathrm{loop}} + \sigma_\gamma \\
+  \sigma^{ZH} = \sigma^{ZH,DY}_\mathrm{NNLOQCD} (1 + \delta_\mathrm{EWK}) + \sigma_{t-\mathrm{loop}} + \sigma_\gamma + \sigma^{ggZH}
+\end{gather}
+The full correction shape as a function of $p_T(V)$ is shown in
+Figure~\ref{fig:signal-corr-shape}.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.45\linewidth]{figures/Elektroweak_signal_correction_Wp.pdf} ~
+  \includegraphics[width=0.45\linewidth]{figures/Elektroweak_signal_correction_Zll.pdf}
+  \caption[]{
+  }
+  \label{fig:signal-corr-shape}
+\end{figure}
+
+\section{Application of Uncertainties}
+
+In addition to the corrections and their associated uncertainties listed so far,
+there are additional experimental and theoretical uncertainties.
+Some of these uncertainties only affect the normalization of samples.
+Other uncertainties affect the shape of variables that are used in the DNN
+discriminator described in the following chapter.
+
+\subsection{Normalization Uncertainties}
+
+The following uncertainties only affect the normalization of the simulated samples.
+\begin{itemize}
+\item Luminosity
+\item Branching ratio
+\item STXS acceptance
+\item Uncertainties in pdf + alphas
+\item theoretical pT
+\item Background Normalization
+\item Lepton efficiencies
+\item MET Trigger efficiencies
+\end{itemize}
+
+\subsection{Shape Uncertainties}
+
+Uncertainties that also affect the variable distribution shape,
+in addition to the normalization, of simulated processes are the following.
+\begin{itemize}
+\item Jet energy resolution
+\item Jet energy scale
+\item B-tagging for resolved
+\item B-tagging for boosted
+\item Limited number of simulated events
+\end{itemize}
