@@ -245,33 +245,33 @@ A trade-off must be made between the accuracy of the simulation
 and being able to generate enough simulated events to fill all phase spaces
 relevant for analyses CMS collaborators are undertaking.
 
-\subsection{LO to NLO Reweighing}
+\subsection{LO to NLO Reweighting}
 
 For each $V$+jets process, $Z\rightarrow\nu\nu$, $W\rightarrow\ell\nu$,
 and $Z\rightarrow\ell\ell$, there are three distinct processes that are simulated separately.
 \begin{itemize}
 \item $b$-quarks are generated in the matrix element
-\item $b$-quarks are not in the matrix element, but are produced in the parton shower step
+\item $b$-quarks are not in the matrix element, but are produced in the parton shower
 \item No $b$-quarks are present in the event
 \end{itemize}
 For the first two, VBJets and VJetsBGenFilter datasets are used respectively,
 as listed in Appendix~\ref{app:generator},
-but they are only generated for $p_{T,V} > \SI{100}{GeV}$.
+but they are only generated for $p_T(V) > \SI{100}{GeV}$.
 This small phase space and low relative cross section for generating $b$ quarks
 means that it is worth simulating these processes to Next to Leading Order (NLO) diagrams.
-However, expected events with no $b$-quarks and events with $p_{T,V} < \SI{100}{GeV}$
+However, expected events with no $b$-quarks and events with $p_T(V) < \SI{100}{GeV}$
 are more numerous, so more simulated events must be generated.
 To speed up calculations, Leading Order (LO) samples are used for these processes.
 
 One common way to make LO calculations more accurate
-is to generate NLO samples and reweigh the LO sample
+is to generate NLO samples and reweight the LO sample
 to match generator-level kinematics.
 This can be done with an inclusive selection so that the statistical limitations
 of the available NLO samples are not significant.
 While the samples in this analysis were generated using just
 MadGraph5 \cite{hirschi2015automated},
 the following inclusive samples using aMC@NLO \cite{Alwall:2014hca}
-are used to reweight the LO simulation as a function of $p_{T,V}$.
+are used to reweight the LO simulation as a function of $p_T(V)$.
 \begin{itemize}
 \item Z1JetsToNuNu\_M-50\_LHEZpT\_50-150\_TuneCP5\_13TeV-amcnloFXFX-pythia8
 \item Z1JetsToNuNu\_M-50\_LHEZpT\_150-250\_TuneCP5\_13TeV-amcnloFXFX-pythia8
@@ -284,8 +284,8 @@ are used to reweight the LO simulation as a function of $p_{T,V}$.
 \item WJetsToLNu\_2J\_TuneCP5\_13TeV-amcatnloFXFX-pythia8
 \item DYJetsToLL\_M-50\_TuneCP5\_13TeV-amcatnloFXFX-pythia8
 \end{itemize}
-The change to the $p_{T,V}$ spectra and the resulting improved agreement between data and MC
-are shown in Figure~\ref{fig:nlo-reweigh}.
+The change to the $p_T(V)$ spectra and the resulting improved agreement between data and MC
+are shown in Figure~\ref{fig:nlo-reweight}.
 \begin{figure}
   \centering
   \includegraphics[width=0.45\linewidth]{figures/Vjets_NLOreweighting_2017V5_Znn_withoutWeight.pdf}~
@@ -294,18 +294,34 @@ are shown in Figure~\ref{fig:nlo-reweigh}.
   \includegraphics[width=0.45\linewidth]{figures/Vjets_NLOreweighting_2017V5_Wln_withWeight.pdf}
   \includegraphics[width=0.45\linewidth]{figures/Vjets_NLOreweighting_2017V5_Zll_withoutWeight.pdf}~
   \includegraphics[width=0.45\linewidth]{figures/Vjets_NLOreweighting_2017V5_Zll_withWeight.pdf}
-  \caption[LO to NLO reweighing shape comparisons]{
-    The shapes for $p_{T,V}$ in the V+light control regions are shown for 2017.
-    The left plots are before LO to NLO reweighing,
+  \caption[LO to NLO reweighting shape comparisons]{
+    The shapes for $p_T(V)$ in the V+light control regions are shown for 2017.
+    The left plots are before LO to NLO reweighting,
     and the right plots are after the correction factor is applied.
     The top row of plots show the 0-lepton control region,
     the middle row shows the 1-lepton selection,
     and the bottom row shows the 2-lepton control region.
   }
-  \label{fig:nlo-reweigh}
+  \label{fig:nlo-reweight}
 \end{figure}
 
-\subsection{Vector Boson Transverse Momentum}
+\subsection{Electroweak and QCD Corrections to Background}
+
+Though the LO to NLO reweighting does improve the agreement between MC and data,
+there is also an additional small correction.
+Higher order electroweak and QCD corrections predict a slightly softer spectrum
+\cite{Kallweit_2016}.
+The reweighting function is shown in Figure~\ref{fig:EWKcorr}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/EWKcorr.pdf}
+  \caption[Electroweak corrections to background]{
+    Electroweak correction as a function of boson $p_T(V)$ for the V+jets samples.
+  }
+  \label{fig:EWKcorr}
+\end{figure}
+
 
 \subsection{Electroweak Corrections to Signal Process}
 

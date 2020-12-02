@@ -403,20 +403,20 @@ In addition, the middle $p_T$ bin for $Z$ boson production is split by multiplic
 of additional jets.
 There are eight bins overall:
 \begin{itemize}
-\item $WH, \SI{150}{GeV} < p_{T,V} \le \SI{250}{GeV}$
-\item $WH, \SI{250}{GeV} < p_{T,V} \le \SI{400}{GeV}$
-\item $WH, \SI{400}{GeV} < p_{T,V}$
-\item $ZH, \SI{75}{GeV} < p_{T,V} \le \SI{150}{GeV}$
-\item $ZH, \SI{150}{GeV} < p_{T,V} \le \SI{250}{GeV}, n_\mathrm{jet} = 0$
-\item $ZH, \SI{150}{GeV} < p_{T,V} \le \SI{250}{GeV}, n_\mathrm{jet} \ge 1$
-\item $ZH, \SI{250}{GeV} < p_{T,V} \le \SI{400}{GeV}$
-\item $ZH, \SI{400}{GeV} < p_{T,V}$
+\item $WH, \SI{150}{GeV} < p_T(V) \le \SI{250}{GeV}$
+\item $WH, \SI{250}{GeV} < p_T(V) \le \SI{400}{GeV}$
+\item $WH, \SI{400}{GeV} < p_T(V)$
+\item $ZH, \SI{75}{GeV} < p_T(V) \le \SI{150}{GeV}$
+\item $ZH, \SI{150}{GeV} < p_T(V) \le \SI{250}{GeV}, n_\mathrm{jet} = 0$
+\item $ZH, \SI{150}{GeV} < p_T(V) \le \SI{250}{GeV}, n_\mathrm{jet} \ge 1$
+\item $ZH, \SI{250}{GeV} < p_T(V) \le \SI{400}{GeV}$
+\item $ZH, \SI{400}{GeV} < p_T(V)$
 \end{itemize}
 All of the selections in the following sections are also divided into the appropriate
 set of STXS bins for the generation of datacards and fits.
 Since the fat jets are most helpful in events where
 intermediate particles are highly boosted,
-they are only considered in selections for the bins where $p_{T,V} > \SI{250}{GeV}$.
+they are only considered in selections for the bins where $p_T(V) > \SI{250}{GeV}$.
 
 \section{Treatment of Background Yields}
 
@@ -579,7 +579,7 @@ but are described in the appropriate sections.
     \hline
     \multicolumn{9}{|l|}{0-lepton channel} \\
     \hline
-    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    Region & $p_T(V)$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
     \hline
     Signal & 170 & 60, 35 & med. & loose & 120 & >90, <150 & $\le 1$ & $> 2.0$ \\
     Z + $b$ & 170 & 60, 35 & med. & loose & 120 & <90 or >150 & $\le 1$ & $> 2.0$ \\
@@ -589,7 +589,7 @@ but are described in the appropriate sections.
     \hline
     \multicolumn{9}{|l|}{1-lepton channel} \\
     \hline
-    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    Region & $p_T(V)$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
     \hline
     Signal & 150 & 25 & med. & loose & 100 & >90, <150 & $\le 1$ & $> 2.5$ \\
     W + $b$ & 150 & 25 & med. & loose & 100 & <90 or >150 & $\le 1$ & $> 2.5$ \\
@@ -599,7 +599,7 @@ but are described in the appropriate sections.
     \hline
     \multicolumn{9}{|l|}{2-lepton channel} \\
     \hline
-    Region & $p_{T,V}$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    Region & $p_T(V)$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
     \hline
     Signal & 50 & 20 & med. & loose & 50 & >90, <150 & -- & $> 2.5$ \\
     Z + $b$ & 50 & 20 & med. & loose & 50 & <90 or >150 & -- & $> 2.5$ \\
@@ -611,7 +611,7 @@ but are described in the appropriate sections.
 \end{table}
 The common variables that are cut on are the following:
 \begin{itemize}
-\item $p_{T,V}$ -- The transverse momentum of the reconstructed vector boson
+\item $p_T(V)$ -- The transverse momentum of the reconstructed vector boson
 \item $p_{T,j}$ -- The minimum transverse momentum of both jets,
   which may be an asymmetric cut
 \item max $b$ -- The working point that the jet with the higher $b$-tag value must satisfy
@@ -877,7 +877,7 @@ or $m_{\ell\ell} > \SI{120}{GeV}$.
 When the Higgs has an adequately high $p_T$,
 the jet clustering algorithms will often find both daughter particles
 as being part of a single jet.
-The boosted analysis only targets the STXS bins with $p_{T,V} > \SI{250}{GeV}$.
+The boosted analysis only targets the STXS bins with $p_T(V) > \SI{250}{GeV}$.
 The selection differs primarily in the fact that a single fat jet
 which passes a double $b$-tag cut \cite{Sirunyan_2018}
 is used to reconstruct the potential Higgs instead of two $b$-tagged jets.
