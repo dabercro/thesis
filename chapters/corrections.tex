@@ -383,14 +383,28 @@ discriminator described in the following chapter.
 
 The following uncertainties only affect the normalization of the simulated samples.
 \begin{itemize}
-\item Luminosity
-\item Branching ratio
-\item STXS acceptance
-\item Uncertainties in pdf + alphas
-\item theoretical pT
-\item Background Normalization
-\item Lepton efficiencies
-\item MET Trigger efficiencies
+\item The luminosity measurement has an uncertainty of
+  2.5\% for 2016 and 2018, and 2.3\% for 2017
+  \cite{CMS-PAS-LUM-17-001,CMS-PAS-LUM-17-004,CMS-PAS-LUM-18-002}.
+  Since the method of luminosity measurement was the same for all three years,
+  the uncertainties are partially correlated across the three years.
+\item The theoretical uncertainty of the branching ratio of the Higgs Boson
+  to bottom quarks is 0.5\% \cite{DeFlorianSabaris:2215893}.
+\item QCD scale uncertainties for the signal production cross section
+  are implemented as acceptance uncertainties for each of the STXS bins.
+\item The uncertainties to the proton's PDF and $\alpha_s$ for the signal processes
+  are 1.6\% for $Z\!H$ production, and 1.9\% for $W\!H$ production.
+\item At the high $p_T(V)$ regions of this analysis, the theoretical uncertainties grow.
+  For the NLO electroweak corrections, the uncertainties are 2\%.
+  For the NNLO QCD correction, the uncertainty is 5\%.
+\item For smaller background processes without a dedicated control region,
+  primarily single-top and di-boson processes, a 15\% normalization uncertainty is applied.
+  This number comes from measured cross sections for single-top \cite{2017752}
+  and di-boson \cite{2017533}.
+\item The lepton identification efficiency uncertainties are applied as a flat uncertainty
+  to each channel, as appropriate.
+\item The MET trigger efficiencies are also applied as a normalization uncertainty
+  to the 0-lepton regions.
 \end{itemize}
 
 \subsection{Shape Uncertainties}
@@ -398,9 +412,18 @@ The following uncertainties only affect the normalization of the simulated sampl
 Uncertainties that also affect the variable distribution shape,
 in addition to the normalization, of simulated processes are the following.
 \begin{itemize}
-\item Jet energy resolution
-\item Jet energy scale
-\item B-tagging for resolved
-\item B-tagging for boosted
-\item Limited number of simulated events
+\item The energy resolution of $b$ jets are smeared by increasing,
+  or decreasing for some variations,
+  the distance between the generator-level $p_T$ and the reconstructed jet $p_T$.
+\item The energy scale is varied by varying all jet energies up and down by
+  one standard deviation.
+\item The $b$-tagging efficiency uncertainties are calculated
+  for multiple $p_T$ and $\eta$ bins.
+  The uncertainties for these different bins are uncorrelated,
+  so they change the shape of the $b$-tagging discriminator when applied. 
+\item The $b$-tagging for fat jets is applied for two different working points,
+  medium and tight, and is binned in $p_T$.
+  These working points and $p_T$ bins are decorrelated from each other.
+\item The uncertainties from the limited number of Monte Carlo events is handled
+  using an approximation of the Barlow-Beeston method \cite{BARLOW1993219}.
 \end{itemize}
