@@ -19,8 +19,8 @@ Workflow Web Tools also tracks operator actions for future use
 in training various machine learning models.
 Both projects are published as software packages written in Python
 \cite{van1995python, 10.5555/1593511}
-and available through the Python Package Index (PyPI) as
-\texttt{dynamo-consistency} and \texttt{workflowwebtools}.
+and are available through the Python Package Index (PyPI) as
+\texttt{dynamo-consistency} and \texttt{workflowwebtools}, respectively.
 
 
 \section{Dynamo Consistency}
@@ -34,9 +34,9 @@ For example, sites that can no longer access some files after a power outage
 can cause problems for many related activities.
 File transfers requested from a inconsistent site to another site will fail
 when files are missing.
-Sites will be chosen incorrectly for production jobs
+Sites will be also be chosen incorrectly for production jobs
 that assume the presence of a local file.
-Last disk copies may also be missing, causing a delay when a user requests data.
+Last disk copies may also be missing, causing a significant delay when a user requests data.
 Another type of inconsistency arises when files thought to be deleted are still on disk.
 This leads to wasted disk space for files that are not accessed, except by accident.
 Dynamo Consistency regularly checks consistency by listing each remote site and
@@ -45,21 +45,22 @@ The results are reported back to Dynamo, which can then take corrective measures
 
 A single executable \texttt{dynamo-consistency} is provided to run the consistency check.
 This executable can be used directly in Dynamo’s scheduling system.
-Most of the behaviour is controlled via a simple JSON configuration file,
+Most of the behaviour is controlled via a single JSON configuration file,
 with options for site selection, passed via command line arguments.
-This allows Dynamo to run separate schedules for differing site architectures.
+Differing command line arguments allows Dynamo to run separate schedules
+for differing site architectures.
 
 Because Dynamo runs in a heterogeneous computing environment,
 different sites need to be listed remotely using different methods.
 Currently implemented are listings using XRootD Python bindings,
 the \texttt{gfal-ls} CLI \cite{laure2006programming}, and a \texttt{xrdfs} subshell.
 These listers are easily extensible in Python,
-allowing for new site architectures to be checked by Dynamo Consistency as well.
+allowing for new site architectures to be added to Dynamo Consistency as well.
 
 The default executable performs the check as expected,
 listing files that are not tracked by Dynamo as orphans
-and listing files that are not found at sites as missing,
-with the exception of a few configurable filters.
+and listing files that are not found at sites as missing.
+A few configurable filters can be added to modify these lists.
 Dynamo Consistency avoids listing orphan files that have a modification time that is recent.
 Paths to avoid deleting can also be set.
 Deletion and transfer requests that are queued are also used to filter the final report
@@ -110,10 +111,6 @@ One is the Inventory Listing,
 and the other is the Remote Listing.
 This section describes the inventory listing, and the next describes remote listing.
 
-Dynamo Consistency only interacts with Dynamo at two points during a check.
-First, it gets a listing of what should be at a site.
-The next time it interacts with Dynamo is at the end when it reports results.
-
 The inventory is queried before the site is listed remotely due to possible race conditions.
 It is not uncommon for a site listing to take multiple days.
 In the meanwhile, two things can change in the inventory.
@@ -121,7 +118,7 @@ A file can be deleted from a site or it can be added to a site.
 An added file is ignored by setting {\bf IgnoreAge}
 in the configuration to a large enough value.
 Files that are deleted during the remote listing
-are filtered out by checking deletion requests.
+are filtered out by checking recent deletion requests after the remote listing.
 
 There are currently multiple ways to get the site contents from Dynamo.
 One is to access the MySQL database use for Dynamo storage directly.
@@ -147,8 +144,9 @@ from dynamo_consistency import inventorylister
 listing = inventorylister.listing(sitename)
 \end{verbatim}
 
-Here, \texttt{listing} is a \texttt{dynamo\_consistency.datatypes.DirectoryInfo} object. \\
-\texttt{DirectoryInfo} contains meta data about a directory,
+Here, \texttt{listing} is a \texttt{dynamo\_consistency.datatypes.DirectoryInfo} object
+that is the root node of the full directory tree.
+Each node of \texttt{DirectoryInfo} contains meta data about a directory,
 such as its modification timestamp and name.
 It also holds a list of sub-directories, in the form of \texttt{DirectoryInfo} objects,
 and a list of files.
@@ -192,12 +190,13 @@ This is to speed up the file tree comparison, shown in Figure~\ref{fig:compariso
 
 \subsection{Remote Listing}
 
-The remote listing is equally flexible.
-The factory function \\ \texttt{dynamo\_consistency.backend.get\_listers()}
-reads the configuration file to determine the type of lister for a site.
+The remote listing is equally flexible in terms of having
+multiple implementations used for the listing.
+The factory function \texttt{dynamo\_consistency.backend.get\_listers()}
+reads the configuration file to determine the type of lister for each site.
 There are currently three different classes implemented,
-and more can be added by extending the \\ \texttt{dynamo\_consistency.backend.listers.Lister}
-class and implementing its \\ \texttt{ls\_directory} method.
+and more can be added by extending the \texttt{dynamo\_consistency.backend.listers.Lister}
+class and implementing its \texttt{ls\_directory} method.
 The three current listers are the following:
 \begin{itemize}
 \item \texttt{dynamo\_consistency.backend.listers.XRootDLister} -
@@ -211,18 +210,20 @@ The three current listers are the following:
 \end{itemize}
 
 Once the type of lister is set in the configuration
-the contents of the remote site can be listed transparently:
+the contents of the remote site can be gathered with a simple interface:
 
 \begin{verbatim}
 from dynamo_consistency import remotelister
 listing = remotelister.listing(sitename)
 \end{verbatim}
 
-This takes much longer than the {\hyperref[\detokenize{listing:inventory-listing-ref}]{\sphinxcrossref{\DUrole{std,std-ref}{Inventory Listing}}}}, since every directory of the site needs to be queried.
-The layer between the listing class and the final output creates multiple connections and works on two queues with multiple threads.
+This takes much longer than the Inventory Listing,
+since every directory of the site needs to be queried over the network.
+A software layer between the listing class and
+the final output creates multiple connections and works on two queues with multiple threads.
 There is the input queue, which is a list of directories that still need to be listed, and
 an output queue which holds the result of each directory listed so far.
-The workflow of each queue is shown below.
+The workflow of the listing is shown in Figure~\ref{fig:listing}.
 \begin{figure}[htp]\centering\capstart\begin{tikzpicture}
 [node distance=0.5cm, every edge/.style={arrow}]
 \node (start) [goodstep] at (0, 0) {List directory};
@@ -246,13 +247,14 @@ The workflow of each queue is shown below.
 (try) edge [bend right] node [above] {} (start)
 (storestart) edge (inqueue);
 
-\end{tikzpicture}\caption{Listing algorithm. TODO: Make better colors and words and stuff}\label{\detokenize{listing:id1}}\end{figure}
+\end{tikzpicture}\caption{Listing algorithm with retries}\label{fig:listing}\end{figure}
 
 \subsection{Executables}
 
+Other tools are available as part of \texttt{dynamo-consistency}
+in order to simplify operating the system.
+Many of these come as separate executables.
 A list of some of the executables installed with the package is given below.
-The usages for each executable are also given in order to
-show the flexibility that the overall system has.
 
 \subsubsection{dynamo-consistency}
 
@@ -416,8 +418,8 @@ Options:
 
 \subsection{Configuration}
 
-A configuration file should be created before pointing to it, like above.
-The configuration file for Site Consistency is a JSON or YAML file with the following keys.
+The configuration file for \texttt{dynamo-consistency}
+is a JSON or YAML file with the following keys.
 \begin{itemize}
 \item {\bf AccessMethod} -
   A dictionary of access methods for sites.
@@ -433,8 +435,7 @@ The configuration file for Site Consistency is a JSON or YAML file with the foll
   By default, is true.
   If set to false, orphan files will all be filtered out so that none are deleted.
 \item {\bf FreeMem} -
-  The amount of free memory that is required before \\
-  \texttt{dynamo-consistency} tries to run a check.
+  The amount of free memory that is required for a check to run.
   The memory is given in GBs.
 \item {\bf GFALThreads} -
   The number of threads used by the GFAL listers
@@ -457,34 +458,41 @@ then there will be no automatic entry into the register.
 \item {\bf MaxOrphan} - If more than files than this number are orphan files at a site,
 then there will be no automatic entry into the register.
 \item {\bf NumThreads} - The number of threads used by the XRootD listers
-\item {\bf PathPrefix} - A dictionary of prefixes to place before {\bf RootPath} in the XRootD call.
-If the prefix is not set for a site, and it fails to list {\bf RootPath}, it uses the default \texttt{/cms}.
-\item {\bf RedirectorAge} - The age, in days, of how old the information on doors from redirectors can be.
-If this value is set to zero, the redirector information is never refreshed.
+\item {\bf PathPrefix} -
+  A dictionary of prefixes to place before {\bf RootPath} in the XRootD call.
+  This allows for different paths for different sites.
+  If the prefix is not set for a site, and it fails to list {\bf RootPath},
+  it falls back to a default \texttt{/cms} before giving up.
+\item {\bf RedirectorAge} -
+  The age, in days, of how old the information on doors from redirectors can be.
+  If this value is set to zero, the redirector information is never refreshed.
 \item {\bf Redirectors} - A dictionary with keys of sites with hard-coded redirector locations.
-If a site is not listed in this way, the redirector is found by matching domains from
-\texttt{CMSToolBox.siteinfo.get\_domain()} to redirectors found in a generic \texttt{xrdfs locate} call.
+  If a site is not listed in this way, the redirector is found by matching domains from
+  \texttt{CMSToolBox.siteinfo.get\_domain()}
+  to redirectors found in a generic \texttt{xrdfs locate} call.
 \item {\bf Retries} - Number of retries after timeouts to attempt
 \item {\bf RootPath} - The directory where all of the listed subdirectories will be under.
-For CMS sites, this will be \texttt{"/store"}
-\item {\bf SaveCache} - If set and evaluates to True, copies old cached directory trees instead of overwriting
-\item {\bf Timeout} - This gives the amount of time, in seconds, that you want the listing to try to run
-on a single directory before it times out.
+  For CMS sites, this will be \texttt{"/store"}
+\item {\bf SaveCache} -
+  If set and evaluates to True, copies old cached directory trees instead of overwriting
+\item {\bf Timeout} -
+  This gives the amount of time, in seconds, that you want the listing to try to run
+  on a single directory before it times out.
 \item {\bf Unmerged} - A list of sites to handle cleaning of \texttt{/store/unmerged} on.
-If the list is empty, all the sites are managed centrally
+  If the list is empty, all the sites are managed centrally
 \item {\bf UnmergedLogsAge} - The minimum age of the unmerged logs to be deleted, in days
 \item {\bf UseLoadBalancer} - A list of sites where the main redirector of the site is used
 \item {\bf UseTransferQueue} - If true, put missing files into tranfer queue table
-when using \texttt{-{-}v1} for reporting. Defaults to true value.
+  when using \texttt{-{-}v1} for reporting. Defaults to true value.
 \item {\bf VarLocation} - The location for the varying directory.
-Inside this directory will be:
-\begin{itemize}
-\item Logs
-\item Redirector lists
-\item Cached trees
-\item Lock files
-\end{itemize}
-\item {\bf WebDir} - The directory where text files and the sqlite3 database live
+  Inside this directory will be:
+  \begin{itemize}
+  \item Logs
+  \item Redirector lists
+  \item Cached trees
+  \item Lock files
+  \end{itemize}
+\item {\bf WebDir} - The directory where text files and the sqlite3 database are stored
 \end{itemize}
 
 Configuration parameters can also be quickly overwritten for a given run by
@@ -492,9 +500,8 @@ setting an environment variable of the same name.
 
 \subsection{Comparison Script}
 
-The production script,
-located at \texttt{dynamo\_consistency/prod/compare.py} at the time of writing,
-goes through the following steps for each site.
+The full set of operations in a typical run of the \texttt{dynamo-consistency}
+is enumerated below.
 \begin{enumerate}
 \item Points \texttt{config.py} to the local \texttt{consistency\_config.json} file
 \item Notes the time, and if it’s daylight savings time for entry into the summary database
@@ -511,7 +518,7 @@ goes through the following steps for each site.
   \begin{itemize}
   \item Datasets that have any files on the site, as listed by the dynamo MySQL database
   \item Deletion requests fetched from PhEDEx (same list as datasets to skip in missing)
-  \item Any datasets that have the status flag set to \texttt{'IGNORED'}
+  \item Any datasets that have the status flag set to \texttt{`IGNORED'}
     in the dynamo database
   \item Merging datasets that are protected by Unified
   \end{itemize}
