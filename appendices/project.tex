@@ -558,15 +558,75 @@ is enumerated below.
 
 \section{Workflow Web Tools}
 
+Datasets used by the CMS collaboration are produced centrally by the Workflow Team.
+During production of these datasets, errors can arise from things such as missing files,
+too much memory usage, or loss of functionality at a particular site.
+For each failed dataset, Workflow Team operators must gather information from error reports
+and decide how to recover in order to complete the workflow.
 
-\subsection{Motivation}
+The Workflow Web Tools has the dual purpose of displaying these errors
+as well as allowing operators to submit actions directly to the web page,
+instead of requiring them to open up separate shells to script actions.
+The existence of this layer,
+which is aware of both the error reports and the submitted actions,
+also allows for investigation into automatically attempting to recover simple errors.
 
+\subsection{Error Information}
 
-\subsection{Function}
+A matrix of errors is built for each task of each workflow.
+Each row of the matrix corresponds to a different error code that was reported
+back as a job failed to complete.
+Each column corresponds to which computing site that the job was running at.
+The cell simply contains the number of jobs that threw the particular error code while
+running at a particular site.
+At the time when the error report is gathered, Workflow Web Tools also gathers
+the site readiness reports of each computing site.
+This can be correlated with the error reports to see if jobs failed due to site problems,
+rather then problems with the workflow submission itself.
+An example of the display for this error information is given in Figure~\ref{fig:errormatrix}.
+\begin{figure}
+  \centering
+\adjincludegraphics[width=\linewidth,trim={0 0 0 {0.1\width}},clip]{figures/error_matrix.png}
+  \caption[Example error information]{
+    An example error matrix is given above.
+    The site names are color coded to show their site readiness status.
+    The -1 error code is used to report jobs that did not complete successfully,
+    but also did not return an error code.
+  }
+  \label{fig:errormatrix}
+\end{figure}
 
+\subsection{Possible Actions}
 
-\subsection{Models for Machine Learning}
+Workflows are typically completed after throwing errors by either
+rerunning the failed jobs, called ACDC,
+or by discarding the entire workflow, and restarting it.
+Both options often include adjustment of parameters such as memory requested
+and the number of events run per job.
+These actions are all set with a number of radio buttons,
+meaning that there is a finite set of actions that an operator can take.
+This makes it easier for an automated system to learn and take over some operations.
 
+Each action submitted by an operator is stored in a database
+and exposed via an API for Unified, the backend manager of workflows,
+to read the actions from the web tool.
+Even after acting on the workflows,
+these actions are persistently stored for future study.
+Workflow and task names can be matched and displayed
+to show both the error reports and the eventual action taken in a machine-readable format.
 
-\subsection{Automatic Error Handling}
+\subsection{Automatic Actions}
 
+The stored data on error information and submitted actions
+were used in several machine learning studies to try to predict actions using
+the error matrix and site statuses in a Deep Neural Network.
+The unbalanced nature of the submitted actions (the vast majority being ACDC)
+means that significantly more data will need to be gathered for a na\"ive approach to work.
+
+A more successful approach has been to create static models that correlate
+most frequent error codes and statuses of sites relevant to the workflow to
+automatically predict actions.
+This separate project, Artificial Intelligence Error Handling (AIEH),
+has been able to reduce operator loads signficantly.
+The Workflow Web Tools periodically queries AIEH for predictions of all promising workflows,
+and automatically presents AIEH's predictions to Unified without operator intervention.
