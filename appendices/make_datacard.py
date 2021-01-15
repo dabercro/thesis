@@ -23,7 +23,7 @@ with open(datacardname, 'r') as inputfile:
 
         elif line.startswith('observation '):
             observations = {
-                binname: value \
+                binname: value.split('.')[0] \
                 for binname, value in \
                 zip(binorder, line.split()[1:])
             }
@@ -47,7 +47,11 @@ for process, num in zip(processorder, processnumorder):
     else:
         signals.add(process)
 
-outlines = [r'\chapter{Data Card} \label{app:datacard}', '']
+outlines = [r'\chapter{Data Card} \label{app:datacard}', '',
+            '''
+            The tables in this appendix give the observed yields
+            and prefit predictions for each channel and each year.
+            ''']
 
 def add_table(rows, caption, abbr, label):
     global outlines
