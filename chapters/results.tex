@@ -281,14 +281,13 @@ is used as the signal sample, and the signal mass window is moved from $\SI{90}{
 to  $\SI{60}{GeV} < m_{jj} < \SI{120}{GeV}$.
 Data from all three years of Run 2 are used again so that any differences that may affect the $V\!H$ analysis
 can also be investigated using $V\!Z$.
-
 The Goodness of Fit plots are shown in Figure~\ref{fig:vz-gof}.
 The high p-value means that the simulated processes were able to match the data very well
 while staying within the fit constraints of the systematic uncertainties.
-%
+
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/210211_STXS_VZ_XbbVZ_decorr12345_skip_513dc9b8_inclusive_gof/Gof_inclusive_.pdf}
+  \includegraphics[width=0.65\linewidth]{figures/210211_STXS_VZ_XbbVZ_decorr12345_skip_513dc9b8_inclusive_gof/Gof_inclusive_.pdf}
   \caption[Goodness of Fit for $V\!Z$]{
     The Goodness of Fit test results are shown for $V\!Z$.
     The fit is performed using STXS bins,
@@ -296,7 +295,87 @@ while staying within the fit constraints of the systematic uncertainties.
   }
   \label{fig:vz-gof}
 \end{figure}
+
+Due to the splitting of STXS bins, the multiple channels for each bin, and the combination of three different years,
+486 distributions are fit in the $V\!Z$ cross check analysis.
+For the sake of brevity, the effect of the fit will only be shown on eight of these distributions for the $V\!Z$
+cross-check analysis.
+These are split into two figures, each showing distributions closely related to each other.
+Figure~\ref{fig:vz-zmm-low-2017} shows all of the distributions fit for the low $p_T$ bin in the
+$Z\rightarrow\mu\mu$ channel in 2017.
+Several features are worth noting.
+There is only one bin in the $t\bar{t}$ control region,
+so it is only used to constrain the normalization of the $t\bar{t}$ background.
+In the $Z$ + heavy jets control region, the DNN is trained with the same inputs as the signal region DNN.
+This constrains the shape uncertainties that would affect both classifiers.
+In all of the regions, we can see improved agreement between the simulation and data after the fit, and
+the combination fit also decreases the uncertainty on each bin.
+The relative contributions of the main background processes can also be seen at a glance at the signal region plots.
 %
+\begin{figure}
+  \centering
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_postfit} \\
+  \caption[$Z\rightarrow \mu\mu$ $V\!Z$ distributions for low $p_T$ in 2017]{
+    Above are $Z\rightarrow \mu\mu$ pre-fit (left) and post-fit distributions (right)
+    for the low $p_T$ STXS bin in 2017 in the $V\!Z$ cross-check analysis.
+    The top row shows the $Z$ + light jets control region,
+    the second row shows the $Z$ + heavy jets control region,
+    and the third row shows the $t\bar{t}$ control region.
+    The bottom row shows the signal region.
+  }
+  \label{fig:vz-zmm-low-2017}
+\end{figure}
+%
+These distributions can be compared to those in Figure~\ref{fig:vz-wen-boost-2018},
+which shows distributions from the boosted selection of the $W\rightarrow e\nu$ channel in 2018.
+In this case, the $W$ + heavy jets control region is not shown, since the related process contributes less
+in the signal region.
+Instead, the $t\bar{t}$ background is dominate in this boosted topology.
+The control regions use the double $b$-tag score of the fat jet instead of $p_T(V)$ for the distribution.
+The signal region is also split into two higher $p_T(V)$ bins, while the control regions stay combined
+to constrain both STXS bins.
+As in the low $p_T$ bin, though, both agreement between simulation and data and estimated uncertainties
+are improved as a result of the fit.
+%
+\begin{figure}
+  \centering
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_postfit} \\
+  \caption[$W\rightarrow e\nu$ $V\!Z$ distributions for the boosted selection in 2018]{
+    Above are $W\rightarrow e\nu$ pre-fit (left) and post-fit (right) distributions in the boosted selections in 2018
+    for the $V\!Z$ analysis.
+    The top row shows the $W$ + light jets control region,
+    and the second row shows the  $t\bar{t}$ control region.
+    The third row shows the signal region for the $\SI{250}{GeV} < p_T(V) < \SI{400}{GeV}$ bin,
+    and the bottom row shows the signal region for the bin of $p_T(V) > \SI{400}{GeV}$.
+  }
+  \label{fig:vz-wen-boost-2018}
+\end{figure}
+
+From these post-fit distributions, the strength and uncertainty of the signal samples can be extracted.
+A value of 1.0 corresponds to the expectation based on simulation of the Standard Model.
+By correlating all of the signal samples across all of the STXS bins,
+an inclusive signal strength can be obtained.
+The likelihood scan of this strength is shown in Figure~\ref{fig:vz-inclusive}.
+A value slightly lower than the Standard Model expectation has the maximum likelihood,
+but the uncertainty of this measurement means the result has a p-value of 15\%, assuming Standard Model couplings,
+or disagreement of only $1.4\sigma$.
+Figure~\ref{fig:vz_stxs} shows the measured kinematic distributions of the various $V\!Z$ processes.
+Assuming the Standard Model, the measurement has a p-value of 43\%.
+Overall, the $V\!Z$ cross-check has very good agreement with the Standard Model.
 
 \begin{figure}
   \centering
@@ -310,10 +389,13 @@ while staying within the fit constraints of the systematic uncertainties.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/201118_STXS_VZ/summary_stxs.pdf}
+  \includegraphics[width=0.8\linewidth]{figures/210220_STXS_VZ_unblinded_XbbVZ_fe58cdd8_a866aef8/summary_stxs.pdf}
   \caption[Measured STXS values of $V\!Z$]{
     The measured most likely values of all STXS bins in the
     $V\!Z$ cross check analysis.
   }
   \label{fig:vz_stxs}
 \end{figure}
+
+\subsection{$V\!H$ Combination Fit Results}
+
