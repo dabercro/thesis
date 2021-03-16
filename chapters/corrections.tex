@@ -14,12 +14,13 @@ and by scaling the predicted energies based on particle type.
 The identification of particles based on working points happen at different rates
 between simulation and collected data.
 These efficiencies are measured separately in data and Monte Carlo.
-The difference is accounted for by a scale factor,
-which is often calculated as a function of particle energy and location within the detector.
+The difference depends on a scale factor,
+which is measured as a function of particle energy and location within the detector.
+Inclusive selections are used for the measurement,
+which is then transferred to the events in the analysis.
 Since this analysis relies on counting leptons for its categorization,
 selection efficiency for both muons and electrons must be measured.
-A scale factor for the MET trigger is also derived due to
-the 0-lepton categories' reliance on the trigger.
+A scale factor for the MET trigger efficiency is also derived for the 0-lepton categories.
 
 \subsection{Muons}
 
@@ -38,10 +39,14 @@ Passing the isolation cut, given the ID is scaled by $\epsilon^\mu_\mathrm{ISO|I
 and the scale factor for the trigger, after passing the isolation cut is
 $\epsilon^\mu_\mathrm{Trig|ISO}$.
 
-These are each separately measured via the Tag and Probe method.
-A single muon, the tag, is selected, and for events with a second, oppositely-charged muon
+These are each separately measured via the tag and probe method.
+A single tag muon is selected in events with a single muon trigger.
+For events with a second, oppositely-charged muon
 that reconstructs the $Z$ boson resonance with the first,
-the second probe muon is checked for identification efficiency.
+the second muon, called a probe, is checked for identification efficiency.
+Since the probe muon does not rely on a categorization for the selection,
+only on the successful reconstruction of a $Z$ boson,
+the collection of probe muons make up an unbiased sample for the efficiency measurement.
 A Breit-Wigner convoluted with a Gaussian and a falling combinatoric background
 is fit to the peak to estimate the contribution
 of the $Z$ boson resonance in both the passing and failing probes.
@@ -63,12 +68,13 @@ Figure~\ref{fig:muon-tag-probe} shows one of these measurements of efficiency in
 \end{figure}
 Each of the efficiency measurements and scale factors are binned
 in muon $p_T$ and $\eta$.
-The $p_T$ bins are $[20, 25, 30, 40, 50, 60, \infty)$ in GeV.
+The $p_T$ bin boundaries are $[20, 25, 30, 40, 50, 60, \infty)$ in GeV.
 Bins in $|\eta|$ are delimited at $[0, 0.9, 1.2, 2.1, 2.4]$.
 
 The uncertainties from the scale factors are also combined in the final analysis.
-Loosely identified muons have an average scale factor of $0.998\pm0.002$,
-and tightly identified muons have an average scale factor of $0.98\pm0.005$
+The identification efficiencies in data are slightly lower than in Monte Carlo.
+Loosely identified muons require an average scale factor of $0.998\pm0.002$ applied to simulated events,
+and tightly identified muons require an average scale factor of $0.98\pm0.005$
 \cite{CMS-DP-2019-022}.
 In general, the scale factors are half a percent or one percent lower, respectively,
 at values of $|\eta| > 2.0$, and flat across $p_T$ bins.
@@ -89,14 +95,14 @@ The scale factor is around $1.0 \pm 0.1$ for most of the bins.
 
 \subsection{MET Trigger Scale Factors}
 
-The MET trigger efficiencies are measured in events with a single electron and large MET.
-This allows tagging events with the single $e$ triggers, and selecting mostly
+The MET trigger efficiencies for each year are measured in events with a single electron and large MET.
+This allows tagging events with the single electron triggers, and selecting mostly
 events from $W$+jets and $t\bar{t}$ events.
 The events are additionally required to be similar to the events of interest in the analysis.
 There must be two jets with $p_T > \SI{20}{GeV}$ and $|\eta| < 2.5$,
 and the events must pass the MET filters.
 The event must also not be biased by the L1 MET triggers activated by the calorimeters,
-which is acheived by requiring that the $\Delta\phi$ between the electron and MET is
+which is achieved by requiring that the $\Delta\phi$ between the electron and MET is
 less than 2.5.
 The nominal values for the scale factors are derived by measuring
 the MET trigger efficiency in data and scaling the trigger efficiency in
@@ -121,10 +127,11 @@ Figure~\ref{fig:met-sf}.
   \label{fig:met-sf}
 \end{figure}
 
-\section{$b$-Jet Energy Correction}
+\section{Energy Corrections of $b$-Jets}
 
-This analysis does depend in particular on predictions of $b$-jet energies,
-which are not corrected centrally.
+This analysis does depend in particular on $b$-jet energy predictions,
+which do not have recommended corrections from the CMS collaboration,
+so a bespoke measurement is done for this analysis.
 Even when distributions of individual variables agree between MC and data,
 correlations are often different.
 These correlations are also important in the evaluation of a DNN.
@@ -135,7 +142,7 @@ The energies evaluated in MC must be smeared in order to accurately simulate
 the resolution of jets in data after they have been modified by the DNN regression.
 
 One way to measure jet energy resolution is to consider an event
-where a jet is recoiling off of a Z boson that decays into leptons.
+where a jet is recoiling off of a $Z$ boson that decays into leptons.
 In principle, the $Z$ boson's transverse momentum is balanced with the
 jet's transverse momentum.
 Measurements of lepton energies in the CMS detector is relatively precise,
@@ -171,7 +178,7 @@ with uncertainties from renormalization and refactorization scale weights
 and parton shower weights.
 These histograms of jet response are shown in Fig.~\ref{fig:jetsmear-responses}.
 From each plot, the mean ($\mu$) and the standard deviation ($\sigma$) are extracted.
-$\sigma/\mu$ is fit as a function of $\alpha$.
+The relative resolution ($\sigma/\mu$) is fit as a function of $\alpha$.
 
 \begin{figure}
   \centering
@@ -198,7 +205,7 @@ $\sigma/\mu$ is fit as a function of $\alpha$.
   f(\alpha) = (m \times \alpha) \oplus b \times (1 + c_k \times \alpha)
 \end{gather}
 
-$c_k$ is fixed by a linear fit to the MC's intrinsic jet resolution
+The $c_k$ term is fixed by a linear fit to the MC's intrinsic jet resolution
 ($p_{T, reco}/p_{T, gen}$) over $\alpha$ as $c_k = m_0/q_0$.
 The fit results are shown in Fig.~\ref{fig:jetsmear-fits}.
 Smearing is done by scaling difference between
@@ -243,8 +250,8 @@ that can be understood at the theoretical level.
 However, less accurate calculations are run because they are simpler
 and faster to compute the results for.
 A trade-off must be made between the accuracy of the simulation
-and being able to generate enough simulated events to fill all phase spaces
-relevant for analyses CMS collaborators are undertaking.
+and being able to generate enough simulated events to fill the phase space
+relevant for all analyses CMS collaborators are undertaking.
 
 \subsection{LO to NLO Reweighting}
 
@@ -259,12 +266,12 @@ For the first two, VBJets and VJetsBGenFilter datasets are used respectively,
 as listed in Appendix~\ref{app:generator},
 but they are only generated for $p_T(V) > \SI{100}{GeV}$.
 This small phase space and low relative cross section for generating $b$ quarks
-means that it is worth simulating these processes to Next to Leading Order (NLO) diagrams.
+means that it is feasible to simulate these processes to Next to Leading Order (NLO) diagrams.
 However, expected events with no $b$-quarks and events with $p_T(V) < \SI{100}{GeV}$
 are more numerous, so more simulated events must be generated.
 To speed up calculations, Leading Order (LO) samples are used for these processes.
 
-One common way to make LO calculations more accurate
+One common way to make LO samples more accurate
 is to generate NLO samples and reweight the LO sample
 to match generator-level kinematics.
 This can be done with an inclusive selection so that the statistical limitations
@@ -310,7 +317,7 @@ are shown in Figure~\ref{fig:nlo-reweight}.
 
 Though the LO to NLO reweighting does improve the agreement between MC and data,
 there is also an additional small correction.
-Higher order electroweak and QCD corrections predict a slightly softer spectrum
+Higher order electroweak and QCD corrections predict a slightly softer $p_T(V)$ spectrum
 \cite{Kallweit_2016}.
 The reweighting function is shown in Figure~\ref{fig:EWKcorr}.
 

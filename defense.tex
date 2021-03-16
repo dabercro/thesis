@@ -1,0 +1,764 @@
+\documentclass{beamer}
+
+\author[D. Abercrombie]{
+  Daniel Abercrombie
+}
+
+\makeatletter
+\g@addto@macro\bfseries{\boldmath}
+\makeatother
+
+\title{\bf \sffamily Measurement of $H\rightarrow b\bar{b}$ in \\ Associated Production with the CMS Detector}
+\date{\today}
+
+\usecolortheme{dove}
+
+\usepackage[absolute,overlay]{textpos}
+\usefonttheme{serif}
+\usepackage{appendixnumberbeamer}
+\usepackage{isotope}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\setbeamerfont{frametitle}{size=\Large,series=\bf\sffamily}
+\setbeamertemplate{frametitle}[default][center]
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{comment}
+\usepackage{feynmp-auto}
+
+
+
+\setbeamertemplate{navigation symbols}{}
+\usepackage{graphicx}
+\usepackage{color}
+\setbeamertemplate{footline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hfill \insertshortauthor \hfill \insertpagenumber /\inserttotalframenumber}}
+\setbeamertemplate{headline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hspace{-0.083\linewidth} \textcolor{blue}{\sffamily \insertsection \hfill \insertsubsection}}}
+
+\IfFileExists{/Users/dabercro/GradSchool/Presentations/MIT-logo.pdf}
+             {\logo{\includegraphics[height=0.5cm]{/Users/dabercro/GradSchool/Presentations/MIT-logo.pdf}}}
+             {\logo{\includegraphics[height=0.5cm]{/home/dabercro/MIT-logo.pdf}}}
+
+\usepackage{changepage}
+
+\newcommand{\beginbackup}{
+  \newcounter{framenumbervorappendix}
+  \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+  \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+  \addtocounter{framenumber}{\value{framenumbervorappendix}}
+}
+
+\graphicspath{{figs/}}
+
+\newcommand{\link}[2]{\href{#2}{\textcolor{blue}{\underline{#1}}}}
+\newcommand{\clink}[2]{\link{#1}{http://t3serv001.mit.edu/~dabercro/redir/?k=#2}}}
+
+\newcommand{\twofigs}[4]{
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \textcolor{blue}{#1} \\
+      \includegraphics[width=\linewidth]{#2}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \textcolor{blue}{#3} \\
+      \includegraphics[width=\linewidth]{#4}
+    \end{column}
+  \end{columns}
+}
+
+\newcommand{\fourfigs}[8]{
+  \begin{columns}
+    \begin{column}{0.3\linewidth}
+      \centering
+      \textcolor{blue}{#1} \\
+      \includegraphics[width=\linewidth]{#2} \\
+      \textcolor{blue}{#3} \\
+      \includegraphics[width=\linewidth]{#4}
+    \end{column}
+    \begin{column}{0.3\linewidth}
+      \centering
+      \textcolor{blue}{#5} \\
+      \includegraphics[width=\linewidth]{#6} \\
+      \textcolor{blue}{#7} \\
+      \includegraphics[width=\linewidth]{#8}
+    \end{column}
+  \end{columns}
+}
+
+\newcommand{\threefigs}[6]{
+  \centering
+  \textcolor{blue}{#1} \\
+  \includegraphics[width=0.35\linewidth]{#2}
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \textcolor{blue}{#3} \\
+      \includegraphics[width=0.7\linewidth]{#4}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \textcolor{blue}{#5} \\
+      \includegraphics[width=0.7\linewidth]{#6}
+    \end{column}
+  \end{columns}
+}
+
+\newcommand{\ttbar}{\ensuremath{t\bar{t}}}
+\newcommand{\bbbar}{\ensuremath{b\bar{b}}}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+
+  \begin{itemize}
+  \item Goal is to measure $VH(b\bar{b})$ in the following STXS bins:
+    \begin{itemize}
+    \item $WH, \SI{150}{GeV} < p_T(V) \le \SI{250}{GeV}$
+    \item $WH, \SI{250}{GeV} < p_T(V) \le \SI{400}{GeV}$
+    \item $WH, \SI{400}{GeV} < p_T(V)$
+    \item $ZH, \SI{75}{GeV} < p_T(V) \le \SI{150}{GeV}$
+    \item $ZH, \SI{150}{GeV} < p_T(V) \le \SI{250}{GeV}, n_\mathrm{jet} = 0$
+    \item $ZH, \SI{150}{GeV} < p_T(V) \le \SI{250}{GeV}, n_\mathrm{jet} \ge 1$
+    \item $ZH, \SI{250}{GeV} < p_T(V) \le \SI{400}{GeV}$
+    \item $ZH, \SI{400}{GeV} < p_T(V)$
+    \end{itemize}
+  \item Personal contribution includes:
+    \begin{itemize}
+    \item Smearing for $b$ jets after regression is applied
+    \item Running the combination analyses
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\section{Selection}
+
+\begin{frame}
+  \frametitle{Example $V\!H(b\bar{b})$ Process}
+
+  \begin{center}
+  \begin{fmffile}{two_lep_diagram}
+    \fmfframe(0,0)(0, 20){
+    \begin{fmfgraph*}(250, 150)
+      \fmfleft{i0,i1}
+      \fmfright{o0,o1,o2,o3}
+      \fmf{quark}{i1,v0,i0}
+      \fmflabel{$\bar{f}$}{i0}
+      \fmflabel{$f$}{i1}
+      \fmf{boson, label=$Z$}{v0,v1,v2}
+      \fmf{fermion}{o0,v2,o1}
+      \fmflabel{$\ell^+$}{o0}
+      \fmflabel{$\ell^-$}{o1}
+      \fmf{dashes, label=$H$}{v1,v3}
+      \fmf{fermion}{o2,v3,o3}
+      \fmflabel{$\bar{b}$}{o2}
+      \fmflabel{$b$}{o3}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+  \end{center}
+
+  Some kinematics are adjusted before selections are applied
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$b$ Jet Energy Regression Inputs}
+
+  \begin{itemize}
+  \item the jet's $p_T$, $\eta$, mass and transverse mass
+  \item the event's median energy density
+  \item leading lepton information,
+    including perpendicular momentum,
+    $\Delta R$ from the center,
+    and lepton flavor
+  \item the $p_T$, mass, and number of tracks from any secondary vertex linked to the jet
+  \item the fractions energy in the jet due to
+    charged and neutral hadrons and electromagnetic constituents
+  \item the highest $p_T$ of charged hadron constituents
+  \item energy fraction contained in five concentric rings
+    binned by $\Delta R \in [0, 0.05, 0.1, 0.2, 0.3, 0.4]$
+  \item number of PF candidates in a jet
+  \item energy sharing computed by
+    $\frac{\sqrt{\sum_i p_{T,i}^2}}{\sum_i p_{T,i}}$
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Kinematic Fit for Two Leptons}
+
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{figures/Screenshot_2020-11-30_20-55-31.png}
+  \end{center}
+
+  Regression brings the di-jet mass to the correct central value,
+  while the kinematic fit improves resolution
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Selections}
+
+  {\tiny
+  \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{9}{|l|}{0-lepton channel} \\
+    \hline
+    Region & $p_T(V)$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 170 & 60, 35 & med. & loose & 120 & $>90, <150$ & $\le 1$ & $> 2.0$ \\
+    Z + $b$ & 170 & 60, 35 & med. & loose & 120 & $<90 or >150$ & $\le 1$ & $> 2.0$ \\
+    Z + $udsg$ & 170 & 60, 35 & !med. & loose & 120 & $>50, <500$ & $\le 1$ & $> 2.0$ \\
+    $t\bar{t}$ & 170 & 60, 35 & med. & loose & 120 & $>50, <500$ & $\ge 2$ & -- \\
+    \hline
+    \hline
+    \multicolumn{9}{|l|}{1-lepton channel} \\
+    \hline
+    Region & $p_T(V)$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 150 & 25 & med. & loose & 100 & $>90, <150$ & $\le 1$ & $> 2.5$ \\
+    W + $b$ & 150 & 25 & med. & loose & 100 & $<90 or >150$ & $\le 1$ & $> 2.5$ \\
+    W + $udsg$ & 150 & 25 & !med. & loose & 100 & $>50, <250$ & -- & $> 2.5$ \\
+    $t\bar{t}$ & 150 & 25 & med. & loose & 100 & $>50, <250$ & $\ge 2$ & -- \\
+    \hline
+    \hline
+    \multicolumn{9}{|l|}{2-lepton channel} \\
+    \hline
+    Region & $p_T(V)$ & $p_{T,j}$ & max $b$ & min $b$ & $p_{T,jj}$ & $m_{jj}$ & $N_\textrm{aj}$ & $\Delta\phi(jj, V)$ \\
+    \hline
+    Signal & 50 & 20 & med. & loose & 50 & $>90, <150$ & -- & $> 2.5$ \\
+    Z + $b$ & 50 & 20 & med. & loose & 50 & $<90 or >150$ & -- & $> 2.5$ \\
+    Z + $udsg$ & 50 & 20 & !loose & !loose & 50 & $>50, <250$ & -- & $> 2.5$ \\
+    $t\bar{t}$ & 50 & 20 & tight & loose & 50 & $>50, <250$ & -- & -- \\
+    \hline
+  \end{tabular}
+  }
+
+  Boosted is similar
+  \begin{itemize}
+  \item Uses $p_T > \SI{250}{GeV}$ fat jets
+  \item A double $b$-tag cut of 0.8 for ID
+  \item Additional $b$-jets used to create $t\bar{t}$ region
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Met $\phi$ Cut}
+
+  \begin{center}
+    \includegraphics[width=0.7\linewidth]{figures/METPhi319077.pdf}
+  \end{center}
+  
+  Mis-measured jet momentum in the forward region leads to a cut of
+  $-1.86 < \phi_\mathrm{MET} < -0.7$
+
+\end{frame}
+
+\section{Corrections}
+
+\begin{frame}
+  \frametitle{Smearing Fit Strategy}
+
+  \begin{itemize}
+  \item We use events with a second jet, and extrapolate down to where $\alpha = 0$
+  \item This should give us the behavior of the one jet diagram,
+    without needing to deal with few events or jet acceptance.
+  \item We use four bins of $\alpha$, each with roughly equal data yields:
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{/home/dabercro/GradSchool/hbb/docs/200304/figs/200303_alpha_lines_v2/smearplot_alpha.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \[
+      \alpha
+      \begin{cases}
+        0 < \alpha < 0.155 \\
+        0.155 \le \alpha < 0.185 \\
+        0.185 \le \alpha < 0.23 \\
+        0.23 \le \alpha < 0.3
+      \end{cases}
+      \]
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Smearing Fit Strategy}
+
+  \begin{columns}
+    \begin{column}{0.3\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{/home/dabercro/GradSchool/hbb/docs/200304/figs/200303_nbjets_noenv/smearplot_1_jet1_response.pdf} \\
+      \includegraphics[width=\linewidth]{/home/dabercro/GradSchool/hbb/docs/200304/figs/200303_nbjets_noenv/smearplot_3_jet1_response.pdf}
+    \end{column}
+    \begin{column}{0.3\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{/home/dabercro/GradSchool/hbb/docs/200304/figs/200303_nbjets_noenv/smearplot_2_jet1_response.pdf} \\
+      \includegraphics[width=\linewidth]{/home/dabercro/GradSchool/hbb/docs/200304/figs/200303_nbjets_noenv/smearplot_4_jet1_response.pdf}
+    \end{column}
+  \end{columns}
+
+  \vfill
+  We can see the MC resolution is better than data in all bins
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Smearing Fit Formula}
+
+  \[
+  f(\alpha) = (m \times \alpha) \oplus b \times (1 + c_k \times \alpha)
+  \]
+
+  \begin{itemize}
+  \item $c_k$ is fixed by a linear fit to the MC's intrinsic jet resolution ($p_{T, reco}/p_{T, gen}$) over $\alpha$ as $c_k = m_0/q_0$
+  \item Smearing is done by scaling difference between $p_{T,reco}$ and $p_{T,gen}$ by $b_{data}/b_{MC}$
+  \end{itemize}
+
+  \centering
+  \includegraphics[width=0.6\linewidth]{/home/dabercro/GradSchool/hbb/docs/200304/figs/200303_smear_200303_nbjets/resolution_jet1_response_smear_0.pdf}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Smearing Fit Results}
+
+  Uncertainties calculated with:
+
+  \[
+  \delta = \sqrt{\left(\frac{\delta_{data}}{c_{MC}}\right)^2 +
+    \left(\frac{c_{data}\delta_{MC}}{c_{MC}^2}\right)^2}
+  \]
+
+  \vfill
+
+  Scaling is done with the same bins in a linear fit of the histogram mean
+
+  \vfill
+
+  \begin{center}
+    \begin{tabular}{c|c|c}
+      \hline
+      Year & Scaling & Smearing \\
+      \hline
+      2016 & $0.998 \pm 0.019$ & $0.017 \pm 0.060$ \\
+      2017 & $1.020 \pm 0.023$ & $0.088 \pm 0.071$ \\
+      2018 & $0.985 \pm 0.019$ & $0.080 \pm 0.073$ \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{LO to NLO Reweighting}
+
+  \twofigs{Before Reweighting}
+          {figures/Vjets_NLOreweighting_2017V5_Znn_withoutWeight.pdf}
+          {After Reweighting}
+          {figures/Vjets_NLOreweighting_2017V5_Znn_withWeight.pdf}
+
+  Of course, there are also trigger efficiencies, \emph{etc}.
+
+\end{frame}
+
+\section{Combination Fit}
+
+\begin{frame}
+  \frametitle{Classification DNN}
+
+  \centering
+  {\tiny
+  \begin{tabularx}{\textwidth}{|l|X|c|c|c|}
+    \hline
+    Variable & Explanation & 0-lepton & 1-lepton & 2-lepton \\
+    \hline\hline
+    $m_{jj}$ & Di-jet mass & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $p_{T,jj}$ & Di-jet transverse momentum & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    MET & Missing transverse energy & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $m_{T,V}$ & Vector boson transverse mass & & $\checkmark$ & \\
+    $p_T(V)$ & Vector boson $p_T$ & & $\checkmark$ & $\checkmark$ \\
+    $p_{T,jj}/p_T(V)$ & Redundant ratio & & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $\Delta\phi(V, jj)$ & Azimuthal angle between vector boson and di-jet & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $b$-tag$_\mathrm{max}$ WP & 1, 2, or 3 if higher $b$-tag discriminate meets the tight, medium, or loose working point respectively & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $b$-tag$_\mathrm{min}$ WP & 1, 2, or 3 if lower $b$-tag discriminate meets the tight, medium, or loose working point respectively & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $\Delta\eta(jj)$ & $\eta$ difference between jets & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    $\Delta\phi(jj)$ & Azimuthal angle between jets & $\checkmark$ & $\checkmark$ & \\
+    $p_{T, \mathrm{lead}}$ & Leading jet $p_T$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    \hline
+    $p_{T, \mathrm{trail}}$ & Trailing jet $p_T$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    SA5 & Number of soft jets, $p_T > \SI{5}{GeV}$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+    N_{aj} & Number of additional jets & $\checkmark$ & $\checkmark$ & \\
+    \hline
+    $b$-tag$_\mathrm{add}$ & Maximum $b$-tag of additional jets & $\checkmark$ & & \\
+    $p_{T,\mathrm{add}}$ & Maximum $p_T$ of additional jets & $\checkmark$ & & \\
+    $\Delta\phi(\mathrm{add, MET})$ & Azimuthal angle between additional jet and MET & $\checkmark$ & & \\
+    \hline
+    $\Delta\phi(\ell, \mathrm{MET})$ & Azimuthal angle between lepton and MET & & $\checkmark$ & \\
+    $m_t$ & Reconstruction top mass & & $\checkmark$ & \\
+    $m_V$ & Vector boson mass & & & $\checkmark$ \\
+    \hline
+    $\Delta R(V, jj)$ & Separation between vector boson and di-jet & & & $\checkmark$ \\
+    $\Delta R_{jj}$ & Separation between jets & & & $\checkmark$ \\
+    \hline
+  \end{tabularx}
+  }
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Boosted BDT}
+
+  The Boosted regions use a BDT with the following input variables for the signal region shape
+
+  \vfill
+
+  \begin{itemize}
+  \item Soft-drop mass of the reconstructed fat jet
+  \item Transverse momentum of the fat jet
+  \item Transverse momentum of the reconstructed vector boson
+  \item Number of soft-track jets with $p_T > \SI{5}{GeV}$
+  \item Double $b$-tagger output node for boosted jets
+  \end{itemize}
+
+\end{frame}
+
+\subsection{$V\!Z$ Cross Check}
+
+\begin{frame}
+  \frametitle{$V\!Z$ Goodness of Fit}
+
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/210211_STXS_VZ_XbbVZ_decorr12345_skip_513dc9b8_inclusive_gof/Gof_inclusive_.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!Z$ Pre/Post-fit Distributions}
+
+  \fourfigs{V + light}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_prefit}
+           {V + heavy}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_prefit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_postfit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_postfit}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!Z$ Pre/Post-fit Distributions}
+
+  \fourfigs{$t\bar{t}$}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_prefit}
+           {Signal}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_prefit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_postfit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_postfit}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!Z$ Pre/Post-fit Distributions}
+
+  \fourfigs{Boosted V + light}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_prefit}
+           {Boosted $t\bar{t}$}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_prefit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_postfit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_postfit}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!Z$ Pre/Post-fit Distributions}
+
+  \fourfigs{Signal $250 < p_T(V) < \SI{400}{GeV}$}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_prefit}
+           {Signal $p_T(V) > \SI{400}{GeV}$}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_prefit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_postfit}
+           {}
+           {figures/210216_STXS_VZ_unblinded_XbbVZ_278ade89_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_postfit}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!Z$ Cross-check Results}
+
+  \twofigs{Inclusive Scan}
+          {figures/210303_inclVZ_unblinded_XbbVZ_644dd229_a866aef8/scan_nominal_r.pdf}
+          {STXS Bins}
+          {figures/210220_STXS_VZ_unblinded_XbbVZ_fe58cdd8_a866aef8/summary_stxs.pdf}
+
+  \begin{itemize}
+  \item Inclusive p-value: 19\%
+  \item STXS p-value: 43\%
+  \end{itemize}
+
+\end{frame}
+
+\subsection{$V\!H$ Analysis Results}
+
+\begin{frame}
+  \frametitle{$V\!H$ Goodness of Fit}
+
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/210304_STXSfine_400split_Xbb_8f854f5a_inclusive_gof/Gof_inclusive_.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H$ Pre/Post-fit Distributions}
+
+  \fourfigs{V + light}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_14_13TeV2016_prefit.pdf}
+           {V + heavy}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_15_13TeV2016_prefit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_14_13TeV2016_postfit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_15_13TeV2016_postfit.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H$ Pre/Post-fit Distributions}
+
+  \fourfigs{Signal $250 < p_T(V) < \SI{400}{GeV}$}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_21_13TeV2016_prefit.pdf}
+           {Signal $p_T(V) > \SI{400}{GeV}$}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_23_13TeV2016_prefit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_21_13TeV2016_postfit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Znn_23_13TeV2016_postfit.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H$ Pre/Post-fit Distributions}
+
+  \fourfigs{V + light}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_6_13TeV2017_prefit.pdf}
+           {V + heavy}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_7_13TeV2017_prefit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_6_13TeV2017_postfit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_7_13TeV2017_postfit.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H$ Pre/Post-fit Distributions}
+
+  \fourfigs{$t\bar{t}$}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_8_13TeV2017_prefit.pdf}
+           {Signal}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_5_13TeV2017_prefit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_8_13TeV2017_postfit.pdf}
+           {}
+           {figures/210217_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Wmn_5_13TeV2017_postfit.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H$ Pre/Post-fit Distributions}
+
+  \fourfigs{V + light}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_6_13TeV2018_prefit.pdf}
+           {V + heavy}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_7_13TeV2018_prefit.pdf}
+           {}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_6_13TeV2018_postfit.pdf}
+           {}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_7_13TeV2018_postfit.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H$ Pre/Post-fit Distributions}
+
+  \fourfigs{Signal no additional jets}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_5_13TeV2018_prefit.pdf}
+           {Signal with additional jets}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_9_13TeV2018_prefit.pdf}
+           {}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_5_13TeV2018_postfit.pdf}
+           {}
+           {figures/210216_STXSfine_400split_unblinded_Xbb_c2e6b2d7_postfitplots/plot_shapes_vhbb_Zee_9_13TeV2018_postfit.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H$ Results}
+
+  \begin{itemize}
+  \item Inclusive value $2.1\sigma$ below SM
+  \item $Z\!H$ $2.8\sigma$ below SM
+  \item Inclusive strength instead of SM: p-value of 9.4\% for STXS
+  \end{itemize}
+
+  \threefigs{Inclusive Scan}
+            {figures/210303_incl_unblinded_Xbb_6c69065c_a866aef8/scan_nominal_r.pdf}
+            {ZH/WH Split}
+            {figures/210302_vh_unblinded_Xbb_41a92082_a866aef8/summary_stxs.pdf}
+            {STXS Bins}
+            {figures/210302_STXSfine_400split_unblinded_Xbb_6c69065c_a866aef8/summary_stxs.pdf}
+
+\end{frame}
+
+\beginbackup
+
+\begin{frame}
+  \centering
+    {\Huge \bf\sffamily Backup Slides}
+\end{frame}
+
+%\input{backup_slides.tex}
+
+\begin{frame}
+  \frametitle{Impacts for WH $p_T(V) > 400$ GeV}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_whhi2.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_whhi2.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Impacts for WH $250 < p_T(V) < 400$ GeV}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_whhi1.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_whhi1.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Impacts for WH $150 < p_T(V) < 250$ GeV}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_whmed.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_whmed.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Impacts for ZH $p_T(V) > 400$ GeV}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_zhhi2.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_zhhi2.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Impacts for ZH $250 < p_T(V) < 400$ GeV}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_zhhi1.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_zhhi1.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Impacts for ZH $150 < p_T(V) < 250$ GeV with jets}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_zhmedwithj.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_zhmedwithj.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Impacts for ZH $150 < p_T(V) < 250$ GeV w/o jets}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_zhmednoj.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_zhmednoj.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Impacts for ZH $75 < p_T(V) < 150$ GeV}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_zhlow.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=0.85\linewidth,page=2]{figures/impacts/impacts_r_zhlow.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\backupend
+
+\end{document}
