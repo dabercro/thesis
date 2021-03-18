@@ -1,11 +1,22 @@
 \chapter{Corrections and Uncertainties}
 
-Despite efforts to simulate LHC collisions as accurately as possible,
+Despite efforts to simulate LHC collisions accurately,
 a number of differences in the distributions predicted by MC and present in data arise.
-This is a result of not being able to predict the beam conditions exactly
-and not being able to predict the calibration accurately.
+There are many reasons for this.
+The theory calculations used for simulation are not accurate since only leading order or
+next-to-leading order perturbations are used by the generators.
+After the generator step, the detector must be simulated,
+which is difficult due to the many composite parts,
+both active detector material and inactive electronics, that must be modeled in \texttt{GEANT4}.
 This is made more difficult since the detector degrades in its high radiation environment.
-Corrections are made to the simulation by re-weighting based on the pileup,
+The relation of generating particles and detector geometry also depends on the beam conditions,
+which are also not perdicted exactly.
+The most accurate measurements of the beam profile are destructive to the beam,
+so measurements cannot be made during the run.
+Predictions from simulations are also made harder because there are so many events recorded at the LHC,
+so tails will be generated in obscure areas of phase space.
+These tails are difficult to model correctly, yet often contain the most interesting events.
+Corrections are made to the simulation by re-weighting based on detector conditions and
 efficiencies of particle identification,
 and by scaling the predicted energies based on particle type.
 
@@ -85,12 +96,12 @@ The electron scale factors are measured in a similar manner as the muon scale fa
 using the tag and probe method.
 The relative difficulty in reconstructing electrons, which are contained in the ECAL,
 compared to muons leaving tracks through the muon chambers
-means that a reconstruction scale factor is also factored into the full scale factor.
+means that a reconstruction scale factor, $\epsilon^e_\mathrm{RECO}$, is also factored into the full scale factor.
 \begin{gather}
   \epsilon^e = \epsilon^e_\mathrm{RECO} \times \epsilon^e_\mathrm{ISO + ID|RECO} \times \epsilon^e_\mathrm{Trigger|ISO + ID + RECO}
 \end{gather}
-The binning for the electron scale factors is the same as the binning
-for the muon scale factors.
+The rest of the efficiency scale factors follow the same definition patterns given for the muons.
+The binning for the electron scale factors is also the same as the binning for the muon scale factors.
 The scale factor is around $1.0 \pm 0.1$ for most of the bins.
 
 \subsection{MET Trigger Scale Factors}
@@ -123,6 +134,10 @@ Figure~\ref{fig:met-sf}.
     the top right plot shows 2017,
     and the bottom plot shows the MET scale factors for 2018.
     Each scale factor is a function of the minimum MET or missing hadronic energy.
+    Remember the MET cut for the 0-lepton channel is at \SI{170}{GeV},
+    so the different behavior in 2018 below \SI{150}{GeV} does not affect the analysis.
+    The kink in the 2016 $W$+jets line is caused by the merging of two fits,
+    but since this is a variation to assess uncertainties, it is not necessary to fix.
   }
   \label{fig:met-sf}
 \end{figure}
@@ -173,6 +188,17 @@ These events are selected using the following requirements:
 
 The selected events are divided into four bins of $\alpha = p_{T,j2}/p_{T, \ell\ell}$
 with bounds $(0, 0.155, 0.185, 0.23, 0.3)$.
+The distribution of $\alpha$ is shown in Figure~\ref{fig:alpha}, along with the bin boundaries.
+These bins were selected to give approximately the same number of data events in each bin.
+%
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures/200303_alpha_lines_v2/smearplot_alpha.pdf}
+  \caption[Distribution of $\alpha$ used for $b$ jet energy smearing]{
+    The distribution for $\alpha$ is shown above, along with the binning boundaries.
+  }
+\end{figure}
+%
 The jet response ($p_{T, j1}/p_{T, \ell\ell + j2}$) is plotted in each bin,
 with uncertainties from renormalization and refactorization scale weights
 and parton shower weights.
@@ -208,11 +234,17 @@ The relative resolution ($\sigma/\mu$) is fit as a function of $\alpha$.
 The $c_k$ term is fixed by a linear fit to the MC's intrinsic jet resolution
 ($p_{T, reco}/p_{T, gen}$) over $\alpha$ as $c_k = m_0/q_0$.
 The fit results are shown in Fig.~\ref{fig:jetsmear-fits}.
-Smearing is done by scaling difference between
+The resolution is corrected by scaling the difference between
 $p_{T,reco}$ and $p_{T,gen}$ by $b_{data}/b_{MC}$.
 This causes the post-smearing fits to agree at $\alpha = 0$.
 Uncertainties are extracted from the fit uncertainties of $b$ for data and MC.
 The resulting smearing values are in Table~\ref{tab:jetsmear-res}.
+The difference in smearing values for 2016 can be explained by a few characteristics of the simulation and data.
+First, the 2016 data has been more thoroughly studied and can generally be expected to have more robust calibration.
+The detector behavior also degrades over time as it accumulates radiation damage. 
+Though this is accounted for in calibrating,
+it does make more precise simulations of detector response less accurate.
+Finally, the simulation for 2016 uses a different \texttt{PYTHIA} tune.
 
 \begin{figure}
   \centering
@@ -228,12 +260,12 @@ The resulting smearing values are in Table~\ref{tab:jetsmear-res}.
 
 \begin{table}
   \centering
-  \caption[$b$-jet energy smearing parameters]{
-    The extracted smearing needed for each year of data as a percent of the jet's $p_T$.
+  \caption[$b$-jet energy correction parameters]{
+    The extracted corrections needed for each year of data as a percent of the jet's $p_T$.
   }
   \begin{tabular}{c|c|c}
     \hline
-    Year & Scaling & Smearing \\
+    Year & Scaling & Resolution Difference \\
     \hline
     2016 & $0.998 \pm 0.019$ & $0.017 \pm 0.060$ \\
     2017 & $1.020 \pm 0.023$ & $0.088 \pm 0.071$ \\
@@ -417,18 +449,22 @@ The following uncertainties only affect the normalization of the simulated sampl
 
 \subsection{Shape Uncertainties}
 
-Uncertainties that also affect the variable distribution shape,
-in addition to the normalization, of simulated processes are the following.
+In addition to normalization, there is some uncertainty in the shapes of the various distributions that are fit.
+This is typically caused by uncertainties in variables that are used in the event selection,
+but can also be a result of normalization uncertainties that only affect a subset of events in a selection.
+The shape variations are generated by varying different parameters up and down
+and re-applying selections and weights to determine the final shape of each distribution.
+Uncertainties of simulated processes that cause shape differences are the following.
 \begin{itemize}
-\item The energy resolution of $b$ jets are smeared by increasing,
-  or decreasing for some variations,
+\item The energy resolution, and therefore the exact final energy,
+  of simulated $b$ jets are varied by increasing or decreasing
   the distance between the generator-level $p_T$ and the reconstructed jet $p_T$.
 \item The energy scale is varied by varying all jet energies up and down by
   one standard deviation.
 \item The $b$-tagging efficiency uncertainties are calculated
   for multiple $p_T$ and $\eta$ bins.
   The uncertainties for these different bins are uncorrelated,
-  so they change the shape of the $b$-tagging discriminator when applied. 
+  so they each affect a different subset of events when applied. 
 \item The $b$-tagging for fat jets is applied for two different working points,
   medium and tight, and is binned in $p_T$.
   These working points and $p_T$ bins are decorrelated from each other.
