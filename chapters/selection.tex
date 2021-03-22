@@ -76,7 +76,7 @@ charged particles are classified as originating from the primary vertex or as pi
 using their extrapolated track's distance in the transverse plane, $d_{xy}$
 and distance along the beamline, $d_z$.
 
-\subsection{Muons} \label{sec:muon-def}
+\subsection{Isolated Muons} \label{sec:muon-def}
 
 An isolated muon gives one of the cleanest signatures in CMS,
 with only perhaps the exception of an isolated photon that does not
@@ -86,9 +86,10 @@ in which case they are not isolated.
 Since weakly decaying $b$ jets are central to this analysis,
 events with non-isolated leptons are not rejected,
 but the distinction is important.
-Loosely selected muons must meet the following requirements.
+Loosely selected muons must meet the following requirements so that they
+are more likely from the decay of $W$ and $Z$ bosons.
 \begin{itemize}
-\item The muon must have a relatively high energy of $p_T > \SI{5}{GeV}$.
+\item The muon must have a relatively high transverse momentum of $p_T > \SI{5}{GeV}$.
 \item The muon should pass through the inner tracker within $|\eta| < 2.4$.
 \item The muon originates from the primary vertex, satisfying both
   $d_{xy} < \SI{0.5}{cm}$ and $d_z < \SI{1.0}{cm}$.
@@ -96,24 +97,24 @@ Loosely selected muons must meet the following requirements.
 \item The muon must be a PF muon.
 \item The muon is either a global muon or a tracker muon.
 \end{itemize}
-Tightly identified muons have some additional cuts they must pass.
+Tightly identified muons have some additional criteria they must pass.
 \begin{itemize}
 \item They must have a higher transverse momentum at $p_T > \SI{25}{GeV}$.
   In events with two muons, such as caused by $Z \rightarrow \mu\mu$,
-  one muon only needs to satisfy the slightly looser selection of $p_T > \SI{15}{GeV}$,
-  as long as the other has $p_T > \SI{25}{GeV}$.
+  only one muon only needs to satisfy this $p_T$ requirement.
+  Only $p_T > \SI{15}{GeV}$ is required of the second muon.
 \item The muon must be a global muon, leaving tracks in both the central tracker
   and the muon chambers.
-\item There must be more than five hits in the inner tracker with one hit on a pixel.
+\item There must be more than five hits in the inner tracker with at least one hit in the pixel detector.
 \item The fit for the global muon track must be good with $\chi^2/ndof < 10$.
 \item The muon must be well isolated with $I < 0.06$
 \end{itemize}
 
-These definitions are accepted by all members of the CMS collaboration
+These definitions are an accepted standard in the CMS collaboration
 as loose and tight working points, respectively.
 This allows the analysis to use efficiency measurements created for wider use.
 
-\subsection{Electrons} \label{sec:ele-def}
+\subsection{Isolated Electrons} \label{sec:ele-def}
 
 The kinematic variables associated with an electron are extracted from the GSF fit.
 Loosely selected electrons must meet the following requirements.
@@ -128,7 +129,7 @@ To optimize the electron selection,
 electrons are identified with the aid of an MVA \cite{Rembser_2019}.
 Fully selected electrons pass the tight working point used by the CMS collaboration.
 In order to also match the samples of simulated electrons used in the training sample,
-the selected electrons also must pass the following cuts.
+the selected electrons must also pass the following cuts.
 \begin{itemize}
 \item The electron must have higher energy with $p_T > \SI{15}{GeV}$.
 \item The deposit of HCAL energy must be less than 9\% of the ECAL energy deposit
@@ -136,8 +137,11 @@ the selected electrons also must pass the following cuts.
 \item The track sum $p_T$ component of the isolation must be
   less than 18\% of the electron $p_T$.
 \item There is a gap in the ECAL geometry,
-  so the electron must either have $|\eta| < 1.4442$ or $|\eta| > 1.5660$.
-\item For electrons with $|\eta| < 1.4442$:
+  so the electron must be outisde the gap $1.4442 < |\eta| < 1.5660$.
+  The gap is between the barrel and endcap regions of the detector.
+  Due to detector geometry and different conditions in each region,
+  the remaining selection criteria differs based on the electron's location.
+\item For electrons with $|\eta| < 1.4442$ in the detector barrel:
   \begin{itemize}
   \item The shower shape must satisfy $\sigma_{i\eta i\eta} < 0.012$
   \item Isolation in the ECAL cluster must be less than 0.4,
@@ -145,7 +149,7 @@ the selected electrons also must pass the following cuts.
   \item The difference between super cluster and track location of the electron
     must be small with $\Delta \eta < 0.0095$ and $\Delta \phi < 0.065$.
   \end{itemize}
-\item For electrons with $|\eta| > 1.5660$:
+\item For electrons with $|\eta| > 1.5660$ in the detector endcap:
   \begin{itemize}
   \item The shower shape must satisfy $\sigma_{i\eta i\eta} < 0.033$
   \item Isolation in the ECAL cluster must be less than 0.45,
@@ -161,7 +165,7 @@ give the kinematics of the initial parton that produced them.
 Jets are constructed by clustering all particle-flow candidates
 with the anti-$k_T$ algorithm \cite{Cacciari_2008}
 using the jet clustering parameter $R = 0.4$.
-Due to factors like pileup and imperfect detector response,
+Due to factors like pileup, imperfect detector response, and differences in various jet-clusterings
 the energy of the reconstructed jets are corrected \cite{Khachatryan_2017}.
 
 Loose jet cuts, based on the constituents,
@@ -183,11 +187,11 @@ Jets containing $b$ hadrons have a distinct signature.
 This includes secondary vertices displaced from the beamline,
 as well as non-isolated leptons from weak decays.
 When looking at jets in the inner tracker,
-all of these features can be considered in a deep neural network (DNN)
+all of these features are considered in a deep neural network (DNN)
 called Deep Combined Secondary Vertex (DeepCSV)
 designed to identify $b$ jets \cite{Sirunyan_2018}.
 The output of DeepCSV has three working points
-that are defined based on the amount of false positives that can be expected
+that are defined based on the amount of false positives that are expected
 in a collection of jets passing the cut.
 The specific values are different for each year of operation.
 The detector and collision conditions change,
@@ -218,8 +222,7 @@ The non-isolated leptons within $b$ jets are caused
 by flavor-changing weak decay of $b$ hadrons.
 This decay mode also results in neutrinos which carry away a portion of the jet energy.
 In order to more accurately reconstruct the di-jet mass of a candidate Higgs decay,
-a prediction on the amount of energy carried away by undetected neutrinos is made.
-A Deep Neural Network (DNN) is trained in Tensorflow
+a Deep Neural Network (DNN) is trained in Tensorflow
 \cite{DBLP:journals/corr/AbadiABBCCCDDDG16},
 which is designed to improve the energy measurement and resolution of all $b$ jets for CMS
 \cite{collaboration2019deep}.
@@ -264,7 +267,7 @@ larger jets, labelled fat jets, are used.
 A second collection of jets is made from the same set of PF candidates that are
 clustered to create the jets described previously.
 This collection also uses the anti-$k_T$ algorithm,
-but with the jet clustering parameter $R = 0.8$.
+but with a larger jet clustering parameter of $R = 0.8$ to capture the majority of boosted events.
 The requirement on the fat jet which ensures that Higgs decay products are contained
 in the jet when they are at a maximum opening angle is $p_T > \SI{250}{GeV}$.
 
@@ -283,7 +286,7 @@ The soft drop algorithm has the additional benefit of forcing pileup jets to low
 which is why a second requirement on fat jets considered for the analysis is
 $m_\mathrm{SD} > \SI{50}{GeV}$.
 
-\subsection{Missing Transverse Energy}
+\subsection{Missing Transverse Momentum}
 
 Missing transverse energy, which is actually the missing transverse momentum,
 also labelled $E_T^\mathrm{miss}$ or MET,
@@ -301,7 +304,7 @@ Large MET values can be generated by instrumental and beam effects as well.
 Therefore, there are additional event filters applied to events with large MET
 that removes events where these known instrumental and beam effects have been identified.
 
-One technique outside of using the event filter lists from dedicated CMS groups
+An additional technique to select interesting events with a large MET
 is to compare the particle flow MET to other calculations of MET.
 This analysis also uses track MET, or trkMET.
 Track MET is calculated using just the reverse vector sum of charged particles
@@ -337,13 +340,14 @@ signal and background events.
 \subsection{Kinematic Fit}
 
 In the two-lepton region, the $Z$ boson's decay products are observed directly, and
-the $Z$ boson momentum can be reconstructed precisely.
+the $Z$ boson momentum is precisely reconstructed.
 A kinematic fit is performed to constrain the momenta of the two leptons by requiring their
 combined mass to match the $Z$ boson mass.
 After this constraint is applied, the transverse momentum of the di-jet system,
-along with ISR jets, is balanced with the transverse momentum of the di-lepton system.
-The fit is performed by minimizing the chi-squared of the kinematic system that
-meets these constraints.
+along with identified Initial State Radiation (ISR) jets,
+is balanced with the transverse momentum of the di-lepton system.
+The fit adjusts the momentum of each identified component of the event in a way that
+minimizes the chi-squared value meeting measured and theoretical physics constraints.
 
 For electrons and muons,
 the corrections defined in centralized efforts by the CMS collaboration include uncertainties.
@@ -355,8 +359,7 @@ The kinematic fit minimizes the chi-squared value of these constraints,
 resulting in new energies for all particles in the fit.
 The full implementation is in the \texttt{PhysicsTools/KinFitter} package of
 \texttt{CMSSW\_10\_2\_0\_pre3} \cite{cmssw_doxygen}.
-Only the resulting energies of the $b$-jets, which are otherwise relatively loosely constrained,
-are used for analyzing the two-lepton regions.
+The fitted $b$-jet energies are then used for all values in the remainder of the two-lepton channel analysis.
 The improvement of the di-jet mass in the signal sample as a result of the kinematic fit
 are shown in Figure~\ref{fig:kinfit}. % and Table~\ref{tab:kinfit}.
 
@@ -390,11 +393,11 @@ are shown in Figure~\ref{fig:kinfit}. % and Table~\ref{tab:kinfit}.
 
 \section{Simplified Template Cross Section Bins}
 
-The measurement performed in this analysis is a differential
-cross section of Higgs production.
-This is done with a Simplified Template Cross Section (STXS) measurement \cite{Kato:2687920},
-where the Higgs boson production cross sections are measured in multiple kinematic bins.
-This allowed for sensitivity to new physics with reduced model dependence.
+The measurement performed in this analysis is a binned differential
+cross section of Higgs production
+using the Simplified Template Cross Section (STXS) approach \cite{Kato:2687920}.
+The allows the result to be compared more thoroughly to Standard Model predictions
+while reducing the model dependence of the measurements.
 For this measurement, the vector boson produced as well as the $p_T$ of the vector boson
 separates data points into different bins.
 The clean signal of the $Z\rightarrow\ell\ell$ decay channel allows for more
@@ -443,7 +446,7 @@ The Drell-Yan process can also radiate jets initiated by lighter flavor quarks
 that are mistakenly identified as $b$-jets,
 and those make up a significant portion of the backgrounds as well.
 Less significant, but still important backgrounds include processes like
-di-boson production, QCD jets, and signal top processes.
+di-boson production, QCD jets, and single top processes.
 \begin{figure}
   \centering
   \begin{fmffile}{dy_2lep}
@@ -531,7 +534,7 @@ control regions are used.
 These are selections that are in similar phase spaces as the signal selection,
 but are instead enriched with background events.
 By comparing the prediction from Monte Carlo to data,
-scaling corrections to the simulation can be made for the phase space.
+scaling corrections to the simulation are made for the relevant phase space and extrapolated to the signal region.
 
 For each channel, three control regions are defined.
 There are two control regions for the appropriate vector boson radiating jets.
@@ -539,7 +542,7 @@ The region is enriched with light flavor jets, labelled $udsg$ for
 up, down, and strange quarks, and gluons, by requiring a di-jet system that fails
 the $b$-tagging working points.
 The heavy flavor $V$ + jets control regions are differentiated from the signal selection
-primarily by requiring the di-jet mass to be different than Higgs mass.
+primarily by requiring the di-jet mass to be different than Higgs boson mass.
 The $t\bar{t}$ process tends to radiate more jets than the signal process,
 but the lack of a di-lepton resonance is taken advantage of in the two-lepton regions.
 Specific cuts for each signal region and the control regions are given in the next section.
@@ -574,6 +577,7 @@ but are described in the appropriate sections.
     Below is a summary of common cuts for all regions in the resolved channels.
     See the text for each channel for an explanation of variables.
     All energy equivalent values are in GeV.
+    A ``!'' in front of a working point label means the jet is required to fail the relevant $b$-tagging criteria.
   }
   \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
     \hline
@@ -711,7 +715,7 @@ all jets in the event with $p_T > \SI{30}{GeV}$
 must be a minimum distance from the event MET satisfying
 $\Delta \phi(\mathrm{MET}, j) > 0.5$.
 
-The signal region it is further required that
+In the signal region, it is further required that
 the selected $b$-jets to be of high quality,
 the di-jet system has a mass close to the Higgs,
 and low additional hadronic activity.
@@ -727,11 +731,11 @@ $\Delta \phi(\mathrm{MET}, \mathrm{trkMET}) < 0.5$.
 As mentioned earlier, three processes make up the majority of the backgrounds
 in the signal selection, and control regions must be defined for them.
 Two of them when a $Z \rightarrow \nu\bar{\nu}$ occurs recoiling off of jets.
-In one processes, the recoiling jets are $b$-jets, and in the other, the jets are light jets.
+In one process, the recoiling jets are $b$-jets, and in the other, the jets are light jets.
 Since the fraction of actual $Z \rightarrow \nu\bar{\nu}$ events
 containing $b$-jets is not well known, they are scaled separately.
-The third background process that needs to be separately measured in this phase space
-is a $t\bar{t}$ semi-leptonic decay
+The third set of background events that needs to be separately measured in this phase space
+are the $t\bar{t}$ semi-leptonic decays
 where the lepton falls outside of the detector acceptance.
 This type of background also results in a final state with high MET and $b$-jets.
 
@@ -796,14 +800,14 @@ Therefore, the kinematic cuts on the selected $b$-jets can be looser.
 The $b$-jets only need to satisfy $p_T > \SI{25}{GeV}$,
 and the di-jet system only needs $p_T > \SI{100}{GeV}$.
 Any events with $m_{jj} \ge \SI{250}{GeV}$ are not considered for any regions.
-The $b$-tagging requirement is the same as the 0-lepton channel.
-There is a slightly tighter cut on the di-jet direction of
+The $b$-tagging requirement is the same as the one in the 0-lepton channel.
+There is a slightly tighter requirement on the di-jet direction of
 $\Delta\phi(\mathrm{MET}, jj) > 2.5$.
 
-In the signal region, the additional cuts are again similar to the 0-lepton channel.
+In the signal region, the additional selection criteria are again similar to the 0-lepton channel.
 The di-jet mass window is the same, as is the requirement of at most one additional jet.
 The only other difference from the 0-lepton selection
-aside from the adjusted common cuts listed above
+aside from the adjusted criteria listed above
 is that there is no dependence on the track MET direction.
 The change to create the $W$ + heavy flavor jets control region is the exact same as the
 $Z$ + heavy flavor region in the 0-lepton channel.
@@ -851,18 +855,18 @@ in Table~\ref{tab:2-triggers}.
   \end{tabular}
   \label{tab:2-triggers}
 \end{table}
-They must have an mass satisfying $75 < m_{\ell\ell} < \SI{105}{GeV}$.
+They must have a mass satisfying $75 < m_{\ell\ell} < \SI{105}{GeV}$.
 This process is clean enough to relax the kinematic cuts on the selected $b$-jets
-even further than the relaxed cuts of the 1-lepton channel.
+even further than the relaxed selection criteria of the 1-lepton channel.
 The selected $b$-jets only need to have a $p_T > \SI{20}{GeV}$,
 and the di-jet system only needs $p_T > \SI{50}{GeV}$.
-There are no cuts on the number of additional, outside of categorization for STXS bins.
+There are no requirements on the number of additional jets, outside of categorization for STXS bins.
 The di-jet system still needs to satisfy the tighter cut of $\Delta\phi(jj,V) > 2.5$.
 
-The signal region uses the same $b$-tag and mass window cuts as the other two channels.
+The signal region uses the same $b$-tag and mass value requirement as the other two channels.
 For the $Z$ + heavy flavor control region,
-the di-lepton mass cut is narrowed to $85 < m_{\ell\ell} < \SI{97}{GeV}$
-in order to cut out $t\bar{t}$, and the usual Higgs mass veto is applied.
+the di-lepton mass is narrowed to $85 < m_{\ell\ell} < \SI{97}{GeV}$
+in order to remove $t\bar{t}$ events, and the usual Higgs mass veto is applied.
 The MET is also required to be low with $\mathrm{MET} < \SI{60}{GeV}$
 for the $Z$ + heavy region, but no other.
 For the $Z$ + light flavor region, purity is achieved by requiring
@@ -900,7 +904,7 @@ as the resolved selection regions.
 The 0-lepton channel is enriched with signal events where
 the $Z$ boson decays to neutrinos, so the 0-lepton channel has high MET.
 A requirement of $\mathrm{MET} > \SI{250}{GeV}$ is applied,
-balancing out the $p_T$ requirement of the fat jet.
+which is consistent with the $p_T$ requirement of the fat jet.
 As for the resolved analysis, the presence of any leptons leads to
 the event not being considered for the 0-lepton channel.
 To remove QCD background for all regions, the same cut from the resolved analysis of
@@ -917,7 +921,7 @@ the mass cut is changed to instead veto the Higgs mass window.
 For the $Z$ + light flavor, there is no mass requirement outside of the
 $m_\textrm{SD} > \SI{50}{GeV}$ required for all fat jets.
 Orthogonality is enforced by requiring the bbVsLight score to be less than 0.8.
-For $t\bar{t}$, the lack of mass requirement is also present,
+For $t\bar{t}$, the lack of a mass requirement is also present,
 but there must be at least one $b$ jet outside of the fat jet.
 
 \subsection{1 Lepton}
@@ -932,7 +936,7 @@ are the exact same as for the boosted 0-lepton regions.
 For the two lepton channel, two oppositely charged, same flavor leptons must be present,
 as described in Section~\ref{sec:resolved-2}.
 These leptons must also have a mass near the $Z$ boson mass for the signal region
-and the two $Z$ + jets regions.
+and the two $Z$ + jets regions of $87 < m_{\ell\ell} < \SI{95}{GeV}$.
 The selection for the signal and control regions are otherwise similar to the selections
 for the 0- and 1-lepton channels in the boosted analysis.
 The only difference is that instead of requiring a $b$ jet outside of the fat jet
