@@ -5,7 +5,7 @@
 The CMS detector collected proton-proton collision data at $\sqrt{s} = \SI{13}{TeV}$
 over three years during Run 2 of the LHC.
 In 2016, CMS collected \SI{35.9}{fb^{-1}} of data \cite{CMS-PAS-LUM-17-001}.
-In 2017, \SI{41.5}{fb^{-1}} of data was collected \cite{CMS-PAS-LUM-17-004}.
+In 2017, data corresponding to \SI{41.5}{fb^{-1}} were collected \cite{CMS-PAS-LUM-17-004}.
 In 2018, CMS collected \SI{60}{fb^{-1}} of collision data \cite{CMS-PAS-LUM-18-002}.
 This data, totaling about \SI{137}{fb^{-1}} was used for the analysis.
 
@@ -15,7 +15,8 @@ A number of variables are compared in all of the control regions
 to ensure that the data and simulation are in reasonable agreement.
 A selection of these plots are shown in Figures~\ref{fig:2016_Zll_vpt} through \ref{fig:2018_Zmm_vpt}.
 %,fig:2016_Wln_j0pt,fig:2017_Znn_j0csv,fig:2017_Zee_j1pt,fig:2018_Wln_j1csv,
-These are pre-fit distributions, so agreements improve after fitting the Monte Carlo to the gathered data.
+These are the distributions before fitting the control and signal regions to data,
+so agreements improve after the fit.
 The number of variables, selections, and separation of the data collection years
 means that this is just a fraction of the total number of plots produced.
 However, this subset shown demonstrate several discrepancies that needed to be accounted for in our systematics,
@@ -157,8 +158,6 @@ In each STXS bin, a multivariate discriminator is plotted which separates
 the signal events from background events.
 A Deep Neural Network (DNN) is trained for the resolved selection,
 and a Boosted Decision Tree (BDT) is trained for the boosted selection.
-Using fewer discriminating variables in the boosted events
-leads to this difference in architecture.
 
 \subsection{Resolved DNN}
 
@@ -235,7 +234,7 @@ The list of input variables for the BDT is the following:
 \item Number of soft-track jets with $p_T > \SI{5}{GeV}$
 \item Double $b$-tagger output node for boosted jets
 \end{itemize}
-All of these variables were all used in the 0-, 1-, and 2-lepton regions,
+All of these variables were used in the 0-, 1-, and 2-lepton regions,
 even though the regions were trained separately.
 
 \section{Combination Fit}
@@ -258,9 +257,9 @@ In addition, \texttt{combine} includes a variety of diagnostic tools to ensure
 the assumed model is adequate.
 The first step before unblinding results is to throw toys using the best-fit
 nuisance parameter values and comparing a test statistic of these toys to that of the observed data.
-Comparing the observed value to the toy distribution will give a p-value
-of the post-fit simulation yielding the observed value.
-The \texttt{combine} tool can also evaluate the impacts of each individual
+The distributions of a the values from the set of toys allows the evaluation of the $p$-value
+of the test statistic observed in data.
+The \texttt{combine} tool also evaluates the impacts of each
 nuisance parameter on the likelihood by varying them individually.
 If nuisance parameters with large impacts are pulled far from their initial value,
 that means that an important aspect of the measurement was not well understood.
@@ -282,7 +281,7 @@ to  $\SI{60}{GeV} < m_{jj} < \SI{120}{GeV}$.
 Data from all three years of Run 2 are used again so that any differences that may affect the $V\!H$ analysis
 can also be investigated using $V\!Z$.
 The Goodness of Fit plots are shown in Figure~\ref{fig:vz-gof}.
-The high p-value means that the simulated processes were able to match the data very well
+The high $p$-value means that the simulated processes were able to match the data very well
 while staying within the fit constraints of the systematic uncertainties.
 
 \begin{figure}
@@ -335,7 +334,7 @@ The relative contributions of the main background processes can also be seen at 
 %
 These distributions can be compared to those in Figure~\ref{fig:vz-wen-boost-2018},
 which shows distributions from the boosted selection of the $W\rightarrow e\nu$ channel in 2018.
-In this case, the $W$ + heavy jets control region is not shown, since the related process contributes less
+In this case, the $W$ + heavy jets control region is not shown because the related process contributes less
 in the signal region.
 Instead, the $t\bar{t}$ background is dominate in this boosted topology.
 The control regions use the double $b$-tag score of the fat jet instead of $p_T(V)$ for the distribution.
@@ -365,17 +364,17 @@ are improved as a result of the fit.
   \label{fig:vz-wen-boost-2018}
 \end{figure}
 
-From these post-fit distributions, the strength and uncertainty of the signal samples can be extracted.
+From these post-fit distributions, the strength and uncertainty of the signal samples are extracted.
 A value of 1.0 corresponds to the expectation based on simulation of the Standard Model.
-By correlating all of the signal samples across all of the STXS bins,
-an inclusive signal strength can be obtained.
+By correlating all of the signal samples across STXS bins,
+an inclusive signal strength is obtained.
 The likelihood scan of this strength is shown in Figure~\ref{fig:vz-inclusive}.
 The maximum likelihood with respect to the Standard Model is $1.182^{+0.118}_{-0.112} \mathrm{(stat)}^{+0.098}_{-0.097} \mathrm{(sys)}$.
-The uncertainty of this measurement means the result has a p-value of 22\%, assuming Standard Model couplings,
-or disagreement of only $1.2\sigma$.
+The uncertainty of this measurement means the result has a $p$-value of 22\%, assuming Standard Model couplings,
+or within 1.2 standard deviations of the Standard Model.
 Figure~\ref{fig:vz-stxs} shows the measured kinematic distributions of the various $V\!Z$ processes.
-Assuming the Standard Model, the measurement has a p-value of 23\%.
-Overall, the $V\!Z$ cross-check has very good agreement with the Standard Model.
+Assuming the Standard Model, the measurement has a $p$-value of 23\%.
+Overall, the $V\!Z$ cross-check is in agreement with the Standard Model.
 
 \begin{figure}
   \centering
@@ -385,7 +384,7 @@ Overall, the $V\!Z$ cross-check has very good agreement with the Standard Model.
     $V\!Z$ cross check analysis is shown above.
     The dashed line is generated by freezing all nuisance parameters to their most likely value,
     so the likelihood variation for that curve is from statistical uncertainties only.
-    Comparing the two curves allows the systematic uncertainties to be evaluated.
+    Using quadratic subtraction between the two curves allows the systematic uncertainties to be evaluated.
   }
   \label{fig:vz-inclusive}
 \end{figure}
@@ -406,7 +405,7 @@ The first step to show that the processes in the detector are well-modeled
 by simulation is the Goodness of Fit test.
 The Goodness of Fit for the $V\!H$ selection is shown in Figure~\ref{fig:vh-gof}.
 The observed value for the saturated test statistic is in the bulk of the distribution created by throwing
-post-fit toys, with an associated p-value of 70\%, suggesting both good modeling and
+post-fit toys, with an associated $p$-value of 70\%, suggesting both good modeling and
 reasonable values for post-fit uncertainties.
 %
 \begin{figure}
@@ -428,7 +427,7 @@ Unlike the two lepton selections shown,
 the signal distributions display contamination from $W$ + jets background processes.
 There is no zero-lepton control region for $W$ + jets.
 Instead, these backgrounds are controlled only by one-lepton control regions,
-so the five channels cannot be considered to be entirely separate for the fit.
+so the five channels are correlated in the fit.
 %
 \begin{figure}
   \centering
@@ -502,14 +501,14 @@ and events with extra jets, which can be seen in the distributions.
 \end{figure}
 
 The signal strength extracted from the fit can be separated a number of ways.
-The inclusive signal strength is shown in Figure~\ref{fig:vh-inclusive} to be  $0.568^{+0.154}_{-0.147} \mathrm{(stat)}^{+0.134}_{-0.133} \mathrm{(sys)}$.
-The uncertainties put this measurement at $2.1\sigma$ below the Standard Model.
+The inclusive signal strength is shown in Figure~\ref{fig:vh-inclusive} to be $0.568^{+0.154}_{-0.147} \mathrm{(stat)}^{+0.134}_{-0.133} \mathrm{(sys)}$.
+The uncertainties put this measurement within 2.1 standard deviations of the Standard Model.
 Figure~\ref{fig:vh-whzh} shows that this low value is caused by a low cross section measurement of $Z\!H$,
-which alone is $2.9\sigma$ below the Standard Model.
+which alone is 2.9 standard deviations below the Standard Model.
 Figure~\ref{fig:vh-stxs} shows the full STXS measurement results.
 Both $Z\!H$ and $W\!H$ show increasing trends in differential cross section as $p_T(V)$ increases.
 However, substituting the inclusive signal strength in for the Standard Model,
-the STXS scans have an agreement with a p-value of 9.3\%.
+the STXS scans have an agreement with a $p$-value of 9.3\%.
 Standard Model kinematics cannot be entirely ruled out by this measure.
 
 \begin{figure}
@@ -540,4 +539,22 @@ Standard Model kinematics cannot be entirely ruled out by this measure.
     $V\!H$ analysis.
   }
   \label{fig:vh-stxs}
+\end{figure}
+
+The total coupling between the Higgs boson and vector bosons, as well as the coupling between
+the Higgs boson and bottom quarks is measured using the kappa framework \cite{de_Blas_2020}.
+Results of this analysis alone are shown in Figure~\ref{fig:kappa}.
+Standard Model values of $\kappa_V = \kappa_b = 1$ fall within the 68\% confidence level.
+The results of this $\kappa$ scan can be additionally constrained by combining
+this analysis with others that focus on using either vector bosons for Higgs production
+or the $b\bar{b}$ decay path.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/limit.pdf}
+  \caption[Measured values of $\kappa_V$ and $\kappa_b$]{
+    The possible values of $\kappa_V$ and $\kappa_b$ are shown above.
+    Values of 1.0 reproduce Standard Model predictions.
+  }
+  \label{fig:kappa}
 \end{figure}
