@@ -137,7 +137,7 @@ the selected electrons must also pass the following cuts.
 \item The track sum $p_T$ component of the isolation must be
   less than 18\% of the electron $p_T$.
 \item There is a gap in the ECAL geometry,
-  so the electron must be outisde the gap $1.4442 < |\eta| < 1.5660$.
+  so the electron must be outside the gap $1.4442 < |\eta| < 1.5660$.
   The gap is between the barrel and endcap regions of the detector.
   Due to detector geometry and different conditions in each region,
   the remaining selection criteria differs based on the electron's location.
@@ -165,8 +165,8 @@ give the kinematics of the initial parton that produced them.
 Jets are constructed by clustering all particle-flow candidates
 with the anti-$k_T$ algorithm \cite{Cacciari_2008}
 using the jet clustering parameter $R = 0.4$.
-Due to factors like pileup, imperfect detector response, and differences in various jet-clusterings
-the energy of the reconstructed jets are corrected \cite{Khachatryan_2017}.
+Due to factors like pileup, imperfect detector response, and differences in various jet-clustering
+configurations the energy of the reconstructed jets are corrected \cite{Khachatryan_2017}.
 
 Loose jet cuts, based on the constituents,
 are applied to remove jets constructed from detector noise.
@@ -306,7 +306,7 @@ that removes events where these known instrumental and beam effects have been id
 
 An additional technique to select interesting events with a large MET
 is to compare the particle flow MET to other calculations of MET.
-This analysis also uses track MET, or trkMET.
+This analysis also uses track MET, or track MET.
 Track MET is calculated using just the reverse vector sum of charged particles
 that are detected by the tracker.
 In collisions without leptons,
@@ -344,7 +344,7 @@ the $Z$ boson momentum is precisely reconstructed.
 A kinematic fit is performed to constrain the momenta of the two leptons by requiring their
 combined mass to match the $Z$ boson mass.
 After this constraint is applied, the transverse momentum of the di-jet system,
-along with identified Initial State Radiation (ISR) jets,
+along with identified initial state radiation jets,
 is balanced with the transverse momentum of the di-lepton system.
 The fit adjusts the momentum of each identified component of the event in a way that
 minimizes the chi-squared value meeting measured and theoretical physics constraints.
@@ -726,7 +726,7 @@ At most one jet with $p_T > \SI{30}{GeV}$ is allowed
 in addition to the selected $b$-jets.
 Since the event has no high energy leptons,
 the particle flow MET and track MET must have good agreement with
-$\Delta \phi(\mathrm{MET}, \mathrm{trkMET}) < 0.5$.
+$\Delta \phi(\mathrm{MET}, \mathrm{track MET}) < 0.5$.
 
 As mentioned earlier, three processes make up the majority of the backgrounds
 in the signal selection, and control regions must be defined for them.
@@ -753,7 +753,7 @@ The selection for $t\bar{t}$ events is different from the signal selection
 mostly because more hadronic activity is expected.
 It uses the same full di-jet mass window as the $Z$ + light flavor region,
 but requires at least two additional jets with $p_T > \SI{30}{GeV}$ instead of zero or one.
-Also, the $\Delta \phi(\mathrm{MET}, \mathrm{trkMET})$ requirement is dropped.
+Also, the $\Delta \phi(\mathrm{MET}, \mathrm{track MET})$ requirement is dropped.
 
 \subsection{1 Lepton} \label{sec:resolved-1}
 
