@@ -274,10 +274,23 @@ they were first tested on $V\!Z$.
 
 \subsection{$V\!Z$ Cross Check Analysis}
 
-The $V\!Z$ cross check analysis duplicated the $V\!H$, including having its own dedicated DNN training.
+The $V\!Z$ cross check analysis mostly duplicated the $V\!H$.
 The primary differences are that a di-boson sample with generator-level $b$ hadrons produced
 is used as the signal sample, and the signal mass window is moved from $\SI{90}{GeV} < m_{jj} < \SI{150}{GeV}$
 to  $\SI{60}{GeV} < m_{jj} < \SI{120}{GeV}$.
+However, other differences should be mentioned.
+Most of the potential effects of these differences are difficult to quantify,
+with the exception of the following.
+Additional measured electroweak corrections are applied to the di-boson samples for each STXS bin.
+The values of these corrections vary from as low as 4\% for the low $p_T(V)$ bins
+and as high as 23\% for the high $p_T(V)$, but all will increase the measured signal strength compared to $V\!H$.
+Other differences include the dedicated $V\!Z$ DNN training and
+the fact that the $Z$ boson will decay into light flavored jets at a higher proportional rate than the Higgs boson.
+The DNN training for $V\!H$ has to account for the similar $V\!Z$ background,
+while the $V\!Z$ is not influenced as much by the rare $V\!H$ process.
+Also, the light flavor $V\!Z$ process will have more influence over
+the control region fits than the $V\!H$ process has.
+
 Data from all three years of Run 2 are used again so that any differences that may affect the $V\!H$ analysis
 can also be investigated using $V\!Z$.
 The Goodness of Fit plots are shown in Figure~\ref{fig:vz-gof}.
@@ -306,7 +319,21 @@ On the right are the simulated values after fitting the nuisance parameters.
 In the lower parts of each plot, ratios between observed data and expected yields improve as a result of the fit.
 The uncertainties of the simulations also decrease as a result of the fit.
 Some nuisance parameters end up with smaller individual uncertainties from the fit,
-but the main reason for the dramatic improvement in the uncertainty is that each named nuisance parameter is at first
+including the initially large migration uncertainties.
+Figure~\ref{fig:impact-ex} shows this decrease in bin migration uncertainties,
+especially in $t\bar{t}$ in line 19.
+%
+\begin{figure}
+  \centering
+  \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_whhi1.pdf}
+  \caption[Example impacts for WH $250 < p_T(V) < \SI{400}{GeV}$]{
+    The most significant impacts in on WH $250 < p_T(V) < \SI{400}{GeV}$.
+    Note the decrease in migration uncertainties, such as \texttt{CMS\_vhbb\_Vpt250\_TT\_1lep\_13TeV2016}.
+  }
+  \label{fig:impact-ex}
+\end{figure}
+%
+The uncertainty also decreases since each named nuisance parameter is at first
 assumed to be uncorrelated to the other nuisance parameters.
 The fit reveals many of the nuisance parameters to be correlated, decreasing the overall possible variation.
 

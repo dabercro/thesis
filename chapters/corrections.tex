@@ -418,6 +418,8 @@ there are additional experimental and theoretical uncertainties.
 Some of these uncertainties only affect the normalization of samples.
 Other uncertainties affect the shape of variables that are used in the DNN
 discriminator described in the following chapter.
+The final set of uncertainties is a set of migration uncertainties to account for
+variation near the STXS bin boundaries.
 
 \subsection{Normalization Uncertainties}
 
@@ -471,3 +473,17 @@ Uncertainties of simulated processes that cause shape differences are the follow
 \item The uncertainties from the limited number of Monte Carlo events is handled
   using an approximation of the Barlow-Beeston method \cite{BARLOW1993219}.
 \end{itemize}
+
+\subsection{Migration Uncertainties}
+
+An additional uncertainty is a applied that accounts for simulated events crossing the STXS bin boundaries
+due to uncertainties in the vector boson $p_T$.
+The effect of each nuisance parameter is anti-correlated between the bins on either side of the boundary.
+Most bins have two uncertainties allowing events to cross into lower or higher $p_T(V)$ bins,
+with the exception of the highest STXS bins, which have no upper bounds.
+Due to limited availability of studies on this effect,
+these systematic uncertainties are given large values before the global fit is performed,
+ranging from 20\% to 50\% for each individual boundary.
+These are worth noting since they have the largest affect of all systematic uncertainties
+on the pre-fit simulation uncertainties,
+though they are significantly constrained by the fit process.
