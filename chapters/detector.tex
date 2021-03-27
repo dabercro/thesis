@@ -374,7 +374,7 @@ Each sub-detector reconstructs the particles that passes through it.
 The independent reconstructions are then linked
 across the different detector components to identify particles.
 This overview is taken largely from reference
-\cite{Sirunyan_2017}. \phil{I hope htis isin your own words.}
+\cite{Sirunyan_2017}. \phil{This better be in your own words.}
 
 \subsection{Charged Particle Tracks} \label{sec:tracks}
 
@@ -514,7 +514,8 @@ Bunch crossings happen every \SI{25}{ns},
 with each bunch crossing producing on average 20 collisions.
 The amount of data that the detector generates for each bunch crossing is
 too large to store all of it at this rate.
-Luckily, most collisions result in uninteresting data.
+Luckily, most collisions result in uninteresting data. \phil{You
+  should use an euphemism for uniteresting}
 A trigger system is used to identify interesting events
 and reduce the frequency of event writing to \SI{1}{kHz}.
 This is done using two stages.
@@ -578,7 +579,8 @@ Identifying all of these processes is necessary to quantify and characterize
 the signal events that are also mixed in to our selection.
 Then each of these processes must be simulated to determine the final state particles
 that the detector will observe.
-Each process will looks slightly different in our signal selection.
+Each process will looks slightly different in our signal
+selection. \phil{will looks=>looks}
 Events outside of the selection must also be simulated so that they can be studied
 for accuracy in separate phase spaces that do not include the Higgs events.
 After the final state particles are predicted,
@@ -628,7 +630,7 @@ The proportional matrix elements are described in Chapter~\ref{ch:theory},
 but most of the diagrams described were Leading Order (LO).
 Generators used in this analysis can also simulate Next to Leading Order (NLO) processes
 thanks to the FKS method of subtracting particles to avoid double counting them during the
-showering calculation.
+showering calculation. \phil{FKS needs a citation}
 However, the option to use NLO simulation is not always used.
 The results of NLO calculations more accurately predict physical processes,
 but they also take more computational resources,
@@ -683,5 +685,12 @@ another 60,000 \cite{Bloom_2017}.
 Together they also provide around 100 Petabytes of space \cite{Ratnikova_2014}.
 Keeping these services running smoothly is important for the CMS collaboration to function,
 and two projects that aid in this are outlined in Appendix~\ref{app:project}.
-Since the data is event-based, they are stored in n-tuple format.
+Since the data is event-based, they are stored in n-tuple
+format. \phil{put a reference or describe what an n-tuple is. N-tuple
+  is a bit jargony}
 These n-tuples are created and read by the CMS Software (CMSSW) \cite{INNOCENTE200131}.
+
+\phil{This section is overall good, its better towards the end, don't
+  think I have any major comments about what is missing. I am glad you
+  put your work in the appendix, otherwise, I would have made a
+  comment about putting your work in this part of your thesis.} 
