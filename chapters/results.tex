@@ -76,7 +76,8 @@ such as the $p_T(V)$ trend and normalization of certain background samples.
   \caption[Control region plots for zero lepton in 2017]{
     The DeepCSV value of the jet with a higher DeepCSV value
     is plotted for multiple control regions and bins in
-    an inclusive selection of both the $Z\rightarrow \mu\nu$ and $Z\rightarrow e\nu$
+    an inclusive selection of both the $Z\rightarrow \mu\nu$ and
+    $Z\rightarrow e\nu$ \phil{Z$\slash{\rightarrow}\mu\nu$\!}
     one lepton channels with 2017 data.
     The top row shows the $t\bar{t}$ control region,
     the middle row shows the $Z$+ heavy jets,
@@ -104,6 +105,10 @@ such as the $p_T(V)$ trend and normalization of certain background samples.
     and the bottom row shows the $Z$+ light jets control region.
     The left column shows the low $p_T(V)$ bin of 75 to \SI{150}{GeV},
     and the right column shows the medium $p_T(V)$ bin of 150 to \SI{250}{GeV}.
+    \phil{Could you cmoment in the text on the NLO correction; from
+      what I read its only on the $p_{T}$ and not on jet distributions
+      like the sub leading jet, this will impact that high boson pT
+      and low sub leading jet pT(bottom right figure). }
   }
   \label{fig:2017_Zee_j1pt}
 \end{figure}
@@ -148,6 +153,10 @@ such as the $p_T(V)$ trend and normalization of certain background samples.
     The left column shows the low $p_T(V)$ bin of 75 to \SI{150}{GeV},
     and the right column shows an inclusive selection of
     the medium and high $p_T(V)$ bins of greater than \SI{150}{GeV}.
+    \phil{I am having a lot of trouble reconciling the chi2 values
+      with what is shown in the plots. Furthermore why is the
+      normalization so different from teh 2017, I hope you comment on
+      this in the text. } 
   }
   \label{fig:2018_Zmm_vpt}
 \end{figure}
@@ -173,6 +182,7 @@ and has slightly different input variables.
 The list of input variables is given in Table~\ref{tab:dnn-inputs}.
 All variables that are affected by the kinematic fit in the 2-lepton region
 use the values calculated by the fit.
+\phil{What is the loss function?}
 
 \begin{table}
   \caption[Resolved DNN inputs]{
@@ -256,9 +266,13 @@ on the final measurement.
 In addition, \texttt{combine} includes a variety of diagnostic tools to ensure
 the assumed model is adequate.
 The first step before unblinding results is to throw toys using the best-fit
-nuisance parameter values and comparing a test statistic of these toys to that of the observed data.
+nuisance parameter values and comparing a test statistic of these toys
+to that of the observed data. \phil{You need a paragraph talking about
+  what unblinding means, there are many ways to define this. The Higgs
+  approach is specific to the HIggs group, B2G for example has a very
+  different unblinding procedure. } 
 The distributions of a the values from the set of toys allows the evaluation of the $p$-value
-of the test statistic observed in data.
+of the test statistic observed in data. \phil{of the values} 
 The \texttt{combine} tool also evaluates the impacts of each
 nuisance parameter on the likelihood by varying them individually.
 If nuisance parameters with large impacts are pulled far from their initial value,
@@ -267,22 +281,33 @@ that means that an important aspect of the measurement was not well understood.
 The final results will therefore show comparison of data and best-fit toys,
 called Goodness of Fit, as well as the final scan results.
 A post-fit plots will also reveal the way that the fit moves the background and signal distributions
-within uncertainties in order for the background to describe the data.
+within uncertainties in order for the background to describe the
+data. \phil{ A post-fit=> Post-fit}
 Impacts plots are shown in Appendix~\ref{app:impacts} due to the high multiplicity of nuisance parameters.
 Before running these checks and measurements for the $V\!H$ measurement,
-they were first tested on $V\!Z$.
+they were first tested on $V\!Z$. \phil{ I think this section could
+  use an intro section explaining the strategy towards getting the
+  results. } 
 
 \subsection{$V\!Z$ Cross Check Analysis}
 
-The $V\!Z$ cross check analysis duplicated the $V\!H$, including having its own dedicated DNN training.
+The $V\!Z$ cross check analysis duplicated the $V\!H$, including
+having its own dedicated DNN training. \phil{This needs more than one
+  sentence, also your sentence is not grammatically correct}
 The primary differences are that a di-boson sample with generator-level $b$ hadrons produced
 is used as the signal sample, and the signal mass window is moved from $\SI{90}{GeV} < m_{jj} < \SI{150}{GeV}$
 to  $\SI{60}{GeV} < m_{jj} < \SI{120}{GeV}$.
 Data from all three years of Run 2 are used again so that any differences that may affect the $V\!H$ analysis
 can also be investigated using $V\!Z$.
-The Goodness of Fit plots are shown in Figure~\ref{fig:vz-gof}.
+The Goodness of Fit plots are shown in
+Figure~\ref{fig:vz-gof}. \phil{You need a reference for GOF, use Bob
+  Cousins' paper on this}
 The high $p$-value means that the simulated processes were able to match the data very well
-while staying within the fit constraints of the systematic uncertainties.
+while staying within the fit constraints of the systematic
+uncertainties. \phil{Do you have the GOF without systematics, or
+  reducing the systematics, it would be good to show in your thesis as
+  a justification of this explanation. Such a low GOF is worrisome for
+me otherwise. } 
 
 \begin{figure}
   \centering
@@ -296,7 +321,11 @@ while staying within the fit constraints of the systematic uncertainties.
 \end{figure}
 
 Due to the splitting of STXS bins, the multiple channels for each bin, and the combination of three different years,
-486 distributions are fit in the $V\!Z$ cross check analysis.
+486 distributions are fit in the $V\!Z$ cross check
+analysis.  \phil{The caculation of 486 should go in your talk, I am
+  struggling to get to that
+  number. $486/3years/3finalstates/6categories?=9$ $9$ seems to high
+  for the number of categories. } 
 For the sake of brevity, the effect of the fit will only be shown on eight of these distributions for the $V\!Z$
 cross-check analysis.
 These are split into two figures, each showing distributions closely related to each other.
@@ -307,8 +336,15 @@ In the lower parts of each plot, ratios between observed data and expected yield
 The uncertainties of the simulations also decrease as a result of the fit.
 Some nuisance parameters end up with smaller individual uncertainties from the fit,
 but the main reason for the dramatic improvement in the uncertainty is that each named nuisance parameter is at first
-assumed to be uncorrelated to the other nuisance parameters.
-The fit reveals many of the nuisance parameters to be correlated, decreasing the overall possible variation.
+assumed to be uncorrelated to the other nuisance parameters. 
+The fit reveals many of the nuisance parameters to be correlated,
+decreasing the overall possible variation. \phil{This explanation does
+  not make sense to me. If you have two nuisances that are
+  uncorrelated, they remain uncorrelated throughout the fit. If they
+  are both describing the same thing they will each get constrained so
+  that the sum of their uncertainties in quadrature is equal to the
+  data. Thinking through, I think I knwo what you are saying, but you
+  should rephrase this. }
 
 Figure~\ref{fig:vz-zmm-low-2017} shows all of the distributions fit for the low $p_T$ bin in the
 $Z\rightarrow\mu\mu$ channel in 2017.
@@ -337,7 +373,11 @@ The relative contributions of the main background processes can also be seen at 
     The top row shows the $Z$ + light jets control region,
     the second row shows the $Z$ + heavy jets control region,
     and the third row shows the $t\bar{t}$ control region.
-    The bottom row shows the signal region.
+    The bottom row shows the signal region. \phil{ Can you make the
+      signal region   plot aggregated over the years, ideally weighted by their
+      signifcance contrbituion, also can you make it log so that we
+      see the VZ contribution lastly can you make the VZ signal the
+      redline not the VH}
   }
   \label{fig:vz-zmm-low-2017}
 \end{figure}
@@ -346,7 +386,8 @@ These distributions can be compared to those in Figure~\ref{fig:vz-wen-boost-201
 which shows distributions from the boosted selection of the $W\rightarrow e\nu$ channel in 2018.
 In this case, the $W$ + heavy jets control region is not shown because the related process contributes less
 in the signal region.
-Instead, the $t\bar{t}$ background is dominate in this boosted topology.
+Instead, the $t\bar{t}$ background is dominate in this boosted
+topology. \phil{is dominant}
 The control regions use the double $b$-tag score of the fat jet instead of $p_T(V)$ for the distribution.
 The signal region is also split into two higher $p_T(V)$ bins, while the control regions stay combined
 to constrain both STXS bins.
@@ -369,7 +410,10 @@ are improved as a result of the fit.
     The top row shows the $W$ + light jets control region,
     and the second row shows the  $t\bar{t}$ control region.
     The third row shows the signal region for the $\SI{250}{GeV} < p_T(V) < \SI{400}{GeV}$ bin,
-    and the bottom row shows the signal region for the bin of $p_T(V) > \SI{400}{GeV}$.
+    and the bottom row shows the signal region for the bin of $p_T(V)
+    > \SI{400}{GeV}$.
+    \phil{same comments as before except for the two signal regions in
+    the bottom two rows.} 
   }
   \label{fig:vz-wen-boost-2018}
 \end{figure}
@@ -394,7 +438,8 @@ Overall, the $V\!Z$ cross-check is in agreement with the Standard Model.
     $V\!Z$ cross check analysis is shown above.
     The dashed line is generated by freezing all nuisance parameters to their most likely value,
     so the likelihood variation for that curve is from statistical uncertainties only.
-    Using quadratic subtraction between the two curves allows the systematic uncertainties to be evaluated.
+    Using quadratic subtraction between the two curves allows the
+    systematic uncertainties to be evaluated.
   }
   \label{fig:vz-inclusive}
 \end{figure}
@@ -405,18 +450,26 @@ Overall, the $V\!Z$ cross-check is in agreement with the Standard Model.
   \caption[Measured STXS values of $V\!Z$]{
     The measured most likely values of all STXS bins in the
     $V\!Z$ cross check analysis.
+    \phil{Can you show the ggZH and qqZH split as well. Also, the WZ
+      vs ZZ 2D contour, it seems that the scale factors are quite different}
   }
   \label{fig:vz-stxs}
 \end{figure}
+\phil{You should show the WZ and ZZ cobmined results, also do you have
+  an explanation why WZin particular is so off? It looks like 2.5 sigma}
 
 \subsection{$V\!H$ Combination Fit Results}
 
+\phil{big comment about this section is you should make some summary
+  distributions combining sthe signal acrss years ideally (weighted
+  by signficance in fit). Also all of your DNN plots need to be log, I
+can't see the signal otherwise. }
 The first step to show that the processes in the detector are well-modeled
 by simulation is the Goodness of Fit test.
 The Goodness of Fit for the $V\!H$ selection is shown in Figure~\ref{fig:vh-gof}.
 The observed value for the saturated test statistic is in the bulk of the distribution created by throwing
 post-fit toys, with an associated $p$-value of 70\%, suggesting both good modeling and
-reasonable values for post-fit uncertainties.
+reasonable values for post-fit uncertainties. 
 %
 \begin{figure}
   \centering
@@ -506,6 +559,8 @@ and events with extra jets, which can be seen in the distributions.
     the second row shows the $Z$ + heavy jets control region.
     The third row shows the signal region with no additional jets, and
     the bottom row shows the signal region with additional jets.
+    \phil{where is the highest DNN score. If it fell of the plt adjust
+      the range. }
   }
   \label{fig:vh-zee-med-2018}
 \end{figure}
@@ -550,6 +605,8 @@ Standard Model kinematics cannot be entirely ruled out by this measure.
   }
   \label{fig:vh-stxs}
 \end{figure}
+\phil{given how weird the results are have you tried injecting other
+  Higgs mass points? }
 
 The total coupling between the Higgs boson and vector bosons, as well as the coupling between
 the Higgs boson and bottom quarks is measured using the kappa framework \cite{de_Blas_2020}.
@@ -568,3 +625,9 @@ or the $b\bar{b}$ decay path.
   }
   \label{fig:kappa}
 \end{figure}
+
+\phil{This chapter really does feel incomplete. You need to comment
+  about the elephant in the room (large and systematic
+  disagreement). Othwerise, it reads really weird. There is nothing
+  evidently incorrect with this approach, so you should stand by your
+  results, and be very clear that things are notn consistent with the SM. } 
