@@ -28,8 +28,6 @@
 \usepackage{comment}
 \usepackage{feynmp-auto}
 
-
-
 \setbeamertemplate{navigation symbols}{}
 \usepackage{graphicx}
 \usepackage{color}
@@ -40,6 +38,7 @@
              {\logo{\includegraphics[height=0.5cm]{/Users/dabercro/GradSchool/Presentations/MIT-logo.pdf}}}
              {\logo{\includegraphics[height=0.5cm]{/home/dabercro/MIT-logo.pdf}}}
 
+\usepackage[export]{adjustbox}
 \usepackage{changepage}
 
 \newcommand{\beginbackup}{
@@ -152,14 +151,11 @@
 \section{The Standard Model}
 
 \begin{frame}
+  \frametitle{Particles of the Standard Model}
 
-  Particle Zoo
-
-\end{frame}
-
-\begin{frame}
-
-  Higgs Mechanism
+  \centering
+  \adjincludegraphics[width=0.8\linewidth,trim={0 0 0 {0.09\height}},clip]{figures/particles.png}
+  \tiny{https://en.wikipedia.org/wiki/Standard\_Model}
 
 \end{frame}
 
@@ -193,6 +189,7 @@
     \end{column}
     \begin{column}{0.5\linewidth}
       \includegraphics[width=\linewidth]{figures/YRHXS_BR_fig1.pdf}
+      \tiny{https://twiki.cern.ch/twiki/bin/view/LHCPhysics/\\CERNYellowReportPageBR2010}
     \end{column}
   \end{columns}
 
@@ -228,16 +225,45 @@
 \section{Experimental Apparatus}
 
 \begin{frame}
+  \frametitle{The Large Hadron Collider at CERN}
 
   \centering
   \includegraphics[width=0.8\linewidth]{figures/LHC-PHO-1986-001.pdf}
+  \tiny{https://cds.cern.ch/record/841506}
 
 \end{frame}
 
 \begin{frame}
+  \frametitle{The Compact Muon Solenoid (CMS) Detector}
+
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/cms_160312_02.png}
+  \tiny{https://cms.cern/detector}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Particle Propagation Through CMS}
 
   \centering
   \includegraphics[width=0.9\linewidth]{figures/CMSslice_whiteBackground.png}
+  \tiny{https://cds.cern.ch/record/2120661}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Coordinate System for $\eta$}
+
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/pictures_MuonSys-mod3.png}
+  \tiny{https://cds.cern.ch/record/1456510/plots}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Isolated Leptons}
+
+
 
 \end{frame}
 
