@@ -9,7 +9,7 @@
 \makeatother
 
 \title{\bf \sffamily Measurement of $H\rightarrow b\bar{b}$ in \\ Associated Production with the CMS Detector}
-\date{\today}
+\date{March 30, 2021}
 
 \usecolortheme{dove}
 
@@ -149,24 +149,71 @@
 
 \end{frame}
 
-\section{Selection}
+\section{The Standard Model}
 
 \begin{frame}
-  \frametitle{Example $V\!H(b\bar{b})$ Process}
+
+  Particle Zoo
+
+\end{frame}
+
+\begin{frame}
+
+  Higgs Mechanism
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Production and Decay of the Higgs}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+  \begin{fmffile}{gluon_fusion}
+    \fmfframe(0,0)(0,5){
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{gluon}{i0,v0}
+      \fmf{gluon}{i1,v1}
+      \fmf{fermion, label=$t$}{v0,v1,v2,v0}
+      \fmf{dashes, label=$H$}{v2,o0}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+  \begin{fmffile}{vbf}
+    \fmfframe(0,0)(0,0){
+    \begin{fmfgraph*}(150, 120)
+      \fmfleft{i0,i1}
+      \fmfright{o0}
+      \fmf{boson, label=$W/Z$}{i0,v0,i1}
+      \fmf{dashes, label=$H$}{v0,o0}
+    \end{fmfgraph*}
+    }
+  \end{fmffile}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{figures/YRHXS_BR_fig1.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$V\!H(b\bar{b})$ Process}
 
   \begin{center}
-  \begin{fmffile}{two_lep_diagram}
+  \begin{fmffile}{generic_diagram}
     \fmfframe(0,0)(0, 20){
     \begin{fmfgraph*}(250, 150)
       \fmfleft{i0,i1}
       \fmfright{o0,o1,o2,o3}
       \fmf{quark}{i1,v0,i0}
-      \fmflabel{$\bar{f}$}{i0}
-      \fmflabel{$f$}{i1}
-      \fmf{boson, label=$Z$}{v0,v1,v2}
+      \fmflabel{$\bar{q}$}{i0}
+      \fmflabel{$q$}{i1}
+      \fmf{boson, label=$W/Z$}{v0,v1,v2}
       \fmf{fermion}{o0,v2,o1}
-      \fmflabel{$\ell^+$}{o0}
-      \fmflabel{$\ell^-$}{o1}
+      \fmflabel{$\bar{\ell}$}{o0}
+      \fmflabel{$\ell$}{o1}
       \fmf{dashes, label=$H$}{v1,v3}
       \fmf{fermion}{o2,v3,o3}
       \fmflabel{$\bar{b}$}{o2}
@@ -176,7 +223,21 @@
   \end{fmffile}
   \end{center}
 
-  Some kinematics are adjusted before selections are applied
+\end{frame}
+
+\section{Experimental Apparatus}
+
+\begin{frame}
+
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/LHC-PHO-1986-001.pdf}
+
+\end{frame}
+
+\begin{frame}
+
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/CMSslice_whiteBackground.png}
 
 \end{frame}
 
@@ -214,6 +275,8 @@
   while the kinematic fit improves resolution
 
 \end{frame}
+
+\section{Event Selection}
 
 \begin{frame}
   \frametitle{Selections}
@@ -274,7 +337,9 @@
 
 \end{frame}
 
-\section{Corrections}
+\section{Corrections to Simulation}
+
+\subsection{$b$-jet Momentum Smearing}
 
 \begin{frame}
   \frametitle{Smearing Fit Strategy}
@@ -375,6 +440,8 @@
 
 
 \end{frame}
+
+\subsection{Other Corrections and Uncertainties}
 
 \begin{frame}
   \frametitle{LO to NLO Reweighting}
