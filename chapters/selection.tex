@@ -6,9 +6,10 @@ based on the description of physics processes described thus far.
 First, objects are defined in terms of variables and particle candidates provided by the
 detector reconstruction algorithms.
 Then selection requirements based on these objects used to reject events entirely
-from the analysis are given.
+from the analysis are given. \phil{rewrite this sentence, it sounds
+  like German translated to english directly, its not english}
 After that, selection requirements used to classify events
-into different decay channels of the vector boson are specified.
+into different decay channels of the vector boson are specified. \phil{ditto}
 There are also selection requirements that allow events to be treated separately
 when the Higgs decay products can be resolved as separate jets
 and where they are merged into a single massive jet.
@@ -31,7 +32,8 @@ Each physics process would result in certain final states
 with specific multiplicities for some particles.
 For objects, passing the loose selection often means that the object is defined
 well enough to veto events for inclusion in categories that
-would not include the corresponding particle.
+would not include the corresponding particle. \phil{I am struggling to
+  understand this sentence, rewrite}
 Additional selection requirements are added for objects to classify
 as a particular particle candidate in order to reduce false positives
 of events that are included in a given category.
@@ -101,8 +103,10 @@ Tightly identified muons have some additional criteria they must pass.
 \begin{itemize}
 \item They must have a higher transverse momentum at $p_T > \SI{25}{GeV}$.
   In events with two muons, such as caused by $Z \rightarrow \mu\mu$,
-  only one muon only needs to satisfy this $p_T$ requirement.
-  Only $p_T > \SI{15}{GeV}$ is required of the second muon.
+  only one muon only needs to satisfy this $p_T$
+  requirement. \phil{muon only needs=> muon needs}
+  Only $p_T > \SI{15}{GeV}$ is required of the second muon. \phil{Only
+    => A}
 \item The muon must be a global muon, leaving tracks in both the central tracker
   and the muon chambers.
 \item There must be more than five hits in the inner tracker with at least one hit in the pixel detector.
@@ -172,7 +176,10 @@ Loose jet cuts, based on the constituents,
 are applied to remove jets constructed from detector noise.
 Jets that get a significant fraction of their energy from pileup are also removed.
 Pre-selected electrons and muons are also often reconstructed as jets.
-Any jet within $\Delta R < 0.4$ from a pre-selected lepton is removed.
+Any jet within $\Delta R < 0.4$ from a pre-selected lepton is
+removed.\phil{You should forward reference the selections, even though
+  I don't like foward referencing, wait maybe you don't do that in
+  which case you should reference these ids with a citation}
 
 To be considered for the study of decay products of the Higgs boson,
 jets must be within the inner tracker of the detector with $|\eta| < 2.5$.
@@ -202,7 +209,8 @@ The working points for each year are given in Table~\ref{tab:deepcsv}.
   \caption[DeepCSV working points]{
     The minimal cut value on the neural network output for each DeepCSV working point
     are defined for each year of Run~2 of the LHC.
-    The working points are defined by their mis-tag rates.
+    The working points are defined by their mis-tag
+    rates. \phil{mis-tag rates of what data, simulation?}
   }
   {\renewcommand{\arraystretch}{1.5}
   \begin{tabular}{|c | c | c c c|}
@@ -225,7 +233,8 @@ In order to more accurately reconstruct the di-jet mass of a candidate Higgs dec
 a Deep Neural Network (DNN) is trained in Tensorflow
 \cite{DBLP:journals/corr/AbadiABBCCCDDDG16},
 which is designed to improve the energy measurement and resolution of all $b$ jets for CMS
-\cite{collaboration2019deep}.
+\cite{collaboration2019deep}. \phli{Can you list the training targets,
+  or specify the loss definitin?}
 The following variables are used as inputs to the regression:
 \begin{itemize}
 \item the jet's $p_T$, $\eta$, mass and transverse mass
@@ -284,7 +293,9 @@ and is used in this analysis.
 The resulting groomed mass of the jet is close to its original parent particle.
 The soft drop algorithm has the additional benefit of forcing pileup jets to low mass,
 which is why a second requirement on fat jets considered for the analysis is
-$m_\mathrm{SD} > \SI{50}{GeV}$.
+$m_\mathrm{SD} > \SI{50}{GeV}$. \phil{ I actually don't know but I
+  would presume you guys are using PUPPI jets, since it is the
+  default, can you cite PUPPI please}
 
 \subsection{Missing Transverse Momentum}
 
@@ -305,8 +316,10 @@ Therefore, there are additional event filters applied to events with large MET
 that removes events where these known instrumental and beam effects have been identified.
 
 An additional technique to select interesting events with a large MET
+\phil{with large MET}
 is to compare the particle flow MET to other calculations of MET.
-This analysis also uses track MET, or track MET.
+This analysis also uses track MET, or track MET. \phil{ I am seeing
+  double, please fix}
 Track MET is calculated using just the reverse vector sum of charged particles
 that are detected by the tracker.
 In collisions without leptons,
@@ -336,6 +349,8 @@ The resulting collection of soft jets is used to define four variables:
 \end{itemize}
 These variables are used in the training of the BDT that discriminates
 signal and background events.
+\phil{Not your fault, but I don't think we can really simulate these
+  variables well, its a bit of a shock that they use this}
 
 \subsection{Kinematic Fit}
 
@@ -354,7 +369,7 @@ the corrections defined in centralized efforts by the CMS collaboration include 
 The energy uncertainty used for the $b$-jets and recoil jets is the same as that used
 by the $HH \rightarrow \bb\bb$ analysis from CMS \cite{Sirunyan_2019}.
 The mass of the $Z$ boson is given a Gaussian uncertainty of \SI{5}{GeV},
-and it is assumed that the MET in the event is 0.
+and it is assumed that the MET in the event is 0. \phil{with what resolution?}
 The kinematic fit minimizes the chi-squared value of these constraints,
 resulting in new energies for all particles in the fit.
 The full implementation is in the \texttt{PhysicsTools/KinFitter} package of
@@ -577,7 +592,10 @@ but are described in the appropriate sections.
     Below is a summary of common cuts for all regions in the resolved channels.
     See the text for each channel for an explanation of variables.
     All energy equivalent values are in GeV.
-    A ``!'' in front of a working point label means the jet is required to fail the relevant $b$-tagging criteria.
+    A ``!'' in front of a working point label means the jet is
+    required to fail the relevant $b$-tagging criteria. \phil{minor
+      point, cuts is jargon. Bigger point, I really think you need a
+      diagram for these control regions its really hard to fllow otherwise}
   }
   \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
     \hline
@@ -888,7 +906,8 @@ is used to reconstruct the potential Higgs instead of two $b$-tagged jets.
 The double $b$-tagger used in this analysis is DeepAK8,
 a DNN as opposed to a BDT tagger.
 The output is decorrelated with mass, allowing for the jet mass to be used
-to generate control regions, as is done in the resolved analysis.
+to generate control regions, as is done in the resolved
+analysis. \phil{can you reference the decorrelation strategy}
 
 Additional $b$ jets outside of the fat jet are also counted to define selections.
 These come from the regular jet collections of Section~\ref{sec:jets-def}.
@@ -964,3 +983,10 @@ resolved category and omitted from the boosted.
 The only exception to this rule is when the event is assigned to
 one of the resolved control region and a boosted signal region.
 In that case, the event is assigned to its boosted category.
+\phil{It shocks me that resolved is better than boosted, can you add a
+  few sentence explanation why?}
+
+\phil{One note is that the word cut is jargon and should not be in
+  your thesis. Overall I thought the selections part is written well,
+  very concise and precise, it is easy to follow. However, I think you
+  should add a diagram this would be good for your talk too.}
