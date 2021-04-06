@@ -76,9 +76,7 @@ such as the $p_T(V)$ trend and normalization of certain background samples.
   \caption[Control region plots for zero lepton in 2017]{
     The DeepCSV value of the jet with a higher DeepCSV value
     is plotted for multiple control regions and bins in
-    an inclusive selection of both the $Z\rightarrow \mu\nu$ and
-    $Z\rightarrow e\nu$ \phil{Z$\slash{\rightarrow}\mu\nu$\!}
-    one lepton channels with 2017 data.
+    the $Z\rightarrow \nu\bar{\nu}$ zero lepton channel with 2017 data.
     The top row shows the $t\bar{t}$ control region,
     the middle row shows the $Z$+ heavy jets,
     and the bottom row shows the $Z$+ light jets control region.
@@ -153,10 +151,6 @@ such as the $p_T(V)$ trend and normalization of certain background samples.
     The left column shows the low $p_T(V)$ bin of 75 to \SI{150}{GeV},
     and the right column shows an inclusive selection of
     the medium and high $p_T(V)$ bins of greater than \SI{150}{GeV}.
-    \phil{I am having a lot of trouble reconciling the chi2 values
-      with what is shown in the plots. Furthermore why is the
-      normalization so different from teh 2017, I hope you comment on
-      this in the text. } 
   }
   \label{fig:2018_Zmm_vpt}
 \end{figure}
@@ -182,7 +176,7 @@ and has slightly different input variables.
 The list of input variables is given in Table~\ref{tab:dnn-inputs}.
 All variables that are affected by the kinematic fit in the 2-lepton region
 use the values calculated by the fit.
-\phil{What is the loss function?}
+The cross entropy loss function is used for the training.
 
 \begin{table}
   \caption[Resolved DNN inputs]{
@@ -257,11 +251,44 @@ The fit is done by using the \texttt{combine} tool \cite{cmsdocumentation} as pa
 \texttt{CMSSW\_10\_2\_13} \cite{cmssw_doxygen}.
 Part of the method for discovery involves finding the most likely values
 for all nuisance parameters and signal strength simultaneously.
-This maximum likelihood feature is used for the measurement of signal strength in
-the STXS bins.
+This maximum likelihood feature is used for the measurement of signal strength in the STXS bins.
 The difference in signal strength uncertainty when allowing the nuisance parameters to float
 from their most likely values or not show the overall effect of the systematic uncertainties
 on the final measurement.
+There are a total of 243 distribtuions that make up the fit.
+Table~\ref{tab:num-hists} shows how the different channels and control regions contribute to this number.
+%
+\begin{table}
+  \caption[Counts of distributions for each selection]{
+    Below, a table indicates the distributions from each control region (CR) and signal region (SR) selection.
+    Each of the three control regions contribution the same number of distributions to the fit.
+    The channels containing charged leptons can either be electron or muon flavored.
+    These two considerations determine the multipliers shown in the table.
+  }
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{$p_T(V)$ [GeV]} & \multicolumn{4}{c|}{0-leptons} & \multicolumn{4}{c|}{1-lepton} & \multicolumn{4}{c|}{2-leptons} \\
+    & \multicolumn{2}{c|}{Resolved} & \multicolumn{2}{c|}{Boosted} & \multicolumn{2}{c|}{Resolved} & \multicolumn{2}{c|}{Boosted} & \multicolumn{2}{c|}{Resolved} & \multicolumn{2}{c|}{Boosted} \\
+    & CR & SR & CR & SR & CR & SR & CR & SR & CR & SR & CR & SR \\
+    \hline
+    75 -- 150     &   &   &   &   &   &   &   &   & X & X &   &   \\
+    \hline
+    150 -- 250    & X &   &   &   & X & X &   &   & X &   &   &   \\
+    with jet      &   & X &   &   &   &   &   &   &   & X &   &   \\
+    without       &   & X &   &   &   &   &   &   &   & X &   &   \\
+    \hline
+    250 -- \infty & X &   & X &   & X &   & X &   & X &   & X &   \\
+    250 -- 400    &   & X &   & X &   & X &   & X &   & X &   & X \\
+    400 -- \infty &   & X &   & X &   & X &   & X &   & X &   & X \\
+    \hline
+    number X      & 2 & 4 & 1 & 2 & 2 & 3 & 1 & 2 & 3 & 5 & 1 & 2 \\
+    multiplier    & 3 & 1 & 3 & 1 & 6 & 2 & 6 & 2 & 6 & 2 & 6 & 2 \\
+    regions/year  & 6 & 4 & 3 & 2 & 12 & 6 & 6 & 4 & 18 & 10 & 6 & 4 \\
+   \hline
+  \end{tabular}
+  \label{tab:num-hists}
+\end{table}
+%
 
 In addition, \texttt{combine} includes a variety of diagnostic tools to ensure
 the assumed model is adequate.
@@ -271,8 +298,8 @@ to that of the observed data. \phil{You need a paragraph talking about
   what unblinding means, there are many ways to define this. The Higgs
   approach is specific to the HIggs group, B2G for example has a very
   different unblinding procedure. } 
-The distributions of a the values from the set of toys allows the evaluation of the $p$-value
-of the test statistic observed in data. \phil{of the values} 
+The distributions of the values from the set of toys allows the evaluation of the $p$-value
+of the test statistic observed in data.
 The \texttt{combine} tool also evaluates the impacts of each
 nuisance parameter on the likelihood by varying them individually.
 If nuisance parameters with large impacts are pulled far from their initial value,
@@ -280,9 +307,8 @@ that means that an important aspect of the measurement was not well understood.
 
 The final results will therefore show comparison of data and best-fit toys,
 called Goodness of Fit, as well as the final scan results.
-A post-fit plots will also reveal the way that the fit moves the background and signal distributions
-within uncertainties in order for the background to describe the
-data. \phil{ A post-fit=> Post-fit}
+Post-fit plots will also reveal the way that the fit moves the background and signal distributions
+within uncertainties in order for the background to describe the data.
 Impacts plots are shown in Appendix~\ref{app:impacts} due to the high multiplicity of nuisance parameters.
 Before running these checks and measurements for the $V\!H$ measurement,
 they were first tested on $V\!Z$. \phil{ I think this section could
@@ -311,9 +337,8 @@ the control region fits than the $V\!H$ process has.
 
 Data from all three years of Run 2 are used again so that any differences that may affect the $V\!H$ analysis
 can also be investigated using $V\!Z$.
-The Goodness of Fit plots are shown in
-Figure~\ref{fig:vz-gof}. \phil{You need a reference for GOF, use Bob
-  Cousins' paper on this}
+The Goodness of Fit plots \cite{cousins2013generalization} are shown in
+Figure~\ref{fig:vz-gof}.
 The high $p$-value means that the simulated processes were able to match the data very well
 while staying within the fit constraints of the systematic
 uncertainties. \phil{Do you have the GOF without systematics, or
@@ -333,11 +358,7 @@ me otherwise. }
 \end{figure}
 
 Due to the splitting of STXS bins, the multiple channels for each bin, and the combination of three different years,
-486 distributions are fit in the $V\!Z$ cross check
-analysis.  \phil{The caculation of 486 should go in your talk, I am
-  struggling to get to that
-  number. $486/3years/3finalstates/6categories?=9$ $9$ seems to high
-  for the number of categories. } 
+243 distributions are fit in the $V\!Z$ cross check analysis.
 For the sake of brevity, the effect of the fit will only be shown on eight of these distributions for the $V\!Z$
 cross-check analysis.
 These are split into two figures, each showing distributions closely related to each other.
@@ -347,7 +368,6 @@ On the right are the simulated values after fitting the nuisance parameters.
 In the lower parts of each plot, ratios between observed data and expected yields improve as a result of the fit.
 The uncertainties of the simulations also decrease as a result of the fit.
 Some nuisance parameters end up with smaller individual uncertainties from the fit,
-<<<<<<< HEAD
 including the initially large migration uncertainties.
 Figure~\ref{fig:impact-ex} shows this decrease in bin migration uncertainties,
 especially in $t\bar{t}$ in line 19.
@@ -362,21 +382,9 @@ especially in $t\bar{t}$ in line 19.
   \label{fig:impact-ex}
 \end{figure}
 %
-The uncertainty also decreases since each named nuisance parameter is at first
+The overall uncertainty also decreases slightly since each named nuisance parameter is at first
 assumed to be uncorrelated to the other nuisance parameters.
 The fit reveals many of the nuisance parameters to be correlated, decreasing the overall possible variation.
-=======
-but the main reason for the dramatic improvement in the uncertainty is that each named nuisance parameter is at first
-assumed to be uncorrelated to the other nuisance parameters. 
-The fit reveals many of the nuisance parameters to be correlated,
-decreasing the overall possible variation. \phil{This explanation does
-  not make sense to me. If you have two nuisances that are
-  uncorrelated, they remain uncorrelated throughout the fit. If they
-  are both describing the same thing they will each get constrained so
-  that the sum of their uncertainties in quadrature is equal to the
-  data. Thinking through, I think I knwo what you are saying, but you
-  should rephrase this. }
->>>>>>> phil/phil
 
 Figure~\ref{fig:vz-zmm-low-2017} shows all of the distributions fit for the low $p_T$ bin in the
 $Z\rightarrow\mu\mu$ channel in 2017.
