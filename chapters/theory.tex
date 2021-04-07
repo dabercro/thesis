@@ -47,16 +47,14 @@ Fermions also have anti-particles, which carry the opposite charges of their cou
 
 In the Standard Model, the gauge files from the SU(2$)_L$ $\times$ U(1$)_Y$ symmetries are mixed
 into what is known as the electroweak force.
-The electroweak force is mediated by the neutral photon and $Z$ boson, and the charged $W$ boson.
+The electroweak force is mediated by the neutral photon and $Z$ boson, and the charged $W$ boson,
+which are also known as collectively as vector bosons.
 This mixing happens due to the Higgs boson, a scalar which grants all of the charged fermions and
 the $Z$ and $W$ bosons mass through interactions.
-
-\phil{I think you should try to tie this paragraph with the above
-  flow. Firstly, elude to the measuerement as being the focus of your
-  thesis. Secondly, you should connect it to the SM}
-In associated production, a Higgs boson is created through radiation from the $Z$ and $W$ bosons,
-which are also known as vector bosons.
-The measurement of $H\rightarrow \bb$ in associated production
+The interactions allow associated production,
+where a Higgs boson is created through radiation from either a $Z$ or $W$ boson.
+The measurement of $H\rightarrow b\bar{b}$ in associated production,
+the focus of this work,
 is therefore a measurement of interactions between the Higgs boson and vector bosons
 and the coupling between the Higgs boson and bottom, or $b$, quarks.
 The generation and observable decay of the vector bosons are also important to make this measurement.
@@ -66,10 +64,6 @@ Since the coupling of the Higgs boson with the vector bosons and with fermions a
 of each in the Standard Model through what is called electroweak symmetry breaking or the Higgs mechanism,
 most discussions of Higgs couplings include an explanation of the Higgs mechanism.
 
-\phil{I am confused by the paragraph below. Personally, I find
-  expalanations about what I am about to read confusing and a waste of
-  time, I think this paragraph doesn't fit with the flow of this
-  intro to theory. } 
 The treatment of these topics in this chapter are arranged as follows.
 First, I will give a brief explanation of Higgs field's non-zero vacuum energy,
 a trait that makes the electroweak symmetry breaking possible.
@@ -87,20 +81,17 @@ The Standard model is described by its Lagrangian,
 which is the difference between a system's kinetic and potential energies.
 Equations of motion are extracted from a Lagrangian $\mathcal{L}$
 for a particle field $\phi_i$ using the Euler-Lagrange equations.
-
+%
 \begin{gather}
   \delta_\mu\left(\frac{\delta \mathcal{L}}{\delta(\delta_\mu \phi_i)}\right) -
   \frac{\delta \mathcal{L}}{\delta \phi_i} = 0
 \end{gather}
-
-\phil{ I really like you brought in the E-L equation. However, I think
-  you need to tie the text into it more. It looks like you are agoing
-  to go into detail into EWSB later. I might restrcuture thsi section
-  to either put less details here, and more later or more now, and
-  less later.  Perhaps being a bit more abstract to start before you
-  mention all teh gauge fields will do that}
-Gauge bosons are produced by symmetries of the Lagrangian.
-The Standard Model has SU(3) $\times$ SU(2$)_L$ $\times$ U(1$)_Y$ symmetry.
+%
+In order to make predictions of particle interactions and behavior, the Lagrangian must be determined.
+The Lagrangian is constrained by the Standard Model.
+The Standard Model has SU(3) $\times$ SU(2$)_L$ $\times$ U(1$)_Y$ symmetry,
+which means the Lagrangian must behave identically under the different transformations of these symmetry.
+Gauge bosons are produced by these symmetries.
 The SU(3) symmetry produces gluons which mediate the strong force between quarks \cite{PhysRevLett.30.1343}.
 The SU(2$)_L$ $\times$ U(1$)_Y$ symmetry produces two gauge fields.
 The first interacts with left handed fermions,
@@ -147,12 +138,8 @@ The derivatives must be replaced.
 \end{gather}
 To simplify the expansion of Equation~(\ref{eq:free}),
 a particular gauge, or particular doublet state, is chosen.
-$\phi$ is written to satisfy the vacuum expectation value of Equation~(\ref{eq:vacuum})
-in the gauge that will give us the massless neutral boson known as a
-photon. \phil{It might be good to motivate this choice either through
-  a reference or actually not setting the other double to zero now,
-  and showing that it needs to be zero to ensure the photon is
-  massless}  
+The unitary gauge gives the massless neutral boson known as a photon \cite{PhysRevD.7.1068}.
+In the unitary gauge, $\phi$ is written as
 \begin{gather}
   \phi(x) = \frac{1}{\sqrt{2}}
   \left(
@@ -256,11 +243,32 @@ This gives us the masses of the neutral gauge bosons.
 From the simple act of requiring SU(2) $\times$ U(1) symmetry on the Lagrangian of a scalar
 doublet with non-zero vacuum expectation value,
 the masses of all the electroweak gauge bosons have been produced.
-A similar procedure will produce the masses of fermions due to their
-coupling to the electroweak force. \phil{ While I agree it is similar,
-  I think this should be in your thesis, you are doing H=>b b, the
-  mechanisms are different enough that people thought there might be 2
-  Higgses}
+
+A similar procedure produces the masses of fermions due to their
+coupling to the electroweak force.
+Though there are some differences since left-handed and right-handed chiral fermions
+are treated differently in the Standard Model
+Under the SU(2$)_L$ symmetry, left-handed fermions are a doublet $L$,
+and right-handed fermions are a singlet $R$.
+The combination $\bar{L}\phi$ is invariant under SU(2$)_L$ transformations,
+so the following symmetric term coupling fermions and the Higgs field can be added to the Lagrangian.
+\begin{gather}
+  \mathcal{L} = -g_f(\bar{L}\phi R + \bar{R}\phi^\dagger L)
+\end{gather}
+Using the unitary gauge in Equation~(\ref{eq:higgs-doublet}), this expands to the following.
+\begin{gather}
+  \mathcal{L} = -\frac{g_f}{\sqrt{2}}v(\bar{L}R + \bar{R}L) - \frac{g_f}{\sqrt{2}}h(\bar{L}R + \bar{R}L)
+\end{gather}
+This behaves like a particle with a fixed mass from the Higgs vacuum expectation value
+interacting with the Higgs boson.
+In particular using
+\begin{gather}
+  m_f = \frac{g_f}{\sqrt{2}}v
+\end{gather}
+gives
+\begin{gather}
+  \mathcal{L} = -m_f\bar{\psi}_f\psi_f - \frac{m_f}{v}\bar{\psi}_f\psi_fh
+\end{gather}
 
 \section{Associated Production}
 
@@ -313,7 +321,6 @@ The vertex showing associated production is pictured in Figure~\ref{fig:associat
           }
   \label{fig:associated-production}
 \end{figure}
-\phil{The above didn't render in my pdf, but maybe thats me}
 
 
 \subsection{Coupling Between Vector Bosons and Fermions} \label{sec:produce-vector}
@@ -322,8 +329,7 @@ The $W$ and $Z$ bosons are themselves intermediate states,
 never existing in a directly observable manner.
 They must be produced through interactions with stable fermions.
 Since the LHC is a hadron collider,
-considering the vector bosons' couplings with quarks would be most
-relevant. \phil{I would rephrase left}
+the vector bosons' couplings with quarks need to be understood to accurately predict production mechanisms.
 
 Quarks couple to each other through the strong force,
 resulting from a SU(3) symmetry.
@@ -360,8 +366,8 @@ The mass eigenstates are denoted as $d, s$, and $b$,
 while $d', s'$, and $b'$ are the weak eigenstates.
 This mixing allows quarks to change generations through interaction with $W^\pm$ bosons,
 which raise or lower the weak isospin.
-The following is the charge current vertex interaction. \phil{you are
-  missing the W propagator}
+The following is the charge current vertex interaction with the $W$ propagator,
+which affects the overall cross section based on the propagator four-momemtum $q$.
 \[
 -i \frac{g_W}{\sqrt{2}}
 \left(
@@ -381,7 +387,7 @@ The following is the charge current vertex interaction. \phil{you are
 \begin{matrix}
 d \\ s \\ b
 \end{matrix}
-\right)
+\right) \times \frac{1}{q^2 - m_{W}^2}
 \]
 The vertices for this interaction is shown in Figure~\ref{fig:w-production}
 arranged in a way to show the processes of generating a $W^+$ or $W^-$ boson
@@ -429,6 +435,15 @@ For this reason, the SU(2) component is more accurately labelled SU$(2)_L$.
 From Equation~(\ref{eq:w-form}), the $W^\pm$ bosons are completely made up of the
 $W^{(1)}$ and $W^{(2)}$ components of the SU$(2)_L$, so they also only interact with
 left-handed fermions and right-handed anti-fermions.
+
+For this analysis, it is important to note that the CKM matrix is unitary
+and $V_{tb} > 0.975$ \cite{Khachatryan_2014} is close to unity.
+The couplings between the third generation of quarks and lighter generations,
+in particular $V_{cb}$ and $V_{ub}$ are small.
+This means the matrix element weak decays of the $b$ hadrons is small.
+Since $t$ quarks are so massive, $b$ quarks or hadrons cannot decay into $t$ quarks.
+Going to $c$ or $u$ is the only decay channel available to the lightest $b$ hadrons,
+so their lifetimes are relatively long.
 
 Both the photon and the $Z$ boson mix the SU$(2)_L$ and U(1$)_Y$ components of the Standard Model.
 Production of the $Z$ boson needs to be directly understood for this measurement,
@@ -552,10 +567,8 @@ and baryons, made of three quarks with the following color singlet state.
 Baryons can also be composed of three anti-quarks,
 which has a state corresponding to Equation~(\ref{eq:baryon-singlet}),
 but with anti-color.
-The resulting spray of hadronic particles generated from the vacuum to restore
-color singlets are called jets. \phil{I think your definition of jets
-  is a bit liberal, I would say spray from a high energy quark, high
-  energy is the key here. }
+The resulting sprays of hadronic particles generated by the vacuum to screen the color charge of high energy quarks
+are called jets.
 
 For this measurement, protons are collided at the LHC.
 The proton consists of two $u$ quarks, and one $d$ quark.
@@ -657,9 +670,9 @@ Heavier charged leptons decay into lighter leptons via the weak force.
 Two neutrinos result from this decay, as shown in Figure~\ref{fig:tau-decay},
 making the characteristics of the parent lepton's parent difficult to reconstruct.
 The tau lepton has a short enough lifetime to consistently decay before reaching the CMS detector.
+The accompanying neutrino cannot be measured by the detector.
 The tau lepton is also massive enough to also decay into quarks,
-making its measurement even more complicated.\phil{I would also
-  mention their are neutrino decays here too}
+making its measurement even more complicated.
 Muons have an average lifetime long enough to penetrate the entire detector,
 and electrons are stable particles.
 As a result, only final states with muons and electrons are considered in this analysis.

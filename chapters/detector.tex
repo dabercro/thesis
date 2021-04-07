@@ -89,14 +89,8 @@ from the fragmenting protons.
 Hadrons containing $b$ quarks decay through the weak force
 since they require a flavor change.
 As mentioned before, the CKM matrix in Equation~\ref{eq:ckm}
-quantifies the mixing between the different quark flavors.
-The value of $V_{tb}$ is close to unity, and since the CKM matrix is unitary,
-$V_{cb}$ and $V_{ub}$ are small. \phil{wonder if you want to put thi
-  sin the theory section, also good to mention why b-quarks don't
-  decay into tops + stuff}
-This means the matrix element weak decays of the $b$ hadrons is small.
-This is the only decay channel available to the lightest $b$ hadrons,
-so their lifetimes are relatively long.
+quantifies the mixing between the different quark flavors,
+and $b$ hadrons have a relatively long lifetime due to small values of $V_{cb}$ and $V_{ub}$.
 The delayed decay results in a jet with a secondary vertex where many of its particles
 are generated from the vacuum at a distance from the initial collision point.
 
@@ -115,8 +109,7 @@ Therefore, the sum of the transverse momenta of all final state particles must a
 Many events in CMS have an overall imbalance in the transverse plane.
 This imbalance is labelled Missing Transverse Energy, $E^\textrm{miss}_T$, or MET.
 Large MET in an event is often a sign of high energy neutrinos
-that the detector cannot detect. \phil{split this paragraph into two,
-  MET deserves its own paragraph, rework some of the explanation}
+that the detector cannot detect.
 
 We need to identify all of these interesting particles,
 as well as be able to reconstruct missing transverse momentum.
@@ -192,8 +185,7 @@ it is immediately clear how effective each design has been.
 
 \subsection{Solenoid Magnet}
 
-Part of the CMS acronym acknowledges the role of the solenoid
-magnet. \phil{This is a weird sentence for a non-expert}
+A key feature of CMS is the solenoid which generates a strong magnetic field throughout the detector.
 The presence of a magnetic field is paramount for accurate measurements
 of charged particles passing through the silicon detector and the muon chambers.
 
@@ -218,7 +210,6 @@ to the origin of particles passing into the detector.
 It is made up of layers of many small pixels to do this.
 As distance from the interaction point increases, the pixel size also increases
 since the absolution spacial resolution does not need to be as fine.
-
 The innermost three layers, with the closest layer being a distance of
 $r=\SI{4}{cm}$ from the interaction point,
 are made of hybrid pixel detectors.
@@ -226,21 +217,23 @@ Each pixel has dimensions of $100 \times \SI{150}{\micro m}$
 in order to achieve fine resolution of where the detected particles originated.
 The TDR also claims an occupancy of $10^{-4}$ per pixel per LHC bunch crossing,
 which improves the pixel's longevity and reduces problems from detector deadtime.
-Outside of the pixel detector layers,
-silicon strip detectors are used. \phil{finally strips, I would rework above}
+
+Outside of the pixel detector layers are the strip detectors.
+Silicon strip detectors that use coincident signals to
+more precisely locate the locations of charged tracks.
 These are placed in the region that is $20 < r < \SI{55}{cm}$ from the beamline.
 Strip dimensions give a cell size of approximately $\SI{10}{cm} \times \SI{80}{\micro m}$.
 2--3\% of cells are activated during a typical bunch crossing.
 The outermost layers are made of larger strips with cell sizes of
 $\SI{25}{cm} \times \SI{180}{\micro m}$.
-About 1\% of these pixels are triggered each bunch crossing.
+About 1\% of these strips are triggered each bunch crossing.
 
-The active material of the silicon pixel detector is semi-conducting silicon.
+The active material of the silicon detector is semi-conducting silicon.
 When charged particles pass through,
 electron-hole pairs are generated and drift apart due to a bias voltage.
 The voltage change when these pairs reach their respective electrodes
 indicates a charged particle passed through.
-Because of this, the silicon pixel detector cannot detect neutral particles,
+Because of this, the silicon detector cannot detect neutral particles,
 but it gives a precise point of origin for charged particles.
 The points of origin allow for the determination of locations of primary and secondary
 collision vertices, which plays an important role in the identification of pileup.
@@ -304,8 +297,7 @@ and the other regions had a 5\% resolution \cite{Bartosik:2712238}.
 \subsection{Hadronic Calorimeter}
 
 The ECAL absorbs electromagnetic particles and measures their energies
-which are dispersed in electromagnetic showers. \phil{I think you need
-  a qualifer in the first sentence. Unlike the ecal, which..., the Hcal}
+which are dispersed in electromagnetic showers.
 Hadrons deposit energy in hadronic showers,
 which require a different mechanism to contain and measure.
 The Hadronic Calorimeter (HCAL) does this.
@@ -350,7 +342,7 @@ This is the only sub-detector system outside of the solenoid,
 but the returning magnetic field is still present outside of the return yoke
 \cite{828264,Klyukhin:2062915},
 allowing the momentum of the muons to be extracted from the curvature of their trajectory.
-Layers of muon chambers act much like the pixel detectors,
+Layers of muon chambers act much like the silicon tracking detectors,
 but at a larger and more distant scale.
 The muon chambers in the barrel region of $|\eta| < 1.2$ consist of drift tube chambers.
 In the endcaps, cathode strip chambers are used.
@@ -398,13 +390,13 @@ To help reduce this background, tracks with missing hits use an iterative fit.
 Different seeds are found for each track to make sure that the resulting collections
 of hits remain the same.
 
-Additional complications arise for each the pixel and muon detectors.
+Additional complications arise for each the inner tracker and muon detectors.
 The Silicon Tracker is the only tracking detector that deals with electrons.
 Because of their small mass, electrons are likely to radiate energy
 while travelling through the magnetic field of CMS.
 This leads to complications in the calorimeters described in Section~\ref{sec:calorimeters}.
 It also means that the radius of curvature of an electron track can decrease appreciably
-within the pixel detector.
+within the inner tracker.
 This can lead to the Kalman Filter approach missing tracks entirely,
 depending on the number of hits required.
 Tracks with a large $\chi^2$ and a certain number of hits are fit again
@@ -416,7 +408,7 @@ A change of trajectory may also happen in the muon chambers,
 but this is due to multiple scattering in the return yoke.
 No specialized tracking algorithm is used to account for it.
 The muon tracking performs best when the tracks in the muon chambers are successfully
-linked to a track in the pixel detector.
+linked to a track in the inner silicon detector.
 The most common backgrounds in the muon chambers
 is caused when hadrons manage to punch through the HCAL.
 This is often mitigated by considering the amount of energy deposited along the particle
@@ -458,7 +450,7 @@ A shower that originates within one radiation or interaction length in the calor
 along that track is linked with the track.
 
 The bremsstrahlung from GSF electrons is linked to the track by looking along track tangents.
-A dedicated conversion finder is used to identify pair production within the pixel detector
+A dedicated conversion finder is used to identify pair production within the inner tracking detector
 caused by either bremsstrahlung or prompt photons in order to not mistakenly link
 a charged particle track with what should otherwise be measured as a photon.
 This step, in addition to some ECAL clusters that do not have a track
@@ -490,7 +482,7 @@ which would belong to a long-lived hadron.
 As mentioned in Section~\ref{sec:requirements}, this is the signature of a $b$ jet.
 It is possible, however, that the secondary vertex is generated
 by a nuclear scattering, pair production, or other long-lived particles
-like $K_S$ or $\Lambda$ within the pixel detector,
+like $K_S$ or $\Lambda$ within the silicon detector,
 so additional analysis is needed for each secondary vertex.
 
 The final link is made between tracks in the muon chambers and tracks in the inner tracker.
@@ -682,12 +674,6 @@ another 60,000 \cite{Bloom_2017}.
 Together they also provide around 100 Petabytes of space \cite{Ratnikova_2014}.
 Keeping these services running smoothly is important for the CMS collaboration to function,
 and two projects that aid in this are outlined in Appendix~\ref{app:project}.
-Since the data is event-based, they are stored in n-tuple
-format. \phil{put a reference or describe what an n-tuple is. N-tuple
-  is a bit jargony}
+Since the data is event-based, they are stored in n-tuple format \cite{Blomer_2018}
+supported by ROOT \cite{brun1997root}.
 These n-tuples are created and read by the CMS Software (CMSSW) \cite{INNOCENTE200131}.
-
-\phil{This section is overall good, its better towards the end, don't
-  think I have any major comments about what is missing. I am glad you
-  put your work in the appendix, otherwise, I would have made a
-  comment about putting your work in this part of your thesis.} 
