@@ -102,10 +102,7 @@ means that a reconstruction scale factor, $\epsilon^e_\mathrm{RECO}$, is also fa
 \end{gather}
 The rest of the efficiency scale factors follow the same definition patterns given for the muons.
 The binning for the electron scale factors is also the same as the binning for the muon scale factors.
-The scale factor is around $1.0 \pm 0.1$ for most of the
-bins. \phil{Is it really 0.1 per bin, this seems high?,  I would have
-  expected an order of magnitude lower. Integrated over all bins, I
-  recall we had it under 1 percent.  }
+The scale factor is around $1.0 \pm 0.02$ per electron for most of the bins.
 
 \subsection{MET Trigger Scale Factors}
 
@@ -115,10 +112,7 @@ events from $W$+jets and $t\bar{t}$ events.
 The events are additionally required to be similar to the events of interest in the analysis.
 There must be two jets with $p_T > \SI{20}{GeV}$ and $|\eta| < 2.5$,
 and the events must pass the MET filters.
-The event must also not be biased by the L1 MET triggers activated by the calorimeters,
-which is achieved by requiring that the $\Delta\phi$ between the electron and MET is
-less than 2.5. \phil{I am confused by this cut, do mean MET triggers
-  from the electron mismeasurement, or at least influenced by the electron?}
+In addition, it is required that the $\Delta\phi$ between the electron and MET is less than 2.5.
 The nominal values for the scale factors are derived by measuring
 the MET trigger efficiency in data and scaling the trigger efficiency in
 the $t\bar{t}$ Monte Carlo sample to match.
@@ -127,14 +121,14 @@ The scale factors for the nominal measurement and the $W$+jets sample are shown 
 Figure~\ref{fig:met-sf}.
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\linewidth]{figures/METSF2016.pdf}~
-  \includegraphics[width=0.5\linewidth]{figures/METSF2017.pdf}
-  \includegraphics[width=0.5\linewidth]{figures/METSF2018.png}
+  \raisebox{2.7cm}{\rotatebox{90}{\tiny \textsf{MET Trigger SF}}}
+  \includegraphics[width=0.45\linewidth]{figures/METSF2016.pdf}~
+  \raisebox{2.7cm}{\rotatebox{90}{\tiny \textsf{MET Trigger SF}}}
+  \includegraphics[width=0.45\linewidth]{figures/METSF2017.pdf} \\
+  \raisebox{2.5cm}{\rotatebox{90}{\tiny \textsf{MET Trigger SF}}}
+  \includegraphics[width=0.45\linewidth,trim={1.5cm 0 0 0},clip]{figures/METSF2018.png}
   \caption[MET trigger scale factors]{
-    \phil{label y-axis, say MET Trigger scale factor too, I was
-      confused. Also mention how the uncertaintiy is computed given
-      the two lines.}
-    The MET scale factors for two varying simulations are given.
+    The MET trigger scale factors for two varying simulations are given.
     The $t\bar{t}$ sample is used for the nominal scale factor,
     and the $W$+jets is used to estimate systematic uncertainties.
     The top left plot shows the measurements for 2016,
@@ -148,6 +142,11 @@ Figure~\ref{fig:met-sf}.
   }
   \label{fig:met-sf}
 \end{figure}
+The MET trigger uncertainty is derived by finding the maximum deviation between the two lines above
+the \SI{170}{GeV} requirement in the 0-lepton channel,
+and applying that difference as a shape uncertainty.
+
+% \phil Add b-tagging sub-section
 
 \section{Energy Corrections of $b$-Jets}
 
@@ -237,8 +236,6 @@ The relative resolution ($\sigma/\mu$) is fit as a function of $\alpha$.
 \begin{gather}
   f(\alpha) = (m \times \alpha) \oplus b \times (1 + c_k \times \alpha)
 \end{gather}
-\phil{Is it not the magnitude of the right formula, since there is a
-  direct sum}
 
 The $c_k$ term is fixed by a linear fit to the MC's intrinsic jet resolution
 ($p_{T, reco}/p_{T, gen}$) over $\alpha$ as $c_k = m_0/q_0$.
@@ -313,7 +310,7 @@ are more numerous, so more simulated events must be generated.
 To speed up calculations, Leading Order (LO) samples are used for these processes.
 
 One common way to make LO samples more accurate
-is to generate NLO samples and reweight the LO sample
+is to generate NLO in QCD samples and reweight the LO sample
 to match generator-level kinematics.
 This can be done with an inclusive selection so that the statistical limitations
 of the available NLO samples are not significant.
@@ -321,11 +318,6 @@ While the samples in this analysis were generated using just
 MadGraph5 \cite{hirschi2015automated},
 the following inclusive samples using aMC@NLO \cite{Alwall:2014hca}
 are used to reweight the LO simulation as a function of $p_T(V)$.
-\phil{I understtand NLO/LO reweighting for inclusive production, andI
-  think what youare doing is fine, but for z+b production, I am
-  confused what is done. Are you reweighting? If so are you computing
-  a k-factor with an NLO b-sample, what is you choice of b-generation,
-  do you use 5-flavor pdfs, this should be specified.}
 \begin{itemize}
 \item Z1JetsToNuNu\_M-50\_LHEZpT\_50-150\_TuneCP5\_13TeV-amcnloFXFX-pythia8
 \item Z1JetsToNuNu\_M-50\_LHEZpT\_150-250\_TuneCP5\_13TeV-amcnloFXFX-pythia8
@@ -358,6 +350,15 @@ are shown in Figure~\ref{fig:nlo-reweight}.
   }
   \label{fig:nlo-reweight}
 \end{figure}
+
+Note that these NLO corrections are only applied to the HT-binned $V$ + jets samples.
+These samples are also combined with $b$-enriched samples that are already simulated in NLO.
+It is common to remove events with simulated $b$ hadrons from the HT-binned samples in this case
+and use only the $b$-enriched samples for those events.
+However this is not possible in this analysis because there are not enough simulated events
+with high vector boson $p_T$ in the $b$-enriched samples.
+Therefore, both the NLO samples that are used to reweight the LO samples also need to
+simulate events containing $b$ hadrons.
 
 \subsection{Electroweak and QCD Corrections to Background}
 
@@ -411,18 +412,20 @@ Electroweak corrections can still be factored out,
 and total $V\!H$ production cross sections are given as the following
 \cite{DeFlorianSabaris:2215893}.
 \begin{gather}
-  \sigma^{WH} = \sigma^{WH,DY}_\mathrm{NNLOQCD} (1 + \delta_\mathrm{EWK}) + \sigma_{t-\mathrm{loop}} + \sigma_\gamma \\
-  \sigma^{ZH} = \sigma^{ZH,DY}_\mathrm{NNLOQCD} (1 + \delta_\mathrm{EWK}) + \sigma_{t-\mathrm{loop}} + \sigma_\gamma + \sigma^{ggZH}
+  \sigma^{W\!H} = \sigma^{W\!H,DY}_\mathrm{NNLOQCD} (1 + \delta_\mathrm{EWK}) + \sigma_{t-\mathrm{loop}} + \sigma_\gamma \\
+  \sigma^{Z\!H} = \sigma^{Z\!H,DY}_\mathrm{NNLOQCD} (1 + \delta_\mathrm{EWK}) + \sigma_{t-\mathrm{loop}} + \sigma_\gamma + \sigma^{ggZ\!H}
 \end{gather}
-\phil{Pleasde define all of the terms in teh formula, I dont't know
-  what $sigma_{t-loop}$ is even. }
+Each $\sigma$ on the RHS of the equations refers to a different Higgs production mechanism.
 The full correction shape as a function of $p_T(V)$ is shown in
 Figure~\ref{fig:signal-corr-shape}.
 \begin{figure}
   \centering
   \includegraphics[width=0.45\linewidth]{figures/Elektroweak_signal_correction_Wp.pdf} ~
   \includegraphics[width=0.45\linewidth]{figures/Elektroweak_signal_correction_Zll.pdf}
-  \caption[]{ \phil{ where is the caption??}
+  \caption[Full corrections to signal samples]{
+    The full set of corrections to two signal samples are shown above.
+    On the left is production of the Higgs with a $W^+$ boson.
+    On the right is Higgs production with a $Z$ decaying to two leptons.
   }
   \label{fig:signal-corr-shape}
 \end{figure}
@@ -449,9 +452,7 @@ The following uncertainties only affect the normalization of the simulated sampl
 \item The theoretical uncertainty of the branching ratio of the Higgs Boson
   to bottom quarks is 0.5\% \cite{DeFlorianSabaris:2215893}.
 \item QCD scale uncertainties for the signal production cross section
-  are implemented as acceptance uncertainties for each of the STXS
-  bins. \phil{why do you say for each bin, is this to imply some
-    correlation model?}
+  are implemented as acceptance uncertainties.
 \item The uncertainties to the proton's PDF and $\alpha_s$ for the signal processes
   are 1.6\% for $Z\!H$ production, and 1.9\% for $W\!H$ production.
 \item At the high $p_T(V)$ regions of this analysis, the theoretical uncertainties grow.
@@ -464,8 +465,7 @@ The following uncertainties only affect the normalization of the simulated sampl
 \item The lepton identification efficiency uncertainties are applied as a flat uncertainty
   to each channel, as appropriate.
 \item The MET trigger efficiencies are also applied as a normalization uncertainty
-  to the 0-lepton regions. \phil{you show shape uncertainties before,
-    please explain why you don't apply shape}
+  to the 0-lepton regions, as mentioned before.
 \end{itemize}
 
 \subsection{Shape Uncertainties}
@@ -481,31 +481,16 @@ Uncertainties of simulated processes that cause shape differences are the follow
   of simulated $b$ jets are varied by increasing or decreasing
   the distance between the generator-level $p_T$ and the reconstructed jet $p_T$.
 \item The energy scale is varied by varying all jet energies up and down by
-  one standard deviation. \phil{for this can you put a reference}
+  one standard deviation \cite{Khachatryan_2017}.
 \item The $b$-tagging efficiency uncertainties are calculated
   for multiple $p_T$ and $\eta$ bins.
-  The uncertainties for these different bins are uncorrelated,
-  so they each affect a different subset of events when
-  applied. \phil{do you have a plot of the uncertainties for b-tagging
-    it would be good to see. Also, can you explain why its
-    uncorrelated, at minimum put a reference}
-\item The $b$-tagging for fat jets is applied for two different working points,
-  medium and tight, and is binned in $p_T$.
-  These working points and $p_T$ bins are decorrelated from each
-  other. \phil{ please explain why its uncorrelated. In fact, I think
-    this b-tagging deserves a sub sectin in this chapter where you
-    explainhow these uncertiainties are derived. 
+  The uncertainties for these different bins are uncorrelated \cite{btagsys},
+  so they each affect a different subset of events when applied.
+\item The $b$-tagging efficiencies for fat jets are applied in bins of $p_T$ \cite{CMS-DP-2018-046}.
+  The uncertainties are decorrelated in these $p_T$ bins.
 \item The uncertainties from the limited number of Monte Carlo events is handled
   using an approximation of the Barlow-Beeston method \cite{BARLOW1993219}.
 \end{itemize}
-
-
-\phil{ This section is pretty light on details, I really think you
-  should elaborate on a few things, I have pointed them out along the
-  way. In particular, I think you should put a page or two on the
-  b-tagging uncertainties. Additionally, you don't talk about the
-  uncertainties in the boosted category (double-b) and how they are
-  different. } 
 
 \subsection{Migration Uncertainties}
 
