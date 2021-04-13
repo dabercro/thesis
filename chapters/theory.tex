@@ -257,8 +257,15 @@ so the following symmetric term coupling fermions and the Higgs field can be add
 \end{gather}
 Using the unitary gauge in Equation~(\ref{eq:higgs-doublet}), this expands to the following.
 \begin{gather}
-  \mathcal{L} = -\frac{g_f}{\sqrt{2}}v(\bar{L}R + \bar{R}L) - \frac{g_f}{\sqrt{2}}h(\bar{L}R + \bar{R}L)
+  \mathcal{L}_f =
+  -\frac{g_f}{\sqrt2} v \left(\bar{f}_L f_R + \bar{f}_R f_L \right)
+  -\frac{g_f}{\sqrt2} h \left(\bar{f}_L f_R + \bar{f}_R f_L \right)
+  \label{eq:fermion-mass}
 \end{gather}
+In Equation~(\ref{eq:fermion-mass}),
+$f$ refers to the lower field of the fermion's SU$(2)_L$ doublet.
+The Lagrangian also includes terms for the upper field since the conjugate of $\phi$
+has the same symmetries as $\phi$.
 This behaves like a particle with a fixed mass from the Higgs vacuum expectation value
 interacting with the Higgs boson.
 In particular using
@@ -445,19 +452,11 @@ Since $t$ quarks are so massive, $b$ quarks or hadrons cannot decay into $t$ qua
 Going to $c$ or $u$ is the only decay channel available to the lightest $b$ hadrons,
 so their lifetimes are relatively long.
 
-Both the photon and the $Z$ boson mix the SU$(2)_L$ and U(1$)_Y$ components of the Standard Model.
-Production of the $Z$ boson needs to be directly understood for this measurement,
-but it is more straightforward to determine the strength of the $Z$ boson couplings to left-
-and right-handed fermions by exploiting the symmetry of photon
-interactions. 
-That is, the photon interacts the same with left and right handed charged fermions,
-and not at all with neutral fermions.
-This is shown directly with experiments with leptons.
-The charged leptons, electrons, muons, and taus, interact with photons,
-while the respective neutrinos do not.
+Next, the derivation of $Z$ boson couplings to fermions is considered.
+The photon and the $Z$ boson are both linear combinations of the
+SU$(2)_L$ and U(1$)_Y$ components of the Standard Model.
 From the mixing in Equation~(\ref{eq:mixing}),
 the photon and $Z$ fields can be expressed as the following.
-\phil{The above paragraph is very confusing, can you rewrite it.} 
 \begin{gather}
   A_\mu = B_\mu \cos \theta_W + W_\mu^{(3)} \sin \theta_W \\
   Z_\mu = - B_\mu \sin \theta_W + W_\mu^{(3)} \cos \theta_W \label{eq:z-force}
@@ -466,7 +465,14 @@ $\theta_W$ is known as the weak mixing angle.
 The relative strengths of the $B$ and $W^{(3)}$ couplings
 are determined directly through lepton electromagnetic characteristics,
 keeping in mind that $W^{(3)}$ only interacts with left handed particles.
-The following are the electromagnetic interaction strengths of left- and right-handed electrons and neutrinos.
+The strength of the $Z$ boson couplings can be extracted by exploiting the symmetry of photon interactions.
+The photon interacts the same with left and right handed charged fermions,
+and not at all with neutral fermions.
+This is shown directly with experiments with leptons.
+The charged leptons, electrons, muons, and taus, interact with photons,
+while the respective neutrinos do not.
+The following are therefore the electromagnetic interaction strengths
+of left- and right-handed electrons and neutrinos.
 \begin{align}
   e_L:& \qquad Qe = \frac12 g' Y_{e_L} \cos \theta_W - \frac12 g_W \sin \theta_W \\
   \nu_L:& \qquad \phantom{Q}0 = \frac12 g' Y_{\nu_L} \cos \theta_W - \frac12 g_W \sin \theta_W \\
@@ -603,10 +609,6 @@ The suppression is in the form of the relativistic Breit-Wigner formula.
 \begin{gather}
   f(E) = \frac{k}{(E^2 - M^2)^2 + M^2\Gamma^2} \label{eq:breitwigner}
 \end{gather}
-\phil{Maybe you are getting to it, but I think its important to
-  discuss what is offslel and what isn't, why is the HIggs not
-  offshell for example. One way around this is to write the whole ME
-  for the production}
 This associated production is one of three production mechanisms of the Higgs Boson.
 The other two are gluon fusion, where gluons form a top loop, and vector boson fusion,
 both shown in Figure~\ref{fig:other-prod}.
@@ -660,9 +662,8 @@ This measurement uses leptonic decays in the final state
 since they are easier to identify and separate from background processes.
 
 
-There are three generations of leptons. \phil{This paragraph feels out
-  of place, I think you said most of this, can you push this up to
-  earlier}
+As shown earlier in Table~\ref{tab:fermions}, there are three generations of leptons,
+just as there are three generations of quarks.
 Each generation consists of a charged lepton, and a neutral lepton, also referred to as a neutrino.
 The left-handed charged lepton and neutrino of each generation form an electroweak SU(2$)_L$ doublet.
 In order of increasing mass, the three generations are called electron, muon, and tau.
@@ -763,39 +764,9 @@ The Feynman diagrams for the decay channels of interest are shown in Figure~\ref
 \section{Decay Channels of the Higgs}
 
 What we are ultimately interested in measuring is the contribution of the
-Higgs intermediate state to the final state of \bb.
-Since the Higgs is a SU$(2)_L$ doublet of scalar fields,
-the term $-g_f(\bar{L}\phi R + \bar{R} \phi^\dagger L)$ in the
-Standard Model Lagrangian is invariant under SU$(2)_L \times$ SU$(1)_Y$,
-where $L$ is a left-handed fermion doublet, and $R$ is a right-handed singlet.
-If the Higgs doublet is expanded around the vacuum expectation value,
-as Equation~(\ref{eq:higgs-doublet}), the Lagrangian term becomes the following.
-\begin{gather}
-  \mathcal{L}_f =
-  -\frac{g_f}{\sqrt2} v \left(\bar{f}_L f_R + \bar{f}_R f_L \right)
-  -\frac{g_f}{\sqrt2} h \left(\bar{f}_L f_R + \bar{f}_R f_L \right)
-  \label{eq:fermion-mass}
-\end{gather}
-In Equation~(\ref{eq:fermion-mass}),
-$f$ refers to the lower field of the fermion's SU$(2)_L$ doublet.
-The Lagrangian also includes terms for the upper field since the conjugate of $\phi$
-has the same symmetries as $\phi$. \phil{ I think you should put this
-  part earlier when you discuss the Higgs mechanism in vector bosons,
-  also, you should put a decay table or plot of decays so its clear
-  why bb is important}
-
-The Lagrangian showing fermion-Higgs interactions in
-Equation~(\ref{eq:fermion-mass}) consists of two terms.
-Since $v$ is constant, the first term is consistent with a fermion's mass,
-assuming an appropriate coupling constant.
-\begin{gather}
-  g_f = \sqrt2 \frac{m_f}{v}
-\end{gather}
-The second term is the coupling of the fermion to the Higgs field
-with the same coupling constant.
-This is the mechanism by which the Higgs give fermions their masses,
-and also why the Higgs couples more strongly to massive particles.
-The Feynman rule for the interaction vertex between the Higgs and fermions
+Higgs intermediate state to the final state of $b\bar{b}$.
+As shown earlier in Equation~(\ref{eq:fermion-mass}),
+the Feynman rule for the interaction vertex between the Higgs and fermions
 is proportional to the fermion's mass.
 Of the quarks, the $b$ quark is the second most massive.
 The most massive $t$ quark is too massive to be the final decay product of an on-shell Higgs.
@@ -806,6 +777,20 @@ The Higgs can also decay to two vector bosons.
 In this case, instead of requiring the Higgs to be off-shell,
 one of the unstable vector bosons can be less massive than its resonance mass.
 However, this still results cross section suppression in the form of Equation~(\ref{eq:breitwigner}).
+The predicted branching ratios, before the Higgs discovery,
+and their dependence on the Higgs mass is shown in Figure~\ref{fig:brs},
+showing $b\bar{b}$ to be the most common decay mode of the discovered Higgs.
+%
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/YRHXS_BR_fig1.pdf}
+  \caption[Predicted ratios of Higgs decay]{
+    The predicted ratios of the Higgs are shown above \cite{dittmaier2012handbook}.
+    A vertical line is added at the mass point where the Higgs boson has been observed.
+    At this point, $b\bar{b}$ is the most common decay mode for the Higgs.
+  }
+  \label{fig:brs}
+\end{figure}
 
 As the decay mode with the highest coupling requiring no off-shell particles,
 the predicted branching ratio of $H \rightarrow \bb$ is 57.8\%.
@@ -843,11 +828,16 @@ One such full diagram is shown in Figure~\ref{fig:two-lep-diagram}.
   \label{fig:two-lep-diagram}
 \end{figure}
 
-\phil{This section is a bit jumbled, I think it needs some
-  reorganization of the material, you mostly cover everything needed
-  to explain the process but it is a bit hard to follow.  Lastly, you
-  SHOULD add a new sub section here about why it is important to
-  measure VHbb, what do we learn about the Higgs? Is there anything
-  interesting about the kinematic dependence? Are there other
-  alternate Higgs theories. Point is you should explain why this
-  measurement is so imporant. }
+\section{The $V\!Hb\bar{b}$ Measurement}
+
+The principles outlined in this chapter, along with higher order calculations,
+should be able to predict the frequency of $H\rightarrow b\bar{b}$ in associated production,
+as well as the energy dependence of these events.
+If there are discrepancies between the predictions and what is measured,
+that means there must be additional interactions beyond the Standard Model.
+An efficient selection of the $b\bar{b}$ decay mode will yield a large number of Higgs events,
+since it is the most common decay mode.
+Looking for associated production not only gives a clear detector signature to select on,
+but it also allows for accurate measurements of the vector boson momentum spectra.
+Since these vector bosons are directly coupling to the Higgs through \emph{Higgstrahlung},
+their momentum will be directly affected by any additional interactions affecting the Higgs.
