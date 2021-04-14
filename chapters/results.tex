@@ -425,8 +425,11 @@ $Z\rightarrow\mu\mu$ channel in 2017.
 Several additional features aside from the pre-fit and post-fit differences are worth noting.
 There is only one bin in the $t\bar{t}$ control region,
 so it is only used to constrain the normalization of the $t\bar{t}$ background.
-In the $Z$ + heavy jets control region, the DNN is trained with the same inputs as the signal region DNN.
-This constrains the shape uncertainties that would affect both classifiers.
+In the $Z$ + heavy jets control region,
+the multi-classifier DNN  with the same inputs as the signal region DNN is shown.
+The signal distributions are binned so that the output of the DNN is flat in the $V\!H$ signal.
+The $V\!Z$ signal distribution is close to flat when following the same binning scheme.
+The important feature in that distribution then is that the backgrounds are all falling as the DNN value increases.
 In all of the regions, we can see improved agreement between the simulation and data after the fit, and
 the combination fit also decreases the uncertainty on each bin.
 The relative contributions of the main background processes can also be seen at a glance at the signal region plots.
@@ -514,7 +517,6 @@ Overall the $V\!Z$ cross-check is in agreement with the Standard Model.
   \label{fig:vz-inclusive}
 \end{figure}
 
-
 \begin{figure}
   \centering
   \includegraphics[width=0.8\linewidth]{figures/210308_STXS_VZ_unblinded_XbbVZ_e4179c95_a866aef8/summary_stxs.pdf}
@@ -537,12 +539,13 @@ Overall the $V\!Z$ cross-check is in agreement with the Standard Model.
 
 \subsection{$V\!H$ Combination Fit Results}
 
-The first step to show that the processes in the detector are well-modeled
-by simulation is the Goodness of Fit test.
-The Goodness of Fit for the $V\!H$ selection is shown in Figure~\ref{fig:vh-gof}.
-The observed value for the saturated test statistic is in the bulk of the distribution created by throwing
-post-fit toys, with an associated $p$-value of 70\%, suggesting both good modeling and
-reasonable values for post-fit uncertainties. 
+To extract the $V\!H$ results, the same procedure is followed as was done in the $V\!Z$ cross-check analysis.
+The first step to show that the background processes for $V\!H$ in the detector are well-modeled
+by simulation is the Goodness of Fit test, which is shown in Figure~\ref{fig:vh-gof}.
+The observed value for the saturated test statistic in data is in the bulk of the distribution created by throwing
+post-fit toys, with an associated $p$-value of 70\%.
+This suggests both good modeling, since the $p$-value is not low,
+and reasonable values for post-fit uncertainties, since the $p$-value is not too high.
 %
 \begin{figure}
   \centering
@@ -555,11 +558,11 @@ reasonable values for post-fit uncertainties.
   \label{fig:vh-gof}
 \end{figure}
 
-A selection of post-fit distributions are also shown.
+Again, only a sub-set of the 243 pre-fit and post-fit distributions are shown.
 Like, the $V\!Z$ analysis, there are too many distributions to show all of them in this work,
 so what follows are only a few illustrative examples.
 Figure~\ref{fig:vh-znn-high-2016} shows the zero-lepton channel in the high $p_T(V)$ regime.
-Unlike the two lepton selections shown,
+Unlike the two lepton selections,
 the signal distributions display contamination from $W$ + jets background processes.
 There is no zero-lepton control region for $W$ + jets.
 Instead, these backgrounds are controlled only by one-lepton control regions,
@@ -611,9 +614,15 @@ largely made up of $t\bar{t}$ background.
   \label{fig:vh-wmn-med-2017}
 \end{figure}
 %
-Figure~\ref{fig:vh-zee-med-2018} shows the medium $p_T(V)$ bin for $Z\rightarrow ee$.
-In the $Z\!H$ STXS bins, the signal region is split between events with no extra jets,
+Finally, Figure~\ref{fig:vh-zee-med-2018} shows the $150 < p_T(V) \SI{250}{GeV}$ STXS bin
+for $Z\rightarrow ee$ in 2018.
+In this $p_T(V)$ bin, the $Z\!H$ the signal region is split between events with no extra jets,
 and events with extra jets, which can be seen in the distributions.
+The other thing to note is that the post-fit signal values are pulled to low values,
+and disappear in the post-fit plot.
+A deficit of signal-like events can be observed in data for events with jets.
+Even though there is an excess of signal-like events in events without jets,
+the signal strength is affected by the fit in other channels ($\mu\mu$ and $\nu\nu$) and other years.
 %
 \begin{figure}
   \centering
@@ -741,12 +750,24 @@ or the $b\bar{b}$ decay path.
 %   \label{tab:xs}
 % \end{table}
 
+The last piece of the analysis shows where future work can improve measurement sensitivity.
+Nuisance parameters are gathered into groups of nuisances, and the relative effect of each group on the overall
+systematic uncertainty is evaluated.
+The results for each of the STXS bins is shown in Table~\ref{tab:groups}.
+The first two rows of each table, ``Signal'' and ``Background'', are the theoretical uncertainties applied
+to each type of simulation.
+These uncertainties can be reduced slightly by using a lepton collider instead of a hadron collider
+since there would be no PDF uncertainties in that case.
+%
 \begin{sidewaystable}
   \centering
   \caption[Contributions of systematic uncertainties groups to result]{
     The contribution of different groups of systematic uncertainties are given below for each of the STXS bins.
     The ``Signal'' and ``Background'' groups are theoretical systematic uncertainties.
     The rest of the groups are results of the experimental apparatus or analysis technique.
+    The ``Meas. XS'' uncertainties are related to the measured cross sections of
+    the single-top \cite{2017752} and di-boson \cite{2017533}
+    processes that are used to normalize backgrounds in this analysis.
     The total systematic uncertainty as well as the statistical uncertainty for each bin are also included
     for comparison.
   }
@@ -760,7 +781,7 @@ Background & {+0.052} {-0.047} & {+0.053} {-0.025} & {+0.084} {-0.060}\\
 $b$-tagging & {+0.128} {-0.118} & {+0.084} {-0.069} & {+0.092} {-0.077}\\
 Jet energy & {+0.225} {-0.203} & {+0.090} {-0.081} & {+0.116} {-0.076}\\
 Lepton ID & {+0.022} {-0.000} & {+0.054} {-0.042} & {+0.023} {-0.047}\\
-LOtoNLO & {+0.047} {-0.038} & {+0.035} {-0.005} & {+0.050} {-0.050}\\
+LO to NLO & {+0.047} {-0.038} & {+0.035} {-0.005} & {+0.050} {-0.050}\\
 Luminosity & {+0.024} {-0.000} & {+0.045} {-0.000} & {+0.066} {-0.043}\\
 Meas. XS & {+0.034} {-0.000} & {+0.039} {-0.000} & {+0.047} {-0.057}\\
 Triggers & {+0.011} {-0.000} & {+0.022} {-0.035} & {+0.034} {-0.048}\\
@@ -780,7 +801,7 @@ Background & {+0.038} {-0.050} & {+0.000} {-0.015} & {+0.069} {-0.065} & {+0.027
 $b$-tagging & {+0.131} {-0.135} & {+0.038} {-0.036} & {+0.098} {-0.093} & {+0.052} {-0.046} & {+0.058} {-0.043}\\
 Jet energy & {+0.050} {-0.048} & {+0.019} {-0.030} & {+0.101} {-0.093} & {+0.045} {-0.040} & {+0.070} {-0.069}\\
 Lepton ID & {+0.032} {-0.032} & {+0.007} {-0.021} & {+0.000} {-0.067} & {+0.018} {-0.012} & {+0.028} {-0.022}\\
-LOtoNLO & {+0.154} {-0.162} & {+0.035} {-0.039} & {+0.113} {-0.083} & {+0.044} {-0.040} & {+0.045} {-0.025}\\
+LO to NLO & {+0.154} {-0.162} & {+0.035} {-0.039} & {+0.113} {-0.083} & {+0.044} {-0.040} & {+0.045} {-0.025}\\
 Luminosity & {+0.016} {-0.020} & {+0.000} {-0.012} & {+0.017} {-0.014} & {+0.023} {-0.023} & {+0.039} {-0.012}\\
 Meas. XS & {+0.000} {-0.016} & {+0.000} {-0.000} & {+0.000} {-0.000} & {+0.026} {-0.016} & {+0.004} {-0.000}\\
 Triggers & {+0.024} {-0.010} & {+0.000} {-0.000} & {+0.029} {-0.000} & {+0.000} {-0.010} & {+0.023} {-0.013}\\
@@ -790,4 +811,17 @@ Total Sys. & {+0.529} {-0.553} & {+0.205} {-0.216} & {+0.464} {-0.506} & {+0.274
 Stat & {+0.479} {-0.469} & {+0.360} {-0.346} & {+0.781} {-0.738} & {+0.369} {-0.352} & {+0.620} {-0.563}\\
 \hline
   \end{tabular}
+  \label{tab:groups}
 \end{sidewaystable}
+%
+However, these theoretical uncertainties have a generally smaller effect than
+some of the experimental systematic uncertainties.
+In particular, the $p_T(V)$ background migration systematic introduced in Section~\ref{sec:pT-mig}
+has the largest effect on the measurement sensitivity.
+This systematic effect was assumed to be large since there was no thorough study on this correction.
+Future work focusing on this correction can improve the measurement sensitivity in all STXS bins.
+Beyond that, the jet energy has a large effect,
+which is why there was a dedicated study as outlined in Section~\ref{sec:bjet-energy-corr}.
+Finally, the $b$-tagging systematics were more significant than the jet energy for some bins.
+Progress on simulation of jets, in particular simulation of heavy-flavor jets,
+would be able to reduce both of these systematics as well.
