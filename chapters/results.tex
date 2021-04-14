@@ -1,6 +1,12 @@
 \chapter{Analysis Results} \label{ch:results}
 
-With the procedure outlined in the previous chapters, 
+With the selection and correction procedure outlined in the previous chapters,
+data gathered at CMS is gathered and compared to predictions of the Standard Model.
+Before looking at the signal events, various distributions are plotted
+in each of the control regions to ensure that the background events are simulated accurately.
+After some example distributions, discriminating variables to be used in the signal selections are defined.
+Right before getting the final measurement, a cross-check analysis is done using the same techniques
+on the more common $V\!Z$ process.
 
 \section{Run 2 Data Collection}
 
@@ -10,6 +16,12 @@ In 2016, CMS collected \SI{35.9}{fb^{-1}} of data \cite{CMS-PAS-LUM-17-001}.
 In 2017, data corresponding to \SI{41.5}{fb^{-1}} were collected \cite{CMS-PAS-LUM-17-004}.
 In 2018, CMS collected \SI{60}{fb^{-1}} of collision data \cite{CMS-PAS-LUM-18-002}.
 This data, totaling about \SI{137}{fb^{-1}} was used for the analysis.
+
+As noted in defining the MET selection of 2018, the CMS detector performance does
+change over time as the systems are exposed to radiation from the LHC environment.
+Therefore, each of the three years is treated separately with many systematic uncertainties related to the
+detector uncorrelated between the years.
+Even though these experimental values float separately, the final result is that of a combination of all three years.
 
 \section{Control Region Plots}
 
@@ -22,7 +34,9 @@ so agreements improve after the fit.
 The number of variables, selections, and separation of the data collection years
 means that this is just a fraction of the total number of plots produced.
 However, this subset shown demonstrate several discrepancies that needed to be accounted for in our systematics,
-such as the $p_T(V)$ trend and normalization of certain background samples.
+such as the $p_T(V)$ trend which can be seen in Figure~\ref{fig:2016_Zll_vpt},
+the $p_T$ of individual jets in Figures~\ref{fig:2016_Wln_j0pt} and \ref{fig:2017_Zee_j1pt},
+and normalization of certain background samples, like the $Z$ + jets samples in Figure~ \ref{fig:2018_Zmm_vpt}.
 
 \begin{figure}
   \centering
@@ -155,10 +169,14 @@ such as the $p_T(V)$ trend and normalization of certain background samples.
 
 \section{Multivariate Discriminator}
 
-In each STXS bin, a multivariate discriminator is plotted which separates
+In each STXS bin, a multivariate discriminator is plotted for the signal region which separates
 the signal events from background events.
 A Deep Neural Network (DNN) is trained for the resolved selection,
 and a Boosted Decision Tree (BDT) is trained for the boosted selection.
+The DNN was also used to train a multi-classifier for use in the resolved $Z$ + heavy jets control region.
+Half of the simulated events are used in these trainings.
+To prevent biases, as well as to avoid over-training, the other half of the simulated events are used
+to compare classifier distributions with data.
 
 \subsection{Resolved DNN}
 
@@ -168,13 +186,25 @@ It has five hidden layers.
 The number of nodes in each layer, from input to output, is 512, 256, 128, 64, 64, and 64.
 The final layer is a softmax layer with the target of predicting the probability
 of each event belonging to a particular class.
+The cross entropy loss function is used for the training.
+
+A separate training using the same architecture is performed on the $V$ + heavy jets control regions.
+Each class in the output is designed to control the normalization and input variable shapes
+of different background processes.
+There five classes that attempt to separate the following processes:
+\begin{itemize}
+\item $V$ + light-flavored ($udsg$) jets
+\item $V$ + $c$ jets
+\item $V$ + $b$ jets
+\item Single-top events
+\item $t\bar{t}$ events
+\end{itemize}
 
 Each channel of 0-, 1-, and 2-leptons is trained separately,
 and has slightly different input variables.
 The list of input variables is given in Table~\ref{tab:dnn-inputs}.
 All variables that are affected by the kinematic fit in the 2-lepton region
 use the values calculated by the fit.
-The cross entropy loss function is used for the training.
 
 \begin{table}
   \caption[Resolved DNN inputs]{
@@ -236,8 +266,11 @@ The list of input variables for the BDT is the following:
 \item Number of soft-track jets with $p_T > \SI{5}{GeV}$
 \item Double $b$-tagger output node for boosted jets
 \end{itemize}
-All of these variables were used in the 0-, 1-, and 2-lepton regions,
+All of these same variables were used in the 0-, 1-, and 2-lepton regions,
 even though the regions were trained separately.
+Because of the decreased complexity of the boosted BDT compared to the DNN,
+there is no need to attempt to simultaneously control the input variables from the backgrounds
+in the $V$ + heavy flavor control regions.
 
 \section{Combination Fit}
 
@@ -247,12 +280,9 @@ parameters with systematic uncertainties, called nuisance parameters,
 as well as the most likely scale factors for all the MC backgrounds and signal.
 The fit is done by using the \texttt{combine} tool \cite{cmsdocumentation} as part of
 \texttt{CMSSW\_10\_2\_13} \cite{cmssw_doxygen}.
-Part of the method for discovery involves finding the most likely values
-for all nuisance parameters and signal strength simultaneously.
-This maximum likelihood feature is used for the measurement of signal strength in the STXS bins.
-The difference in signal strength uncertainty when allowing the nuisance parameters to float
-from their most likely values or not show the overall effect of the systematic uncertainties
-on the final measurement.
+Included in this fit is the strength of the signal in the STXS bins.
+This is how the final result of this analysis is measured.
+
 There are a total of 243 distribtuions that make up the fit.
 Table~\ref{tab:num-hists} shows how the different channels and control regions contribute to this number.
 %
@@ -276,7 +306,7 @@ Table~\ref{tab:num-hists} shows how the different channels and control regions c
     without       &   & X &   &   &   &   &   &   &   & X &   &   \\
     \hline
     250 -- $\infty$ & X &   & X &   & X &   & X &   & X &   & X &   \\
-    250 -- 400    &   & X &   & X &   & X &   & X &   & X &   & X \\
+    250 -- 400      &   & X &   & X &   & X &   & X &   & X &   & X \\
     400 -- $\infty$ &   & X &   & X &   & X &   & X &   & X &   & X \\
     \hline
     number X      & 2 & 4 & 1 & 2 & 2 & 3 & 1 & 2 & 3 & 5 & 1 & 2 \\
@@ -287,21 +317,32 @@ Table~\ref{tab:num-hists} shows how the different channels and control regions c
   \label{tab:num-hists}
 \end{table}
 %
+As mentioned before, there are a number of uncertainties that
+also produce variations in the fit histograms.
+A separate fit is run with each corresponding nuisance parameter frozen to their most likely value,
+which gives the purely statistical uncertainty on the measurement result.
+The systematic uncertainty is then extracted.
 
-In addition, \texttt{combine} includes a variety of diagnostic tools to ensure
-the assumed model is adequate.
-The first step before unblinding results is to throw toys using the best-fit
-nuisance parameter values and comparing a test statistic of these toys
-to that of the observed data. \phil{You need a paragraph talking about
-  what unblinding means, there are many ways to define this. The Higgs
-  approach is specific to the HIggs group, B2G for example has a very
-  different unblinding procedure. } 
+Running this fit without data, but instead toy distributions gathered directly
+from the initial simulated distributions gives the expected sensitivity of the analysis.
+Analyzers can see the statistical and systematic uncertainties before measuring the final result in this way.
+It is under this limitation that the analysis strategy is developed and optimized for sensitivity.
+For Higgs analyses, there is an additional measurement which is done before the fit is run
+with measured data to give the unblinded result.
+In addition to the ability to fit distributions , \texttt{combine} includes a variety of
+diagnostic tools to ensure the assumed model is adequate.
+Before unblinding results, multiple toy distributions are generated using the best-fit
+nuisance parameter values and comparing a test statistic,
+which is of a generalized $\chi^2$ test \cite{cousins2013generalization},
+of these toys to that of the observed data.
 The distributions of the values from the set of toys allows the evaluation of the $p$-value
 of the test statistic observed in data.
 The \texttt{combine} tool also evaluates the impacts of each
 nuisance parameter on the likelihood by varying them individually.
 If nuisance parameters with large impacts are pulled far from their initial value,
 that means that an important aspect of the measurement was not well understood.
+Both of these tests can be run without revealing the measured values of cross sections.
+This prevents biases in the analysis strategy which is finalized in response to these tests.
 
 The final results will therefore show comparison of data and best-fit toys,
 called Goodness of Fit, as well as the final scan results.
@@ -309,9 +350,7 @@ Post-fit plots will also reveal the way that the fit moves the background and si
 within uncertainties in order for the background to describe the data.
 Impacts plots are shown in Appendix~\ref{app:impacts} due to the high multiplicity of nuisance parameters.
 Before running these checks and measurements for the $V\!H$ measurement,
-they were first tested on $V\!Z$. \phil{ I think this section could
-  use an intro section explaining the strategy towards getting the
-  results. } 
+they were first tested on $V\!Z$.
 
 \subsection{$V\!Z$ Cross Check Analysis}
 
@@ -335,13 +374,11 @@ while the $V\!Z$ is not influenced as much by the rare $V\!H$ process.
 Also, the light flavor $V\!Z$ process will have more influence over
 the control region fits than the $V\!H$ process has.
 
-Data from all three years of Run 2 are used again so that any differences that may affect the $V\!H$ analysis
+Data from all three years of Run 2 are used so that any differences that may affect the $V\!H$ analysis
 can also be investigated using $V\!Z$.
-The Goodness of Fit plots \cite{cousins2013generalization} are shown in
-Figure~\ref{fig:vz-gof}.
+The Goodness of Fit plots are shown in Figure~\ref{fig:vz-gof}.
 The high $p$-value means that the simulated processes were able to match the data very well
-while staying within the fit constraints of the systematic
-uncertainties.
+while staying within the fit constraints of the systematic uncertainties.
 
 \begin{figure}
   \centering
@@ -371,7 +408,7 @@ especially in $t\bar{t}$ in line 19.
 %
 \begin{figure}
   \centering
-  \includegraphics[width=0.85\linewidth,page=1]{figures/impacts/impacts_r_whhi1.pdf}
+  \includegraphics[width=0.8\linewidth,page=1]{figures/impacts/impacts_r_whhi1.pdf}
   \caption[Example impacts for WH $250 < p_T(V) < \SI{400}{GeV}$]{
     The most significant impacts in on WH $250 < p_T(V) < \SI{400}{GeV}$.
     Note the decrease in migration uncertainties, such as \texttt{CMS\_vhbb\_Vpt250\_TT\_1lep\_13TeV2016}.
@@ -396,25 +433,21 @@ The relative contributions of the main background processes can also be seen at 
 %
 \begin{figure}
   \centering
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_postfit} \\
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_postfit} \\
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_postfit} \\
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_2_13TeV2017_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_3_13TeV2017_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_4_13TeV2017_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_prefit_logy}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Zmm_1_13TeV2017_postfit_logy} \\
   \caption[$Z\rightarrow \mu\mu$ $V\!Z$ distributions for low $p_T$ in 2017]{
     Above are $Z\rightarrow \mu\mu$ pre-fit (left) and post-fit distributions (right)
     for the low $p_T$ STXS bin in 2017 in the $V\!Z$ cross-check analysis.
     The top row shows the $Z$ + light jets control region,
     the second row shows the $Z$ + heavy jets control region,
     and the third row shows the $t\bar{t}$ control region.
-    The bottom row shows the signal region. \phil{ Can you make the
-      signal region   plot aggregated over the years, ideally weighted by their
-      signifcance contrbituion, also can you make it log so that we
-      see the VZ contribution lastly can you make the VZ signal the
-      redline not the VH}
+    The bottom row shows the signal region.
   }
   \label{fig:vz-zmm-low-2017}
 \end{figure}
@@ -432,14 +465,14 @@ are improved as a result of the fit.
 %
 \begin{figure}
   \centering
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_postfit} \\
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_postfit} \\
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_postfit} \\
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_prefit}
-  \includegraphics[width=0.35\linewidth]{figures/210323_STXS_VZ_unblinded_XbbVZ_8fe9e9cd_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_18_13TeV2018_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_prefit}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_20_13TeV2018_postfit} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_prefit_logy}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_22_13TeV2018_postfit_logy} \\
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_prefit_logy}
+  \includegraphics[width=0.35\linewidth]{figures/210414_STXS_VZ_unblinded_XbbVZ_e4179c95_postfitplots/plot_shapes_vhbb_Wen_24_13TeV2018_postfit_logy} \\
   \caption[$W\rightarrow e\nu$ $V\!Z$ distributions for the boosted selection in 2018]{
     Above are $W\rightarrow e\nu$ pre-fit (left) and post-fit (right) distributions in the boosted selections in 2018
     for the $V\!Z$ analysis.
@@ -447,8 +480,6 @@ are improved as a result of the fit.
     and the second row shows the  $t\bar{t}$ control region.
     The third row shows the signal region for the $\SI{250}{GeV} < p_T(V) < \SI{400}{GeV}$ bin,
     and the bottom row shows the signal region for the bin of $p_T(V) > \SI{400}{GeV}$.
-    \phil{same comments as before except for the two signal regions in
-    the bottom two rows.} 
   }
   \label{fig:vz-wen-boost-2018}
 \end{figure}
@@ -464,11 +495,14 @@ The uncertainty of this measurement means the result has a $p$-value of 22\%, as
 or within 1.2 standard deviations of the Standard Model.
 Figure~\ref{fig:vz-stxs} shows the measured kinematic distributions of the various $V\!Z$ processes.
 Assuming the Standard Model, the measurement has a $p$-value of 23\%.
-Overall, the $V\!Z$ cross-check is in agreement with the Standard Model.
+The $W\!Z$ STXS bins are consistently slightly above the Standard Model prediction.
+When the $V\!Z$ process is split into inclusive $W\!Z$ and $Z\!Z$ parameters though,
+the $W\!Z$ process is seen to be only 2.1 standard deviations away from the Standard Model.
+Overall the $V\!Z$ cross-check is in agreement with the Standard Model.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/210309_inclVZ_unblinded_XbbVZ_e4179c95_a866aef8/scan_nominal_r.pdf}
+  \includegraphics[width=0.7\linewidth]{figures/210309_inclVZ_unblinded_XbbVZ_e4179c95_a866aef8/scan_nominal_r.pdf}
   \caption[Inclusive likelihood scan of $V\!Z$]{
     The likelihood scan of the inclusive signal strength of the
     $V\!Z$ cross check analysis is shown above.
@@ -478,6 +512,17 @@ Overall, the $V\!Z$ cross-check is in agreement with the Standard Model.
     systematic uncertainties to be evaluated.
   }
   \label{fig:vz-inclusive}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/210308_STXS_VZ_unblinded_XbbVZ_e4179c95_a866aef8/summary_stxs.pdf}
+  \caption[Measured STXS values of $V\!Z$]{
+    The measured most likely values of all STXS bins in the
+    $V\!Z$ cross check analysis.
+  }
+  \label{fig:vz-stxs}
 \end{figure}
 
 \begin{figure}
@@ -490,24 +535,8 @@ Overall, the $V\!Z$ cross-check is in agreement with the Standard Model.
   \label{fig:vz-wzzz}
 \end{figure}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\linewidth]{figures/210308_STXS_VZ_unblinded_XbbVZ_e4179c95_a866aef8/summary_stxs.pdf}
-  \caption[Measured STXS values of $V\!Z$]{
-    The measured most likely values of all STXS bins in the
-    $V\!Z$ cross check analysis.
-  }
-  \label{fig:vz-stxs}
-\end{figure}
-\phil{You should show the WZ and ZZ cobmined results, also do you have
-  an explanation why WZin particular is so off? It looks like 2.5 sigma}
-
 \subsection{$V\!H$ Combination Fit Results}
 
-\phil{big comment about this section is you should make some summary
-  distributions combining sthe signal acrss years ideally (weighted
-  by signficance in fit). Also all of your DNN plots need to be log, I
-can't see the signal otherwise. }
 The first step to show that the processes in the detector are well-modeled
 by simulation is the Goodness of Fit test.
 The Goodness of Fit for the $V\!H$ selection is shown in Figure~\ref{fig:vh-gof}.
@@ -627,7 +656,7 @@ Standard Model kinematics cannot be entirely ruled out by this measure.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/210309_incl_unblinded_Xbb_8f854f5a_a866aef8/scan_nominal_r.pdf}
+  \includegraphics[width=0.7\linewidth]{figures/210309_incl_unblinded_Xbb_8f854f5a_a866aef8/scan_nominal_r.pdf}
   \caption[Inclusive likelihood scan of $V\!H$]{
     The likelihood scan of the inclusive signal strength of the
     $V\!H$ analysis.
@@ -762,16 +791,3 @@ Stat & {+0.479} {-0.469} & {+0.360} {-0.346} & {+0.781} {-0.738} & {+0.369} {-0.
 \hline
   \end{tabular}
 \end{sidewaystable}
-
-
-<<<<<<< HEAD
-% EWK Corrections
-% DNN differences in training samples
-% b-jet enriched vs HT-binned samples
-% Add the systematics split
-=======
-\phil{This chapter really does feel incomplete. You need to comment
-  about the elephant in the room (large and systematic
-  disagreement). Othwerise, it reads really weird. There is nothing
-  evidently incorrect with this approach, so you should stand by your
-  results, and be very clear that things are notn consistent with the SM. } 
