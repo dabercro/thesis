@@ -34,18 +34,20 @@ The main point of the example above is that physicists can learn about the $Z$ b
 by observing only electrons and muons.
 They never see the $Z$ boson itself.
 This can be generalized to any interesting particle that interacts with other particles.
+Comparing only the initial and final particles is most common way measurements are done today
+in the field of particle physics.
 An increased probability of certain initial states resulting in certain final states
-can teach the observer about the role of the interesting particle
-without ever directly seeing it.
+can teach the observer much about the role of the intermediate particles
+without ever directly seeing them.
 
 \section{Measurement of the Higgs Cross Section}
 
-The purpose of the following document is to present the methods and results
-of measuring the strength of the coupling between the Higgs boson and bottom quarks.
+The purpose of the following document is to present the methods for and
+most recent results of measuring the strength of the coupling between the Higgs boson and bottom quarks.
 In this context, the Higgs boson makes up one of the previously mentioned
 intermediate states that cannot be shown as present in a given event.
-The coupling strength is directly related to the probability contribution
-the Higgs field has on processes involving bottom quarks.
+The coupling strength is directly related to the contribution
+the Higgs field has on the probability of having a final state with bottom quarks.
 However, the cross section measurement also relies on a number of other physics processes.
 
 To measure this coupling, the Higgs boson must first be ``produced''
@@ -53,32 +55,36 @@ before measuring its coupling strength to bottom quarks.
 This analysis takes advantage of a process known as associated production,
 where a vector boson, one of the intermediate particles of the weak nuclear force,
 couples to and radiates a Higgs boson.
-The vector boson is in turn produced by the collision of high energy protons.
+This means the featured measurement includes information about the Higgs coupling to vector bosons.
+The vector boson itself is produced by the collision of high energy protons,
+so it too is an intermediate state that precedes the Higgs boson.
 
-The measurement is not complete once the intermediate state is generated.
+The measurement is not complete once the intermediate states are generated.
 The Higgs boson can decay into a number of different particles,
-with bottom quarks being only one type.
-The bottom quarks must be identified.
+with bottom quarks being only one type, though it is predicted to be the most frequent Higgs decay.
 The vector bosons have multiple decay modes as well.
 In this analysis, we only use the leptonic decays because
 these give us the cleanest signature,
 where enough of the contribution to the final state probability
 is from associated production for it to be measured.
+The clean signal also gives a more accurate measurement of the overall energies involved in each event.
+This means that instead of looking for a Higgs and a vector boson, we must look for $b$ quarks and leptons and
+measure these final state yields near the appropriate energy resonances.
 
 There are also other physics processes that create the same final states,
 as well as processes that create final states that look similar enough
 to be practically indistinguishable.
-These processes must also be well understood before a Higgs boson cross section measurement
-can be undertaken.
+These processes must also be well understood through thorough study before a Higgs boson cross section measurement
+can be successfully completed.
 
 \section{Motivation for the Measurement}
 
 The measurement of a cross section of a known particle is ``normal science,''
 and that is the space in which this analysis operates \cite{Kuhn:1970}.
 Much of the community of physics researchers have been operating under the paradigm
-of the Standard Model for the better part of a century.
+of the Standard Model \cite{PhysRevLett.19.1264} for the better part of a century.
 The Standard Model has known gaps,
-such as missing explanations for neutrino mass,
+such as lack of explanation for neutrino mass,
 as well as the origin of Dark Matter and Dark Energy.
 However, none of these research fields have yielded any results
 that will trigger a paradigm shift.
@@ -93,23 +99,24 @@ Repeating measurements while the state of the art is improving is interesting,
 no matter the outcome.
 Over time, the uncertainty in the measurement outcome shrinks,
 leading to more precise knowledge of parameters of the Standard Model.
-If the precise parameters cause excessive tension in that they cannot exist
-assuming the Standard Model is true,
+If the parameters' precision eventually causes excessive tension in that they cannot all exist
+at their measured value assuming the Standard Model is true,
 the discrepancies would need to be explained by a different or amended model.
 
 The Higgs decaying to $b\bar{b}$, or a bottom quark and bottom anti-quark,
-was observed in 2018 \cite{obs-18, Aaboud_2018}.
+was first observed in 2018 \cite{obs-18, Aaboud_2018}.
 The measurement outlined in this document goes further in that
 it measures the contribution of $H \rightarrow b\bar{b}$ in associated production
 to final states possessing different energies.
 This is called a differential cross section,
-and places greater constraints on the parameters of the Standard Model.
-These constraints lead to more precise measurements of the parameters,
+and places greater constraints on the parameters of the Standard Model because
+the undetectable intermediate states play a large role in the energy distribution of the final state.
+Additional constraints lead to more precise measurements of the parameters,
 and have the potential to discover discrepancies that have hitherto been missed.
 
 If descrepancies arise, not only in the frequency of events,
 but also the energy spectrum of the events,
-that means there are interactions that are not accounted for.
+that means there are intermediate interactions that are not accounted for.
 The Standard Model describes all possible interactions between the particles we know of.
 If there is evidence of additional interactions, then additional particles must exist to allow them.
 Alternatively, the Higgs boson itself might not be the type of boson we expect it to be.
@@ -117,7 +124,7 @@ Alternatively, the Higgs boson itself might not be the type of boson we expect i
 \section{Using the CMS Detector at the LHC}
 
 This measurement is only possible due to massive efforts by the scientific community.
-The Higgs boson is not typically generated in conditions on Earth.
+Interactions near the Higgs boson resonance are not generated by typical conditions on Earth.
 There have been multiple colliders created over the years that attempted to find evidence of the Higgs boson.
 The highest energy hadron collider before the LHC,
 the Tevatron at Fermilab reached collision energies of nearly \SI{2}{TeV}
@@ -127,7 +134,7 @@ In principle, this was enough energy to generate Higgs bosons,
 but the collider was decommissioned with only hints of the Higgs boson at LEP.
 The Large Hadron Collider (LHC) was built in the same tunnels as LEP, and
 required the efforts of thousands of scientists and engineers,
-as well as the funding from countries distributed all around the globe.
+as well as funding from countries distributed all around the globe.
 The LHC performs proton-proton collisions at \SI{13}{TeV},
 which we now know is more than enough energy to produce Higgs bosons.
 
@@ -138,6 +145,8 @@ This analysis is done using data from the Compact Muon Solenoid (CMS).
 Other experiments are ATLAS, ALICE, LHCb, TOTEM, LHCf, MoDEL, and FASER.
 The CMS detector is a general purpose detector,
 which was used in the discovery of the Higgs boson, along with ATLAS.
-The detection capabilities of CMS make it instrumental in a number of state of the art
-measurements of the Standard Model as well as in searches for
+Though it is impossible to make a perfect detector,
+CMS utilizes a number of state-of-the-art technologies and analysis techniques
+to achieve unprecedented precision in this measurement of $V\!Hb\bar{b}$,
+as well as other Standard Model measurements and searches for
 physics beyond the Standard Model.
