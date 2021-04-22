@@ -37,6 +37,10 @@ However, this subset shown demonstrate several discrepancies that needed to be a
 such as the $p_T(V)$ trend which can be seen in Figure~\ref{fig:2016_Zll_vpt},
 the $p_T$ of individual jets in Figures~\ref{fig:2016_Wln_j0pt} and \ref{fig:2017_Zee_j1pt},
 and normalization of certain background samples, like the $Z$ + jets samples in Figure~ \ref{fig:2018_Zmm_vpt}.
+Figure~\ref{fig:2017_Znn_j0csv} shows how difficult it is to model the $b$-tagging variables.
+Systematic uncertainties are applied to all of these variables to account for the modelling difficulties,
+but the plots in  Figures~\ref{fig:2016_Zll_vpt} through \ref{fig:2018_Zmm_vpt} only show the statistical
+uncertainties in the simulation.
 
 \begin{figure}
   \centering
@@ -169,7 +173,7 @@ and normalization of certain background samples, like the $Z$ + jets samples in 
 
 \section{Multivariate Discriminator}
 
-In each STXS bin, a multivariate discriminator is plotted for the signal region which separates
+In each STXS bin, a multivariate discriminator is evaluated for the signal region which separates
 the signal events from background events.
 A Deep Neural Network (DNN) is trained for the resolved selection,
 and a Boosted Decision Tree (BDT) is trained for the boosted selection.
@@ -191,7 +195,7 @@ The cross entropy loss function is used for the training.
 A separate training using the same architecture is performed on the $V$ + heavy jets control regions.
 Each class in the output is designed to control the normalization and input variable shapes
 of different background processes.
-There five classes that attempt to separate the following processes:
+There are five classes that attempt to separate the following processes:
 \begin{itemize}
 \item $V$ + light-flavored ($udsg$) jets
 \item $V$ + $c$ jets
@@ -283,13 +287,13 @@ The fit is done by using the \texttt{combine} tool \cite{cmsdocumentation} as pa
 Included in this fit is the strength of the signal in the STXS bins.
 This is how the final result of this analysis is measured.
 
-There are a total of 243 distribtuions that make up the fit.
+There are a total of 243 distributions that make up the fit.
 Table~\ref{tab:num-hists} shows how the different channels and control regions contribute to this number.
 %
 \begin{table}
   \caption[Counts of distributions for each selection]{
     Below, a table indicates the distributions from each control region (CR) and signal region (SR) selection.
-    Each of the three control regions contribution the same number of distributions to the fit.
+    Each of the three control regions contributes the same number of distributions to the fit.
     The channels containing charged leptons can either be electron or muon flavored.
     These two considerations determine the multipliers shown in the table.
   }
@@ -352,9 +356,9 @@ Impacts plots are shown in Appendix~\ref{app:impacts} due to the high multiplici
 Before running these checks and measurements for the $V\!H$ measurement,
 they were first tested on $V\!Z$.
 
-\subsection{$V\!Z$ Cross Check Analysis}
+\subsection{Test of Methodology Using a $V\!Z$ Selection}
 
-Before unblinding the $V\!H$, the techniques used in the analysis are
+Before unblinding the $V\!H$ signal region and results, the techniques used in the analysis are
 verified by performing a similar analysis.
 The process $V\!Zb\bar{b}$, where a vector boson radiates a $Z$ boson that decays into $b$ quarks,
 looks very similar to the $V\!Hb\bar{b}$ process.
@@ -366,8 +370,8 @@ to  $\SI{60}{GeV} < m_{jj} < \SI{120}{GeV}$.
 However, other differences should be mentioned that may affect the final reult.
 Additional measured electroweak corrections are applied to the di-boson samples for each STXS bin.
 The values of these corrections vary from as low as 4\% for the low $p_T(V)$ bins
-and as high as 23\% for the high $p_T(V)$, but all will increase the measured signal strength compared to $V\!H$.
-Other differences,the effect of which are more difficult to quantify, include the dedicated $V\!Z$ DNN training and
+to as high as 23\% for the high $p_T(V)$, but all will increase the measured signal strength compared to $V\!H$.
+Other differences, the effect of which are more difficult to quantify, include the dedicated $V\!Z$ DNN training and
 the fact that the $Z$ boson will decay into light flavored jets at a higher proportional rate than the Higgs boson.
 The DNN training for $V\!H$ has to account for the similar $V\!Z$ background,
 while the $V\!Z$ is not influenced as much by the rare $V\!H$ process.
@@ -379,6 +383,7 @@ can also be investigated using $V\!Z$.
 The Goodness of Fit plots are shown in Figure~\ref{fig:vz-gof}.
 The high $p$-value means that the simulated processes were able to match the data very well
 while staying within the fit constraints of the systematic uncertainties.
+This suggests that the systematic uncertainties applied may be much larger than needed for this cross check analysis.
 
 \begin{figure}
   \centering
@@ -387,6 +392,8 @@ while staying within the fit constraints of the systematic uncertainties.
     The Goodness of Fit test results are shown for $V\!Z$.
     The fit is performed using STXS bins,
     and the test statistic is generated by toys for all control regions and signal regions.
+    The high $p$-value indicates that the model may be over-fitting to data due to large systematic uncertainties.
+    This is not the case for the $V\!H$ analysis.
   }
   \label{fig:vz-gof}
 \end{figure}
@@ -429,8 +436,8 @@ In the $Z$ + heavy jets control region,
 the multi-classifier DNN  with the same inputs as the signal region DNN is shown.
 The signal distributions are binned so that the output of the DNN is flat in the $V\!H$ signal.
 The $V\!Z$ signal distribution is close to flat when following the same binning scheme.
-The important feature in that distribution then is that the backgrounds are all falling as the DNN value increases.
-In all of the regions, we can see improved agreement between the simulation and data after the fit, and
+The important feature in that distribution is that the backgrounds are all falling as the DNN value increases.
+In all of the regions, we see improved agreement between the simulation and data after the fit, and
 the combination fit also decreases the uncertainty on each bin.
 The relative contributions of the main background processes can also be seen at a glance at the signal region plots.
 %
@@ -500,7 +507,7 @@ Figure~\ref{fig:vz-stxs} shows the measured kinematic distributions of the vario
 Assuming the Standard Model, the measurement has a $p$-value of 23\%.
 The $W\!Z$ STXS bins are consistently slightly above the Standard Model prediction.
 When the $V\!Z$ process is split into inclusive $W\!Z$ and $Z\!Z$ parameters though,
-the $W\!Z$ process is seen to be only 2.1 standard deviations away from the Standard Model.
+the $W\!Z$ process is seen to be 2.1 standard deviations away from the Standard Model.
 Overall the $V\!Z$ cross-check is in agreement with the Standard Model.
 
 \begin{figure}
@@ -614,13 +621,13 @@ largely made up of $t\bar{t}$ background.
   \label{fig:vh-wmn-med-2017}
 \end{figure}
 %
-Finally, Figure~\ref{fig:vh-zee-med-2018} shows the $150 < p_T(V) \SI{250}{GeV}$ STXS bin
+Finally, Figure~\ref{fig:vh-zee-med-2018} shows the $150 < p_T(V) < \SI{250}{GeV}$ STXS bin
 for $Z\rightarrow ee$ in 2018.
 In this $p_T(V)$ bin, the $Z\!H$ the signal region is split between events with no extra jets,
 and events with extra jets, which can be seen in the distributions.
 The other thing to note is that the post-fit signal values are pulled to low values,
 and disappear in the post-fit plot.
-A deficit of signal-like events can be observed in data for events with jets.
+A deficit of signal-like events is observed in data for events with jets.
 Even though there is an excess of signal-like events in events without jets,
 the signal strength is affected by the fit in other channels ($\mu\mu$ and $\nu\nu$) and other years.
 %
