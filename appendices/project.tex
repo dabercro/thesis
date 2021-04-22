@@ -45,7 +45,7 @@ The results are reported back to Dynamo, which can then take corrective measures
 
 A single executable \texttt{dynamo-consistency} is provided to run the consistency check.
 This executable can be used directly in Dynamo’s scheduling system.
-Most of the behaviour is controlled via a single JSON configuration file,
+Most of the behavior is controlled via a single JSON configuration file,
 with options for site selection, passed via command line arguments.
 Differing command line arguments allows Dynamo to run separate schedules
 for differing site architectures.
@@ -300,7 +300,7 @@ Options:
 
 \subsubsection{set-status}
 
-This script changes the status of a site on the summary webpage.
+This script changes the status of a site on the summary web page.
 It can be used to unlock from a dead process, disable sites from running,
 and change whether or not to act on the site.
 This script can take a \texttt{--config <FILE>} parameter to point
@@ -323,7 +323,7 @@ the name of the site to change.
     \texttt{ready} &
     This sets the site status back to idle.
     This means the site is ready to run.
-    Should be used on a site that's disabled. \\
+    Should be used on a site that is disabled. \\
     \hline
     \texttt{halt} &
     This stops a currently running or locked site.
@@ -530,7 +530,7 @@ is enumerated below.
   using the configuration options concerning file age.
 \item If the number of missing files is less than {\bf MaxMissing},
   the number of orphans is less than {\bf MaxOrphan},
-  and the site is under the webpage’s “Debugged sites” tab,
+  and the site is under the web page's “Debugged sites” tab,
   connects to a dynamo registry to report the following errors:
   \begin{itemize}
   \item Every orphan file and every empty directory that is not too new
@@ -627,6 +627,6 @@ A more successful approach has been to create static models that correlate
 most frequent error codes and statuses of sites relevant to the workflow to
 automatically predict actions.
 This separate project, Artificial Intelligence Error Handling (AIEH),
-has been able to reduce operator loads signficantly.
+has been able to reduce operator loads significantly.
 The Workflow Web Tools periodically queries AIEH for predictions of all promising workflows,
 and automatically presents AIEH's predictions to Unified without operator intervention.
